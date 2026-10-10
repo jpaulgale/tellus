@@ -1,0 +1,261 @@
+/* App-specific additions on top of nyc.css (formspeak's NYC Digital Design System sheet). */
+
+@media (min-width: 720px) { .app { max-width: 560px; } }
+.app { overflow-x: hidden; }
+[hidden] { display: none !important; }
+/* The app name is the hero: a big centered wordmark, with the prompt as its subhead. */
+.wordmark {
+  display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 20px;
+  font-family: var(--font-display); font-size: clamp(56px, 17vw, 88px); font-weight: 600;
+  letter-spacing: -.04em; line-height: 1; color: var(--ink);
+}
+.wordmark-mark { width: .72em; height: .72em; flex: none; display: block; }
+.hero.tagline { font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; }
+.lede { text-align: center; color: var(--muted); font-size: 15px; line-height: 1.45; text-wrap: pretty; margin-top: -6px; }
+
+/* composer */
+.composer { display: flex; flex-direction: column; gap: 6px; }
+.composer-text { min-height: 224px; resize: vertical; line-height: 1.4; }
+textarea.composer-text { resize: vertical; }
+.composer-bar { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 22px; font-size: 13px; color: var(--muted); }
+.status .err { color: var(--warn-text); font-weight: 600; }
+.linkbtn { background: none; border: 0; padding: 2px 4px; font: inherit; font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.linkbtn:focus-visible, .chip:focus-visible, .rank:focus-visible, summary:focus-visible { outline: 2px dashed var(--accent); outline-offset: 2px; }
+
+.examples { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.examples-lead { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.examples .chip { text-align: left; font-weight: 500; }
+
+/* chips: select options, alternatives, Yes/No */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; max-width: 100%;
+  border: 1.5px solid var(--gray-70); border-radius: 99px; background: var(--white); color: var(--ink);
+  padding: 7px 12px; font: inherit; font-size: 14px; font-weight: 600; line-height: 1.25; cursor: pointer; text-decoration: none;
+  overflow-wrap: anywhere; transition: border-color .15s, background .15s;
+}
+.chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+.chip.on { border-color: var(--accent); background: var(--accent); color: #fff; }
+.chip.on .chip-p { color: #fff; opacity: .85; }
+.chip-p { font-size: 12px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip-none { border-style: dashed; }
+.chips.alts { margin-top: 6px; }
+.alts-lead { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+/* field header tags */
+.ff-tag { font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 99px; padding: 2px 8px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ff-tag.you { color: var(--gray-20); background: var(--gray-90); }
+.req { color: var(--warn-text); }
+.subhead { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin: 10px 8px 0; display: flex; align-items: baseline; gap: 8px; }
+.fieldhint { font-size: 12.5px; color: var(--muted); line-height: 1.4; margin-top: 4px; }
+.muted { color: var(--muted); font-weight: 500; }
+.tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--accent-dark); background: var(--accent-soft); border-radius: 2px; padding: 1px 6px; margin-left: 6px; vertical-align: 1px; }
+
+/* "Will be routed to…" + ranked pickers */
+#verdict { display: flex; flex-direction: column; gap: 10px; }
+.routebox { border: 1.5px solid var(--accent); border-left-width: 6px; border-radius: 6px; padding: 12px 14px; background: var(--white); }
+.routeline { font-size: 15px; line-height: 1.5; }
+.routeline b { font-weight: 700; }
+.ranklist { display: flex; flex-direction: column; margin-top: 10px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.rank {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; text-align: left; width: 100%;
+  padding: 10px 12px; border: 0; border-top: 1px solid var(--line); background: var(--white); font: inherit; color: var(--ink); cursor: pointer;
+}
+.rank:first-child { border-top: 0; }
+.rank:hover { background: var(--accent-soft); }
+.rank.on { background: var(--accent-soft); box-shadow: inset 4px 0 0 var(--accent); }
+.rank-title { font-size: 14px; font-weight: 700; }
+.rank-pct { font-size: 14px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.rank-bar { grid-column: 1 / -1; height: 4px; background: var(--gray-90); border-radius: 2px; overflow: hidden; }
+.rank-bar i { display: block; height: 100%; background: var(--accent); }
+.rank-sub { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); font-weight: 500; line-height: 1.35; }
+.ff .routeline { font-size: 14px; }
+
+/* location */
+.loc { display: flex; flex-direction: column; gap: 6px; }
+.didyoumean { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-radius: 6px; background: var(--flash); border-left: 4px solid var(--yellow-40); font-size: 15px; }
+.combo { position: relative; }
+.suggest { position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 4px); list-style: none; background: var(--white); border: 1.5px solid var(--accent); border-radius: 6px; box-shadow: var(--shadow); overflow: hidden; }
+.suggest li { display: flex; flex-direction: column; padding: 9px 12px; cursor: pointer; border-top: 1px solid var(--line); }
+.suggest li:first-child { border-top: 0; }
+.suggest li b { font-size: 14px; }
+.suggest li span { font-size: 12px; color: var(--muted); }
+.suggest li[aria-selected="true"], .suggest li:hover { background: var(--accent-soft); }
+.mapbox { width: 100%; height: 200px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--gray-90); }
+.geometa { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bizcard { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; color: var(--gray-20); }
+.bizcard b { font-size: 14px; color: var(--ink); }
+
+/* send */
+#sendPanel { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+.ff-submit:disabled { opacity: .6; cursor: progress; }
+.fineprint { font-size: 12.5px; color: var(--muted); text-align: center; }
+.handoff { display: flex; flex-wrap: wrap; gap: 6px; }
+.sendresult { display: flex; flex-direction: column; gap: 8px; }
+.payloadbox summary, .jevdetails summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--accent); padding: 4px 0; }
+.payload { margin-top: 6px; max-height: 320px; overflow: auto; font-size: 12px; line-height: 1.4; background: var(--gray-90); border-radius: 6px; padding: 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.jevdetails { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 8px; }
+.jevgrid { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: 13px; margin-top: 6px; }
+.jevgrid dd { font-variant-numeric: tabular-nums; font-weight: 700; text-align: right; }
+
+/* ---------- what you can ask: typewriter placeholder + topic marquee ---------- */
+.composer-field { position: relative; }
+.ghost {
+  position: absolute; inset: 0; padding: 12.5px 13.5px; pointer-events: none;
+  font-size: 16px; font-weight: 500; line-height: 1.4; color: var(--gray-40);
+}
+.ghost[hidden] { display: none; }
+.ghost-caret {
+  display: inline-block; width: 2px; height: 1.1em; margin-left: 1px; vertical-align: -3px;
+  background: var(--accent); animation: blink 1.1s steps(1) infinite;
+}
+
+.topics { display: flex; flex-direction: column; gap: 8px; margin: 2px -18px 0; }
+.topics[hidden] { display: none; }
+.topics-lead {
+  padding: 0 18px; font-size: 12px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.topic-list { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px; }
+
+.topic {
+  flex: none;
+  border: 1.5px solid var(--gray-80); border-radius: 99px; background: var(--white);
+  padding: 6px 12px; min-height: 34px; cursor: pointer;
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--ink);
+  transition: border-color .15s, background .15s, transform .1s;
+}
+.topic:hover { border-color: var(--accent); background: var(--accent-soft); }
+.topic:active { transform: scale(.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ghost-caret { animation: none; }
+}
+
+/* No orphaned last words: headline, subhead, notes, hints, and messages wrap "pretty". */
+.hero, .demo-note, .fieldhint, .nyc-inlinemessage__text, .mic-label, .geometa, .didyoumean { text-wrap: pretty; }
+
+/* Emergency: 911 is the route */
+.route911 { display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; font-size: 17px; margin-bottom: 10px; }
+.route911 b { color: var(--warn-text); font-family: var(--font-display); font-size: 22px; }
+.jevpill911 { margin-left: 8px; font-size: 12px; font-weight: 700; color: var(--warn-text); background: rgba(236,19,30,.1); border-radius: 99px; padding: 3px 9px; vertical-align: 2px; }
+.call911 { display: block; width: 100%; text-align: center; background: var(--red-40); color: #fff; font-weight: 700; font-size: 18px; text-decoration: none; border-radius: 99px; padding: 16px; }
+.call911:hover { background: #C50F18; }
+
+/* Siren: red and blue beacons flashing in turn, with a glow that sweeps the card */
+.siren { display: flex; gap: 10px; justify-content: center; }
+.siren i { width: 54px; height: 30px; border-radius: 30px 30px 6px 6px; }
+.siren-l { background: var(--red-40); animation: beacon .5s steps(1) infinite; box-shadow: 0 0 28px 6px rgba(236,19,30,.55); }
+.siren-r { background: var(--blue-40); animation: beacon .5s steps(1) infinite reverse; box-shadow: 0 0 28px 6px rgba(16,63,239,.55); }
+@keyframes beacon { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .15; box-shadow: none; } }
+.route911 { border-radius: 12px; padding: 16px 12px; animation: sirenwash 1s steps(1) infinite; }
+@keyframes sirenwash { 0%, 49% { background: rgba(236,19,30,.08); } 50%, 100% { background: rgba(16,63,239,.08); } }
+@media (prefers-reduced-motion: reduce) { .siren i, .route911 { animation: none; } }
+
+/* ---------- desktop: a wide card so the routed form shows in two columns ---------- */
+@media (min-width: 1000px) {
+  .app { max-width: 1080px; padding-inline: 36px; }
+  /* the intro (headline, text box, mic) stays a readable column in the middle */
+  .wordmark, .hero, .lede, .demo-note, .composer, #verdict { max-width: 720px; width: 100%; margin-inline: auto; }
+  .topics { margin-inline: -36px; }
+  .topics-lead { padding-inline: 36px; text-align: center; }
+  .topic-list { padding-inline: 36px; justify-content: center; }
+  /* the form uses the full width: two columns, with the address + map and section heads spanning both */
+  #qcard, .liveform { max-width: none; }
+  .liveform { gap: 14px 28px; padding: 20px 22px 22px; }
+  .liveform .ff[data-key="general.location"], .liveform .subhead, .liveform > :not(.ff) { grid-column: 1 / -1; }
+  .liveform .ff[data-key="general.location"] .loc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; align-items: start; }
+  .loc .mapbox { grid-column: 2; grid-row: 1 / span 6; height: 220px; }
+  .loc > :not(.mapbox) { grid-column: 1; }
+}
+
+/* "Not correct? Change where this goes." sits on its own line under the route */
+.routeline .linkbtn { display: block; padding: 4px 0 0; text-align: left; }
+
+/* ---------- composer: mic on the left, and the whole thing follows you down the form ---------- */
+.app { overflow-x: clip; }            /* clip (not hidden) so position: sticky works against the page */
+.composer { position: sticky; top: 0; z-index: 20; background: var(--white); padding: 10px 0 4px; }
+.composer.stuck { box-shadow: 0 10px 16px -14px rgba(0,0,0,.35); }
+.composer-row { display: flex; gap: 12px; align-items: flex-start; }
+.composer-field { flex: 1; min-width: 0; }
+.composer .dock { flex: none; width: 68px; gap: 4px; }
+.composer .mic-wrap { width: 68px; height: 68px; }
+.composer .mic { width: 54px; height: 54px; }
+.composer .mic svg { width: 22px; height: 22px; }
+.composer .mic-label { font-size: 11px; line-height: 1.25; min-height: 0; color: var(--muted); }
+.composer-bar { padding-left: 80px; }
+/* once a form is showing, the box shrinks so it doesn't crowd the form while it follows */
+.composer.compact .composer-text { min-height: 60px; height: 60px; }
+.composer.compact .mic-label { display: none; }
+
+/* quieter "Not correct?" link */
+.routeline .linkbtn { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration-color: var(--gray-70); }
+.routeline .linkbtn:hover { color: var(--accent); }
+@media (min-width: 1000px) {
+  /* the pinned bar spans the whole card so the form never shows through beside it */
+  .composer { max-width: none; }
+  .composer-row, .composer-bar { max-width: 720px; margin-inline: auto; }
+  .composer-bar { padding-left: 80px; box-sizing: border-box; width: 100%; }
+}
+@media (min-width: 1000px) {
+  /* text box runs the full width of the card, same as the form below it */
+  .composer-row, .composer-bar, #verdict { max-width: none; }
+}
+/* the row is a flex child of the composer: without an explicit width it shrinks to its content */
+.composer-row, .composer-bar { width: 100%; box-sizing: border-box; }
+
+/* ---------- "Needed for <form>": required fields still empty ---------- */
+.needed { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: var(--flash); border: 1px solid var(--yellow-40);
+  border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+.needed-lead { font-size: 13px; font-weight: 700; color: #7a4d00; }
+.chip.need { border-color: var(--yellow-40); background: var(--white); }
+.fieldhint.reason { color: var(--accent-dark); font-weight: 600; }
+
+/* ---------- the board's past resolution about this address ---------- */
+.respast { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.rescard { border: 1.5px solid var(--accent); border-radius: 10px; padding: 16px 18px; background: linear-gradient(var(--accent-soft), var(--white) 70px); }
+.rescard-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.rescard-title { font-family: var(--font-display); font-size: 18px; line-height: 1.25; margin-top: 4px; text-wrap: pretty; }
+.rescard-sub { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+.resquote { margin: 14px 0 0; padding: 2px 0 2px 14px; border-left: 4px solid var(--yellow-40); }
+.resquote mark, .resall mark { background: #FFE7A8; color: var(--ink); padding: 2px 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.resquote mark { font-family: var(--font-display); font-size: 19px; line-height: 1.5; }
+.resquote footer { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.resall { margin-top: 12px; font-size: 13px; }
+.resall summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.resall ol { margin: 8px 0 0 20px; display: flex; flex-direction: column; gap: 6px; line-height: 1.45; color: var(--gray-20); }
+.rescard-foot { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 13px; }
+.rescard-foot a { color: var(--accent); font-weight: 600; }
+.attach { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--ok-text); background: rgba(0,183,3,.10); border-radius: 99px; padding: 5px 12px; }
+.attach::before { content: "✓"; }
+@media (min-width: 1000px) {
+  /* the record sits across both columns, under the address and map */
+  .loc .respast { grid-column: 1 / -1; }
+  .needed { max-width: none; }
+}
+
+/* a required field that's still empty: the same yellow as the "Needed for…" bar, in the form itself */
+.ff.need { background: var(--flash); box-shadow: inset 0 0 0 1px var(--yellow-40); border-radius: 8px; padding: 10px 12px; }
+.ff.need .ff-input { border-color: var(--yellow-40); background: var(--white); }
+.ff.need .ff-top::after { content: "Needed"; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #7a4d00; }
+
+/* the route card hugs its text instead of spanning the page */
+.routebox { width: fit-content; max-width: 100%; }
+.loc .outside { margin-top: 8px; }
+/* the "Needed for…" bar hugs its chips too */
+.needed { width: fit-content; max-width: 100%; }
+@media (min-width: 1000px) { .needed { max-width: 100%; } }
+
+/* inline validation message under a field (email, phone) */
+.fielderror { color: var(--warn-text); font-size: 13px; font-weight: 600; margin-top: 6px; }
+
+/* the "Needed" box now holds the fields themselves */
+.needed { display: block; width: auto; max-width: none; padding: 14px 16px 16px; }
+.needed-lead { font-size: 13px; font-weight: 700; color: #7a4d00; margin-bottom: 10px; }
+.needed-grid { display: grid; grid-template-columns: 1fr; gap: 12px 24px; align-items: start; }
+.needed .ff, .needed .ff.need { background: none; box-shadow: none; padding: 0; }
+.needed .ff.need .ff-top::after { content: none; }
+.needed.done { background: rgba(0,183,3,.08); border-color: var(--ok-text); }
+.needed.done .needed-lead { color: var(--ok-text); }
+@media (min-width: 760px) { .needed-grid { grid-template-columns: 1fr 1fr; } .needed-grid .ff[data-key="general.location"] { grid-column: 1 / -1; } }
+@media (min-width: 1000px) { .needed { width: auto; max-width: none; } }

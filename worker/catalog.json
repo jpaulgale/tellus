@@ -1,0 +1,492 @@
+{
+ "general": [
+  {
+   "id": "location",
+   "label": "Address",
+   "kind": "location",
+   "required": true,
+   "sr": "incident_address",
+   "hint": "the street address where the problem is, or the nearest address to that corner or block"
+  },
+  {
+   "id": "when",
+   "label": "When it happens",
+   "kind": "span",
+   "find": "times",
+   "hint": "the time or time of day the problem happens or was seen"
+  },
+  {
+   "id": "name",
+   "label": "Your name",
+   "kind": "span",
+   "find": "names",
+   "hint": "the resident's own name"
+  },
+  {
+   "id": "email",
+   "label": "Email",
+   "kind": "span",
+   "find": "emails",
+   "hint": "the resident's email address"
+  },
+  {
+   "id": "phone",
+   "label": "Phone",
+   "kind": "span",
+   "find": "phones",
+   "hint": "the resident's phone number"
+  }
+ ],
+ "forms": {
+  "crossing_guard": {
+   "name": "Crossing Guard Request",
+   "agency": "NYPD",
+   "complaint_type": "School Crossing Guard",
+   "route": "A request for a school crossing guard at an intersection near a school, usually from a parent, or a report that the crossing guard is missing or not showing up.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Request",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "New crossing guard at this corner",
+      "Crossing guard is absent",
+      "Need a guard for more hours"
+     ],
+     "hint": "what the person is asking for"
+    },
+    {
+     "id": "school",
+     "label": "School name",
+     "kind": "span",
+     "find": "proper_names",
+     "hint": "the name of the school the children attend",
+     "required": true
+    },
+    {
+     "id": "shift",
+     "label": "Time of day",
+     "kind": "select",
+     "choices": [
+      "Morning drop-off",
+      "Afternoon dismissal",
+      "Both drop-off and dismissal"
+     ],
+     "hint": "when a guard is needed",
+     "required": true
+    },
+    {
+     "id": "relation",
+     "label": "You are a",
+     "kind": "select",
+     "choices": [
+      "Parent or guardian",
+      "School staff",
+      "Neighbor"
+     ],
+     "hint": "who is asking",
+     "required": true
+    }
+   ],
+   "contact_required": true
+  },
+  "street_light": {
+   "name": "Street Light Out",
+   "agency": "DOT",
+   "complaint_type": "Street Light Condition",
+   "route": "A street light or lamppost: light out, flickering, on during the day, dim, or a damaged or knocked-down pole.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Street Light Out",
+      "Street Light Cycling",
+      "Street Light Dayburning",
+      "Street Light Lamp Dim",
+      "Lamppost Damaged",
+      "Lamppost Knocked Down"
+     ],
+     "hint": "what is wrong with the street light"
+    },
+    {
+     "id": "pole",
+     "label": "Pole number",
+     "kind": "span",
+     "find": "pole_numbers",
+     "hint": "the ID number printed on the lamppost"
+    },
+    {
+     "id": "location_type",
+     "label": "Location type",
+     "kind": "select",
+     "sr": "location_type",
+     "choices": [
+      "Street",
+      "Sidewalk",
+      "Park",
+      "Highway",
+      "Bridge"
+     ],
+     "hint": "where the light stands",
+     "required": true
+    }
+   ]
+  },
+  "traffic_signal": {
+   "name": "Traffic Signal Out",
+   "agency": "DOT",
+   "complaint_type": "Traffic Signal Condition",
+   "route": "A traffic light or pedestrian walk signal at an intersection: out, flashing, stuck, or damaged. Not a street light.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Controller (all lights out)",
+      "Flashing / Blinking",
+      "Stuck on Red",
+      "Stuck on Green",
+      "One Direction Out",
+      "Pedestrian Signal Out",
+      "Signal Head Turned or Knocked Down"
+     ],
+     "hint": "what is wrong with the traffic signal"
+    },
+    {
+     "id": "facing",
+     "label": "Signal facing",
+     "kind": "select",
+     "choices": [
+      "Northbound traffic",
+      "Southbound traffic",
+      "Eastbound traffic",
+      "Westbound traffic",
+      "All directions"
+     ],
+     "hint": "which traffic the broken signal faces",
+     "required": true
+    },
+    {
+     "id": "hazard",
+     "label": "Causing a dangerous situation now",
+     "kind": "noul",
+     "question": "Does the message say the broken signal is causing crashes, near misses, or a dangerous situation right now?"
+    }
+   ]
+  },
+  "noise_commercial": {
+   "name": "Noise from a Business",
+   "agency": "NYPD",
+   "complaint_type": "Noise - Commercial",
+   "route": "Noise from a bar, club, restaurant, store, or other business: music, crowds, deliveries.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Noise type",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Loud Music/Party",
+      "Loud Talking",
+      "Banging/Pounding",
+      "Car/Truck Music"
+     ],
+     "hint": "what kind of noise"
+    },
+    {
+     "id": "location_type",
+     "label": "Location type",
+     "kind": "select",
+     "sr": "location_type",
+     "choices": [
+      "Club/Bar/Restaurant",
+      "Store/Commercial",
+      "Street/Sidewalk"
+     ],
+     "hint": "where the noise comes from",
+     "required": true
+    },
+    {
+     "id": "business",
+     "label": "Business name",
+     "kind": "span",
+     "find": "proper_names",
+     "hint": "the name of the business making the noise"
+    },
+    {
+     "id": "recurring",
+     "label": "Happens regularly",
+     "kind": "noul",
+     "question": "Does the message say this noise happens repeatedly or regularly, not just once?"
+    }
+   ]
+  },
+  "noise_residential": {
+   "name": "Noise from a Neighbor",
+   "agency": "NYPD",
+   "complaint_type": "Noise - Residential",
+   "route": "Noise from an apartment, house, or neighbor: party, music, TV, banging.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Noise type",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Loud Music/Party",
+      "Banging/Pounding",
+      "Loud Talking",
+      "Loud Television"
+     ],
+     "hint": "what kind of noise"
+    },
+    {
+     "id": "unit",
+     "label": "Apartment",
+     "kind": "span",
+     "find": "units",
+     "hint": "the apartment or unit the noise comes from"
+    }
+   ]
+  },
+  "missed_collection": {
+   "name": "Missed Garbage Pickup",
+   "agency": "DSNY",
+   "complaint_type": "Missed Collection",
+   "route": "Sanitation did not pick up trash, recycling, or compost on collection day.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "What was missed",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Trash",
+      "Recycling - Paper",
+      "Recycling - Metal/Glass/Plastic",
+      "Organics/Compost",
+      "Bulk Item"
+     ],
+     "hint": "which collection was missed"
+    },
+    {
+     "id": "collection_day",
+     "label": "Collection day",
+     "kind": "span",
+     "find": "dates",
+     "hint": "the day the pickup should have happened"
+    }
+   ]
+  },
+  "street_condition": {
+   "name": "Pothole or Street Damage",
+   "agency": "DOT",
+   "complaint_type": "Street Condition",
+   "route": "Damage to the roadway: pothole, cave-in, sinking street, broken manhole or grate.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Pothole",
+      "Cave-in",
+      "Defective Hardware",
+      "Failed Street Repair",
+      "Rough, Pitted or Cracked Roads"
+     ],
+     "hint": "what is wrong with the street"
+    }
+   ]
+  },
+  "illegal_parking": {
+   "name": "Blocked Bike Lane or Illegal Parking",
+   "agency": "NYPD",
+   "complaint_type": "Illegal Parking",
+   "route": "A vehicle parked illegally: in a bike lane, double parked, at a hydrant, on the sidewalk, blocking a driveway.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Blocked Bike Lane",
+      "Double Parked Blocking Traffic",
+      "Blocked Hydrant",
+      "Blocked Sidewalk",
+      "Blocked Driveway",
+      "Commercial Overnight Parking"
+     ],
+     "hint": "how the vehicle is parked illegally"
+    },
+    {
+     "id": "plate",
+     "label": "License plate",
+     "kind": "span",
+     "find": "plates",
+     "hint": "the vehicle's license plate"
+    }
+   ]
+  },
+  "rodents": {
+   "name": "Rats",
+   "agency": "DOHMH",
+   "complaint_type": "Rodent",
+   "route": "Rats or mice, rat burrows, or garbage conditions attracting rodents.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Rat Sighting",
+      "Mouse Sighting",
+      "Condition Attracting Rodents"
+     ],
+     "hint": "what was seen"
+    },
+    {
+     "id": "location_type",
+     "label": "Location type",
+     "kind": "select",
+     "sr": "location_type",
+     "choices": [
+      "Street/Sidewalk",
+      "Restaurant/Food Establishment",
+      "Park",
+      "Residential Building",
+      "Vacant Lot",
+      "Outdoor Dining Structure"
+     ],
+     "hint": "where the rodents are",
+     "required": true
+    }
+   ]
+  },
+  "cb2": {
+   "name": "Community Board 2",
+   "agency": "CB2",
+   "complaint_type": "Community Board Issue",
+   "route": "A neighborhood issue for the community board to discuss or weigh in on: a pattern at a bar or business and its liquor license, a street redesign, development, landmarks, parks policy, schools, or a problem the city keeps failing to fix.",
+   "fields": [
+    {
+     "id": "committee",
+     "label": "Committee",
+     "kind": "committee",
+     "required": true,
+     "hint": "which CB2 committee should review it"
+    },
+    {
+     "id": "issue",
+     "label": "Type of issue",
+     "kind": "select",
+     "required": true,
+     "choices": [
+      "Noise",
+      "Hours of operation",
+      "Crowds or sidewalk",
+      "Outdoor dining",
+      "Trash or smell",
+      "Safety",
+      "A proposal or application",
+      "Something else"
+     ],
+     "hint": "what kind of problem or topic this is"
+    },
+    {
+     "id": "business",
+     "label": "Business or project",
+     "kind": "span",
+     "find": "proper_names",
+     "hint": "the business, venue, or project the resident is talking about"
+    },
+    {
+     "id": "ask",
+     "label": "What you want",
+     "kind": "select",
+     "choices": [
+      "Oppose or deny it",
+      "Add conditions or limits",
+      "Support it",
+      "Just let the board know"
+     ],
+     "hint": "what the resident wants the board to do",
+     "required": true
+    },
+    {
+     "id": "testify",
+     "label": "Wants to speak at a meeting",
+     "kind": "noul",
+     "question": "Does the message say the resident wants to speak or testify at a community board meeting?"
+    }
+   ],
+   "contact_required": true
+  }
+ },
+ "committees": {
+  "SLA – 1": "Bars, restaurants and venues with liquor licenses in the western part of CB2 (West Village, Hudson Square, Gansevoort): noise and music from licensed premises, hours, crowds, new or renewed liquor licenses.",
+  "SLA – 2": "Bars, restaurants and venues with liquor licenses in the eastern part of CB2 (SoHo, NoHo, Little Italy, Chinatown): noise and music from licensed premises, hours, crowds, new or renewed liquor licenses.",
+  "Cannabis Licensing Committee": "Cannabis dispensaries and smoke shops: licensing, unlicensed sales, location near schools.",
+  "Street Activities & Resiliency": "Street fairs, block parties, sidewalk vendors, film shoots, sanitation and garbage on streets, flooding and climate resiliency.",
+  "Outdoor Dining Working Group": "Roadway dining sheds and sidewalk dining setups: obstruction, rats, noise, placement.",
+  "Traffic & Transportation": "Streets, bike lanes, crosswalks, traffic signals, bus routes, parking, speeding, truck traffic, Citi Bike, pedestrian safety.",
+  "Parks & Waterfront": "Parks, playgrounds, Washington Square Park, Hudson River Park, trees and green space, park hours and conduct.",
+  "Landmarks & Public Aesthetics": "Changes to buildings in historic districts: facades, windows, signage, storefronts, rooftop additions, public art.",
+  "Land Use & Housing": "Zoning, new development, construction projects, affordable housing, tenant issues, SoHo/NoHo rezoning.",
+  "Human Services": "Homelessness, shelters, mental health, seniors, public health, social services.",
+  "Schools & Education": "Public schools, school siting and space, education programs, libraries.",
+  "Arts & Culture Working Group": "Arts organizations, cultural events, galleries, performance spaces.",
+  "Community Facilities Advisory Panel": "Community facility uses such as houses of worship, medical facilities, and nonprofit spaces in buildings.",
+  "Executive Committee": "Board-wide policy, budget priorities, or issues that span several committees or fit no other committee."
+ },
+ "destinations": {
+  "311": {
+   "label": "NYC 311",
+   "url": "https://portal.311.nyc.gov/",
+   "email": null
+  },
+  "CB2": {
+   "label": "Community Board 2 office",
+   "url": "https://cbmanhattan.cityofnewyork.us/cb2/",
+   "email": "info@manhattancb2.org"
+  },
+  "DOT": {
+   "label": "NYC DOT",
+   "url": "https://www.nyc.gov/html/dot/html/contact/contact-form.shtml",
+   "email": null
+  },
+  "NYPD": {
+   "label": "NYPD (local precinct, school crossing guards)",
+   "url": "https://www.nyc.gov/site/nypd/bureaus/patrol/precincts/6th-precinct.page",
+   "email": null
+  },
+  "DSNY": {
+   "label": "DSNY",
+   "url": "https://www.nyc.gov/assets/dsny/contact/",
+   "email": null
+  },
+  "DOHMH": {
+   "label": "Health Department",
+   "url": "https://portal.311.nyc.gov/",
+   "email": null
+  }
+ }
+}

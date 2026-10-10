@@ -1,0 +1,181 @@
+// Location field: Jev's pick (or a one-tap "Did you mean…?"), other matches, NYC GeoSearch
+// autocomplete, a Mapbox map with a pin, borough · ZIP · BBL, and a liquor-license card.
+
+import { h, esc, pct, api } from "./util.js";
+
+const MAPBOX_JS = "https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js";
+const MAPBOX_CSS = "https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css";
+const SUGGEST_AT = 0.1; // below 50% Jev doesn't fill it, but above this we ask "Did you mean…?"
+
+let token = "";
+export const setMapboxToken = (t) => (token = t);
+
+// One map, reused across re-renders (moving its container keeps it alive).
+const mapBox = h("div.mapbox", { role: "application", "aria-label": "Map: tap to place the dot, or drag it" });
+let map = null, marker = null, mapLoading = null;
+
+function loadMapbox() {
+  if (mapLoading) return mapLoading;
+  document.head.append(h("link", { rel: "stylesheet", href: MAPBOX_CSS }));
+  mapLoading = new Promise((res, rej) => {
+    const s = h("script", { src: MAPBOX_JS, onload: res, onerror: () => rej(new Error("Mapbox failed to load")) });
+    document.head.append(s);
+  });
+  return mapLoading;
+}
+
+const CB2_CENTER = [-74.0005, 40.7265];
+let onDot = null;   // set by the latest render: (lat, lng) => resolve the dot to an address
+
+/** Shows the map; with no geo it opens on the district so the person can place the dot. */
+async function showMap(geo) {
+  if (!token) return;
+  await loadMapbox();
+  const at = geo ? [geo.lng, geo.lat] : CB2_CENTER;
+  if (!map) {
+    window.mapboxgl.accessToken = token;
+    map = new window.mapboxgl.Map({ container: mapBox, style: "mapbox://styles/mapbox/light-v11", center: at, zoom: geo ? 16 : 13.5, attributionControl: false, cooperativeGestures: true });
+    map.addControl(new window.mapboxgl.AttributionControl({ compact: true }));
+    marker = new window.mapboxgl.Marker({ color: "#103FEF", draggable: true });
+    marker.on("dragend", () => { const p = marker.getLngLat(); onDot?.(p.lat, p.lng); });
+    map.on("click", (e) => { marker.setLngLat(e.lngLat).addTo(map); onDot?.(e.lngLat.lat, e.lngLat.lng); });
+  } else {
+    map.resize();
+    if (geo) map.flyTo({ center: at, zoom: Math.max(map.getZoom(), 16), duration: 600 });
+  }
+  if (geo) marker.setLngLat(at).addTo(map);
+  else marker.remove();
+}
+
+const sameAs = (v, o) => v && (v.text === o.value || v.label === o.label);
+const optValue = (o) => ({ text: o.value, label: o.label, geo: o.geo ?? null, license: o.license ?? null, resolutions: o.resolutions ?? [] });
+
+/**
+ * What Community Board 2 already decided about this address: the resolution, the stipulation the
+ * complaint is about (highlighted), and a note that it rides along to the committee.
+ */
+function resolutionCard(r, committee) {
+  const hits = r.relevant ?? [];
+  const who = [r.committee, r.dba || r.legal_name, r.license_type].filter(Boolean).join(" · ");
+  return h("div.rescard",
+    h("p.rescard-eyebrow", "On the board's record"),
+    h("p.rescard-title", "Community Board 2 reviewed this address on ", h("b", r.meeting_date), "."),
+    h("p.rescard-sub", who, r.vote ? ` · Vote: ${r.vote}` : ""),
+    hits.map((s) => h("blockquote.resquote",
+      h("mark", s.text),
+      h("footer", `Stipulation ${s.index + 1} of ${r.stipulations.length} the business agreed to`))),
+    r.stipulations.length ? h("details.resall",
+      h("summary", `All ${r.stipulations.length} stipulations`),
+      h("ol", r.stipulations.map((t, i) => h("li", hits.some((s) => s.index === i) ? h("mark", t) : t)))) : null,
+    h("p.rescard-foot",
+      h("span.attach", committee ? `Attached for the ${committee} committee's next meeting` : "Attached to your submission"),
+      h("a", { href: r.source, target: "_blank", rel: "noopener" }, "Read the minutes ↗")));
+}
+
+export function renderLocation(field, key, ctx, id) {
+  const v = ctx.get(key);
+  const touched = ctx.isTouched(key);
+  const opts = field.options;
+
+  // Prominent one-tap confirm when Jev found a likely place but wasn't sure enough to fill it.
+  const top = opts[0];
+  const confirm = !v?.text && !touched && top && top.p >= SUGGEST_AT
+    ? h("div.didyoumean",
+        h("span", "Did you mean ", h("b", top.label), "? ", h("span.muted", `${pct(top.p)} match`)),
+        h("button.chip.on", { type: "button", onclick: () => ctx.set(key, optValue(top), true) }, "Yes, that's it"))
+    : null;
+
+  const alts = opts.filter((o) => !sameAs(v, o) && o !== (confirm ? top : null) && o.p >= 0.05).slice(0, 4);
+  const altsEl = alts.length
+    ? h("div.chips.alts", h("span.alts-lead", v?.text ? "Or did you mean:" : "Other matches:"),
+        alts.map((o) => h("button.chip", { type: "button", onclick: () => ctx.set(key, optValue(o), true) }, o.label, h("span.chip-p", pct(o.p)))))
+    : null;
+
+  const input = h("input.ff-input", {
+    id, type: "text", value: v?.label && v.label !== v.text ? v.label : v?.text ?? "",
+    placeholder: "Address, or the nearest one to the corner", role: "combobox", "aria-autocomplete": "list",
+    "aria-expanded": "false", "aria-controls": `${id}-list`,
+  });
+  const list = h("ul.suggest", { id: `${id}-list`, role: "listbox", hidden: true });
+  const hint = h("p.fieldhint", { hidden: true, "aria-live": "polite" },
+    "No matching address found.");
+  wireSearch(input, list, hint, (c) => ctx.set(key, { text: c.value, label: c.key, geo: c.geo ?? null, license: null }, true),
+    (text) => ctx.set(key, text.trim() ? { text, geo: null, license: null } : null, false));
+
+  // The dot keeps its exact spot (a corner, mid-block); the address is the nearest one in the district.
+  const mapHint = h("p.fieldhint", { "aria-live": "polite" },
+    v?.geo ? "Drag the dot or tap the map to move it." : "No address? Tap the map to drop a dot on the corner or block.");
+  onDot = async (lat, lng) => {
+    try {
+      const c = await api(`/api/reverse?lat=${lat}&lng=${lng}`);
+      ctx.set(key, { text: c.value, label: `Near ${c.key}`, geo: c.geo, license: null }, true);
+    } catch (e) {
+      mapHint.textContent = e.message || "No address near that spot.";
+      if (v?.geo) marker.setLngLat([v.geo.lng, v.geo.lat]); else marker.remove();
+    }
+  };
+  // An address in another district still fills in, with a note that another board handles it.
+  const board = v?.geo?.board;
+  const outside = board?.outside
+    ? h("div.nyc-inlinemessage.nyc-inlinemessage--info.outside", { role: "status" },
+        h("span.nyc-inlinemessage__icon", "i"),
+        h("span.nyc-inlinemessage__text", h("b", titleCase(v.geo.name || v.text)), ` is in ${board.name}, outside CB2. This will go to ${board.short} instead.`))
+    : null;
+  let meta = null, card = null;
+  if (v?.geo) {
+    const g = v.geo;
+    meta = h("p.geometa", [g.board?.name ?? g.borough, g.zip && `ZIP ${g.zip}`, g.bbl && `BBL ${g.bbl}`].filter(Boolean).join(" · "));
+  }
+  queueMicrotask(() => showMap(v?.geo).catch((e) => console.warn(e)));
+  if (v?.license) {
+    const l = v.license;
+    card = h("div.bizcard", { html: `<b>${esc(titleCase(l.dba))}</b><span>NYS liquor license: ${esc(l.type)}, expires ${esc(l.expires)}</span>` });
+  }
+  const past = (v?.resolutions ?? []).map((r) => resolutionCard(r, ctx.committeeFor?.()));
+  return h("div.loc", confirm,
+    h("div.combo", h("div.ff-inputwrap", input), list), hint, outside,
+    altsEl, card, mapBox, mapHint, meta, past.length ? h("div.respast", past) : null);
+}
+
+const titleCase = (s) => String(s || "").toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
+
+/** GeoSearch autocomplete with arrow keys / Enter / Escape. */
+function wireSearch(input, list, hint, onPick, onType) {
+  let items = [], active = -1, timer = 0, seq = 0;
+  const close = () => { list.hidden = true; input.setAttribute("aria-expanded", "false"); active = -1; };
+  const paint = () => {
+    list.replaceChildren(...items.map((c, i) => h("li", {
+      role: "option", id: `${list.id}-${i}`, "aria-selected": i === active ? "true" : "false",
+      onmousedown: (e) => { e.preventDefault(); pick(i); },
+    }, h("b", c.key), c.note ? h("span", c.note) : null)));
+    list.hidden = !items.length;
+    input.setAttribute("aria-expanded", items.length ? "true" : "false");
+    if (active >= 0) input.setAttribute("aria-activedescendant", `${list.id}-${active}`);
+    else input.removeAttribute("aria-activedescendant");
+  };
+  const pick = (i) => { const c = items[i]; close(); if (c) onPick(c); };
+  input.addEventListener("input", () => {
+    onType(input.value);
+    clearTimeout(timer);
+    const q = input.value.trim();
+    hint.hidden = true;
+    if (q.length < 3) { items = []; return paint(); }
+    timer = setTimeout(async () => {
+      const mine = ++seq;
+      try {
+        const r = await api(`/api/geosearch?text=${encodeURIComponent(q)}`);
+        if (mine !== seq) return;
+        items = r; active = -1; paint();
+        hint.hidden = !(r.length === 0 && q.length >= 6);
+      } catch { /* search is best-effort */ }
+    }, 220);
+  });
+  input.addEventListener("keydown", (e) => {
+    if (list.hidden) return;
+    if (e.key === "ArrowDown") { active = (active + 1) % items.length; paint(); e.preventDefault(); }
+    else if (e.key === "ArrowUp") { active = (active - 1 + items.length) % items.length; paint(); e.preventDefault(); }
+    else if (e.key === "Enter" && active >= 0) { pick(active); e.preventDefault(); }
+    else if (e.key === "Escape") close();
+  });
+  input.addEventListener("blur", () => setTimeout(close, 100));
+}

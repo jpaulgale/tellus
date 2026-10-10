@@ -1,0 +1,21 @@
+[
+  {"name": "Executive Committee", "type": "standing"},
+  {"name": "Arts & Culture Working Group", "type": "working_group"},
+  {"name": "Cannabis Licensing Committee", "type": "standing"},
+  {"name": "Human Services", "type": "standing"},
+  {"name": "Land Use & Housing", "type": "standing"},
+  {"name": "Landmarks & Public Aesthetics", "type": "standing"},
+  {"name": "SLA – 1", "type": "standing"},
+  {"name": "SLA – 2", "type": "standing"},
+  {"name": "Parks & Waterfront", "type": "standing"},
+  {"name": "Street Activities & Resiliency", "type": "standing"},
+  {"name": "Schools & Education", "type": "standing"},
+  {"name": "Traffic & Transportation", "type": "standing"},
+  {"name": "Personnel", "type": "internal"},
+  {"name": "Finance", "type": "internal"},
+  {"name": "Community Facilities Advisory Panel", "type": "panel"},
+  {"name": "Working Group – Bylaws", "type": "internal"},
+  {"name": "Outdoor Dining Working Group", "type": "working_group"},
+  {"name": "Working Group – SoHo/NoHo", "type": "working_group"},
+  {"name": "Special Appointments", "type": "internal"}
+]
