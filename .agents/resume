@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Nothing to reconnect: the local D1 database is file-backed under .wrangler/.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+[ -d node_modules ] || echo "node_modules missing; run .agents/setup" >&2

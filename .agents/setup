@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Prepares a fresh Amp orb: system tools, npm dependencies, local D1 database.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+step() { echo "==> $1"; SECONDS=0; }
+done_step() { echo "    done in ${SECONDS}s"; }
+
+# pdftotext (poppler-utils) is used by scripts/parse_minutes.py.
+step "system packages"
+if ! command -v pdftotext >/dev/null 2>&1; then
+  sudo apt-get update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends poppler-utils
+fi
+done_step
+
+# npm ci never rewrites package-lock.json (the orb's npm would). Skip it when npm's hidden
+# lockfile is newer than both manifests, i.e. the restored node_modules is current.
+step "npm dependencies"
+hidden=node_modules/.package-lock.json
+if [ -f "$hidden" ] && [ "$hidden" -nt package-lock.json ] && [ "$hidden" -nt package.json ]; then
+  echo "    node_modules up to date"
+else
+  npm ci --no-audit --no-fund
+fi
+done_step
+
+step "local D1 migrations"
+CI=1 WRANGLER_SEND_METRICS=false npx --no-install wrangler d1 migrations apply cbform --local
+done_step
+
+# Secrets for `wrangler dev` live in .dev.vars (TYPESAFE_API_KEY, GEMINI_API_KEY, MAPBOX_TOKEN).
+[ -f .dev.vars ] || touch .dev.vars
