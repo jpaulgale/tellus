@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tell Us — how it works</title>
+<meta name="description" content="One box for Community Board 2. Say it your way. Tell Us fills in what it can, asks for the rest, sends it to the right committee and agency, and shows you what the board has already decided." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#103FEF" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@500,600&display=swap" />
+<style>
+:root {
+  --blue: #103FEF; --blue-dark: #050560; --blue-soft: #E4EBFF; --blue-mid: #B5DBFF;
+  --green: #0A7D17; --green-soft: #DDF5DF; --red: #C20A12; --red-soft: #FDE3E4;
+  --amber: #FFB320; --amber-ink: #6b4300; --amber-soft: #FFF1D6;
+  --bg: #F4F4F2; --card: #FFFFFF; --ink: #0B0B12; --muted: #5A5A66; --line: #E2E2E6;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 18px 40px -22px rgba(5,5,96,.35);
+  --body: "Noto Sans", ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Clash Grotesk", "Noto Sans", ui-sans-serif, sans-serif;
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--body); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+svg { flex: none; }
+
+/* ---------- hero ---------- */
+header.top { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -.01em; text-decoration: none; color: var(--ink); }
+.mark img { width: 30px; height: 30px; }
+.mark b { color: var(--blue); font-weight: 600; }
+.cta { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; padding: 10px 18px; border-radius: 999px; transition: background .2s; }
+.cta:hover { background: var(--blue-dark); }
+.hero { padding: 40px 0 30px; text-align: center; }
+.hero h1 { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 6vw, 64px); line-height: 1.02; letter-spacing: -.025em; max-width: 14ch; margin: 0 auto; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero p { color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 40em; margin: 18px auto 0; }
+
+/* ---------- stage ---------- */
+.stage { background: var(--card); border-radius: 28px; box-shadow: var(--shadow); padding: 22px; margin: 24px 0 18px; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 20px; }
+.step { display: flex; align-items: center; gap: 10px; padding: 9px 11px; border-radius: 14px; color: var(--muted); font-size: 14px; font-weight: 500; line-height: 1.25; transition: background .4s, color .4s; }
+.step i { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; font-weight: 700; background: var(--bg); color: var(--muted); transition: background .4s, color .4s; }
+.step.on { background: var(--blue-soft); color: var(--blue-dark); }
+.step.on i { background: var(--blue); color: #fff; }
+.step.done i { background: var(--blue-mid); color: var(--blue-dark); }
+
+.panes { display: grid; grid-template-columns: minmax(0, 1.15fr) 70px minmax(0, 1fr); align-items: stretch; }
+.pane { background: var(--bg); border-radius: 20px; padding: 18px; min-height: 620px; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; }
+.pane-label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.pane-label svg { width: 16px; height: 16px; }
+
+/* the text box that becomes a form */
+.box { background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 16px 18px; transition: border-color .4s, box-shadow .4s; }
+.box.focus { border-color: var(--blue); box-shadow: 0 0 0 4px var(--blue-soft); }
+.ph { color: #9a9aa6; }
+.typed { font-size: 18px; line-height: 1.45; min-height: 3em; }
+.typed .more { background: var(--blue-soft); border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; transition: background 1.2s; }
+.typed .more.settled { background: transparent; }
+.caret { display: inline-block; width: 2px; height: 1.1em; background: var(--blue); vertical-align: -3px; margin-left: 1px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.box-foot { display: flex; align-items: center; gap: 8px; margin-top: 10px; min-height: 30px; }
+.mic { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); color: var(--muted); transition: background .3s, color .3s; }
+.mic svg { width: 16px; height: 16px; }
+.mic.live { background: var(--blue); color: #fff; animation: ring 1.2s var(--ease) infinite; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(16,63,239,.45); } 100% { box-shadow: 0 0 0 10px rgba(16,63,239,0); } }
+.box-foot small { font-size: 13px; color: var(--muted); }
+
+.fields { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
+.fields.open { grid-template-rows: 1fr; }
+.fields > div { overflow: hidden; }
+.fields-inner { border-top: 1px dashed var(--line); margin-top: 12px; padding-top: 6px; display: grid; gap: 2px; }
+.field { display: grid; grid-template-columns: 104px 1fr auto; align-items: center; gap: 10px; padding: 5px 0; opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s var(--ease); }
+.field.in { opacity: 1; transform: none; }
+.field label { font-size: 12px; font-weight: 600; color: var(--muted); }
+.field .val { font-size: 15px; font-weight: 500; min-height: 32px; padding: 5px 10px; border-radius: 9px; background: var(--blue-soft); color: var(--blue-dark); justify-self: stretch; display: flex; align-items: center; border: 1.5px solid transparent; transition: background .35s, border-color .35s; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.field.need .val { background: var(--card); border: 1.5px dashed var(--amber); color: var(--muted); }
+.field.need.typing .val { border-style: solid; border-color: var(--blue); color: var(--ink); }
+.field.pop .val { animation: pop .45s var(--ease); }
+@keyframes pop { 40% { transform: scale(1.04); } }
+.src { font-size: 11px; font-weight: 600; white-space: nowrap; padding: 2px 8px; border-radius: 999px; color: var(--muted); background: var(--bg); }
+.field.need .src { color: var(--amber-ink); background: var(--amber-soft); }
+.src.you { color: var(--blue-dark); background: var(--blue-mid); }
+
+/* how you can answer */
+.ways { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s var(--ease); }
+.ways.in { opacity: 1; transform: none; }
+.ways b { font-weight: 600; color: var(--ink); margin-right: 2px; }
+.way { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-weight: 500; transition: all .35s var(--ease); }
+.way svg { width: 14px; height: 14px; }
+.way.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* once sent, the form folds away and the history takes its place */
+.pane.you.compact .fields { grid-template-rows: 0fr; }
+.pane.you.compact .box-foot, .pane.you.compact .ways { display: none; }
+
+/* past decisions */
+.context-h { font-size: 14px; font-weight: 600; color: var(--blue-dark); display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity .4s; }
+.context-h.in { opacity: 1; }
+.context-h svg { width: 18px; height: 18px; color: var(--blue); }
+.cards { display: grid; gap: 8px; }
+.res { background: var(--card); border-radius: 14px; padding: 12px 14px; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .5s var(--ease); }
+.res.in { opacity: 1; transform: none; }
+.seal { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; }
+.seal svg { width: 18px; height: 18px; }
+.seal.yes { background: var(--green-soft); color: var(--green); }
+.seal.no { background: var(--red-soft); color: var(--red); }
+.seal.cond { background: var(--amber-soft); color: var(--amber-ink); }
+.res-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: 12px; color: var(--muted); }
+.res-top .out { font-weight: 700; }
+.res-top .out.yes { color: var(--green); }
+.res-top .out.no { color: var(--red); }
+.res-top .out.cond { color: var(--amber-ink); }
+.res h4 { font-size: 14.5px; font-weight: 600; line-height: 1.35; margin: 2px 0 7px; }
+.tally { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.tally .bar { flex: 1; max-width: 140px; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.tally .bar i { display: block; height: 100%; width: 0; background: var(--ink); border-radius: 3px; transition: width .9s var(--ease) .2s; }
+.res.in .tally .bar i { width: 100%; }
+
+.sent { margin-top: auto; display: flex; align-items: center; gap: 12px; background: var(--blue); color: #fff; border-radius: 16px; padding: 12px 16px; opacity: 0; transform: translateY(12px); transition: opacity .5s, transform .5s var(--ease); }
+.sent.in { opacity: 1; transform: none; }
+.sent svg { width: 28px; height: 28px; }
+.sent b { display: block; font-size: 15px; }
+.sent small { font-size: 13px; opacity: .85; }
+
+/* flow connector */
+.flow { position: relative; display: flex; align-items: center; justify-content: center; }
+.flow svg { width: 70px; height: 100%; overflow: visible; }
+.flow .track { stroke: var(--line); stroke-width: 3; stroke-dasharray: 2 8; stroke-linecap: round; fill: none; }
+.flow .live { stroke: var(--blue); stroke-width: 3; stroke-linecap: round; fill: none; stroke-dasharray: 400; stroke-dashoffset: 400; }
+.flow.go .live { animation: draw 1s var(--ease) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* board side */
+.group h5 { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 13px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); color: var(--ink); transition: all .45s var(--ease); display: inline-flex; align-items: center; gap: 6px; }
+.routing .chip { opacity: .35; }
+.routing .chip.hit { opacity: 1; background: var(--blue); border-color: var(--blue); color: #fff; transform: scale(1.04); box-shadow: 0 6px 16px -8px var(--blue); }
+.routing .chips.agencies .chip.hit { background: var(--amber); border-color: var(--amber); color: #2a1a00; box-shadow: 0 6px 16px -8px #c98500; }
+.chip .tick { display: none; width: 14px; height: 14px; }
+.chip.hit .tick { display: block; }
+
+.inbox { margin-top: auto; background: var(--card); border-radius: 16px; padding: 14px; box-shadow: 0 10px 30px -18px rgba(5,5,96,.5); opacity: 0; transform: translateY(18px) scale(.98); transition: opacity .5s, transform .6s var(--ease); }
+.inbox.in { opacity: 1; transform: none; }
+.inbox-top { display: flex; align-items: center; gap: 10px; }
+.avatar { width: 34px; height: 34px; border-radius: 10px; background: var(--blue); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13px; flex: none; }
+.inbox-top b { font-size: 14px; display: block; line-height: 1.2; }
+.inbox-top small { font-size: 12px; color: var(--muted); }
+.inbox .new { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--blue); background: var(--blue-soft); padding: 2px 8px; border-radius: 999px; }
+.inbox p { font-size: 14px; margin: 10px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.attach { display: flex; flex-wrap: wrap; gap: 6px; }
+.attach span { font-size: 12px; background: var(--bg); padding: 3px 8px; border-radius: 8px; color: var(--muted); display: inline-flex; gap: 5px; align-items: center; }
+.attach svg { width: 12px; height: 12px; }
+
+.controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
+.tabs { display: flex; gap: 6px; }
+.tab { border: 0; font: inherit; font-size: 14px; font-weight: 500; padding: 9px 15px; border-radius: 999px; background: var(--bg); color: var(--muted); cursor: pointer; position: relative; overflow: hidden; white-space: nowrap; }
+.tab.on { background: var(--ink); color: #fff; }
+.tab .bar { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--blue-mid); width: 0; }
+.ctl { border: 0; font: inherit; font-size: 14px; font-weight: 600; background: none; color: var(--blue); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 8px 6px; }
+.ctl svg { width: 16px; height: 16px; }
+
+/* ---------- explainer ---------- */
+section.four { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 70px 0 30px; }
+.four article { background: var(--card); border-radius: 22px; padding: 24px; }
+.ico { width: 44px; height: 44px; border-radius: 14px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; margin-bottom: 16px; }
+.ico svg { width: 24px; height: 24px; }
+.four h3 { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -.01em; margin-bottom: 6px; }
+.four p { color: var(--muted); font-size: 15px; }
+.four .demo { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+.four .demo .way { background: var(--bg); border-color: transparent; color: var(--ink); }
+
+.audience { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0 70px; }
+.audience div { border-radius: 22px; padding: 26px; color: #fff; }
+.audience .res-side { background: var(--blue); }
+.audience .board-side { background: var(--blue-dark); }
+.audience h3 { font-family: var(--display); font-weight: 600; font-size: 24px; margin-bottom: 12px; }
+.audience ul { list-style: none; display: grid; gap: 10px; }
+.audience li { display: flex; gap: 10px; font-size: 16px; }
+.audience li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); margin-top: 9px; }
+
+footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .wrap { padding: 0 14px; }
+  header.top { padding: 14px 0; }
+  .hero { padding: 18px 0 8px; }
+  .hero p { margin-top: 12px; }
+  .stage { padding: 12px; border-radius: 22px; margin-top: 16px; }
+  /* compact progress: numbered dots, only the current step shows its label */
+  .steps { display: flex; gap: 5px; margin-bottom: 12px; }
+  .step { padding: 6px; gap: 8px; flex: none; }
+  .step span { display: none; }
+  .step.on { flex: 1; padding-right: 12px; }
+  .step.on span { display: inline; }
+  /* one pane at a time: the neighbor's view, then where it goes, then back */
+  .panes { grid-template-columns: 1fr; overflow: hidden; border-radius: 18px; }
+  .pane, .flow { grid-area: 1 / 1; }
+  .flow { display: none; }
+  .pane { min-height: 540px; padding: 12px; gap: 10px; transition: opacity .45s, transform .5s var(--ease); }
+  .pane.board { opacity: 0; transform: translateX(28px); pointer-events: none; }
+  .panes.board-view .pane.you { opacity: 0; transform: translateX(-28px); }
+  .panes.board-view .pane.board { opacity: 1; transform: none; }
+  .box { padding: 12px 14px; }
+  .typed { font-size: 16px; min-height: 0; }
+  .box-foot { margin-top: 6px; }
+  .field { grid-template-columns: 1fr auto; grid-template-areas: "lab src" "val val"; gap: 3px 8px; padding: 4px 0; }
+  .field label { grid-area: lab; }
+  .field .src { grid-area: src; }
+  .field .val { grid-area: val; }
+  .field[data-k="ag"] { display: none; } /* the agencies show on the next screen */
+  .field label { font-size: 11px; }
+  .field .val { font-size: 14px; min-height: 30px; padding: 4px 8px; }
+  .src { font-size: 10px; padding: 2px 6px; }
+  .ways { font-size: 12px; gap: 5px; }
+  .ways b { display: none; }
+  .way { padding: 4px 9px; }
+  .res { padding: 10px 12px; grid-template-columns: 28px 1fr; gap: 10px; }
+  .seal { width: 28px; height: 28px; }
+  .seal svg { width: 15px; height: 15px; }
+  .res h4 { font-size: 14px; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .res-top .com { display: none; }
+  .sent { padding: 9px 14px; }
+  .sent svg { width: 24px; height: 24px; }
+  .tally { font-size: 11px; }
+  .context-h { font-size: 13px; }
+  .chip { font-size: 12px; padding: 5px 9px; }
+  .routing .chip.hit { transform: none; }
+  .chips .chip:nth-child(n+7) { display: none; } /* fewer chips on phones; every routed one is in the first six */
+  .group h5 { margin-bottom: 6px; }
+  .inbox { padding: 12px; }
+  .inbox p { margin: 8px 0; }
+  .controls { margin-top: 12px; gap: 6px; }
+  .tabs { overflow-x: auto; scrollbar-width: none; }
+  .tab { padding: 11px 13px; flex: none; }
+  .ctl { flex: none; width: 44px; height: 44px; justify-content: center; padding: 0; border-radius: 50%; background: var(--blue-soft); }
+  .ctl .lbl { display: none; }
+  section.four { margin-top: 40px; }
+  section.four, .audience { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="/"><img src="favicon.svg" alt="" /><span><b>Tell</b> Us</span></a>
+    <a class="cta" href="/">Try it →</a>
+  </header>
+
+  <section class="hero">
+    <h1>Say it once. It reaches <em>the right people.</em></h1>
+    <p>One box for Community Board 2. Write or talk the way you normally would. Tell Us fills in the form from your words and asks only for what's missing. Then it sends your comment to the right committee and city agency, and shows you what the board has already decided.</p>
+  </section>
+
+  <section class="stage" aria-label="Animated walkthrough">
+    <div class="steps" id="steps">
+      <div class="step" data-s="1"><i>1</i><span>Say it your way</span></div>
+      <div class="step" data-s="2"><i>2</i><span>It fills in what it can</span></div>
+      <div class="step" data-s="3"><i>3</i><span>It asks for the rest</span></div>
+      <div class="step" data-s="4"><i>4</i><span>It reaches the right people</span></div>
+      <div class="step" data-s="5"><i>5</i><span>You see what's been decided</span></div>
+    </div>
+
+    <div class="panes">
+      <div class="pane you">
+        <div class="pane-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>What a neighbor sees</div>
+        <div class="box" id="box">
+          <div class="typed" id="typed"></div>
+          <div class="box-foot"><span class="mic" id="mic"></span><small id="micText">Type, or tap to talk</small></div>
+          <div class="fields" id="fields"><div><div class="fields-inner" id="fieldList"></div></div></div>
+        </div>
+        <div class="ways" id="ways"></div>
+        <div class="context-h" id="contextH"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg><span id="contextText"></span></div>
+        <div class="cards" id="cards"></div>
+        <div class="sent" id="sent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><div><b>You've been heard.</b><small id="sentText"></small></div></div>
+      </div>
+
+      <div class="flow" id="flow" aria-hidden="true">
+        <svg viewBox="0 0 70 200" preserveAspectRatio="none"><path class="track" d="M6 60 C 35 60, 35 140, 64 140"/><path class="live" d="M6 60 C 35 60, 35 140, 64 140"/></svg>
+      </div>
+
+      <div class="pane board" id="board">
+        <div class="pane-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>Where it goes</div>
+        <div class="group"><h5>CB2 committees</h5><div class="chips" id="committees"></div></div>
+        <div class="group"><h5>City and state agencies</h5><div class="chips agencies" id="agencies"></div></div>
+        <div class="inbox" id="inbox">
+          <div class="inbox-top"><div class="avatar" id="inboxAv"></div><div><b id="inboxName"></b><small>Committee inbox</small></div><span class="new">NEW</span></div>
+          <p id="inboxMsg"></p>
+          <div class="attach" id="inboxAttach"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="tabs" id="tabs"></div>
+      <button class="ctl" id="pauseBtn" type="button" aria-label="Pause or play the walkthrough"></button>
+    </div>
+  </section>
+
+  <section class="four">
+    <article>
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3>Talk like a person</h3>
+      <p>Start by typing or speaking. There are no menus or categories to pick and no need to know which office handles what.</p>
+    </article>
+    <article>
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></div>
+      <h3>It fills in what it can, then asks</h3>
+      <p>Anything it can tell from your words goes straight into the form. Whatever's still missing, like the exact spot or how the board can reach you, is clearly marked. Change anything you like.</p>
+    </article>
+    <article>
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></div>
+      <h3>Answer however you like</h3>
+      <p>Fill in the gaps any way that's easiest. Keep writing and the form keeps up, say it out loud, or tap a box and type. You can switch from one to another whenever you want.</p>
+      <div class="demo" id="waysDemo"></div>
+    </article>
+    <article>
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M9 7h7M9 11h5"/></svg></div>
+      <h3>Routed, with history attached</h3>
+      <p>It goes to the committee that hears that topic, and to the city agency too when one handles it. The board's recent resolutions and votes on the same issue show up for you and travel with your comment.</p>
+    </article>
+  </section>
+
+  <section class="audience">
+    <div class="res-side">
+      <h3>For neighbors</h3>
+      <ul>
+        <li>One place to speak up, in your own words.</li>
+        <li>You're asked only for what's actually missing, and you can answer any way you like.</li>
+        <li>You see right away that the board has dealt with this before, and what it decided.</li>
+      </ul>
+    </div>
+    <div class="board-side">
+      <h3>For board members</h3>
+      <ul>
+        <li>Comments arrive complete, already sorted by committee, with a clear location and a way to follow up.</li>
+        <li>Each one comes with the past resolutions it relates to.</li>
+        <li>Less time redirecting email and more time on the agenda.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>Tell Us is a civic tech demo for Manhattan Community Board 2. It is not an official NYC service.</span>
+    <span>Example resolutions are from CB2 Full Board minutes, April and July 2026.</span>
+  </footer>
+</div>
+
+<script>
+const COMMITTEES = ["Traffic & Transportation", "SLA Licensing", "Street Activities", "Parks & Waterfront", "Land Use & Housing", "Landmarks", "Schools & Education", "Human Services", "Outdoor Dining", "Arts & Culture"];
+const AGENCIES = ["311", "NYPD", "DOT", "MTA", "NYS Liquor Authority", "Street Activity Permits", "Sanitation", "Parks Dept."];
+
+const ICON = {
+  write: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  say: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  type: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6M12 4v16M9 20h6"/></svg>',
+  tick: '<svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  clip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m21 11-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/></svg>',
+  yes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  no: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  cond: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 7h11M8 12h11M8 17h11"/><circle cx="4" cy="7" r=".6"/><circle cx="4" cy="12" r=".6"/><circle cx="4" cy="17" r=".6"/></svg>',
+};
+const WAYS = [["write", "Keep writing"], ["say", "Say it"], ["type", "Fill in the box"]];
+const SRC = { words: "From your words", write: "From your words", say: "From what you said", type: "You typed this" };
+
+// Each example: what's filled straight from the first message, what's still needed,
+// and how the gaps get answered. Resolutions are real CB2 Full Board decisions (data/resolutions.json).
+const SCENARIOS = [
+  {
+    tab: "Bus lane",
+    text: "The buses on Sixth Ave crawl at rush hour. Can we get a real bus lane?",
+    fields: [
+      { k: "com", label: "Committee", value: "Traffic & Transportation" },
+      { k: "ag", label: "Also to", value: "DOT · MTA" },
+      { k: "where", label: "Where exactly", ask: "Which stretch or corner?" },
+      { k: "name", label: "Your name", ask: "So the board can reply" },
+      { k: "email", label: "Email", ask: "So the board can reply" },
+    ],
+    answers: [
+      { way: "write", add: " Worst near Broome St, and please don't take away that stop.", fill: { where: "Sixth Ave at Broome St" } },
+      { way: "type", fill: { name: "Ana Reyes", email: "ana.reyes@email.com" } },
+    ],
+    committee: "Traffic & Transportation", agencies: ["DOT", "MTA"], avatar: "TT",
+    found: "CB2 voted on this in July",
+    res: [
+      { date: "Jul 23, 2026", com: "Traffic & Transportation", title: "Dedicated bus lane on Sixth Ave from Watts to 14th St, and keeping the Broome St and 12th St stops", out: "Supported", kind: "yes", votes: 36 },
+      { date: "Jul 23, 2026", com: "Traffic & Transportation", title: "Measures to make Citi Bike more affordable", out: "Supported", kind: "yes", votes: 36 },
+    ],
+  },
+  {
+    tab: "Noise",
+    text: "More bars with DJs keep opening near us. It's loud past 2am every weekend.",
+    fields: [
+      { k: "com", label: "Committee", value: "SLA Licensing" },
+      { k: "ag", label: "Also to", value: "311 · NYPD · Liquor Authority" },
+      { k: "where", label: "Where exactly", ask: "Which block?" },
+      { k: "name", label: "Your name", ask: "So the board can reply" },
+      { k: "email", label: "Email", ask: "So the board can reply" },
+    ],
+    answers: [
+      { way: "say", add: " It's Lafayette, between Houston and Bleecker.", fill: { where: "Lafayette St, Houston to Bleecker" } },
+      { way: "type", fill: { name: "Sam Okafor", email: "sam.okafor@email.com" } },
+    ],
+    committee: "SLA Licensing", agencies: ["311", "NYPD", "NYS Liquor Authority"], avatar: "SL",
+    found: "The board weighed in on licenses nearby",
+    res: [
+      { date: "Jul 23, 2026", com: "SLA Licensing 1", title: "281 Lafayette St asked to become a tavern, add DJs and another bar", out: "Recommended denial", kind: "no", votes: 36 },
+      { date: "Apr 23, 2026", com: "SLA Licensing 1", title: "New license at 25 Great Jones St, off Lafayette, only if the agreed hours and conditions are written into it", out: "Conditions set", kind: "cond", votes: 35 },
+    ],
+  },
+  {
+    tab: "Street closures",
+    text: "Another brand pop-up wants to shut down all of Crosby St for a weekend.",
+    fields: [
+      { k: "com", label: "Committee", value: "Street Activities" },
+      { k: "ag", label: "Also to", value: "Street Activity Permit Office" },
+      { k: "where", label: "Where exactly", value: "Crosby St" },
+      { k: "name", label: "Your name", ask: "So the board can reply" },
+      { k: "email", label: "Email", ask: "So the board can reply" },
+    ],
+    answers: [
+      { way: "write", add: " I'm Lee Chen, you can reach me at lee.chen@email.com. It's a narrow street and nobody can get through.", fill: { name: "Lee Chen", email: "lee.chen@email.com" } },
+      { way: "type", fill: { where: "Crosby St, Bleecker to Houston" } },
+    ],
+    committee: "Street Activities", agencies: ["Street Activity Permits"], avatar: "SA",
+    found: "CB2 has denied two Crosby St closures",
+    res: [
+      { date: "Jul 23, 2026", com: "Street Activities & Resiliency", title: "Full closure of Crosby St, Bleecker to Jersey, for a brand event expecting up to 5,000 people", out: "Recommended denial", kind: "no", votes: 36 },
+      { date: "Jul 23, 2026", com: "Street Activities & Resiliency", title: "Full closure of Crosby St, Bleecker to E. Houston, for a café pop-up", out: "Recommended denial", kind: "no", votes: 36 },
+    ],
+  },
+];
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const narrow = matchMedia("(max-width: 860px)");
+const panes = document.querySelector(".panes"), you = document.querySelector(".pane.you");
+const way = ([k, label]) => `<span class="way" data-w="${k}">${ICON[k]}${label}</span>`;
+
+$("committees").innerHTML = COMMITTEES.map((c) => `<span class="chip" data-k="${c}">${ICON.tick}${esc(c)}</span>`).join("");
+$("agencies").innerHTML = AGENCIES.map((c) => `<span class="chip" data-k="${c}">${ICON.tick}${esc(c)}</span>`).join("");
+$("tabs").innerHTML = SCENARIOS.map((s, i) => `<button class="tab" type="button" data-i="${i}">${s.tab}<span class="bar"></span></button>`).join("");
+$("ways").innerHTML = "<b>Fill the gaps any way:</b>" + WAYS.map(way).join("");
+$("waysDemo").innerHTML = WAYS.map(way).join("");
+$("mic").innerHTML = ICON.say;
+
+let run = 0, paused = false;
+const HOLD = 4200;
+
+function sleep(ms, id) {
+  return new Promise((res, rej) => {
+    const step = 16; let left = ms;
+    const t = setInterval(() => {
+      if (id !== run) { clearInterval(t); rej("stop"); return; }
+      if (!paused) left -= step;
+      if (left <= 0) { clearInterval(t); res(); }
+    }, step);
+  });
+}
+function setStep(n) {
+  document.querySelectorAll(".step").forEach((el) => {
+    const s = +el.dataset.s;
+    el.classList.toggle("on", s === n);
+    el.classList.toggle("done", s < n);
+  });
+}
+function reset() {
+  setStep(0);
+  $("typed").innerHTML = '<span class="ph">What\'s on your mind about the neighborhood?</span>';
+  $("box").classList.remove("focus");
+  $("mic").classList.remove("live"); $("micText").textContent = "Type, or tap to talk";
+  $("fields").classList.remove("open");
+  $("fieldList").innerHTML = "";
+  $("ways").classList.remove("in");
+  document.querySelectorAll("#ways .way").forEach((w) => w.classList.remove("on"));
+  $("contextH").classList.remove("in");
+  $("cards").innerHTML = "";
+  $("sent").classList.remove("in");
+  $("flow").classList.remove("go");
+  $("board").classList.remove("routing");
+  document.querySelectorAll(".chip").forEach((c) => c.classList.remove("hit"));
+  $("inbox").classList.remove("in");
+  panes.classList.remove("board-view");
+  you.classList.remove("compact");
+}
+function markTab(i) {
+  document.querySelectorAll(".tab").forEach((t, j) => {
+    t.classList.toggle("on", j === i);
+    const bar = t.querySelector(".bar");
+    bar.style.transition = "none"; bar.style.width = "0";
+  });
+  return document.querySelectorAll(".tab")[i].querySelector(".bar");
+}
+const fieldEl = (k) => document.querySelector(`.field[data-k="${k}"]`);
+function fillField(k, value, src) {
+  const el = fieldEl(k);
+  el.classList.remove("need", "typing");
+  el.querySelector(".val").textContent = value;
+  const tag = el.querySelector(".src");
+  tag.textContent = SRC[src]; tag.classList.toggle("you", src === "type");
+  el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop");
+}
+
+async function play(i) {
+  const id = ++run;
+  const s = SCENARIOS[i];
+  reset();
+  const bar = markTab(i);
+  const S = (ms) => sleep(reduce ? 0 : ms, id);
+  const typed = $("typed");
+  // Type text into the message box, after what's already there.
+  const typeInto = async (before, add, cls = "") => {
+    for (let k = 1; k <= add.length; k++) {
+      const part = cls ? `<span class="${cls}">${esc(add.slice(0, k))}</span>` : esc(add.slice(0, k));
+      typed.innerHTML = before + part + '<span class="caret"></span>';
+      if (!reduce) await sleep(add[k - 1] === " " ? 30 : 22, id);
+    }
+    return before + (cls ? `<span class="${cls}">${esc(add)}</span>` : esc(add));
+  };
+
+  try {
+    await S(500);
+    // 1. say it your way
+    setStep(1);
+    $("box").classList.add("focus");
+    let html = await typeInto("", s.text);
+    typed.innerHTML = html;
+    await S(500);
+
+    // 2. it fills in what it can
+    setStep(2);
+    $("box").classList.remove("focus");
+    $("fields").classList.add("open");
+    $("fieldList").innerHTML = s.fields.map((f) =>
+      `<div class="field${f.value ? "" : " need"}" data-k="${f.k}"><label>${f.label}</label><span class="val">${esc(f.value || f.ask)}</span><span class="src">${f.value ? SRC.words : "Needed"}</span></div>`).join("");
+    await S(450);
+    for (const f of s.fields.filter((f) => f.value)) { fieldEl(f.k).classList.add("in"); await S(420); }
+    await S(300);
+
+    // 3. it asks for the rest, and you answer however you like
+    setStep(3);
+    for (const f of s.fields.filter((f) => !f.value)) { fieldEl(f.k).classList.add("in"); await S(260); }
+    $("ways").classList.add("in");
+    await S(700);
+    for (const a of s.answers) {
+      document.querySelectorAll("#ways .way").forEach((w) => w.classList.toggle("on", w.dataset.w === a.way));
+      await S(500);
+      if (a.way === "type") {
+        for (const [k, v] of Object.entries(a.fill)) {
+          const el = fieldEl(k), val = el.querySelector(".val");
+          el.classList.add("need", "typing");
+          for (let c = 1; c <= v.length; c++) { val.innerHTML = esc(v.slice(0, c)) + '<span class="caret"></span>'; if (!reduce) await sleep(38, id); }
+          fillField(k, v, "type");
+          await S(250);
+        }
+      } else {
+        if (a.way === "say") { $("mic").classList.add("live"); $("micText").textContent = "Listening…"; }
+        else $("box").classList.add("focus");
+        html = await typeInto(html + " ", a.add.trim(), "more");
+        typed.innerHTML = html;
+        $("mic").classList.remove("live"); $("micText").textContent = "Type, or tap to talk";
+        $("box").classList.remove("focus");
+        await S(250);
+        for (const [k, v] of Object.entries(a.fill)) { fillField(k, v, a.way); await S(300); }
+        typed.querySelectorAll(".more").forEach((m) => m.classList.add("settled"));
+      }
+      await S(600);
+    }
+    document.querySelectorAll("#ways .way").forEach((w) => w.classList.remove("on"));
+    await S(500);
+
+    // 4. routing
+    setStep(4);
+    $("flow").classList.add("go");
+    if (narrow.matches) panes.classList.add("board-view");
+    await S(700);
+    $("board").classList.add("routing");
+    await S(250);
+    document.querySelector(`#committees .chip[data-k="${s.committee}"]`).classList.add("hit");
+    for (const a of s.agencies) { await S(260); document.querySelector(`#agencies .chip[data-k="${a}"]`).classList.add("hit"); }
+    await S(400);
+    const where = fieldEl("where").querySelector(".val").textContent;
+    $("inboxAv").textContent = s.avatar;
+    $("inboxName").textContent = s.committee;
+    $("inboxMsg").textContent = "“" + typed.textContent + "”";
+    $("inboxAttach").innerHTML = `<span>${ICON.clip}${esc(where)}</span><span>${ICON.clip}Reply-to contact</span><span>${ICON.clip}${s.res.length} related resolutions</span>`;
+    $("inbox").classList.add("in");
+    await S(narrow.matches ? 1900 : 800);
+    if (narrow.matches) { panes.classList.remove("board-view"); await S(300); }
+    you.classList.add("compact");
+    await S(400);
+
+    // 5. past decisions
+    setStep(5);
+    $("contextText").textContent = s.found;
+    $("contextH").classList.add("in");
+    $("cards").innerHTML = s.res.map((r) => `<div class="res"><div class="seal ${r.kind}">${ICON[r.kind]}</div><div><div class="res-top"><span class="out ${r.kind}">${r.out}</span><span>${r.date}<span class="com"> · ${esc(r.com)}</span></span></div><h4>${esc(r.title)}</h4><div class="tally"><span class="bar"><i></i></span><span>${r.votes}–0 board vote</span></div></div></div>`).join("");
+    for (const c of document.querySelectorAll(".res")) { await S(350); c.classList.add("in"); }
+    await S(800);
+    $("sentText").textContent = narrow.matches ? `Sent to ${s.committee}, with this history attached.` : `Sent to ${s.committee} and ${s.agencies.join(", ")}, with this history attached.`;
+    $("sent").classList.add("in");
+
+    bar.style.transition = `width ${HOLD}ms linear`;
+    requestAnimationFrame(() => (bar.style.width = "100%"));
+    if (reduce) return; // stay on the final frame
+    await S(HOLD);
+    play((i + 1) % SCENARIOS.length);
+  } catch (e) { if (e !== "stop") throw e; }
+}
+
+const pauseIcon = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span class="lbl">Pause</span>';
+const playIcon = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z"/></svg><span class="lbl">Play</span>';
+$("pauseBtn").innerHTML = pauseIcon;
+$("pauseBtn").onclick = () => {
+  paused = !paused;
+  $("pauseBtn").innerHTML = paused ? playIcon : pauseIcon;
+  document.querySelectorAll(".tab .bar").forEach((b) => { if (paused) { b.style.width = getComputedStyle(b).width; b.style.transition = "none"; } });
+};
+$("tabs").onclick = (e) => {
+  const t = e.target.closest(".tab"); if (!t) return;
+  paused = false; $("pauseBtn").innerHTML = pauseIcon;
+  play(+t.dataset.i);
+};
+play(0);
+</script>
+</body>
+</html>
