@@ -26,6 +26,7 @@ HEADERS = [
 ]
 HEADER_RES = [(re.compile(rf"^\s*{p}\s*$"), name) for p, name in HEADERS]
 VOTE_RE = re.compile(r"^\s*Vote:\s*(.*)", re.IGNORECASE)
+CLAUSE_RE = re.compile(r"^[A-Z]\.\s")
 TITLE_RE = re.compile(r"^\s*(\d+)\.\s+(.*)")
 PAGE_NUM_RE = re.compile(r"^\s*\d+\s*$")
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
@@ -77,22 +78,29 @@ def parse(path: Path) -> list[dict]:
             first = next((b for b in buf if b), "")
             tm = TITLE_RE.match(first)
             title = tm.group(2) if tm else first
-            # title can wrap onto the next line
-            if tm:
-                i = buf.index(first) + 1
-                while (
-                    i < len(buf)
-                    and buf[i]
-                    and not buf[i].lower().startswith(("whereas", "i."))
-                ):
-                    title += " " + buf[i]
-                    i += 1
+            # The title wraps onto the following lines, numbered or not, until a blank line or
+            # the start of the body ("Whereas", "i.", or a lettered clause like "A. The property").
+            i = buf.index(first) + 1
+            while (
+                i < len(buf)
+                and buf[i]
+                and not buf[i].lower().startswith(("whereas", "i."))
+                and not CLAUSE_RE.match(buf[i])
+                and not TITLE_RE.match(
+                    buf[i]
+                )  # the next item in a list voted on together
+            ):
+                title += " " + buf[i]
+                i += 1
+            title = re.sub(r"\s+", " ", title).strip()
+            if len(title) > 300:
+                title = title[:300].rsplit(" ", 1)[0] + "…"
             out.append(
                 {
                     "id": f"{meeting_month(date)}-{len(out) + 1:03d}",
                     "meeting_date": date,
                     "committee": committee,
-                    "title": re.sub(r"\s+", " ", title)[:300],
+                    "title": title,
                     "outcome": outcome(body),
                     "vote": vm.group(1).strip(),
                     "text": re.sub(r"[ \t]+", " ", body),

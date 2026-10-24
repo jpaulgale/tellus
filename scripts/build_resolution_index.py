@@ -70,12 +70,13 @@ def sql(v: object) -> str:
 
 
 def main() -> None:
-    # "FYI / RENEWALS" is a list of license renewals the board didn't vote on one by one, and a
+    # "FYI / RENEWALS" is a list of license renewals the board didn't vote on one by one, "THE FOLLOWING ARE…" heads a group of them, and a
     # title starting in lowercase is the tail of a vote line the parser split off, not a resolution.
     resolutions = [
         r
         for r in json.loads((ROOT / "data" / "resolutions.json").read_text())
-        if not r["title"].upper().startswith("FYI") and not r["title"][:1].islower()
+        if not r["title"].upper().startswith(("FYI", "THE FOLLOWING ARE"))
+        and not r["title"][:1].islower()
     ]
     addresses = [
         m.group(1).strip() if (m := ADDRESS.search(r["title"])) else None

@@ -139,8 +139,8 @@ function routeLine() {
       onPick: () => { state.formKey = f.key === top.key ? null : f.key; state.open.form = false; state.destination = null; render(new Set()); announce(`Switched to ${f.name}`); } }))) : null;
   return h("div.routebox",
     h("p.routeline", "Will be routed to ", h("b", form.key === "cb2" && board ? board.name : form.name),
-      form.key === "cb2" ? " · " : ` · ${form.key === "crossing_guard" ? `${board?.short ?? "CB2"} + ` : board ? `${board.short} + ` : ""}${form.agency} · `,
-      mine ? h("span.tag", "your choice") : null, " ", toggle),
+      form.key === "cb2" ? "" : ` · ${form.key === "crossing_guard" ? `${board?.short ?? "CB2"} + ` : board ? `${board.short} + ` : ""}${form.agency}`,
+      mine ? [" ", h("span.tag", "your choice")] : null, " ", toggle),
     mine ? h("p.fieldhint", `We suggested ${top.name}.`) : null,
     board ? h("p.fieldhint.reason", `That address is outside CB2, so this goes to ${board.name}.`) : null,
     list);
