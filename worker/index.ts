@@ -401,7 +401,8 @@ function relatedFrom(candidates: Resolution[], geo: Geo | undefined, answers: Re
     .map((r) => ({ r, a: answers[`related.${r.id}`] }))
     .filter((x): x is { r: Resolution; a: Answer & { type: "noul" } } => x.a?.type === "noul" && x.a.noul >= INCLUDE_AT)
     .sort((x, y) => y.a.noul - x.a.noul || newestFirst(x.r, y.r))
-    .filter((x, i, all) => all.findIndex((y) => y.r.title === x.r.title) === i) // one item can come up at two meetings
+    // One business can have two items at a meeting (sidewalk and roadway dining), or the same item at two meetings.
+    .filter((x, i, all) => all.findIndex((y) => y.r.title === x.r.title || (!!x.r.address && y.r.address === x.r.address && y.r.meeting_iso === x.r.meeting_iso)) === i)
     .slice(0, 3)
     .map(({ r }) => ({ id: r.id, meeting_date: r.meeting_date, committee: r.committee, title: r.title, address: r.address, source: r.source,
       metres: geo && placed(r) ? Math.round(metres(r, geo)) : null }));
