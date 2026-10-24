@@ -1,7 +1,7 @@
 // Location field: Jev's pick (or a one-tap "Did you mean…?"), other matches, NYC GeoSearch
 // autocomplete, a Mapbox map with a pin, borough · ZIP · BBL, and a liquor-license card.
 
-import { h, esc, pct, api } from "./util.js";
+import { h, esc, api } from "./util.js";
 
 const MAPBOX_JS = "https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js";
 const MAPBOX_CSS = "https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css";
@@ -48,7 +48,7 @@ async function showMap(geo) {
 }
 
 const sameAs = (v, o) => v && (v.text === o.value || v.label === o.label);
-const optValue = (o) => ({ text: o.value, label: o.label, geo: o.geo ?? null, license: o.license ?? null, resolutions: o.resolutions ?? [] });
+const optValue = (o) => ({ text: o.value, label: o.label, geo: o.geo ?? null, license: o.license ?? null, resolutions: o.resolutions ?? [], related: o.related ?? [] });
 
 /**
  * What Community Board 2 already decided about this address: the resolution, the stipulation the
@@ -72,6 +72,30 @@ function resolutionCard(r, committee) {
       h("a", { href: r.source, target: "_blank", rel: "noopener" }, "Read the minutes ↗")));
 }
 
+/** Other decisions the board made that bear on this complaint: on the surrounding blocks, or found in the minutes by topic. */
+function relatedMinutes(list) {
+  if (!list?.length) return null;
+  return h("section.related", { "aria-label": "Related past board decisions" },
+    h("p.related-lead", "Related decisions from past board meetings"),
+    h("ul", list.map((r) => h("li",
+      h("p.related-title", r.title),
+      h("p.related-meta", [r.meeting_date, r.committee, r.metres == null ? null : r.metres < 30 ? "same address" : `${r.metres} m away`].filter(Boolean).join(" · "), " ",
+        h("a", { href: r.source, target: "_blank", rel: "noopener" }, "Minutes ↗"))))));
+}
+
+/**
+ * A place the person picked themselves (autocomplete or a dot on the map): set it now, then add the
+ * board's record for it once /api/record answers, unless they've moved on to another place by then.
+ */
+export async function pickPlace(key, value, ctx) {
+  ctx.set(key, value, true);
+  if (!value.geo) return;
+  try {
+    const rec = await api("/api/record", { message: ctx.message(), geo: value.geo });
+    if (ctx.get(key)?.geo === value.geo) ctx.set(key, { ...value, ...rec }, true);
+  } catch { /* the record is a nicety */ }
+}
+
 export function renderLocation(field, key, ctx, id) {
   const v = ctx.get(key);
   const touched = ctx.isTouched(key);
@@ -81,14 +105,14 @@ export function renderLocation(field, key, ctx, id) {
   const top = opts[0];
   const confirm = !v?.text && !touched && top && top.p >= SUGGEST_AT
     ? h("div.didyoumean",
-        h("span", "Did you mean ", h("b", top.label), "? ", h("span.muted", `${pct(top.p)} match`)),
+        h("span", "Did you mean ", h("b", top.label), "?"),
         h("button.chip.on", { type: "button", onclick: () => ctx.set(key, optValue(top), true) }, "Yes, that's it"))
     : null;
 
   const alts = opts.filter((o) => !sameAs(v, o) && o !== (confirm ? top : null) && o.p >= 0.05).slice(0, 4);
   const altsEl = alts.length
     ? h("div.chips.alts", h("span.alts-lead", v?.text ? "Or did you mean:" : "Other matches:"),
-        alts.map((o) => h("button.chip", { type: "button", onclick: () => ctx.set(key, optValue(o), true) }, o.label, h("span.chip-p", pct(o.p)))))
+        alts.map((o) => h("button.chip", { type: "button", onclick: () => ctx.set(key, optValue(o), true) }, o.label)))
     : null;
 
   const input = h("input.ff-input", {
@@ -99,7 +123,7 @@ export function renderLocation(field, key, ctx, id) {
   const list = h("ul.suggest", { id: `${id}-list`, role: "listbox", hidden: true });
   const hint = h("p.fieldhint", { hidden: true, "aria-live": "polite" },
     "No matching address found.");
-  wireSearch(input, list, hint, (c) => ctx.set(key, { text: c.value, label: c.key, geo: c.geo ?? null, license: null }, true),
+  wireSearch(input, list, hint, (c) => pickPlace(key, { text: c.value, label: c.key, geo: c.geo ?? null, license: null }, ctx),
     (text) => ctx.set(key, text.trim() ? { text, geo: null, license: null } : null, false));
 
   // The dot keeps its exact spot (a corner, mid-block); the address is the nearest one in the district.
@@ -108,7 +132,7 @@ export function renderLocation(field, key, ctx, id) {
   onDot = async (lat, lng) => {
     try {
       const c = await api(`/api/reverse?lat=${lat}&lng=${lng}`);
-      ctx.set(key, { text: c.value, label: `Near ${c.key}`, geo: c.geo, license: null }, true);
+      pickPlace(key, { text: c.value, label: `Near ${c.key}`, geo: c.geo, license: null }, ctx);
     } catch (e) {
       mapHint.textContent = e.message || "No address near that spot.";
       if (v?.geo) marker.setLngLat([v.geo.lng, v.geo.lat]); else marker.remove();
@@ -134,7 +158,7 @@ export function renderLocation(field, key, ctx, id) {
   const past = (v?.resolutions ?? []).map((r) => resolutionCard(r, ctx.committeeFor?.()));
   return h("div.loc", confirm,
     h("div.combo", h("div.ff-inputwrap", input), list), hint, outside,
-    altsEl, card, mapBox, mapHint, meta, past.length ? h("div.respast", past) : null);
+    altsEl, card, mapBox, mapHint, meta, past.length ? h("div.respast", past) : null, relatedMinutes(v?.geo ? v.related : ctx.relatedFound()));
 }
 
 const titleCase = (s) => String(s || "").toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());

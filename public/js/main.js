@@ -2,9 +2,9 @@
 // One /api/route call returns emergency?, every form's probability, and every field of every
 // form, so switching forms is instant. Fields the person edited are never overwritten.
 
-import { $, h, pct, api, announce, rankRow } from "./util.js";
+import { $, h, api, announce, rankRow } from "./util.js";
 import { renderField, jevValue, isEmpty } from "./fields.js";
-import { setMapboxToken } from "./location.js";
+import { setMapboxToken, pickPlace } from "./location.js";
 import { renderSendPanel, defaultDestinations, missingRequired } from "./send.js";
 import { toggleMic } from "./voice.js";
 import { renderTopics, startTypewriter } from "./suggest.js";
@@ -125,7 +125,6 @@ function renderBody(changed) {
   verdict.append(routeLine());
   routed.hidden = false;
   renderForm(changed);
-  $("jevDetails").hidden = true;
 }
 
 function routeLine() {
@@ -135,14 +134,14 @@ function routeLine() {
   const toggle = h("button.linkbtn", { type: "button", "aria-expanded": String(open),
     onclick: () => { state.open.form = !open; render(new Set()); } }, open ? "Close" : "Not correct? Change where this goes.");
   const list = open ? h("div.ranklist", { role: "listbox", "aria-label": "Forms" }, state.res.forms.map((f) =>
-    rankRow({ title: f.name, sub: `${f.agency}${f.key === "cb2" ? "" : ` · 311 “${f.complaint_type}”`}`, p: f.probability, on: f.key === form.key,
+    rankRow({ title: f.name, sub: `${f.agency}${f.key === "cb2" ? "" : ` · 311 “${f.complaint_type}”`}`, on: f.key === form.key,
       tag: f.key === top.key ? "Suggested" : null,
       onPick: () => { state.formKey = f.key === top.key ? null : f.key; state.open.form = false; state.destination = null; render(new Set()); announce(`Switched to ${f.name}`); } }))) : null;
   return h("div.routebox",
     h("p.routeline", "Will be routed to ", h("b", form.key === "cb2" && board ? board.name : form.name),
       form.key === "cb2" ? " · " : ` · ${form.key === "crossing_guard" ? `${board?.short ?? "CB2"} + ` : board ? `${board.short} + ` : ""}${form.agency} · `,
-      mine ? h("span.tag", "your choice") : `${pct(form.probability)} match`, " ", toggle),
-    mine ? h("p.fieldhint", `We suggested ${top.name} (${pct(top.probability)}).`) : null,
+      mine ? h("span.tag", "your choice") : null, " ", toggle),
+    mine ? h("p.fieldhint", `We suggested ${top.name}.`) : null,
     board ? h("p.fieldhint.reason", `That address is outside CB2, so this goes to ${board.name}.`) : null,
     list);
 }
@@ -171,6 +170,8 @@ const ctx = {
   get open() { return state.open; },
   get committees() { return state.config.committees; },
   committeeFor: () => (activeForm()?.key === "cb2" ? state.values["cb2.committee"] : null),
+  message: () => $("message").value.trim(),
+  relatedFound: () => state.res?.related ?? [], // minutes the search found, for when no place is picked
 };
 
 function renderForm(changed) {
@@ -228,20 +229,7 @@ function renderNeeded() {
   const left = needKeys.filter((k) => isEmpty(state.values[k]));
   box.classList.toggle("done", !left.length);
   const lead = box.querySelector(".needed-lead");
-  if (lead) lead.textContent = left.length ? `Needed for ${form.name}` : `That's everything needed for ${form.name}.`;
-}
-
-function renderJev() {
-  const { res } = state, j = res.jev || {};
-  const usage = j.usage ? `${j.usage.input_tokens} in / ${j.usage.output_tokens} out tokens` : "";
-  $("jevDetails").replaceChildren(
-    h("summary", "Jev details"),
-    h("p.fieldhint", `${j.model ?? "Jev"} answered ${j.questions ?? "?"} questions in one call · ${j.latencyMs ?? "?"} ms${usage ? " · " + usage : ""}`),
-    h("dl.jevgrid",
-      h("dt", "Emergency"), h("dd", pct(res.emergency)),
-      h("dt", "Not a city issue"), h("dd", pct(res.none)),
-      res.forms.map((f) => [h("dt", f.name), h("dd", pct(f.probability))])),
-  );
+  if (lead) lead.replaceChildren(...(left.length ? [h("span.req", "*"), " Required fields"] : ["All required fields are filled in."]));
 }
 
 // ---------- voice ----------
@@ -276,7 +264,7 @@ async function voiceTool(name, args) {
     if (!hit) return "no address inside Community Board 2 matched that";
     v = { text: hit.value, label: hit.key, geo: hit.geo ?? null, license: null };
   }
-  ctx.set(key, v, true);
+  if (f.kind === "location") pickPlace(key, v, ctx); else ctx.set(key, v, true);
   const el = document.querySelector(`.ff[data-key="${CSS.escape(key)}"]`);
   el?.classList.add("flash"); setTimeout(() => el?.classList.remove("flash"), 900);
   el?.scrollIntoView({ block: "center", behavior: "smooth" });

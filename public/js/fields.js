@@ -1,22 +1,15 @@
-// Field controls. Every field shows Jev's pick (with its %), lets you pick another option,
+// Field controls. Every field shows Jev's pick, lets you pick another option,
 // and lets you type or choose your own value. ctx = { get(key), set(key, value, rerender), isTouched(key) }.
 
-import { h, pct, rankRow } from "./util.js";
+import { h } from "./util.js";
 import { renderLocation } from "./location.js";
 
 /** What Jev would put in this field, in our value shape. */
 export function jevValue(field) {
   if (field.selected == null) return null;
   const o = field.options[field.selected];
-  if (field.kind === "location") return { text: o.value, label: o.label, geo: o.geo ?? null, license: o.license ?? null, resolutions: o.resolutions ?? [] };
+  if (field.kind === "location") return { text: o.value, label: o.label, geo: o.geo ?? null, license: o.license ?? null, resolutions: o.resolutions ?? [], related: o.related ?? [] };
   return o.value;
-}
-
-/** Jev's probability for whatever value the field holds now (null if Jev didn't offer it). */
-function pOf(field, v) {
-  if (v == null) return field.kind === "noul" ? null : field.pNone;
-  const o = field.options.find((x) => x.value === v || (v.text && x.value === v.text));
-  return o ? o.p : null;
 }
 
 /** Greyed-out sample values for the contact fields. */
@@ -29,7 +22,6 @@ export function isEmpty(v) {
 export function renderField(field, key, ctx) {
   const v = ctx.get(key);
   const touched = ctx.isTouched(key);
-  const p = pOf(field, v);
   const badge = field.kind === "committee" ? null : touched
     ? h("span.ff-tag.you", "Your edit")
     : null;
@@ -46,26 +38,24 @@ export function renderField(field, key, ctx) {
   return h("div.ff" + (isEmpty(v) ? (field.required ? ".need" : "") : ".filled"), { "data-key": key, id: `ff-${key.replace(/\W/g, "-")}` }, top, body);
 }
 
-function chip(label, p, on, onclick, extra = {}) {
-  return h("button.chip" + (on ? ".on" : ""), { type: "button", "aria-pressed": on ? "true" : "false", onclick, ...extra },
-    label, p != null ? h("span.chip-p", pct(p)) : null);
+function chip(label, on, onclick, extra = {}) {
+  return h("button.chip" + (on ? ".on" : ""), { type: "button", "aria-pressed": on ? "true" : "false", onclick, ...extra }, label);
 }
 
 function selectControl(field, key, ctx, v, id) {
-  // Jev's options carry the %; fall back to the catalog's choices before Jev has answered.
+  // Jev's options come likeliest first; fall back to the catalog's choices before Jev has answered.
   const opts = field.options.length ? field.options : (field.choices ?? []).map((c) => ({ label: c, value: c, p: null }));
   return h("div.chips", { role: "group", id, "aria-label": field.label },
-    opts.map((o) => chip(o.label, o.p, v === o.value, () => ctx.set(key, o.value, true))),
+    opts.map((o) => chip(o.label, v === o.value, () => ctx.set(key, o.value, true))),
     // "Other" is a real answer (it satisfies a required field), unlike leaving it blank.
     opts.some((o) => /^(other|something else)$/i.test(o.label)) ? null
-      : chip("Other", null, v === "Other", () => ctx.set(key, "Other", true), { class: "chip-none" }));
+      : chip("Other", v === "Other", () => ctx.set(key, "Other", true), { class: "chip-none" }));
 }
 
 function noulControl(field, key, ctx, v, id) {
-  const [yes, no] = field.options.length ? field.options : [{ p: null }, { p: null }];
   return h("div.chips", { role: "group", id, "aria-label": field.label },
-    chip("Yes", yes.p, v === true, () => ctx.set(key, v === true ? null : true, true)),
-    chip("No", no.p, v === false, () => ctx.set(key, v === false ? null : false, true)));
+    chip("Yes", v === true, () => ctx.set(key, v === true ? null : true, true)),
+    chip("No", v === false, () => ctx.set(key, v === false ? null : false, true)));
 }
 
 /** Why a typed value isn't acceptable, or "" when it is (empty is handled by "required"). */
@@ -101,7 +91,7 @@ function spanControl(field, key, ctx, v, id) {
   return h("div",
     h("div.ff-inputwrap", input), error,
     alts.length ? h("div.chips.alts", h("span.alts-lead", "Also found:"),
-      alts.map((o) => chip(o.label, o.p, false, () => ctx.set(key, o.value, true)))) : null);
+      alts.map((o) => chip(o.label, false, () => ctx.set(key, o.value, true)))) : null);
 }
 
 /** Committee as a plain dropdown: likeliest first, and committees that scored about 0 below a divider. */

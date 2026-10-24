@@ -5,7 +5,6 @@
 import catalog from "./catalog.json";
 import { type Board, type Candidate, type Geo, type License, FINDERS, addressQueries, properNames, streets } from "./candidates";
 import { intersectionNode } from "./intersection";
-import resolutionIndex from "./resolutions.json";
 
 interface Env {
   ASSETS: Fetcher;
@@ -23,19 +22,56 @@ type FieldSpec = {
 };
 type FormSpec = { name: string; agency: string; complaint_type: string; route: string; fields: FieldSpec[]; contact_required?: boolean };
 
-/** A past CB2 resolution about an address, from the Full Board minutes (scripts/build_resolution_index.py). */
+/** A past CB2 resolution, from the Full Board minutes (the D1 `resolutions` table; scripts/build_resolution_index.py). */
 interface Resolution {
-  id: string; meeting_date: string; committee: string; title: string; address: string; legal_name: string; dba: string;
-  license_type: string; outcome: string; vote: string; bbl: string | null; lat: number; lng: number; stipulations: string[]; source: string;
+  id: string; meeting_date: string; meeting_iso: string; committee: string; title: string; address: string | null; legal_name: string; dba: string;
+  license_type: string; outcome: string; vote: string; bbl: string | null; lat: number | null; lng: number | null; stipulations: string[]; source: string;
 }
-const RESOLUTIONS = resolutionIndex as Resolution[];
+const toResolution = (row: any): Resolution => ({ ...row, stipulations: JSON.parse(row.stipulations) });
+const newestFirst = (a: Resolution, b: Resolution) => b.meeting_iso.localeCompare(a.meeting_iso);
+const unique = (rs: Resolution[]) => [...new Map(rs.map((r) => [r.id, r])).values()];
 
-/** Resolutions about this exact tax lot, or within about 20 m of the dot; newest first. */
-function resolutionsAt(geo?: Geo): Resolution[] {
-  if (!geo || geo.corner) return []; // a corner is not a licensed premises
-  return RESOLUTIONS.filter((r) => (geo.bbl && r.bbl === geo.bbl) || (Math.abs(r.lat - geo.lat) < 0.00018 && Math.abs(r.lng - geo.lng) < 0.00018))
-    .sort((a, b) => Date.parse(b.meeting_date) - Date.parse(a.meeting_date))
-    .slice(0, 2);
+/** Metres between two points (equirectangular; fine at block scale). */
+const metres = (a: { lat: number; lng: number }, b: { lat: number; lng: number }) =>
+  Math.hypot((a.lat - b.lat) * 111_320, (a.lng - b.lng) * 111_320 * Math.cos((a.lat * Math.PI) / 180));
+const AT_M = 20, NEAR_M = 250;
+const placed = (r: Resolution): r is Resolution & { lat: number; lng: number } => r.lat != null && r.lng != null;
+
+/** What the board decided at a place: `at` the address itself (newest first), and `near` it on the surrounding blocks (nearest first). */
+interface Place { at: Resolution[]; near: Resolution[] }
+const NO_PLACE: Place = { at: [], near: [] };
+
+/** The board's record around each place, in one D1 round trip: rows on the same tax lot or within a box about NEAR_M across. */
+async function placesFor(db: D1Database, geos: (Geo | undefined)[]): Promise<Place[]> {
+  const dLat = NEAR_M / 111_320, dLng = NEAR_M / 84_000; // a degree of longitude is about 84 km at this latitude
+  const asked = geos.map((g, i) => [g, i] as const).filter((x): x is readonly [Geo, number] => !!x[0]);
+  if (!asked.length) return geos.map(() => NO_PLACE);
+  const stmt = db.prepare("SELECT * FROM resolutions WHERE bbl = ?1 OR (lat BETWEEN ?2 AND ?3 AND lng BETWEEN ?4 AND ?5)");
+  const results = await db.batch(asked.map(([g]) => stmt.bind(g.bbl ?? "", g.lat - dLat, g.lat + dLat, g.lng - dLng, g.lng + dLng)));
+  const out = geos.map(() => NO_PLACE);
+  asked.forEach(([g, i], k) => {
+    const rows = (results[k].results as any[]).map(toResolution);
+    // A corner is not a licensed premises, so nothing is "at" it.
+    const at = g.corner ? [] : rows.filter((r) => (g.bbl && r.bbl === g.bbl) || (placed(r) && metres(r, g) <= AT_M)).sort(newestFirst).slice(0, 2);
+    const near = rows.filter((r) => placed(r) && !at.some((x) => x.id === r.id) && metres(r, g) <= NEAR_M)
+      .sort((a, b) => metres(a as any, g) - metres(b as any, g)).slice(0, 8);
+    out[i] = { at, near };
+  });
+  return out;
+}
+
+const STOPWORDS = new Set("a an and are at be but by for from has have i in is it its my of on or our so that the their there they this to was we were with you your very really every all just near outside about been get got too many much street streets avenue ave place there".split(" "));
+
+/** BM25 search of the minutes for the resident's own words: the topic, the business, the street. */
+async function searchMinutes(db: D1Database, message: string, limit = 6): Promise<Resolution[]> {
+  // Words only: a bare house number matches every address that shares it.
+  const terms = [...new Set(message.toLowerCase().match(/[a-z][a-z0-9]{2,}/g) ?? [])].filter((t) => !STOPWORDS.has(t)).slice(0, 24);
+  if (!terms.length) return [];
+  const rows = await db.prepare(
+    `SELECT r.* FROM resolutions_fts f JOIN resolutions r ON r.id = f.id
+     WHERE resolutions_fts MATCH ?1 ORDER BY bm25(resolutions_fts, 0, 3, 4, 3, 1, 1) LIMIT ?2`,
+  ).bind(terms.map((t) => `"${t}"`).join(" OR "), limit).all();
+  return (rows.results as any[]).map(toResolution);
 }
 type Answer =
   | { type: "choice"; choice: string; probabilities: Record<string, number>; confidence: number }
@@ -213,7 +249,39 @@ function pickQuestion(premise: string, label: string, hint: string, cands: Candi
   };
 }
 
-function buildPlan(message: string, locations: Candidate[], past: Resolution[]) {
+/**
+ * Jev questions about the board's record for a place: which agreed stipulation the complaint is
+ * about (for resolutions at the address), and whether each decision nearby is relevant.
+ */
+function recordQuestions(past: Resolution[], nearby: Resolution[]) {
+  const questions: Record<string, unknown> = {};
+  // Which of that business's agreed stipulations is this complaint about? (the highlighted quote)
+  for (const r of past) {
+    if (!r.stipulations.length) continue;
+    questions[`resolution.${r.id}`] = {
+      type: "choice",
+      instructions: {
+        context: `In ${r.meeting_date} the business at ${r.address} agreed to these stipulations with Community Board 2.`,
+        question: "Which one stipulation does the resident's complaint in `message` most directly say is being broken?",
+      },
+      criteria: { ...Object.fromEntries(r.stipulations.map((s) => [s, null])), [NONE]: "The complaint is not about any of these stipulations." },
+    };
+  }
+
+  // Which of the board's decisions on the surrounding blocks bear on this complaint?
+  for (const r of nearby) {
+    questions[`related.${r.id}`] = {
+      type: "noul",
+      instructions: {
+        decision: `On ${r.meeting_date} Community Board 2's ${r.committee} committee voted on: ${r.title}`,
+        question: "Would a resident who wrote `message` find this past board decision relevant: about the same business or building, or about the same kind of issue (noise, outdoor dining, liquor license, storefront, street use) on the same street or block?",
+      },
+    };
+  }
+  return questions;
+}
+
+function buildPlan(message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[]) {
   const questions: Record<string, unknown> = {
     emergency: {
       type: "noul",
@@ -243,18 +311,7 @@ function buildPlan(message: string, locations: Candidate[], past: Resolution[]) 
       found.proper_names.push({ key: name, value: name, note: `the ${r.license_type || "business"} at ${r.address}, reviewed by Community Board 2 on ${r.meeting_date}` });
     }
   }
-  // Which of that business's agreed stipulations is this complaint about? (the highlighted quote)
-  for (const r of past) {
-    if (!r.stipulations.length) continue;
-    questions[`resolution.${r.id}`] = {
-      type: "choice",
-      instructions: {
-        context: `In ${r.meeting_date} the business at ${r.address} agreed to these stipulations with Community Board 2.`,
-        question: "Which one stipulation does the resident's complaint in `message` most directly say is being broken?",
-      },
-      criteria: { ...Object.fromEntries(r.stipulations.map((s) => [s, null])), [NONE]: "The complaint is not about any of these stipulations." },
-    };
-  }
+  Object.assign(questions, recordQuestions(past, nearby));
 
   // General fields don't depend on the form, so they're asked once.
   for (const f of GENERAL) {
@@ -335,7 +392,22 @@ function presentResolution(r: Resolution, answers: Record<string, Answer>) {
   return { ...rest, relevant };
 }
 
-function decode(answers: Record<string, Answer>, cands: Record<string, Candidate[]>) {
+/** Past decisions (nearby, or found by search) that Jev judged relevant to the complaint, most relevant first. */
+const FOUND_M = 600; // with a place picked, a search hit farther away than this is someone else's neighborhood
+
+function relatedFrom(candidates: Resolution[], geo: Geo | undefined, answers: Record<string, Answer>) {
+  return unique(candidates)
+    .filter((r) => !geo || !placed(r) || metres(r, geo) <= FOUND_M)
+    .map((r) => ({ r, a: answers[`related.${r.id}`] }))
+    .filter((x): x is { r: Resolution; a: Answer & { type: "noul" } } => x.a?.type === "noul" && x.a.noul >= INCLUDE_AT)
+    .sort((x, y) => y.a.noul - x.a.noul || newestFirst(x.r, y.r))
+    .filter((x, i, all) => all.findIndex((y) => y.r.title === x.r.title) === i) // one item can come up at two meetings
+    .slice(0, 3)
+    .map(({ r }) => ({ id: r.id, meeting_date: r.meeting_date, committee: r.committee, title: r.title, address: r.address, source: r.source,
+      metres: geo && placed(r) ? Math.round(metres(r, geo)) : null }));
+}
+
+function decode(answers: Record<string, Answer>, cands: Record<string, Candidate[]>, places: Map<string, Place>, found: Resolution[]) {
   const route = answers.route.type === "choice" ? answers.route.probabilities : {};
   const general = GENERAL.map((f) => decodeField(f, `general.${f.id}`, answers, cands));
   const forms = Object.entries(FORMS)
@@ -348,7 +420,11 @@ function decode(answers: Record<string, Answer>, cands: Record<string, Candidate
   // 911 is a route like any other; the separate yes/no check backs it up.
   // Each location option carries the board's past resolutions about that address.
   const loc = general.find((f) => f.id === "location");
-  for (const o of loc?.options ?? []) o.resolutions = resolutionsAt(o.geo).map((r) => presentResolution(r, answers));
+  for (const o of loc?.options ?? []) {
+    const place = places.get(o.label) ?? NO_PLACE;
+    o.resolutions = place.at.map((r) => presentResolution(r, answers));
+    o.related = relatedFrom([...place.near, ...found], o.geo, answers);
+  }
   // The committee that reviewed this business before is the one that should hear about it again.
   const chosen = loc?.selected != null ? loc.options[loc.selected] : null;
   const prior = chosen?.resolutions?.[0];
@@ -367,7 +443,8 @@ function decode(answers: Record<string, Answer>, cands: Record<string, Candidate
     if (i >= 0) { committee.selected = i; committee.reason = `${prior.committee} reviewed this address on ${prior.meeting_date}.`; }
   }
   const emergency = Math.max(answers.emergency.type === "noul" ? answers.emergency.noul : 0, route.call_911 ?? 0);
-  return { forms, general, none: route.none ?? 0, emergency };
+  // With no place picked, the minutes the search found still show.
+  return { forms, general, none: route.none ?? 0, emergency, related: relatedFrom(found, undefined, answers) };
 }
 
 async function callJev(env: Env, body: unknown): Promise<any> {
@@ -398,8 +475,12 @@ async function route(request: Request, env: Env): Promise<Response> {
   const t0 = Date.now();
   const locations = await findLocations(message);
   const lookupMs = Date.now() - t0;
-  const past = [...new Map(locations.flatMap((l) => resolutionsAt(l.geo)).map((r) => [r.id, r])).values()].slice(0, 3);
-  const { questions, cands, boardRecord } = buildPlan(message, locations, past);
+  const [placeList, searched] = await Promise.all([placesFor(env.DB, locations.map((l) => l.geo)), searchMinutes(env.DB, message)]);
+  const places = new Map(locations.map((l, i) => [l.key, placeList[i]]));
+  const past = unique(placeList.flatMap((p) => p.at)).slice(0, 3);
+  const nearby = unique(locations.filter((l) => !l.geo?.board?.outside).flatMap((l) => places.get(l.key)!.near)).slice(0, 10);
+  const found = searched.filter((r) => !past.some((x) => x.id === r.id));
+  const { questions, cands, boardRecord } = buildPlan(message, locations, past, unique([...nearby, ...found]));
   const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
   let jev;
   try {
@@ -407,11 +488,35 @@ async function route(request: Request, env: Env): Promise<Response> {
   } catch (e) {
     return json({ error: (e as Error).message }, 502);
   }
-  const out = decode(jev.answers, cands);
+  const out = decode(jev.answers, cands, places, found);
   const latencyMs = Date.now() - t0;
   const top = out.forms[0];
   console.log({ event: "route", form: top.key, p: top.probability, emergency: out.emergency, latencyMs, lookupMs, questions: Object.keys(questions).length });
   return json({ ...out, jev: { model: jev.model, usage: jev.usage, questions: Object.keys(questions).length, latencyMs, lookupMs } });
+}
+
+/**
+ * The board's record for a place the person picked themselves (autocomplete or a dot on the map):
+ * resolutions at the address with the stipulation the complaint is about, and related decisions nearby.
+ */
+async function record(request: Request, env: Env): Promise<Response> {
+  if (!env.TYPESAFE_API_KEY) return json({ error: "TYPESAFE_API_KEY is not set" }, 500);
+  const { message: raw, geo } = (await request.json()) as { message?: string; geo?: Geo };
+  const message = (raw ?? "").trim().slice(0, 4000);
+  if (!geo || !Number.isFinite(geo.lat) || !Number.isFinite(geo.lng)) return json({ error: "geo is required" }, 400);
+  const [[place], searched] = await Promise.all([placesFor(env.DB, [geo]), message.length >= 8 ? searchMinutes(env.DB, message) : []]);
+  const past = place.at, found = searched.filter((r) => !past.some((x) => x.id === r.id));
+  const candidates = unique([...(geo.board?.outside ? [] : place.near), ...found]);
+  const questions = recordQuestions(past, candidates);
+  let answers: Record<string, Answer> = {};
+  if (message.length >= 8 && Object.keys(questions).length) {
+    try {
+      answers = (await callJev(env, { model: env.TYPESAFE_MODEL || "jev-latest", state: { message }, questions })).answers;
+    } catch (e) {
+      console.warn({ event: "record", error: (e as Error).message });
+    }
+  }
+  return json({ resolutions: past.map((r) => presentResolution(r, answers)), related: relatedFrom(candidates, geo, answers) });
 }
 
 async function autocomplete(url: URL): Promise<Response> {
@@ -497,6 +602,7 @@ export default {
       if (url.pathname === "/api/route" && request.method === "POST") return await route(request, env);
       if (url.pathname === "/api/geosearch") return await autocomplete(url);
       if (url.pathname === "/api/reverse") return await reverse(url);
+      if (url.pathname === "/api/record" && request.method === "POST") return await record(request, env);
       if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env);
       if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env);
       if (url.pathname === "/api/config")

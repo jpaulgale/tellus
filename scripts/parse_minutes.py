@@ -25,7 +25,7 @@ HEADERS = [
     (r"TRAFFIC (AND|&) TRANSPORTATION", "Traffic & Transportation"),
 ]
 HEADER_RES = [(re.compile(rf"^\s*{p}\s*$"), name) for p, name in HEADERS]
-VOTE_RE = re.compile(r"^\s*Vote:\s*(.*)", re.I)
+VOTE_RE = re.compile(r"^\s*Vote:\s*(.*)", re.IGNORECASE)
 TITLE_RE = re.compile(r"^\s*(\d+)\.\s+(.*)")
 PAGE_NUM_RE = re.compile(r"^\s*\d+\s*$")
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
@@ -34,6 +34,12 @@ MONTHS = "January|February|March|April|May|June|July|August|September|October|No
 def meeting_date(text: str) -> str:
     m = re.search(rf"DATE:\s*((?:{MONTHS}) \d+, \d{{4}})", text)
     return m.group(1) if m else ""
+
+
+def meeting_month(date: str) -> str:
+    """'April 23, 2026' -> '2026-04'."""
+    month, _, year = date.partition(" ")
+    return f"{year[-4:]}-{MONTHS.split('|').index(month) + 1:02d}"
 
 
 def outcome(body: str) -> str:
@@ -50,8 +56,11 @@ def outcome(body: str) -> str:
 def parse(path: Path) -> list[dict]:
     text = path.read_text()
     date = meeting_date(text)
-    start = text.find("STANDING COMMITTEE REPORTS WITH RESOLUTIONS", text.find("BUSINESS SESSION"))
-    lines = text[start:].splitlines()
+    # The headings on their own lines, not the table of contents (which also lists "WITHOUT RESOLUTIONS").
+    start = re.search(
+        r"^\s*STANDING COMMITTEE REPORTS? WITH RESOLUTIONS\s*$", text, re.MULTILINE
+    )
+    lines = text[start.start() :].splitlines() if start else []
     committee, buf, out = None, [], []
     for line in lines:
         if "WITHOUT RESOLUTION" in line:
@@ -71,12 +80,16 @@ def parse(path: Path) -> list[dict]:
             # title can wrap onto the next line
             if tm:
                 i = buf.index(first) + 1
-                while i < len(buf) and buf[i] and not buf[i].lower().startswith(("whereas", "i.")):
+                while (
+                    i < len(buf)
+                    and buf[i]
+                    and not buf[i].lower().startswith(("whereas", "i."))
+                ):
                     title += " " + buf[i]
                     i += 1
             out.append(
                 {
-                    "id": f"{path.stem[:2]}-{len(out) + 1:03d}",
+                    "id": f"{meeting_month(date)}-{len(out) + 1:03d}",
                     "meeting_date": date,
                     "committee": committee,
                     "title": re.sub(r"\s+", " ", title)[:300],
@@ -92,7 +105,9 @@ def parse(path: Path) -> list[dict]:
 
 def main() -> None:
     resolutions = [r for p in sorted(MINUTES.glob("*.txt")) for r in parse(p)]
-    (ROOT / "data" / "resolutions.json").write_text(json.dumps(resolutions, indent=2, ensure_ascii=False))
+    (ROOT / "data" / "resolutions.json").write_text(
+        json.dumps(resolutions, indent=2, ensure_ascii=False)
+    )
     by = {}
     for r in resolutions:
         by[r["committee"]] = by.get(r["committee"], 0) + 1

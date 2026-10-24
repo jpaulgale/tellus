@@ -41,6 +41,9 @@ export function buildPayload(s) {
       relevant_stipulations: (r.relevant ?? []).map((x) => x.text),
     }));
   }
+  if (form.key === "cb2" && loc?.related?.length) {
+    p.related_minutes = loc.related.map(({ id, meeting_date, committee, title, source }) => ({ id, meeting_date, committee, title, source }));
+  }
   for (const f of form.fields) {
     if (f.kind === "committee") continue;
     const v = val(form.key, f.id);

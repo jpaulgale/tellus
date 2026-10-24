@@ -1,11 +1,9 @@
-// Small shared helpers: DOM building, escaping, percentages, JSON fetch.
+// Small shared helpers: DOM building, escaping, JSON fetch.
 
 export const $ = (id) => document.getElementById(id);
 
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-
-export const pct = (p) => `${Math.round((p ?? 0) * 100)}%`;
 
 /** h("div.cls", {attrs}, ...children) — children may be strings, nodes, arrays, or null. */
 export function h(tag, attrs, ...kids) {
@@ -42,12 +40,10 @@ export async function api(path, body) {
   return j;
 }
 
-/** Percentage bar row used by the form and committee pickers. */
-export function rankRow({ title, sub, p, on, tag, onPick }) {
+/** One row of the "Change where this goes" picker, likeliest first. */
+export function rankRow({ title, sub, on, tag, onPick }) {
   return h("button.rank" + (on ? ".on" : ""), { type: "button", role: "option", "aria-selected": on ? "true" : "false", onclick: onPick },
     h("span.rank-title", title, tag ? h("span.tag", tag) : null),
-    h("span.rank-pct", pct(p)),
-    h("span.rank-bar", {}, h("i", { style: `width:${Math.max(1, Math.round(p * 100))}%` })),
     sub ? h("span.rank-sub", sub) : null,
   );
 }
