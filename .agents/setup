@@ -29,5 +29,5 @@ step "local D1 migrations"
 CI=1 WRANGLER_SEND_METRICS=false npx --no-install wrangler d1 migrations apply cbform --local
 done_step
 
-# Secrets for `wrangler dev` live in .dev.vars (TYPESAFE_API_KEY, GEMINI_API_KEY, MAPBOX_TOKEN).
-[ -f .dev.vars ] || touch .dev.vars
+# Secrets for `wrangler dev` live in .dev.vars; copy them from the project's Amp secrets.
+scripts/dev-vars.sh

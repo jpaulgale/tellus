@@ -3,3 +3,5 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 [ -d node_modules ] || echo "node_modules missing; run .agents/setup" >&2
+# Pick up project secrets added since setup.
+scripts/dev-vars.sh
