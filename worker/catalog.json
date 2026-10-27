@@ -28,13 +28,6 @@
    "kind": "span",
    "find": "emails",
    "hint": "the resident's email address"
-  },
-  {
-   "id": "phone",
-   "label": "Phone",
-   "kind": "span",
-   "find": "phones",
-   "hint": "the resident's phone number"
   }
  ],
  "forms": {

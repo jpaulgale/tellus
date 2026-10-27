@@ -274,7 +274,7 @@ function recordQuestions(past: Resolution[], nearby: Resolution[]) {
       type: "noul",
       instructions: {
         decision: `On ${r.meeting_date} Community Board 2's ${r.committee} committee voted on: ${r.title}`,
-        question: "Would a resident who wrote `message` find this past board decision relevant: about the same business or building, or about the same kind of issue (noise, outdoor dining, liquor license, storefront, street use) on the same street or block?",
+        question: "Would a resident who wrote `message` find this past board decision relevant: about the same business or building, or about the same kind of issue as the complaint (say, another bar's liquor license for a nightlife noise complaint) on the same street or block? A decision about a different kind of thing that is only nearby, like a street event near a bar, is not relevant.",
       },
     };
   }

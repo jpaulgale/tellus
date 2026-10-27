@@ -202,7 +202,7 @@ function renderForm(changed) {
     form.fields.filter((f) => f !== committee).map((f) => place(form.key, f)),
     place("general", g.when),
   ].flat().filter(Boolean);
-  const contact = ["name", "email", "phone"].map((id) => place("general", g[id])).filter(Boolean);
+  const contact = ["name", "email"].map((id) => place("general", g[id])).filter(Boolean);
   root.replaceChildren(...main,
     ...(contact.length ? [h("h2.subhead", "Your contact info ", h("span.ff-lab-opt", contactRequired ? "so the board can reach you" : "optional")), ...contact] : []));
   $("needed").replaceChildren(h("p.needed-lead"), h("div.needed-grid", need));

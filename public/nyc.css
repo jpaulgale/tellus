@@ -272,17 +272,17 @@ body {
 /* min-width:0 lets the input shrink inside the flex row — without it the native
    date picker / select keep their intrinsic width and spill past the white panel. */
 .ff-input { flex: 1; width: 100%; min-width: 0; max-width: 100%; border: 1.5px solid var(--gray-70); border-radius: 6px; padding: 11px 12px; font: inherit; font-size: 16px; font-weight: 500; color: var(--ink); background: var(--white); transition: border-color .15s, background .15s, box-shadow .15s; }
-.ff-input::placeholder { color: var(--gray-30); font-weight: 500; }
+.ff-input::placeholder { color: #9a9aa2; font-weight: 400; }
 .ff-input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px var(--accent-soft); }
 textarea.ff-input { resize: none; line-height: 1.3; }
 /* Native date picker: match the light theme and tint the calendar button. */
 input[type="date"].ff-input { color-scheme: light; cursor: pointer; min-height: 46px; }
 input[type="date"].ff-input::-webkit-calendar-picker-indicator { cursor: pointer; opacity: .65; filter: invert(13%) sepia(99%) saturate(7000%) hue-rotate(353deg); }
 input[type="date"].ff-input::-webkit-calendar-picker-indicator:hover { opacity: 1; }
-/* Empty date shows mm/dd/yyyy — render it like a placeholder (gray, weight 500,
+/* Empty date shows mm/dd/yyyy — render it like a placeholder (light gray, weight 400,
    matching .ff-input::placeholder), not the bold 600 the field value inherits.
    Once the field is filled it goes bold ink like every other value. */
-input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 500; color: var(--gray-30); }
+input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 400; color: #9a9aa2; }
 .ff.filled input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 500; color: var(--ink); }
 /* Dropdown: same field chrome plus a custom chevron (native arrow removed). */
 select.ff-select { cursor: pointer; appearance: none; -webkit-appearance: none; -moz-appearance: none;

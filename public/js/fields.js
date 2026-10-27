@@ -13,7 +13,7 @@ export function jevValue(field) {
 }
 
 /** Greyed-out sample values for the contact fields. */
-const EXAMPLE = { name: "Zohran Mamdani", email: "mayor@nyc.gov", phone: "212 555-5555" };
+const EXAMPLE = { name: "Washington Irving", email: "washington.irving@new.york" };
 
 export function isEmpty(v) {
   return v == null || v === "" || (typeof v === "object" && !v.text);

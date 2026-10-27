@@ -102,7 +102,7 @@ def parse(path: Path) -> list[dict]:
                     "committee": committee,
                     "title": title,
                     "outcome": outcome(body),
-                    "vote": vm.group(1).strip(),
+                    "vote": vm.group(1).strip().replace("Boar Members", "Board Members"),  # a typo in some CB2 minutes
                     "text": re.sub(r"[ \t]+", " ", body),
                     "source_pdf": path.with_suffix(".pdf").name,
                 }
