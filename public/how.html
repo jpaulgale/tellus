@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tell Us — a text box that fills in the right form</title>
+<meta name="description" content="Residents write in plain words. Tell Us matches the message to the right form — a community board's own intake or a city form like a 311 service request — fills what it can, asks for the required fields it can't, and delivers a structured record to the right place." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#103FEF" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@500,600&display=swap" />
+<style>
+:root {
+  --blue: #103FEF; --blue-dark: #050560; --blue-soft: #E4EBFF; --blue-mid: #B5DBFF;
+  --green: #0A7D17; --green-soft: #DDF5DF;
+  --amber: #FFB320; --amber-ink: #6b4300; --amber-soft: #FFF1D6;
+  --bg: #F4F4F2; --card: #FFFFFF; --ink: #0B0B12; --muted: #5A5A66; --line: #E2E2E6;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 18px 40px -22px rgba(5,5,96,.35);
+  --body: "Noto Sans", ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Clash Grotesk", "Noto Sans", ui-sans-serif, sans-serif;
+  --mono: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--body); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.5; overflow-wrap: break-word; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+svg { flex: none; }
+a { color: inherit; }
+
+header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -.01em; text-decoration: none; }
+.mark img { width: 30px; height: 30px; }
+.mark b { color: var(--blue); font-weight: 600; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; padding: 13px 22px; border-radius: 999px; transition: background .2s; }
+.btn:hover { background: var(--blue-dark); }
+.btn.sm { font-size: 15px; padding: 9px 18px; }
+.btn.alt { background: var(--card); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn.alt:hover { box-shadow: inset 0 0 0 1.5px var(--ink); background: var(--card); }
+
+/* ---------- hero ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; padding: 36px 0 72px; }
+.hero > div:first-child { padding-top: 40px; }
+.where { font-size: 14px; font-weight: 600; color: var(--blue-dark); background: var(--blue-soft); display: inline-block; padding: 5px 12px; border-radius: 999px; margin-bottom: 18px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(40px, 5.6vw, 64px); line-height: 1.02; letter-spacing: -.025em; }
+h1 em { font-style: normal; color: var(--blue); }
+.lede { color: var(--muted); font-size: clamp(17px, 2vw, 20px); margin-top: 18px; max-width: 30em; }
+.ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+
+/* the box becoming a form */
+.demo { background: var(--card); border-radius: 26px; padding: 18px; box-shadow: var(--shadow); display: grid; gap: 12px; }
+.demo-q { font-size: 13px; font-weight: 600; color: var(--muted); }
+.box { border: 2px solid var(--blue); border-radius: 16px; padding: 12px 14px; font-size: 17px; min-height: 4.4em; box-shadow: 0 0 0 4px var(--blue-soft); }
+.caret { display: inline-block; width: 2px; height: 1.1em; background: var(--blue); vertical-align: -3px; margin-left: 1px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.reveal { opacity: 0; transform: translateY(8px); transition: opacity .5s, transform .5s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.form { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.form-h { background: var(--bg); padding: 9px 12px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; font-size: 13px; }
+.form-h b { font-size: 14px; }
+.form-h span { color: var(--muted); }
+.row { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 8px 12px; border-top: 1px solid var(--line); font-size: 14.5px; }
+.row:first-of-type { border-top: 0; }
+.row label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.row label i { font-style: normal; color: var(--red, #C20A12); }
+.row .v { font-weight: 500; min-width: 0; }
+.tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.got { background: var(--blue-soft); color: var(--blue-dark); }
+.tag.need { background: var(--amber-soft); color: var(--amber-ink); }
+.tag.ok { background: var(--green-soft); color: var(--green); }
+.tag.opt { background: var(--bg); color: var(--muted); }
+section.tint .def, section.tint details.cfg { background: var(--bg); }
+.row.missing { background: var(--amber-soft); }
+.row.missing .v { color: var(--amber-ink); }
+.form-h .k { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.form-h .sel { flex: 1 1 14em; }
+.fld { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--line); }
+.fld label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.fld label i { font-style: normal; color: #C20A12; }
+.fld .sel, .fld input, .fld .map, .fld .hint { grid-column: 1 / -1; }
+.sel { position: relative; display: block; }
+.sel::after { content: ""; position: absolute; right: 12px; top: 50%; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+select, .fld input { width: 100%; font: inherit; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--card); border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 34px 8px 10px; min-height: 40px; -webkit-appearance: none; appearance: none; }
+.fld input { padding-right: 10px; font-weight: 400; }
+select:hover, .fld input:hover { border-color: #b8b8c2; }
+select:focus, .fld input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
+.fld.got select { background: var(--blue-soft); border-color: transparent; color: var(--blue-dark); }
+.fld.missing { background: var(--amber-soft); }
+.fld.missing select, .fld.missing input { border: 1.5px dashed var(--amber); color: var(--amber-ink); }
+.fld .hint { font-size: 12.5px; color: var(--muted); }
+.map svg { display: block; width: 100%; height: 180px; -webkit-user-select: none; user-select: none; border-radius: 10px; background: #E9EAEE; touch-action: none; cursor: crosshair; }
+.map .st path { stroke: #fff; stroke-linecap: round; fill: none; }
+.map .mi { stroke-width: 5; } .map .ma { stroke-width: 8; }
+.map .hl { stroke: var(--blue); stroke-width: 8; stroke-linecap: round; opacity: .35; fill: none; }
+.map .lb text { font-family: var(--body); font-size: 11px; font-weight: 600; fill: #74747f; paint-order: stroke; stroke: #E9EAEE; stroke-width: 3px; text-anchor: middle; dominant-baseline: middle; }
+.map .cn { fill: #fff; stroke: var(--blue); stroke-width: 2; }
+.map .dot { cursor: grab; transition: transform .35s var(--ease); }
+.map .dot.drag { cursor: grabbing; transition: none; }
+.map .dot circle.halo { fill: rgba(16,63,239,.18); }
+.map .dot circle.core { fill: var(--blue); stroke: #fff; stroke-width: 3; }
+.map .dot.off { opacity: 0; }
+.tag.you { background: var(--blue-mid); color: var(--blue-dark); }
+.ready { display: flex; gap: 10px; align-items: flex-start; background: var(--green-soft); color: #064d0e; border-radius: 14px; padding: 10px 12px; font-size: 14.5px; }
+.ready svg { width: 18px; height: 18px; color: var(--green); margin-top: 2px; }
+.ready b { color: var(--ink); }
+
+/* ---------- sections ---------- */
+section { padding: 72px 0; }
+section.tint { background: var(--card); }
+.sec-h { max-width: 42em; margin-bottom: 28px; }
+.sec-h h2 { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 4.2vw, 44px); line-height: 1.06; letter-spacing: -.02em; }
+.sec-h p { color: var(--muted); font-size: 18px; margin-top: 12px; }
+
+/* today vs with Tell Us */
+.compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.panel { border-radius: 24px; padding: 24px; }
+.panel h3 { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 14px; }
+.panel.before { background: var(--bg); }
+.panel.before h3 { color: var(--muted); }
+.panel.before ul { list-style: none; display: grid; gap: 12px; }
+.panel.before li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 17px; }
+.panel.before li svg { width: 20px; height: 20px; color: #9a9aa6; margin-top: 3px; }
+.panel.after { background: var(--blue); color: #fff; display: grid; align-content: start; gap: 14px; }
+.panel.after h3 { color: var(--blue-mid); margin-bottom: 0; }
+.panel.after .one { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3vw, 34px); line-height: 1.1; }
+.panel.after p { color: #e6ebff; font-size: 18px; }
+
+/* sentence -> form -> record */
+.pipe { display: grid; grid-template-columns: minmax(0, .8fr) 32px minmax(0, 1.1fr) 32px minmax(0, 1.1fr); gap: 10px; align-items: stretch; }
+.stage { background: var(--bg); border-radius: 22px; padding: 18px; display: grid; gap: 10px; align-content: start; }
+.stage h3 { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.stage h3 i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 12px; letter-spacing: 0; }
+.stage .said { font-size: 16px; background: var(--card); border-radius: 14px; padding: 12px 14px; }
+.stage .cap { font-size: 14px; color: var(--muted); }
+.stage .form { background: var(--card); }
+.stage .row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l t" "v v"; padding: 7px 12px; }
+.stage .row label { grid-area: l; } .stage .row .tag { grid-area: t; } .stage .row .v { grid-area: v; }
+.arrow { color: var(--blue); display: grid; place-items: center; }
+.arrow svg { width: 26px; height: 26px; }
+pre.json { background: #0E1030; color: #E6E9FF; border-radius: 14px; padding: 12px 14px; font-family: var(--mono); font-size: 12.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+pre.json .k { color: #9DB4FF; }
+pre.json .s { color: #FFD38A; }
+
+/* forms are config */
+.defs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.def { background: var(--card); border-radius: 24px; padding: 24px; display: grid; gap: 12px; align-content: start; }
+.def .who { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.def.board .who { color: var(--blue); }
+.def.city .who { color: var(--amber-ink); }
+.def h3 { font-family: var(--display); font-weight: 600; font-size: 24px; line-height: 1.15; }
+.def > p { color: var(--muted); font-size: 16px; }
+.fl { list-style: none; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.fl li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 9px 12px; border-top: 1px solid var(--line); font-size: 15px; align-items: center; }
+.fl li:first-child { border-top: 0; }
+.fl li small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
+.req { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #FDE3E4; color: #9a0910; }
+.opt { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--bg); color: var(--muted); }
+.types { display: flex; flex-wrap: wrap; gap: 6px; }
+.types span { font-size: 13px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: var(--amber-soft); color: var(--amber-ink); }
+details.cfg { margin-top: 18px; background: var(--card); border-radius: 18px; padding: 14px 18px; }
+details.cfg summary { cursor: pointer; font-weight: 600; color: var(--blue); }
+details.cfg p { color: var(--muted); font-size: 14.5px; margin: 10px 0; }
+
+/* routing examples */
+.routes { display: grid; gap: 14px; }
+.route { background: var(--bg); border-radius: 22px; padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1.15fr) 36px minmax(0, 1fr); gap: 12px 16px; align-items: center; }
+.route .q { font-size: 17px; }
+.route .q small { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.dest { border-radius: 16px; padding: 12px 14px; display: grid; gap: 4px; }
+.dest .kind { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.dest b { font-size: 17px; line-height: 1.25; color: var(--ink); }
+.dest span:last-child { font-size: 14px; }
+.dest.board { background: var(--blue-soft); color: var(--blue-dark); }
+.dest.city { background: var(--amber-soft); color: var(--amber-ink); }
+.dest.other { background: var(--green-soft); color: #064d0e; }
+.note { color: var(--muted); font-size: 14px; margin-top: 14px; }
+
+/* both sides */
+.both { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.side { background: var(--card); border-radius: 24px; padding: 26px; }
+.side h3 { font-family: var(--display); font-weight: 600; font-size: 26px; margin-bottom: 12px; }
+.side ul { list-style: none; display: grid; gap: 10px; }
+.side li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 16px; }
+.side li svg { width: 20px; height: 20px; color: var(--green); margin-top: 2px; }
+
+.closing { background: var(--blue-dark); color: #fff; border-radius: 28px; padding: 48px 28px; text-align: center; margin: 24px 0 56px; }
+.closing h2 { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.05; letter-spacing: -.02em; }
+.closing p { color: #d6dcff; font-size: 18px; margin: 12px auto 24px; max-width: 32em; }
+.closing .btn { background: #fff; color: var(--blue-dark); }
+
+footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: 13px; }
+
+@media (max-width: 960px) {
+  .pipe { grid-template-columns: minmax(0, 1fr); }
+  .pipe .arrow svg { transform: rotate(90deg); }
+}
+@media (max-width: 860px) {
+  .wrap { padding: 0 16px; }
+  header { padding: 14px 0; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 12px 0 44px; }
+  .hero > div:first-child { padding-top: 0; }
+  .where { font-size: 13px; margin-bottom: 14px; }
+  .lede { margin-top: 14px; }
+  .ctas { margin-top: 20px; }
+  .ctas .btn { flex: 1 1 auto; }
+  .demo { padding: 14px; border-radius: 22px; }
+  .box { font-size: 16px; }
+  .row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l t" "v v"; }
+  .row label { grid-area: l; } .row .tag { grid-area: t; } .row .v { grid-area: v; }
+  section { padding: 44px 0; }
+  .sec-h { margin-bottom: 20px; }
+  .sec-h p { font-size: 16px; }
+  .compare, .defs, .both { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .panel, .def, .side { padding: 20px; border-radius: 20px; }
+  .route { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 8px; }
+  .route .arrow { justify-content: start; }
+  .route .arrow svg { transform: rotate(90deg); width: 22px; height: 22px; }
+  .closing { padding: 32px 20px; border-radius: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="mark" href="#"><img src="favicon.svg" alt="" /><span><b>Tell</b> Us</span></a>
+    <a class="btn sm" href="/">Try it</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="where">Prototype with Manhattan Community Board 2</span>
+      <h1>A text box that fills in <em>the right form.</em></h1>
+      <p class="lede">Residents write in plain words. Tell Us matches the message to the right form, whether that's the community board's own intake or a city form like a 311 service request. It fills in what it can, asks for the required fields it can't, and sends a complete record to the right place.</p>
+      <div class="ctas"><a class="btn" href="/">Try it</a><a class="btn alt" href="#how">See how it works</a></div>
+    </div>
+
+    <div class="demo" aria-label="Example: a parent's request for a crossing guard fills in an editable form with a map">
+      <div class="demo-q">What's on your mind?</div>
+      <div class="box" id="box">I'm a parent. Kids cross at Hudson St and Christopher St every morning on the way to school, and cars don't slow down. Could we get a crossing guard there at drop-off?</div>
+      <div class="form reveal" id="form">
+        <div class="form-h"><span class="k">Form</span>
+          <span class="sel"><select id="fForm" aria-label="Form"><option>Crossing Guard Request</option><option>Traffic Signal Out (311)</option><option>Community Board 2</option></select></span>
+        </div>
+        <div class="fld got"><label for="fReq">Request <i>*</i></label><span class="tag got" data-t>From your message</span>
+          <span class="sel"><select id="fReq"><option>New crossing guard at this corner</option><option>Crossing guard is absent</option><option>Need a guard for more hours</option></select></span></div>
+        <div class="fld got"><label for="fShift">Time of day <i>*</i></label><span class="tag got" data-t>From your message</span>
+          <span class="sel"><select id="fShift"><option>Morning drop-off</option><option>Afternoon dismissal</option><option>Both drop-off and dismissal</option></select></span></div>
+        <div class="fld got"><label for="fWho">You are a <i>*</i></label><span class="tag got" data-t>From your message</span>
+          <span class="sel"><select id="fWho"><option>Parent or guardian</option><option>School staff</option><option>Neighbor</option></select></span></div>
+        <div class="fld" id="addr"><label for="fAddr">Corner <i>*</i></label><span class="tag got" id="addrT">From your message</span>
+          <span class="sel"><select id="fAddr"></select></span>
+          <div class="map" id="map" aria-label="Map: drag the dot or tap the map to move it"></div>
+          <small class="hint">Drag the dot or tap the map to move it.</small></div>
+        <div class="fld missing"><label for="fSchool">School name <i>*</i></label><span class="tag need" data-t>Required · asked</span>
+          <input id="fSchool" type="text" placeholder="Which school?" /></div>
+        <div class="fld missing"><label for="fName">Your name <i>*</i></label><span class="tag need" data-t>Required · asked</span>
+          <input id="fName" type="text" placeholder="So the board can reply" /></div>
+        <div class="fld missing"><label for="fEmail">Email <i>*</i></label><span class="tag need" data-t>Required · asked</span>
+          <input id="fEmail" type="email" placeholder="So the board can reply" /></div>
+      </div>
+      <div class="ready reveal" id="ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><b>Ready to send to Community Board 2 and NYPD,</b> which assigns crossing guards. Every answer stays editable: try the dropdowns or drag the dot.</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>Speaking up shouldn't take research.</h2>
+      <p>Today, a neighbor with a problem has to work out the system before anyone hears them.</p>
+    </div>
+    <div class="compare">
+      <div class="panel before">
+        <h3>Today</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Which community board covers this area?</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Which of the board's 12+ committees handles this?</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Is it even a community board issue, or is it 311, DSNY, NYPD?</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>OK, I know who this should go to, but which form or email do I send it to, and what information do they require?</li>
+        </ul>
+      </div>
+      <div class="panel after">
+        <h3>With Tell Us</h3>
+        <div class="one">Just say what's going on.</div>
+        <p>Tell Us decides who and where, extracts all of the info it can from your input, and asks for any required information you missed, in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>From a sentence to a structured record.</h2>
+      <p>The text box isn't the end product. Behind it is a real form with required fields, and what comes out is a structured record ready for the office that handles it.</p>
+    </div>
+    <div class="pipe">
+      <div class="stage">
+        <h3><i>1</i>The resident writes</h3>
+        <div class="said">“I'm a parent. Kids cross at Hudson St and Christopher St every morning on the way to school, and cars don't slow down. Could we get a crossing guard there at drop-off?”</div>
+        <p class="cap">Typed or spoken. No categories, no form to find.</p>
+      </div>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="stage">
+        <h3><i>2</i>It becomes a form</h3>
+        <div class="form">
+          <div class="form-h"><b>Crossing Guard Request</b><span>CB2 · NYPD</span></div>
+          <div class="row"><label>Request <i>*</i></label><span class="tag got">Filled</span><span class="v">New crossing guard at this corner</span></div>
+          <div class="row"><label>Time of day <i>*</i></label><span class="tag got">Filled</span><span class="v">Morning drop-off</span></div>
+          <div class="row"><label>Corner <i>*</i></label><span class="tag got">Filled</span><span class="v">Hudson St &amp; Christopher St</span></div>
+          <div class="row"><label>School name <i>*</i></label><span class="tag need">Asked</span><span class="v">PS 3</span></div>
+          <div class="row"><label>Name, email <i>*</i></label><span class="tag need">Asked</span><span class="v">Jordan Ellis · jordan.ellis@example.com</span></div>
+        </div>
+        <p class="cap">It picks the matching form, fills what the message already says, and prompts only for required fields that are still empty. Every answer stays editable: dropdowns, free text, and a map to move the dot.</p>
+      </div>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="stage">
+        <h3><i>3</i>A record goes out</h3>
+<pre class="json">{
+  <span class="k">"complaint_type"</span>: <span class="s">"School Crossing Guard"</span>,
+  <span class="k">"descriptor"</span>: <span class="s">"New crossing guard at this corner"</span>,
+  <span class="k">"incident_address"</span>: <span class="s">"Hudson St &amp; Christopher St"</span>,
+  <span class="k">"incident_zip"</span>: <span class="s">"10014"</span>,
+  <span class="k">"community_board"</span>: <span class="s">"02 MANHATTAN"</span>,
+  <span class="k">"resident_name"</span>: <span class="s">"Jordan Ellis"</span>,
+  <span class="k">"extra"</span>: { <span class="k">"school"</span>: <span class="s">"PS 3"</span>, <span class="k">"shift"</span>: <span class="s">"Morning drop-off"</span> }
+}</pre>
+        <p class="cap">Uses the same columns as NYC's public 311 service request data. The board gets the record directly; for city agencies with no public intake API, the resident gets it pre-filled to submit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>The board decides what its form asks.</h2>
+      <p>Every destination is a form definition: its fields, which ones are required, the allowed answers, and where it goes. Tell Us just helps residents fill it in.</p>
+    </div>
+    <div class="defs">
+      <div class="def board">
+        <span class="who">Set by the community board</span>
+        <h3>The board's own intake form</h3>
+        <p>For issues the board weighs in on: licenses, street redesigns, development, parks, schools.</p>
+        <ul class="fl">
+          <li>Committee<span class="req">Required</span><small>Chosen from the board's own committee list</small></li>
+          <li>Type of issue<span class="req">Required</span><small>Noise, hours, crowds, outdoor dining, safety…</small></li>
+          <li>What you want the board to do<span class="req">Required</span><small>Oppose, add conditions, support, or just let the board know</small></li>
+          <li>Name and email<span class="req">Required</span><small>So the board can reply</small></li>
+          <li>Wants to speak at a meeting<span class="opt">Optional</span></li>
+        </ul>
+      </div>
+      <div class="def city">
+        <span class="who">Mirrors city forms</span>
+        <h3>Municipal forms like 311</h3>
+        <p>For things an agency fixes, with the same complaint types, fields and answer choices as 311 service requests.</p>
+        <div class="types"><span>Crossing Guard · NYPD</span><span>Street Light Out · DOT</span><span>Pothole · DOT</span><span>Missed Garbage Pickup · DSNY</span><span>Rats · Health Dept.</span><span>Blocked Bike Lane · NYPD</span><span>Noise from a Business · NYPD</span></div>
+        <p>Each brings its own required fields, like the address for anything an agency has to go fix.</p>
+      </div>
+    </div>
+    <details class="cfg">
+      <summary>What a form definition looks like</summary>
+      <p>Forms live in a plain JSON file a board or its tech partner can edit. This is the crossing guard form, trimmed:</p>
+<pre class="json">{
+  <span class="k">"name"</span>: <span class="s">"Crossing Guard Request"</span>,
+  <span class="k">"agency"</span>: <span class="s">"NYPD"</span>,
+  <span class="k">"complaint_type"</span>: <span class="s">"School Crossing Guard"</span>,
+  <span class="k">"route"</span>: <span class="s">"A request for a school crossing guard at an intersection near a school"</span>,
+  <span class="k">"contact_required"</span>: true,
+  <span class="k">"fields"</span>: [
+    { <span class="k">"label"</span>: <span class="s">"Request"</span>, <span class="k">"required"</span>: true,
+      <span class="k">"choices"</span>: [<span class="s">"New crossing guard at this corner"</span>, <span class="s">"Crossing guard is absent"</span>, <span class="s">"Need a guard for more hours"</span>] },
+    { <span class="k">"label"</span>: <span class="s">"School name"</span>, <span class="k">"required"</span>: true },
+    { <span class="k">"label"</span>: <span class="s">"Time of day"</span>, <span class="k">"required"</span>: true,
+      <span class="k">"choices"</span>: [<span class="s">"Morning drop-off"</span>, <span class="s">"Afternoon dismissal"</span>, <span class="s">"Both drop-off and dismissal"</span>] }
+  ]
+}</pre>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>Each message lands where it can be acted on.</h2>
+      <p>Not everything is the board's to handle. Tell Us checks the topic and the address, then picks the form and the destination.</p>
+    </div>
+    <div class="routes">
+      <div class="route">
+        <div class="q"><small>A resident writes</small>“Washington Square Park should stay open later at night in the summer.”</div>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="dest board"><span class="kind">The board's form</span><b>Community Board 2, Parks &amp; Waterfront committee</b><span>Asks for a name and email, which the board requires.</span></div>
+      </div>
+      <div class="route">
+        <div class="q"><small>A resident writes</small>“Our recycling at 75 Bedford St wasn't picked up on Tuesday.”</div>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="dest city"><span class="kind">A city form</span><b>311 missed collection, handled by Sanitation (DSNY)</b><span>Already knows it was recycling and where. Contact info is optional.</span></div>
+      </div>
+      <div class="route">
+        <div class="q"><small>A resident writes</small>“The street light in front of 300 W 23rd St has been out for a week.”</div>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="dest other"><span class="kind">A different board</span><b>Manhattan Community Board 4, and DOT</b><span>The address is outside CB2, so it goes to the board that covers it.</span></div>
+      </div>
+    </div>
+    <p class="note">These are real results from the Tell Us prototype.</p>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="sec-h"><h2>Better for both sides.</h2></div>
+    <div class="both">
+      <div class="side" style="background:var(--bg)">
+        <h3>For residents</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>No hunting for the right email, committee or city form.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Asked only for the details that make the message actionable.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Sure it reached the people who can do something about it.</li>
+        </ul>
+      </div>
+      <div class="side" style="background:var(--bg)">
+        <h3>For boards and their tech partners</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Intake arrives complete, on the board's own form, sorted to a committee.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>311 issues and other districts' mail go where they belong instead of the board's inbox.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Every submission is a structured record you can store, forward or analyze.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="closing">
+    <h2>See the box turn into a form.</h2>
+    <p>Write something about a block in Manhattan's CB2 and watch the form fill itself in.</p>
+    <a class="btn" href="/">Try Tell Us</a>
+  </div>
+  <footer>Tell Us is a prototype built for the State Capacity Hackathon using public information about Manhattan Community Board 2. It is not an official NYC or CB2 service.</footer>
+</div>
+
+<script type="module">
+// The hero example is a working miniature of the real form: the dropdowns, the text field and
+// the map are live. It types the message once, fills the form, asks for the address and drops
+// the dot, then hands control to the visitor.
+const $ = (id) => document.getElementById(id);
+const M = await (await fetch("/how-data.json")).json();
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const wait = (ms) => new Promise((r) => setTimeout(r, reduce ? 0 : ms));
+const NS = "http://www.w3.org/2000/svg";
+
+// ---- map
+const line = (d) => d.map(([a, b, c, e]) => `M${a} ${b}L${c} ${e}`).join("");
+$("map").innerHTML = `<svg viewBox="0 0 ${M.w} ${M.h}" preserveAspectRatio="xMidYMid slice">
+  <g class="st"><path class="mi" d="${line(M.streets.filter((x) => !x.m).flatMap((x) => x.d))}"/><path class="ma" d="${line(M.streets.filter((x) => x.m).flatMap((x) => x.d))}"/></g>
+  <path class="hl" id="hl" d=""/>
+  <g class="lb">${M.labels.map((l) => `<text transform="translate(${l.x} ${l.y}) rotate(${l.a})">${l.t}</text>`).join("")}</g>
+  <g>${M.corners.map((c) => `<circle class="cn" cx="${c.x}" cy="${c.y}" r="4"/>`).join("")}</g>
+  <g class="dot off" id="dot"><circle class="halo" r="16"/><circle class="core" r="8"/></g>
+</svg>`;
+const svg = $("map").querySelector("svg"), dot = $("dot");
+$("fAddr").insertAdjacentHTML("beforeend", M.corners.map((c, i) => `<option value="${i}">${c.label}</option>`).join(""));
+let at = null;
+function place(x, y) { dot.setAttribute("transform", `translate(${x} ${y})`); }
+function pick(i, from) {
+  at = i; const c = M.corners[i];
+  dot.classList.remove("off"); place(c.x, c.y);
+  $("hl").setAttribute("d", line(M.main) + line(c.street)); // the two streets that make the corner
+  $("fAddr").value = String(i);
+  $("addr").classList.remove("missing");
+  $("addrT").className = "tag " + (from === "you" ? "you" : "got");
+  $("addrT").textContent = from === "you" ? "Edited by you" : "From your message";
+}
+const nearest = (x, y) => M.corners.reduce((b, c, i) => (Math.hypot(c.x - x, c.y - y) < Math.hypot(M.corners[b].x - x, M.corners[b].y - y) ? i : b), 0);
+const toSvg = (e) => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); };
+let dragging = false;
+svg.addEventListener("pointerdown", (e) => { dragging = true; dot.classList.add("drag"); dot.classList.remove("off"); svg.setPointerCapture(e.pointerId); const p = toSvg(e); place(p.x, p.y); });
+svg.addEventListener("pointermove", (e) => { if (!dragging) return; const p = toSvg(e); place(p.x, p.y); });
+const drop = (e) => { if (!dragging) return; dragging = false; dot.classList.remove("drag"); const p = toSvg(e); pick(nearest(p.x, p.y), "you"); };
+svg.addEventListener("pointerup", drop); svg.addEventListener("pointercancel", drop);
+$("fAddr").addEventListener("change", (e) => { if (e.target.value !== "") pick(+e.target.value, "you"); });
+
+// ---- the other fields: any change marks it as the resident's own answer
+const mark = (el, cls, text) => { const f = el.closest(".fld"), t = f.querySelector("[data-t]"); t.className = "tag " + cls; t.textContent = text; f.classList.remove("got", "missing"); };
+for (const id of ["fReq", "fShift", "fWho"]) $(id).addEventListener("change", (e) => mark(e.target, "you", "Edited by you"));
+for (const id of ["fSchool", "fName", "fEmail"]) $(id).addEventListener("input", (e) => mark(e.target, e.target.value ? "you" : "need", e.target.value ? "Edited by you" : "Required · asked"));
+
+// ---- the one-time intro
+const type = async (el, s, ms) => {
+  if (reduce) { el.textContent = s; return; }
+  for (let i = 1; i <= s.length; i++) { el.innerHTML = s.slice(0, i).replace(/&/g, "&amp;").replace(/</g, "&lt;") + '<span class="caret"></span>'; await wait(ms); }
+  el.textContent = s;
+};
+const typeInput = async (el, s, ms) => {
+  el.closest(".fld").classList.add("typing");
+  for (let i = 1; i <= s.length; i++) { el.value = s.slice(0, i); await wait(ms); }
+  mark(el, "ok", "Required · answered");
+};
+const text = $("box").textContent;
+$("box").innerHTML = '<span class="caret"></span>';
+pick(0, "auto");
+await wait(600);
+await type($("box"), text, 26);
+await wait(600);
+$("form").classList.add("in");
+await wait(2600);
+await typeInput($("fSchool"), "PS 3", 90);
+await wait(300);
+await typeInput($("fName"), "Jordan Ellis", 45);
+await typeInput($("fEmail"), "jordan.ellis@example.com", 30);
+await wait(400);
+$("ready").classList.add("in");
+</script>
+</body>
+</html>
