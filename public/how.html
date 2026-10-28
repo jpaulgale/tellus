@@ -30,7 +30,10 @@ body { font-family: var(--body); background: var(--bg); color: var(--ink); -webk
 svg { flex: none; }
 a { color: inherit; }
 
-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0; }
+header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 10px 24px -14px rgba(5,5,96,0); transition: box-shadow .25s var(--ease); }
+header.scrolled { box-shadow: 0 10px 24px -14px rgba(5,5,96,.28); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 14px; }
 .mark { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -.01em; text-decoration: none; }
 .mark img { width: 30px; height: 30px; }
 .mark b { color: var(--blue); font-weight: 600; }
@@ -46,7 +49,6 @@ header { display: flex; align-items: center; justify-content: space-between; gap
 h1 { font-family: var(--display); font-weight: 600; font-size: clamp(40px, 5.6vw, 64px); line-height: 1.02; letter-spacing: -.025em; }
 h1 em { font-style: normal; color: var(--blue); }
 .lede { color: var(--muted); font-size: clamp(17px, 2vw, 20px); margin-top: 18px; max-width: 30em; }
-.ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 
 /* the box becoming a form */
 .demo { background: var(--card); border-radius: 26px; padding: 18px; box-shadow: var(--shadow); display: grid; gap: 12px; }
@@ -213,12 +215,10 @@ footer .credit { color: var(--ink); font-size: 14px; }
 }
 @media (max-width: 860px) {
   .wrap { padding: 0 16px; }
-  header { padding: 14px 0; }
+  header .wrap { padding-block: 10px; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 12px 0 44px; }
   .hero > div:first-child { padding-top: 0; }
   .lede { margin-top: 14px; }
-  .ctas { margin-top: 20px; }
-  .ctas .btn { flex: 1 1 auto; }
   .demo { padding: 14px; border-radius: 22px; }
   .box { font-size: 16px; }
       section { padding: 44px 0; }
@@ -251,17 +251,18 @@ footer .credit { color: var(--ink); font-size: 14px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
+<header>
+  <div class="wrap">
     <a class="mark" href="#"><img src="favicon.svg" alt="" /><span><b>Tell</b> Us</span></a>
     <a class="btn sm" href="/">Try it</a>
-  </header>
+  </div>
+</header>
+<div class="wrap">
 
   <div class="hero">
     <div>
       <h1>Say it in your own words. <em>We'll find the form and fill it.</em></h1>
       <p class="lede">No more hunting for the right place to be heard. Tell Us picks the form from what you write, whether that's the community board's own intake or a city form like a 311 service request, fills in what it can, asks for anything required it couldn't, and sends it where it needs to go.</p>
-      <div class="ctas"><a class="btn" href="/">Try it</a><a class="btn alt" href="/dashboard/">See the board's view</a></div>
     </div>
 
     <div class="demo" aria-label="Example: a parent's request for a crossing guard fills in an editable form with a map">
@@ -438,6 +439,10 @@ footer .credit { color: var(--ink); font-size: 14px; }
 </div>
 
 <script type="module">
+// The header's shadow fades in once the page scrolls under it.
+const header = document.querySelector("header");
+const shade = () => header.classList.toggle("scrolled", scrollY > 4);
+addEventListener("scroll", shade, { passive: true }); shade();
 // The hero example is a working miniature of the real form: the dropdowns, the text field and
 // the map are live. It types the message once, fills the form, asks for the address and drops
 // the dot, holds on the required fields it couldn't fill, answers them, then hands control to the visitor.
