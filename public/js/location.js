@@ -56,10 +56,10 @@ const marked = ({ text, flagged }) => (flagged ? h("mark", text) : text);
 
 /**
  * What CB2 Manhattan already decided about this address at one meeting (see cardModel): the outcome,
- * who acts on it, the condition the complaint bears on, and a note that it rides along to the committee.
+ * who it was recommended to, the condition the complaint is about, and a note that it goes with the submission.
  * A neighbor's card starts collapsed to a line.
  */
-function resolutionCard(m, committee) {
+function resolutionCard(m) {
   const body = h("div.rescard",
     h("p.rescard-eyebrow", "On the board's record"),
     h("p.rescard-title", `CB2 Manhattan reviewed ${m.place} on `, h("b", m.date), "."),
@@ -76,7 +76,7 @@ function resolutionCard(m, committee) {
     m.decisions.length ? h("details.resall.decision", h("summary", m.decisions.length > 1 ? "Read the decisions" : "Read the decision"),
       m.decisions.map((d) => [d.label ? h("p.decision-label", d.label) : null, d.paras.map((t) => h("p", marked(t)))])) : null,
     h("p.rescard-foot",
-      h("span.attach", committee ? `Attached for the ${committee} committee's next meeting` : "Attached to your submission"),
+      h("span.attach", "Will be attached to your submission"),
       h("a", { href: m.source, target: "_blank", rel: "noopener" }, "Read the minutes ↗")));
   return m.atHere ? body : h("details.resnear", h("summary", `Neighboring address: ${m.address} · ${m.date} `, outcome(m.outcome)), body);
 }
@@ -166,7 +166,7 @@ export function renderLocation(field, key, ctx, id) {
   }
   const here = normAddress(v?.geo?.name ?? v?.text);
   const { groups, rest } = groupRecord(v?.resolutions ?? [], v?.geo ? v.related ?? [] : ctx.relatedFound(), here);
-  const past = groups.map((g) => resolutionCard(cardModel(g, here), ctx.committeeFor?.()));
+  const past = groups.map((g) => resolutionCard(cardModel(g, here)));
   return h("div.loc", confirm,
     h("div.combo", h("div.ff-inputwrap", input), list), hint, outside,
     altsEl, card, mapBox, mapHint, meta, past.length ? h("div.respast", past) : null, relatedMinutes(rest));

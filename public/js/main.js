@@ -151,7 +151,6 @@ const ctx = {
   isTouched: (k) => state.touched.has(k),
   set(k, v, rerender) {
     state.values[k] = v; state.touched.add(k);
-    if (k === "cb2.committee") this.rerender("general.location"); // the resolution card names the committee
     // A picked place may change the board; typing doesn't, and rebuilding the input mid-word would
     // reset the caret and drop its autocomplete.
     if (k === "general.location" && rerender) { state.destination = null; return render(new Set()); }
@@ -171,7 +170,6 @@ const ctx = {
   },
   get open() { return state.open; },
   get committees() { return state.config.committees; },
-  committeeFor: () => (activeForm()?.key === "cb2" ? state.values["cb2.committee"] : null),
   message: () => $("message").value.trim(),
   relatedFound: () => state.res?.related ?? [], // minutes the search found, for when no place is picked
 };
