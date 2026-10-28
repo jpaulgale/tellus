@@ -66,6 +66,11 @@ function boardNote(cards) {
     flag ? [h("p.rescard-title", `On ${m.date}, the board set conditions for this address. Your complaint matches one of them:`),
             h("blockquote.resquote", h("mark", flag.text))]
       : h("p.rescard-title", `The board reviewed this address on ${m.date}.`),
+    // The rest of what the board set, a tap away: another rule may be broken too.
+    m.stipulations.length ? h("details.resall", h("summary", `See all ${m.stipulations.length} conditions`),
+      h("ol", m.stipulations.map((t) => h("li", t.flagged ? h("mark", t.text) : t.text))))
+      : m.decisions.length ? h("details.resall", h("summary", "See the board's full decision"),
+        m.decisions.map((d) => [d.label ? h("p.decision-label", d.label) : null, d.paras.map((t) => h("p", t.flagged ? h("mark", t.text) : t.text))])) : null,
     h("p.rescard-foot",
       h("span.attach", "Will be attached to your submission"),
       h("a", { href: m.source, target: "_blank", rel: "noopener" }, "Read the minutes ↗")));

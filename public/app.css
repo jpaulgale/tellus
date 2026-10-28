@@ -217,7 +217,12 @@ textarea.composer-text { resize: vertical; }
 .rescard-title { font-family: var(--font-display); font-size: 18px; line-height: 1.25; margin-top: 4px; text-wrap: pretty; }
 .rescard-sub { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
 .resquote { margin: 14px 0 0; padding: 2px 0 2px 14px; border-left: 4px solid var(--yellow-40); }
-.resquote mark { background: #FFE7A8; color: var(--ink); padding: 2px 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.resall { margin-top: 12px; font-size: 13px; }
+.resall summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.resall ol { margin: 8px 0 0 20px; display: flex; flex-direction: column; gap: 6px; line-height: 1.45; color: var(--gray-20); }
+.resall > p { margin-top: 6px; line-height: 1.45; color: var(--gray-20); }
+.resall .decision-label { font-weight: 700; color: var(--ink); margin-top: 10px; }
+.resquote mark, .resall mark { background: #FFE7A8; color: var(--ink); padding: 2px 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .resquote mark { font-family: var(--font-display); font-size: 19px; line-height: 1.5; }
 .resquote footer { font-size: 12px; color: var(--muted); margin-top: 8px; }
 .rescard-foot { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 13px; }
