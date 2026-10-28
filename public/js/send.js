@@ -55,6 +55,42 @@ export function buildPayload(s) {
   return p;
 }
 
+/**
+ * The email the resident sends from their own mail app: a short letter in their voice, the details
+ * as "Label: value" lines, signed with their contact info. Plain text, since a mailto: link can't
+ * carry HTML; empty fields are left out. `others` names the other places it went.
+ */
+export function emailBody(s, p, others = []) {
+  const v = (scope, id) => {
+    const x = s.values[`${scope}.${id}`];
+    return x === true ? "Yes" : x === false ? "No" : typeof x === "object" ? x?.text : x;
+  };
+  // The form's labels speak to the resident, which is also who's writing.
+  const label = (f) => ({ relation: "I am a" })[f.id] ?? f.label;
+  const contact = ["name", "email", "phone"];
+  const details = [
+    ...s.res.general.filter((f) => f.kind !== "location" && !contact.includes(f.id)).map((f) => [label(f), v("general", f.id)]),
+    ...s.form.fields.filter((f) => f.kind !== "committee").map((f) => [label(f), v(s.form.key, f.id)]),
+  ].filter(([, x]) => x != null && x !== "");
+  const where = [p.incident_address, p.borough && `${p.borough.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}${p.incident_zip ? ` ${p.incident_zip}` : ""}`].filter(Boolean).join(", ");
+  const resolutions = p.attached_resolutions ?? [];
+  return [
+    "Hello,", "",
+    `I'm writing with a ${p.complaint_type} request${where ? ` about ${where}` : ""}.`, "",
+    s.message?.trim(), "",
+    "Details:",
+    `Address: ${p.incident_address ?? "not given"}`,
+    ...(p.cross_street_1 ? [`Cross streets: ${[p.cross_street_1, p.cross_street_2].filter(Boolean).join(" & ")}`] : []),
+    ...(p.latitude != null ? [`Map: https://www.google.com/maps?q=${p.latitude},${p.longitude}`] : []),
+    ...details.map(([k, x]) => `${k}: ${x}`), "",
+    ...(resolutions.length ? ["The board has decided on this address before:",
+      ...resolutions.map((r) => `- ${r.meeting_date}, ${r.committee}: ${r.title}${r.vote ? ` (${r.vote})` : ""}${r.source ? `\n  ${r.source}` : ""}`), ""] : []),
+    ...(others.length ? [`I've also sent this to ${others.length > 1 ? `${others.slice(0, -1).join(", ")} and ${others.at(-1)}` : others[0]}.`, ""] : []),
+    "Thank you,",
+    ...contact.map((id) => v("general", id)).filter(Boolean),
+  ].filter((line) => line != null).join("\n");
+}
+
 /** Filled-in fields whose value doesn't validate (a malformed email or phone). */
 export function invalidFields(s) {
   const out = [];
@@ -131,7 +167,9 @@ export function renderSendPanel(root, getState, destinations) {
       for (const d of picked) sent.push(await api("/api/send", { destination: d, payload, message: st.message }));
       const r = sent[0];
       const text = JSON.stringify(payload, null, 2);
-      const mailto = (to) => `mailto:${to}?subject=${encodeURIComponent(`${payload.complaint_type} – ${payload.incident_address ?? "CB2"}`)}&body=${encodeURIComponent(`${st.message}\n\n${text}`)}`;
+      const keys = [...picked];
+      const name = (k) => (k === s.board?.key ? s.board.short : SHORT[k] ?? k);
+      const mailto = (x, i) => `mailto:${x.email}?subject=${encodeURIComponent(`${payload.complaint_type} – ${payload.incident_address ?? "CB2"}`)}&body=${encodeURIComponent(emailBody(st, payload, keys.filter((_, j) => j !== i).map(name)))}`;
       result.replaceChildren(
         h("div.nyc-inlinemessage.nyc-inlinemessage--success", { role: "status" },
           h("span.nyc-inlinemessage__icon", "✓"),
@@ -142,7 +180,7 @@ export function renderSendPanel(root, getState, destinations) {
         h("div.handoff",
           h("button.chip", { type: "button", onclick: async (e) => { await navigator.clipboard.writeText(text); e.target.textContent = "Copied"; } }, "Copy payload"),
           sent.map((x) => h("a.chip", { href: x.url, target: "_blank", rel: "noopener" }, `Open ${x.label} ↗`)),
-          sent.filter((x) => x.email).map((x) => h("a.chip", { href: mailto(x.email) }, `Email ${x.email}`))));
+          sent.map((x, i) => x.email && h("a.chip", { href: mailto(x, i) }, `Email ${x.email}`))));
       announce(`Saved for ${sent.length} ${sent.length > 1 ? "places" : "place"}`);
       btn.textContent = sendLabel();
     } catch (e) {
