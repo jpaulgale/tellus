@@ -43,7 +43,10 @@ function resolutionCard(m) {
       (d.label ? `<p class="decision-label">${esc(d.label)}</p>` : "") + d.paras.map((t) => `<p>${marked(t)}</p>`).join("")).join("")}</details>` : ""}
     <p class="rescard-foot"><a href="${esc(m.source)}" target="_blank" rel="noopener">Read the minutes ↗</a></p>
   </div>`;
-  return m.atHere ? body : `<details class="resnear"><summary>Neighboring address: ${esc(m.address)} · ${esc(m.date)} ${badge(m.outcome)}</summary>${body}</details>`;
+  if (!m.atHere) return `<details class="resnear"><summary>Neighboring address: ${esc(m.address)} · ${esc(m.date)} ${badge(m.outcome)}</summary>${body}</details>`;
+  // An application laid over or withdrawn set no conditions; one line is enough.
+  if (m.outcome?.key === "laidover" && !m.flags.length) return `<details class="resnear"><summary>${esc(m.date)} · ${esc(m.business || "Application")} ${badge(m.outcome)}</summary>${body}</details>`;
+  return body;
 }
 
 const cardsFor = (r) => { const here = normAddress(r.address); return { here, ...groupRecord(r.resolutions, r.related, here) }; };

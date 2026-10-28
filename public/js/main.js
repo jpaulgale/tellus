@@ -171,7 +171,6 @@ const ctx = {
   get open() { return state.open; },
   get committees() { return state.config.committees; },
   message: () => $("message").value.trim(),
-  relatedFound: () => state.res?.related ?? [], // minutes the search found, for when no place is picked
 };
 
 function renderForm(changed) {
