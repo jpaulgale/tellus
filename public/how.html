@@ -254,6 +254,19 @@ footer .credit { color: var(--ink); font-size: 14px; }
   .route .arrow svg { transform: rotate(90deg); width: 22px; height: 22px; }
   .closing { padding: 32px 20px; border-radius: 22px; }
 }
+/* Phones: tighter spacing, and the detail that repeats an earlier point is left out. */
+@media (max-width: 600px) {
+  section { padding: 34px 0; }
+  .sec-h h2 { font-size: 27px; }
+  .sec-h p { font-size: 15.5px; margin-top: 8px; }
+  .panel.before li:nth-child(n+3) { display: none; }
+  .dash-search, .dash-chips, .dash-r:nth-child(n+6) { display: none; }
+  .dash-tabs span { font-size: 13px; padding: 5px 9px; }
+  .fl li small, .def.city p:last-child, .types span:nth-child(n+5) { display: none; }
+  .route:nth-child(n+3) { display: none; }
+  .both-sec { display: none; }
+  .closing { margin-bottom: 36px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
@@ -353,10 +366,10 @@ footer .credit { color: var(--ink); font-size: 14px; }
   <div class="wrap">
     <div class="sec-h">
       <h2>Hearing from residents shouldn't mean sorting through a bunch of emails.</h2>
-      <p>Each comment comes in as a form the resident has confirmed, so it's already structured. That lets Tell Us associate their comments with related resolutions and meeting minutes from your board's recent history, and gives you and your committees a searchable dashboard for spotting the issues worth taking up at the next meeting.</p>
+      <p>The structured nature of each submission allows Tell Us to surface any related existing resolutions and meeting minutes from each community board's recent history, giving boards a searchable dashboard for spotting issues worth raising in the next meeting.</p>
     </div>
     <div class="dash" role="img" aria-label="Mockup of a board dashboard: resident input grouped into issues, filtered by committee, with past decisions alongside">
-      <div class="dash-top"><b>Resident input <span>· Community Board 2</span></b><div class="dash-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search issues, businesses, addresses…</span></div></div>
+      <div class="dash-top"><b>Manhattan CB2 <span>Dashboard</span></b><div class="dash-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search issues, businesses, addresses…</span></div></div>
       <div class="dash-bar">
         <div class="dash-tabs"><span class="on">New issues<i>14</i></span><span>For next meeting<i>3</i></span><span>Sent to agencies<i>22</i></span></div>
         <div class="dash-chips"><span class="on">All committees</span><span>SLA – 1</span><span>Parks &amp; Waterfront</span><span>Schools &amp; Education</span></div>
@@ -387,8 +400,8 @@ footer .credit { color: var(--ink); font-size: 14px; }
 <section>
   <div class="wrap">
     <div class="sec-h">
-      <h2>The board decides what information its forms need.</h2>
-      <p>Every destination is a form definition: its fields, which ones are required, the allowed answers, and where it goes. Tell Us just helps residents fill it in.</p>
+      <h2>The board controls which fields are on each form.</h2>
+      <p>Which fields, which are required, and where it goes. Tell Us just helps residents fill it in.</p>
     </div>
     <div class="defs">
       <div class="def board">
@@ -440,7 +453,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
   </div>
 </section>
 
-<section>
+<section class="both-sec">
   <div class="wrap">
     <div class="sec-h"><h2>Better for both sides.</h2></div>
     <div class="both">
