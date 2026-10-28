@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Tell Us — say it in your own words, we'll find the form and fill it in</title>
+<title>Tell Us — say it in your own words, we'll find the form and fill it</title>
 <meta name="description" content="Residents write in plain words. Tell Us fills out the right form from the message — a community board's own intake or a city form like a 311 service request — asks for anything required it can't fill, and sends it to the people who can act on it." />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <meta name="theme-color" content="#103FEF" />
@@ -60,19 +60,12 @@ h1 em { font-style: normal; color: var(--blue); }
 .form-h { background: var(--bg); padding: 9px 12px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; font-size: 13px; }
 .form-h b { font-size: 14px; }
 .form-h span { color: var(--muted); }
-.row { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 8px 12px; border-top: 1px solid var(--line); font-size: 14.5px; }
-.row:first-of-type { border-top: 0; }
-.row label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
-.row label i { font-style: normal; color: var(--red, #C20A12); }
-.row .v { font-weight: 500; min-width: 0; }
 .tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
 .tag.got { background: var(--blue-soft); color: var(--blue-dark); }
 .tag.need { background: var(--amber-soft); color: var(--amber-ink); }
 .tag.opt { background: var(--bg); color: var(--muted); }
 .tag:empty { display: none; }
 section.tint .def { background: var(--bg); }
-.row.missing { background: var(--amber-soft); }
-.row.missing .v { color: var(--amber-ink); }
 .form-h .k { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
 .form-h .sel { flex: 1 1 14em; }
 .fld { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--line); }
@@ -131,21 +124,44 @@ section.tint { background: var(--card); }
 .panel.after .one { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3vw, 34px); line-height: 1.1; }
 .panel.after p { color: #e6ebff; font-size: 18px; }
 
-/* sentence -> form -> record */
-.pipe { display: grid; grid-template-columns: minmax(0, .8fr) 32px minmax(0, 1.1fr) 32px minmax(0, 1.1fr); gap: 10px; align-items: stretch; }
-.stage { background: var(--bg); border-radius: 22px; padding: 18px; display: grid; gap: 10px; align-content: start; }
-.stage h3 { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-.stage h3 i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 12px; letter-spacing: 0; }
-.stage .said { font-size: 16px; background: var(--card); border-radius: 14px; padding: 12px 14px; }
-.stage .cap { font-size: 14px; color: var(--muted); }
-.stage .form { background: var(--card); }
-.stage .row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l t" "v v"; padding: 7px 12px; }
-.stage .row label { grid-area: l; } .stage .row .tag { grid-area: t; } .stage .row .v { grid-area: v; }
+/* board dashboard mockup */
 .arrow { color: var(--blue); display: grid; place-items: center; }
 .arrow svg { width: 26px; height: 26px; }
-pre.json { background: #0E1030; color: #E6E9FF; border-radius: 14px; padding: 12px 14px; font-family: var(--mono); font-size: 12.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
-pre.json .k { color: #9DB4FF; }
-pre.json .s { color: #FFD38A; }
+.dash { background: var(--card); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+.dash-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.dash-top b { font-size: 16px; }
+.dash-top b span { color: var(--muted); font-weight: 500; }
+.dash-search { display: flex; align-items: center; gap: 8px; flex: 0 1 340px; min-width: 0; border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 14px; color: var(--muted); font-size: 14px; }
+.dash-search svg { width: 16px; height: 16px; }
+.dash-search span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dash-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 18px; background: var(--bg); }
+.dash-tabs, .dash-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.dash-tabs span { font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 999px; color: var(--muted); }
+.dash-tabs span.on { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.dash-tabs i { font-style: normal; font-size: 12px; margin-left: 4px; color: var(--muted); }
+.dash-chips span { font-size: 13px; font-weight: 500; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); }
+.dash-chips span.on { background: var(--blue-soft); border-color: transparent; color: var(--blue-dark); font-weight: 600; }
+.dash-h, .dash-r { display: grid; grid-template-columns: minmax(0, 1fr) 170px 84px 150px; gap: 14px; align-items: center; padding: 12px 18px; }
+.dash-h { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); padding-top: 10px; padding-bottom: 10px; }
+.dash-r { border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.dash-r:last-child { border-bottom: 0; }
+.dash-r .what b { display: block; font-size: 15.5px; }
+.dash-r .what small { display: block; color: var(--muted); font-size: 13.5px; }
+.dash-r .com { color: var(--muted); }
+.dash-r .n { font-weight: 700; font-size: 16px; }
+.dash-r .n small { font-weight: 500; color: var(--muted); font-size: 12.5px; }
+.dash-r.hot { background: #FFFBF2; }
+.dash-r .more { grid-column: 1 / -1; display: grid; gap: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; font-size: 14px; }
+.dash-r .more p { color: var(--muted); }
+.dash-r .more p b { color: var(--ink); font-weight: 600; }
+.dash-r .more mark { background: var(--amber-soft); color: var(--ink); padding: 1px 2px; }
+.badge { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
+.badge.rec { background: var(--blue-soft); color: var(--blue-dark); }
+.st { justify-self: start; font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.st.add { background: var(--blue); color: #fff; }
+.st.agenda { background: var(--green-soft); color: var(--green); }
+.st.sent { background: var(--bg); color: var(--muted); }
+.st.new { background: var(--amber-soft); color: var(--amber-ink); }
 
 /* forms are config */
 .defs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
@@ -180,7 +196,7 @@ pre.json .s { color: #FFD38A; }
 
 /* the board's record */
 .record { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 28px; align-items: start; }
-.record .said { font-size: 18px; background: var(--bg); border-radius: 18px; padding: 16px 18px; }
+.record .said { font-size: 18px; background: var(--card); border-radius: 18px; padding: 16px 18px; }
 .record .cap { color: var(--muted); font-size: 15px; margin-top: 12px; }
 .rescard { background: linear-gradient(var(--blue-soft), var(--card) 90px); border: 1.5px solid var(--blue-mid); border-radius: 18px; padding: 16px 18px; display: grid; gap: 10px; }
 .rescard .eb { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); }
@@ -207,10 +223,16 @@ pre.json .s { color: #FFD38A; }
 .closing .btn { background: #fff; color: var(--blue-dark); }
 
 footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: 13px; }
+footer p { margin: 0 0 6px; }
+footer a { color: var(--blue); font-weight: 600; }
+footer .credit { color: var(--ink); font-size: 14px; }
 
-@media (max-width: 960px) {
-  .pipe { grid-template-columns: minmax(0, 1fr); }
-  .pipe .arrow svg { transform: rotate(90deg); }
+@media (max-width: 760px) {
+  .dash-h { display: none; }
+  .dash-r { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; padding: 14px 16px; }
+  .dash-r .what { grid-column: 1 / -1; }
+  .dash-r .com { grid-column: 1 / -1; font-size: 13.5px; }
+  .dash-top, .dash-bar { padding-left: 16px; padding-right: 16px; }
 }
 @media (max-width: 860px) {
   .wrap { padding: 0 16px; }
@@ -222,9 +244,7 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--m
   .ctas .btn { flex: 1 1 auto; }
   .demo { padding: 14px; border-radius: 22px; }
   .box { font-size: 16px; }
-  .row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l t" "v v"; }
-  .row label { grid-area: l; } .row .tag { grid-area: t; } .row .v { grid-area: v; }
-  section { padding: 44px 0; }
+      section { padding: 44px 0; }
   .sec-h { margin-bottom: 20px; }
   .sec-h p { font-size: 16px; }
   .compare, .defs, .both, .record { grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -248,7 +268,7 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--m
 
   <div class="hero">
     <div>
-      <h1>Say it in your own words. <em>We'll find the form and fill it in.</em></h1>
+      <h1>Say it in your own words. <em>We'll find the form and fill it.</em></h1>
       <p class="lede">No hunting for the right form. Tell Us picks it from what you write, whether that's the community board's own intake or a city form like a 311 service request, fills in what it can, asks for anything required it couldn't, and sends it to the right place.</p>
       <div class="ctas"><a class="btn" href="/">Try it</a><a class="btn alt" href="#how">See how it works</a></div>
     </div>
@@ -307,50 +327,64 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--m
   </div>
 </section>
 
-<section id="how">
+<section>
   <div class="wrap">
     <div class="sec-h">
-      <h2>From a sentence to a complete form the board can act on.</h2>
-      <p>The text box isn't the end product. Behind it is the real form, with the fields the community board or city agency requires, and Tell Us knows where each one goes.</p>
+      <h2>The work your board has already done, front and center.</h2>
+      <p>Boards spend hours negotiating stipulations and voting on resolutions that most residents never see. When a message is about an issue your board has already reviewed, Tell Us pulls the decision from your minutes and shows it to the resident as they write, so they know what the board already secured. The same record arrives with the submission, so the committee picks up where it left off instead of digging through old minutes.</p>
     </div>
-    <div class="pipe">
-      <div class="stage">
-        <h3><i>1</i>The resident writes</h3>
-        <div class="said">“I'm a parent. Kids cross at Hudson St and Christopher St every morning on the way to school, and cars don't slow down. Could we get a crossing guard there at drop-off?”</div>
-        <p class="cap">Typed or spoken. No categories, no form to find.</p>
+    <div class="record">
+      <div>
+        <div class="said">“Caudalie on 130 Greene St plays music past midnight every weekend. It's too loud.”</div>
+        <p class="cap">The complaint is about loud music, so Tell Us brings up the stipulation about music.</p>
       </div>
-      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="stage">
-        <h3><i>2</i>It becomes a form</h3>
-        <div class="form">
-          <div class="form-h"><b>Crossing Guard Request</b><span>CB2 · NYPD</span></div>
-          <div class="row"><label>Request <i>*</i></label><span class="tag got">Filled</span><span class="v">New crossing guard at this corner</span></div>
-          <div class="row"><label>Time of day <i>*</i></label><span class="tag got">Filled</span><span class="v">Morning drop-off</span></div>
-          <div class="row"><label>Corner <i>*</i></label><span class="tag got">Filled</span><span class="v">Hudson St &amp; Christopher St</span></div>
-          <div class="row"><label>School name <i>*</i></label><span class="tag need">Asked</span><span class="v">PS 3</span></div>
-          <div class="row"><label>Name, email</label><span class="tag opt">Optional</span><span class="v">Washington Irving · washington.irving@new.york</span></div>
-        </div>
-        <p class="cap">It picks the matching form, fills what the message already says, and prompts only for required fields that are still empty. Every answer stays editable: dropdowns, free text, and a map to move the dot.</p>
-      </div>
-      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="stage">
-        <h3><i>3</i>It goes to the right office</h3>
-<pre class="json">{
-  <span class="k">"complaint_type"</span>: <span class="s">"School Crossing Guard"</span>,
-  <span class="k">"descriptor"</span>: <span class="s">"New crossing guard at this corner"</span>,
-  <span class="k">"incident_address"</span>: <span class="s">"Hudson St &amp; Christopher St"</span>,
-  <span class="k">"incident_zip"</span>: <span class="s">"10014"</span>,
-  <span class="k">"community_board"</span>: <span class="s">"02 MANHATTAN"</span>,
-  <span class="k">"resident_name"</span>: <span class="s">"Washington Irving"</span>,
-  <span class="k">"extra"</span>: { <span class="k">"school"</span>: <span class="s">"PS 3"</span>, <span class="k">"shift"</span>: <span class="s">"Morning drop-off"</span> }
-}</pre>
-        <p class="cap">Uses the same columns as NYC's public 311 service request data. The board gets the record directly; for city agencies with no public intake API, the resident gets it pre-filled to submit.</p>
+      <div class="rescard">
+        <span class="eb">On the board's record</span>
+        <div class="t">Community Board 2 reviewed this address on May 21, 2026.</div>
+        <div class="sub">SLA Licensing committee · Caudalie · Wine, beer and cider license · Vote: Unanimous, 29 Board Members in favor</div>
+        <blockquote><mark>Will play recorded background music at conversational levels only, inclusive of any private parties or events. No music will be audible in any adjacent residences at any time.</mark><small>Stipulation 6 of 15 the business agreed to</small></blockquote>
+        <div class="foot"><span>✓ Attached to your form submission</span><a href="https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/06/05-May-2026-Full-Board-Minutes.pdf" target="_blank" rel="noopener">Read the minutes ↗</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="tint">
+<section id="how" class="tint">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>Hearing from residents shouldn't mean sorting through a bunch of emails.</h2>
+      <p>Each comment comes in as a form the resident has confirmed, so it's already structured. That lets Tell Us associate their comments with related resolutions and meeting minutes from your board's recent history, and gives you and your committees a searchable dashboard for spotting the issues worth taking up at the next meeting.</p>
+    </div>
+    <div class="dash" role="img" aria-label="Mockup of a board dashboard: resident input grouped into issues, filtered by committee, with past decisions alongside">
+      <div class="dash-top"><b>Resident input <span>· Community Board 2</span></b><div class="dash-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search issues, businesses, addresses…</span></div></div>
+      <div class="dash-bar">
+        <div class="dash-tabs"><span class="on">New issues<i>14</i></span><span>For next meeting<i>3</i></span><span>Sent to agencies<i>22</i></span></div>
+        <div class="dash-chips"><span class="on">All committees</span><span>SLA – 1</span><span>Parks &amp; Waterfront</span><span>Schools &amp; Education</span></div>
+      </div>
+      <div class="dash-h"><span>Issue</span><span>Committee</span><span>Residents</span><span>Status</span></div>
+      <div class="dash-r hot">
+        <div class="what"><b>Late-night music at Caudalie</b><small>130 Greene St · since Oct 3</small><span class="badge rec">On the board's record · May 2026</span></div>
+        <span class="com">SLA – 1</span><span class="n">6 <small>this month</small></span><span class="st add">Add to agenda</span>
+        <div class="more"><p><b>What residents say:</b> music past midnight on weekends, bass heard in apartments upstairs.</p><p><b>What the business agreed to:</b> <mark>recorded background music at conversational levels only; no music audible in adjacent residences.</mark></p></div>
+      </div>
+      <div class="dash-r">
+        <div class="what"><b>Washington Square Park hours</b><small>Asking to stay open later in summer</small></div>
+        <span class="com">Parks &amp; Waterfront</span><span class="n">9 <small>this month</small></span><span class="st agenda">On agenda · Nov 12</span>
+      </div>
+      <div class="dash-r">
+        <div class="what"><b>Crossing guard at drop-off</b><small>Hudson St &amp; Christopher St</small></div>
+        <span class="com">Schools &amp; Education</span><span class="n">3 <small>this month</small></span><span class="st sent">Sent to NYPD</span>
+      </div>
+      <div class="dash-r">
+        <div class="what"><b>Outdoor dining blocking the sidewalk</b><small>Bleecker St &amp; Carmine St</small></div>
+        <span class="com">Outdoor Dining Working Group</span><span class="n">2 <small>this month</small></span><span class="st new">New</span>
+      </div>
+    </div>
+    <p class="note">A mockup of what a board's view could look like. Every row is built from forms residents confirmed, so it can be grouped, searched and filtered.</p>
+  </div>
+</section>
+
+<section>
   <div class="wrap">
     <div class="sec-h">
       <h2>The board decides what information its forms need.</h2>
@@ -380,7 +414,7 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--m
   </div>
 </section>
 
-<section>
+<section class="tint">
   <div class="wrap">
     <div class="sec-h">
       <h2>Each message reaches the people with the power to act on it.</h2>
@@ -401,29 +435,6 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--m
         <div class="q"><small>A resident writes</small>“The street light in front of 300 W 23rd St has been out for a week.”</div>
         <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
         <div class="dest other"><span class="kind">A different board</span><b>Manhattan Community Board 4, and DOT</b><span>The address is outside CB2, so it goes to the board that covers it.</span></div>
-      </div>
-    </div>
-    <p class="note">These are real results from the Tell Us prototype.</p>
-  </div>
-</section>
-
-<section class="tint">
-  <div class="wrap">
-    <div class="sec-h">
-      <h2>The work your board has already done, front and center.</h2>
-      <p>Boards spend hours negotiating stipulations and voting on resolutions that most residents never see. When a message is about a place you've already reviewed, Tell Us pulls the decision from your minutes and shows it to the resident as they write, so they know what the board already secured. The same record arrives with the submission, so the committee picks up where it left off instead of digging through old minutes.</p>
-    </div>
-    <div class="record">
-      <div>
-        <div class="said">“Caudalie on 130 Greene St plays music past midnight every weekend. It's too loud.”</div>
-        <p class="cap">The complaint is about loud music, so Tell Us brings up the stipulation about music.</p>
-      </div>
-      <div class="rescard">
-        <span class="eb">On the board's record</span>
-        <div class="t">Community Board 2 reviewed this address on May 21, 2026.</div>
-        <div class="sub">SLA Licensing committee · Caudalie · Wine, beer and cider license · Vote: Unanimous, 29 Board Members in favor</div>
-        <blockquote><mark>Will play recorded background music at conversational levels only, inclusive of any private parties or events. No music will be audible in any adjacent residences at any time.</mark><small>Stipulation 6 of 15 the business agreed to</small></blockquote>
-        <div class="foot"><span>✓ Attached to your form submission</span><a href="https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/06/05-May-2026-Full-Board-Minutes.pdf" target="_blank" rel="noopener">Read the minutes ↗</a></div>
       </div>
     </div>
   </div>
@@ -461,7 +472,7 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--m
     <p>Write something about a block in Manhattan's CB2 and watch the form fill itself in.</p>
     <a class="btn" href="/">Try Tell Us</a>
   </div>
-  <footer>Tell Us is a prototype built for the State Capacity Hackathon using public information about Manhattan Community Board 2. It is not an official NYC or CB2 service.</footer>
+  <footer><p class="credit">Built at the <a href="https://statecapacityecosystem.com/" target="_blank" rel="noopener">State Capacity Hackathon</a> by <a href="https://paulgale.dev" target="_blank" rel="noopener">Paul Gale</a>, <a href="https://www.linkedin.com/in/lmszu/" target="_blank" rel="noopener">Luke Szumyckyj</a> and <a href="https://www.linkedin.com/in/sam-ginsberg" target="_blank" rel="noopener">Sam Ginsberg</a>.</p><p>Tell Us is a prototype that uses public information about Manhattan Community Board 2. It is not an official NYC or CB2 service.</p></footer>
 </div>
 
 <script type="module">

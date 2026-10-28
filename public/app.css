@@ -12,6 +12,10 @@
 .wordmark-mark { width: .72em; height: .72em; flex: none; display: block; }
 .hero.tagline { font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; }
 .lede { text-align: center; color: var(--muted); font-size: 15px; line-height: 1.45; text-wrap: pretty; margin-top: -6px; }
+.howlink { text-align: center; margin: -4px 0 4px; }
+.howlink a { display: inline-block; padding: 7px 16px; border: 1.5px solid var(--accent); border-radius: 99px;
+  color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: none; transition: background .15s; }
+.howlink a:hover { background: var(--accent-soft); }
 
 /* composer */
 .composer { display: flex; flex-direction: column; gap: 6px; }
