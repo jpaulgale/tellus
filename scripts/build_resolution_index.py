@@ -130,7 +130,7 @@ def main() -> None:
         f"{len(rows)} resolutions ({placed} on the map), {out.stat().st_size // 1024} KB -> {out.relative_to(ROOT)}"
     )
     print(
-        "Load: npx wrangler d1 execute cbform --local --file data/resolutions.sql  (or --remote)"
+        "Load: npx wrangler d1 execute DB --local --file data/resolutions.sql  (or --remote)"
     )
 
 

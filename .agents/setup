@@ -26,7 +26,7 @@ fi
 done_step
 
 step "local D1 migrations"
-CI=1 WRANGLER_SEND_METRICS=false npx --no-install wrangler d1 migrations apply cbform --local
+CI=1 WRANGLER_SEND_METRICS=false npx --no-install wrangler d1 migrations apply DB --local
 done_step
 
 # Secrets for `wrangler dev` live in .dev.vars; copy them from the project's Amp secrets.

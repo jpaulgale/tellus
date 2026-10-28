@@ -33,7 +33,7 @@ Cloudflare Workers + D1 (`worker/`), plain HTML/JS (`public/`), Mapbox for maps,
 
 ```sh
 npm ci
-npx wrangler d1 migrations apply cbform --local
+npx wrangler d1 migrations apply DB --local
 ```
 
 Create `.dev.vars` with your keys:
@@ -55,7 +55,7 @@ Then `npm run dev` and open http://localhost:8787.
 uv run scripts/fetch_minutes.py          # download the minutes PDFs from CB2's site
 uv run scripts/parse_minutes.py          # split them into resolutions
 uv run scripts/build_resolution_index.py # geocode and write data/resolutions.sql
-npx wrangler d1 execute cbform --local --file data/resolutions.sql
+npx wrangler d1 execute DB --local --file data/resolutions.sql
 ```
 
 `.agents/` holds setup scripts for [Amp](https://ampcode.com) cloud workspaces; they aren't needed to run locally.

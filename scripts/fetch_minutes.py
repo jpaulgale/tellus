@@ -27,7 +27,7 @@ def main() -> None:
     with httpx.Client(
         timeout=60,
         follow_redirects=True,
-        headers={"user-agent": "Mozilla/5.0 (cbform minutes indexer)"},
+        headers={"user-agent": "Mozilla/5.0 (tellus minutes indexer)"},
     ) as client:
         urls = sorted(set(PDF.findall(client.get(PAGE).text)))
         sources = {}
