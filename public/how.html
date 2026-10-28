@@ -15,9 +15,9 @@
 <style>
 :root {
   --blue: #103FEF; --blue-dark: #050560; --blue-soft: #E4EBFF; --blue-mid: #B5DBFF;
-  --green: #0A7D17; --green-soft: #DDF5DF;
+  --green: #076614; --green-soft: #DDF5DF;
   --amber: #FFB320; --amber-ink: #6b4300; --amber-soft: #FFF1D6;
-  --bg: #F4F4F2; --card: #FFFFFF; --ink: #0B0B12; --muted: #5A5A66; --line: #E2E2E6;
+  --bg: #F4F4F2; --card: #FFFFFF; --ink: #0B0B12; --muted: #4D4D59; --line: #E2E2E6;
   --shadow: 0 1px 2px rgba(0,0,0,.05), 0 18px 40px -22px rgba(5,5,96,.35);
   --body: "Noto Sans", ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
   --display: "Clash Grotesk", "Noto Sans", ui-sans-serif, sans-serif;
@@ -60,12 +60,11 @@ h1 em { font-style: normal; color: var(--blue); }
 .form-h { background: var(--bg); padding: 9px 12px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; font-size: 13px; }
 .form-h b { font-size: 14px; }
 .form-h span { color: var(--muted); }
-.tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tag { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
 .tag.got { background: var(--blue-soft); color: var(--blue-dark); }
 .tag.need { background: var(--amber-soft); color: var(--amber-ink); }
 .tag.opt { background: var(--bg); color: var(--muted); }
 .tag:empty { display: none; }
-section.tint .def { background: var(--bg); }
 .form-h .k { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
 .form-h .sel { flex: 1 1 14em; }
 .fld { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--line); }
@@ -87,7 +86,7 @@ select:focus, .fld input:focus { outline: none; border-color: var(--blue); box-s
 .map .st path { stroke: #fff; stroke-linecap: round; fill: none; }
 .map .mi { stroke-width: 5; } .map .ma { stroke-width: 8; }
 .map .hl { stroke: var(--blue); stroke-width: 8; stroke-linecap: round; opacity: .35; fill: none; }
-.map .lb text { font-family: var(--body); font-size: 11px; font-weight: 600; fill: #74747f; paint-order: stroke; stroke: #E9EAEE; stroke-width: 3px; text-anchor: middle; dominant-baseline: middle; }
+.map .lb text { font-family: var(--body); font-size: 12px; font-weight: 600; fill: #55555F; paint-order: stroke; stroke: #E9EAEE; stroke-width: 3px; text-anchor: middle; dominant-baseline: middle; }
 .map .cn { fill: #fff; stroke: var(--blue); stroke-width: 2; }
 .map .dot { cursor: grab; transition: transform .35s var(--ease); }
 .map .dot.drag { cursor: grabbing; transition: none; }
@@ -155,7 +154,7 @@ section.tint { background: var(--card); }
 .dash-r .more p { color: var(--muted); }
 .dash-r .more p b { color: var(--ink); font-weight: 600; }
 .dash-r .more mark { background: var(--amber-soft); color: var(--ink); padding: 1px 2px; }
-.badge { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
+.badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
 .badge.rec { background: var(--blue-soft); color: var(--blue-dark); }
 .st { justify-self: start; font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
 .st.add { background: var(--blue); color: #fff; }
@@ -163,26 +162,9 @@ section.tint { background: var(--card); }
 .st.sent { background: var(--bg); color: var(--muted); }
 .st.new { background: var(--amber-soft); color: var(--amber-ink); }
 
-/* forms are config */
-.defs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
-.def { background: var(--card); border-radius: 24px; padding: 24px; display: grid; gap: 12px; align-content: start; }
-.def .who { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.def.board .who { color: var(--blue); }
-.def.city .who { color: var(--amber-ink); }
-.def h3 { font-family: var(--display); font-weight: 600; font-size: 24px; line-height: 1.15; }
-.def > p { color: var(--muted); font-size: 16px; }
-.fl { list-style: none; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-.fl li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 9px 12px; border-top: 1px solid var(--line); font-size: 15px; align-items: center; }
-.fl li:first-child { border-top: 0; }
-.fl li small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
-.req { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #FDE3E4; color: #9a0910; }
-.opt { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--bg); color: var(--muted); }
-.types { display: flex; flex-wrap: wrap; gap: 6px; }
-.types span { font-size: 13px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: var(--amber-soft); color: var(--amber-ink); }
-
 /* routing examples */
 .routes { display: grid; gap: 14px; }
-.route { background: var(--bg); border-radius: 22px; padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1.15fr) 36px minmax(0, 1fr); gap: 12px 16px; align-items: center; }
+.route { background: var(--card); border-radius: 22px; padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1.15fr) 36px minmax(0, 1fr); gap: 12px 16px; align-items: center; }
 .route .q { font-size: 17px; }
 .route .q small { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .dest { border-radius: 16px; padding: 12px 14px; display: grid; gap: 4px; }
@@ -211,7 +193,7 @@ section.tint { background: var(--card); }
 
 /* both sides */
 .both { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
-.side { background: var(--card); border-radius: 24px; padding: 26px; }
+.side { background: var(--bg); border-radius: 24px; padding: 26px; }
 .side h3 { font-family: var(--display); font-weight: 600; font-size: 26px; margin-bottom: 12px; }
 .side ul { list-style: none; display: grid; gap: 10px; }
 .side li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 16px; }
@@ -247,8 +229,8 @@ footer .credit { color: var(--ink); font-size: 14px; }
       section { padding: 44px 0; }
   .sec-h { margin-bottom: 20px; }
   .sec-h p { font-size: 16px; }
-  .compare, .defs, .both, .record { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .panel, .def, .side { padding: 20px; border-radius: 20px; }
+  .compare, .both, .record { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .panel, .side { padding: 20px; border-radius: 20px; }
   .route { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 8px; }
   .route .arrow { justify-content: start; }
   .route .arrow svg { transform: rotate(90deg); width: 22px; height: 22px; }
@@ -256,13 +238,15 @@ footer .credit { color: var(--ink); font-size: 14px; }
 }
 /* Phones: tighter spacing, and the detail that repeats an earlier point is left out. */
 @media (max-width: 600px) {
-  section { padding: 34px 0; }
+  /* white and off-white sections are too close to tell apart on a phone: deepen the grey, rule each boundary, edge the cards */
+  :root { --bg: #E9E9E4; }
+  section { padding: 34px 0; border-top: 1px solid #D4D4D9; }
+  .panel, .record .said, .route, .side { border: 1px solid #DCDCE0; }
   .sec-h h2 { font-size: 27px; }
   .sec-h p { font-size: 15.5px; margin-top: 8px; }
   .panel.before li:nth-child(n+3) { display: none; }
   .dash-search, .dash-chips, .dash-r:nth-child(n+6) { display: none; }
   .dash-tabs span { font-size: 13px; padding: 5px 9px; }
-  .fl li small, .def.city p:last-child, .types span:nth-child(n+5) { display: none; }
   .route:nth-child(n+3) { display: none; }
   .both-sec { display: none; }
   .closing { margin-bottom: 36px; }
@@ -282,7 +266,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
   <div class="hero">
     <div>
       <h1>Say it in your own words. <em>We'll find the form and fill it.</em></h1>
-      <p class="lede">No hunting for the right form. Tell Us picks it from what you write, whether that's the community board's own intake or a city form like a 311 service request, fills in what it can, asks for anything required it couldn't, and sends it to the right place.</p>
+      <p class="lede">No more hunting for the right place to be heard. Tell Us picks the form from what you write, whether that's the community board's own intake or a city form like a 311 service request, fills in what it can, asks for anything required it couldn't, and sends it where it needs to go.</p>
       <div class="ctas"><a class="btn" href="/">Try it</a><a class="btn alt" href="#how">See how it works</a></div>
     </div>
 
@@ -344,7 +328,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
   <div class="wrap">
     <div class="sec-h">
       <h2>The work your board has already done, front and center.</h2>
-      <p>Boards spend hours negotiating stipulations and voting on resolutions that most residents never see. When a message is about an issue your board has already reviewed, Tell Us pulls the decision from your minutes and shows it to the resident as they write, so they know what the board already secured. The same record arrives with the submission, so the committee picks up where it left off instead of digging through old minutes.</p>
+      <p>When a message touches something your board already decided, Tell Us shows the resident that decision as they write and attaches it to the submission for your committee.</p>
     </div>
     <div class="record">
       <div>
@@ -400,38 +384,8 @@ footer .credit { color: var(--ink); font-size: 14px; }
 <section>
   <div class="wrap">
     <div class="sec-h">
-      <h2>The board controls which fields are on each form.</h2>
-      <p>Which fields, which are required, and where it goes. Tell Us just helps residents fill it in.</p>
-    </div>
-    <div class="defs">
-      <div class="def board">
-        <span class="who">Set by the community board</span>
-        <h3>The board's own intake form</h3>
-        <p>For issues the board weighs in on: licenses, street redesigns, development, parks, schools.</p>
-        <ul class="fl">
-          <li>Committee<span class="req">Required</span><small>Chosen from the board's own committee list</small></li>
-          <li>Type of issue<span class="req">Required</span><small>Noise, hours, crowds, outdoor dining, safety…</small></li>
-          <li>What you want the board to do<span class="req">Required</span><small>Oppose, add conditions, support, or just let the board know</small></li>
-          <li>Name and email<span class="opt">Optional</span><small>So the board can reply</small></li>
-          <li>Wants to speak at a meeting<span class="opt">Optional</span></li>
-        </ul>
-      </div>
-      <div class="def city">
-        <span class="who">Mirrors city forms</span>
-        <h3>Municipal forms like 311</h3>
-        <p>For things an agency fixes, with the same complaint types, fields and answer choices as 311 service requests.</p>
-        <div class="types"><span>Crossing Guard · NYPD</span><span>Street Light Out · DOT</span><span>Pothole · DOT</span><span>Missed Garbage Pickup · DSNY</span><span>Rats · Health Dept.</span><span>Blocked Bike Lane · NYPD</span><span>Noise from a Business · NYPD</span></div>
-        <p>Each brings its own required fields, like the address for anything an agency has to go fix.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="tint">
-  <div class="wrap">
-    <div class="sec-h">
       <h2>Each message reaches the people with the power to act on it.</h2>
-      <p>Not everything is the board's to handle. Tell Us checks the topic and the address, then picks the form and the destination.</p>
+      <p>Not everything is the board's to handle. Tell Us checks the topic and the address, then picks the form and the destination. The board decides which fields its own form asks for.</p>
     </div>
     <div class="routes">
       <div class="route">
@@ -453,7 +407,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
   </div>
 </section>
 
-<section class="both-sec">
+<section class="tint both-sec">
   <div class="wrap">
     <div class="sec-h"><h2>Better for both sides.</h2></div>
     <div class="both">

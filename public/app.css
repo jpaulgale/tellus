@@ -261,3 +261,12 @@ textarea.composer-text { resize: vertical; }
 .needed.done .needed-lead { color: var(--ok-text); }
 @media (min-width: 760px) { .needed-grid { grid-template-columns: 1fr 1fr; } .needed-grid .ff[data-key="general.location"] { grid-column: 1 / -1; } }
 @media (min-width: 1000px) { .needed { width: auto; max-width: none; } }
+
+/* Overrides of nyc.css, which stays as the design system ships it. */
+/* Let the page grow past one screen so the white panel wraps everything, credit included. */
+body { height: auto; min-height: 100%; }
+.appmain { flex: 1 0 auto; }
+/* Placeholders lighter than typed answers. */
+.ff-input::placeholder { color: #6E6E78; font-weight: 400; }
+input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 400; color: #6E6E78; }
+.ff.filled input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 500; color: var(--ink); }
