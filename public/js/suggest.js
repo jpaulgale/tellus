@@ -40,7 +40,7 @@ export function startTypewriter(textarea) {
       if (wait > 0) wait--;
       else if (dir === 1 && n < full.length) n++;
       else if (dir === 1) { dir = -1; wait = 55; }      // hold the full sentence ~2s
-      else if (n > 0) n = Math.max(0, n - 3);            // erase faster than typing
+      else if (n > 0) n = Math.max(0, n - Math.ceil(full.length / 6)); // erase in ~6 ticks (~0.3s), whatever the length
       else { dir = 1; i = (i + 1) % TOPICS.length; wait = 8; }
       ghost.firstChild.textContent = full.slice(0, n);
     }
