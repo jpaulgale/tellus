@@ -1,5 +1,7 @@
 // Small shared helpers: DOM building, escaping, JSON fetch.
 
+import { session } from "./hit.js";
+
 export const $ = (id) => document.getElementById(id);
 
 export const esc = (s) =>
@@ -32,8 +34,8 @@ export function announce(msg) {
 }
 
 export async function api(path, body) {
-  const r = await fetch(path, body === undefined ? {} : {
-    method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body),
+  const r = await fetch(path, body === undefined ? { headers: { "x-session": session } } : {
+    method: "POST", headers: { "content-type": "application/json", "x-session": session }, body: JSON.stringify(body),
   });
   const j = await r.json().catch(() => ({}));
   if (!r.ok || j.error) throw new Error(j.error || `${path} failed (${r.status})`);

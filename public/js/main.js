@@ -290,6 +290,7 @@ function wireMic() {
     // through tool calls and the words only show as a caption.
     onText(t) {
       if (t == null) { heard = ""; return; }
+      state.voice = true; // for the send event: this request was spoken, at least in part
       if (formShowing()) { heard += t; $("status").textContent = `Heard: ${heard.trim()}`; return; }
       const ta = $("message");
       ta.value = (ta.value + t).replace(/^\s+/, "").replace(/\s{2,}/g, " ");

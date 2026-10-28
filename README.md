@@ -25,6 +25,22 @@ A hackathon demo, not an official NYC service and not affiliated with the City o
 
 The dashboard's requests are sample data (`public/dashboard/requests.json`), run through the real pipeline by `scripts/build_dashboard_data.py`.
 
+## Usage and performance
+
+The worker writes one row per page view, route, place lookup, voice session, send and error to the D1 `events` table (no resident text; that stays in `submissions`). A random per-tab session id links a visit's events, and each send carries the id of the route that filled its form, so you can see whether people kept the form Jev picked.
+
+```sh
+scripts/stats.sh daily     # views, sessions, routes, sends, errors per day
+scripts/stats.sh latency   # p50/p95 of total, lookup and Jev time; tokens
+scripts/stats.sh forms     # top form mix, confidence, close calls
+scripts/stats.sh kept      # routed form vs. sent form, fields edited
+scripts/stats.sh funnel    # sessions → routed → picked a place → sent
+scripts/stats.sh pages 30  # views by page, referrer, country (last 30 days)
+scripts/stats.sh errors
+```
+
+It uses `cf d1 query` (`cf auth login` first). The same events are in Workers Logs: `cf observability telemetry query`.
+
 ## Stack
 
 Cloudflare Workers + D1 (`worker/`), plain HTML/JS (`public/`), Mapbox for maps, Python scripts for the data pipeline (`scripts/`).

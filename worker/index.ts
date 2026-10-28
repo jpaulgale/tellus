@@ -42,6 +42,22 @@ const placed = (r: Resolution): r is Resolution & { lat: number; lng: number } =
 interface Place { at: Resolution[]; near: Resolution[] }
 const NO_PLACE: Place = { at: [], near: [] };
 
+/** A row in `events` (migrations/0004_events.sql), written after the response; also logged for Workers Logs. */
+type Event = { kind: string; route_id?: string; form?: string; ms?: number; data?: Record<string, unknown> };
+type Track = (e: Event) => void;
+
+function tracker(env: Env, ctx: ExecutionContext, session: string | null): Track {
+  return (e) => {
+    console.log({ event: e.kind, route_id: e.route_id, form: e.form, ms: e.ms, ...e.data });
+    ctx.waitUntil(
+      env.DB.prepare("INSERT INTO events (kind, session, route_id, form, ms, data) VALUES (?1, ?2, ?3, ?4, ?5, ?6)")
+        .bind(e.kind, session, e.route_id ?? null, e.form ?? null, e.ms ?? null, e.data ? JSON.stringify(e.data) : null)
+        .run()
+        .catch((err) => console.warn({ event: "track", error: (err as Error).message })),
+    );
+  };
+}
+
 /** The board's record around each place, in one D1 round trip: rows on the same tax lot or within a box about NEAR_M across. */
 async function placesFor(db: D1Database, geos: (Geo | undefined)[]): Promise<Place[]> {
   const dLat = NEAR_M / 111_320, dLng = NEAR_M / 84_000; // a degree of longitude is about 84 km at this latitude
@@ -514,7 +530,7 @@ async function callJev(env: Env, body: unknown): Promise<any> {
 
 // ---------- routes ----------
 
-async function route(request: Request, env: Env): Promise<Response> {
+async function route(request: Request, env: Env, track: Track): Promise<Response> {
   if (!env.TYPESAFE_API_KEY) return json({ error: "TYPESAFE_API_KEY is not set" }, 500);
   const { message: raw } = (await request.json()) as { message?: string };
   const message = (raw ?? "").trim().slice(0, 4000);
@@ -531,29 +547,41 @@ async function route(request: Request, env: Env): Promise<Response> {
   const { questions, cands, boardRecord } = buildPlan(message, locations, past, unique([...nearby, ...found]));
   const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
   let jev;
+  const t1 = Date.now();
   try {
     jev = await callJev(env, { model: env.TYPESAFE_MODEL || "jev-latest", state: { message, today, ...(boardRecord.length ? { board_record: boardRecord } : {}) }, questions });
   } catch (e) {
+    track({ kind: "error", ms: Date.now() - t0, data: { path: "/api/route", error: (e as Error).message } });
     return json({ error: (e as Error).message }, 502);
   }
+  const jevMs = Date.now() - t1;
   const out = decode(jev.answers, cands, places, found);
   const locOptions = out.general.find((f) => f.id === "location")?.options ?? [];
   await withText(env.DB, [...out.related, ...locOptions.flatMap((o: any) => [...(o.resolutions ?? []), ...(o.related ?? [])])]);
   const latencyMs = Date.now() - t0;
-  const top = out.forms[0];
-  console.log({ event: "route", form: top.key, p: top.probability, emergency: out.emergency, latencyMs, lookupMs, questions: Object.keys(questions).length });
-  return json({ ...out, jev: { model: jev.model, usage: jev.usage, questions: Object.keys(questions).length, latencyMs, lookupMs } });
+  const [top, next] = out.forms;
+  const routeId = crypto.randomUUID();
+  track({
+    kind: "route", route_id: routeId, form: top.key, ms: latencyMs,
+    data: {
+      p: top.probability, second: next?.key, margin: top.probability - (next?.probability ?? 0), emergency: out.emergency,
+      lookupMs, jevMs, chars: message.length, locations: locations.length, candidates: Object.values(cands).flat().length,
+      questions: Object.keys(questions).length, pastAtAddress: past.length, related: out.related.length, model: jev.model, usage: jev.usage,
+    },
+  });
+  return json({ ...out, routeId, jev: { model: jev.model, usage: jev.usage, questions: Object.keys(questions).length, latencyMs, lookupMs } });
 }
 
 /**
  * The board's record for a place the person picked themselves (autocomplete or a dot on the map):
  * resolutions at the address with the stipulation the complaint is about, and related decisions nearby.
  */
-async function record(request: Request, env: Env): Promise<Response> {
+async function record(request: Request, env: Env, track: Track): Promise<Response> {
   if (!env.TYPESAFE_API_KEY) return json({ error: "TYPESAFE_API_KEY is not set" }, 500);
   const { message: raw, geo } = (await request.json()) as { message?: string; geo?: Geo };
   const message = (raw ?? "").trim().slice(0, 4000);
   if (!geo || !Number.isFinite(geo.lat) || !Number.isFinite(geo.lng)) return json({ error: "geo is required" }, 400);
+  const t0 = Date.now();
   const [[place], searched] = await Promise.all([placesFor(env.DB, [geo]), message.length >= 8 ? searchMinutes(env.DB, message) : []]);
   const past = place.at, found = searched.filter((r) => !past.some((x) => x.id === r.id));
   const candidates = unique([...(geo.board?.outside ? [] : place.near), ...found]);
@@ -564,11 +592,12 @@ async function record(request: Request, env: Env): Promise<Response> {
     try {
       answers = (await callJev(env, { model: env.TYPESAFE_MODEL || "jev-latest", state: { message }, questions })).answers;
     } catch (e) {
-      console.warn({ event: "record", error: (e as Error).message });
+      track({ kind: "error", data: { path: "/api/record", error: (e as Error).message } });
     }
   }
   const out = { resolutions: past.map((r) => presentResolution(r, answers)), related: relatedFrom(candidates, geo, answers) };
   await withText(env.DB, [...out.resolutions, ...out.related]);
+  track({ kind: "record", ms: Date.now() - t0, data: { resolutions: out.resolutions.length, related: out.related.length, jev: Object.keys(answers).length > 0 } });
   return json(out);
 }
 
@@ -606,7 +635,7 @@ async function reverse(url: URL): Promise<Response> {
 }
 
 /** Single-use ephemeral Gemini Live token, so the real key never reaches the browser (as in formspeak). */
-async function voiceToken(env: Env): Promise<Response> {
+async function voiceToken(env: Env, track: Track): Promise<Response> {
   if (!env.GEMINI_API_KEY) return json({ error: "GEMINI_API_KEY is not set" }, 500);
   const now = Date.now();
   const r = await fetch("https://generativelanguage.googleapis.com/v1alpha/auth_tokens", {
@@ -615,7 +644,12 @@ async function voiceToken(env: Env): Promise<Response> {
     body: JSON.stringify({ uses: 1, expireTime: new Date(now + 30 * 60e3).toISOString(), newSessionExpireTime: new Date(now + 2 * 60e3).toISOString() }),
   });
   const data = (await r.json()) as { name?: string; error?: { message: string } };
-  return data.name ? json({ token: data.name }) : json({ error: data.error?.message ?? "token mint failed" }, 502);
+  if (!data.name) {
+    track({ kind: "error", data: { path: "/api/token", error: data.error?.message ?? "token mint failed" } });
+    return json({ error: data.error?.message ?? "token mint failed" }, 502);
+  }
+  track({ kind: "voice" });
+  return json({ token: data.name });
 }
 
 /**
@@ -623,8 +657,8 @@ async function voiceToken(env: Env): Promise<Response> {
  * API for creating requests, so for 311 and agencies the page also hands the person the payload
  * and opens the right portal.
  */
-async function send(request: Request, env: Env): Promise<Response> {
-  const body = (await request.json()) as { destination?: string; payload?: any; message?: string };
+async function send(request: Request, env: Env, track: Track): Promise<Response> {
+  const body = (await request.json()) as { destination?: string; payload?: any; message?: string; route?: { id?: string; edited?: string[]; voice?: boolean } };
   const other = /^CB:(\d{3})$/.exec(body.destination ?? "");
   const dest = other ? { label: boardFor(other[1]).name, url: boardFor(other[1]).url, email: boardFor(other[1]).email }
     : (catalog.destinations as Record<string, any>)[body.destination ?? ""];
@@ -643,8 +677,21 @@ async function send(request: Request, env: Env): Promise<Response> {
     const r = await fetch(env.SEND_WEBHOOK_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ destination: body.destination, payload: p }) });
     forwarded = r.status;
   }
-  console.log({ event: "send", destination: body.destination, form: p.form, id: row?.id });
+  track({
+    kind: "send", route_id: body.route?.id?.slice(0, 40), form: p.form,
+    data: { destination: body.destination, id: row?.id, edited: (body.route?.edited ?? []).slice(0, 50), voice: !!body.route?.voice, forwarded },
+  });
   return json({ id: row?.id, forwarded, ...dest });
+}
+
+/** A page view from public/js/hit.js: the path and where the visitor came from, never the page's text. */
+async function hit(request: Request, track: Track): Promise<Response> {
+  const b = (await request.json().catch(() => ({}))) as { path?: string; ref?: string; width?: number };
+  let ref: string | null = null;
+  try { ref = b.ref ? new URL(b.ref).hostname : null; } catch {}
+  const cf = request.cf as { country?: string } | undefined;
+  track({ kind: "view", data: { path: String(b.path ?? "").slice(0, 100), ref, width: Number(b.width) || null, country: cf?.country ?? null } });
+  return new Response(null, { status: 204 });
 }
 
 /** Every field the voice agent may set, as "Label (choice / choice)" lines for its prompt. */
@@ -658,18 +705,21 @@ function voiceFields(): string[] {
 }
 
 export default {
-  async fetch(request, env): Promise<Response> {
+  async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
+    const track = tracker(env, ctx, request.headers.get("x-session")?.slice(0, 40) ?? null);
     try {
-      if (url.pathname === "/api/route" && request.method === "POST") return await route(request, env);
+      if (url.pathname === "/api/hit" && request.method === "POST") return await hit(request, track);
+      if (url.pathname === "/api/route" && request.method === "POST") return await route(request, env, track);
       if (url.pathname === "/api/geosearch") return await autocomplete(url);
       if (url.pathname === "/api/reverse") return await reverse(url);
-      if (url.pathname === "/api/record" && request.method === "POST") return await record(request, env);
-      if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env);
-      if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env);
+      if (url.pathname === "/api/record" && request.method === "POST") return await record(request, env, track);
+      if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env, track);
+      if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env, track);
       if (url.pathname === "/api/config")
         return json({ mapboxToken: env.MAPBOX_TOKEN ?? "", destinations: catalog.destinations, committees: COMMITTEES, voice: !!env.GEMINI_API_KEY, voiceFields: voiceFields() });
     } catch (e) {
+      track({ kind: "error", data: { path: url.pathname, error: (e as Error).message } });
       return json({ error: (e as Error).message }, 500);
     }
     if (url.pathname.startsWith("/api/")) return json({ error: "not found" }, 404);

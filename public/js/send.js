@@ -164,7 +164,7 @@ export function renderSendPanel(root, getState, destinations) {
     btn.disabled = true; btn.textContent = "Submitting…";
     try {
       const sent = [];
-      for (const d of picked) sent.push(await api("/api/send", { destination: d, payload, message: st.message }));
+      for (const d of picked) sent.push(await api("/api/send", { destination: d, payload, message: st.message, route: { id: st.res?.routeId, edited: [...st.touched], voice: !!st.voice } }));
       const r = sent[0];
       const text = JSON.stringify(payload, null, 2);
       const keys = [...picked];
