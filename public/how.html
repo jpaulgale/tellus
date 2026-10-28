@@ -537,9 +537,14 @@ for (const id of asks) $(id).addEventListener("input", (e) => {
 for (const id of ["fName", "fEmail"]) $(id).addEventListener("input", (e) => mark(e.target, e.target.value ? "you" : "opt", e.target.value ? "Edited by you" : "Optional"));
 
 // ---- the one-time intro
+// Scrolling past the message box before the form appears skips straight to the form.
+let skip = false, wake = () => {};
+const pause = (ms) => skip ? Promise.resolve() : new Promise((r) => { const t = setTimeout(r, reduce ? 0 : ms); wake = () => { clearTimeout(t); r(); }; });
+const io = new IntersectionObserver(([e]) => { if (!e.isIntersecting && e.boundingClientRect.top < 0) { skip = true; wake(); io.disconnect(); } });
+io.observe($("box"));
 const type = async (el, s, ms) => {
   if (reduce) { el.textContent = s; return; }
-  for (let i = 1; i <= s.length; i++) { el.innerHTML = s.slice(0, i).replace(/&/g, "&amp;").replace(/</g, "&lt;") + '<span class="caret"></span>'; await wait(ms); }
+  for (let i = 1; i <= s.length && !skip; i++) { el.innerHTML = s.slice(0, i).replace(/&/g, "&amp;").replace(/</g, "&lt;") + '<span class="caret"></span>'; await pause(ms); }
   el.textContent = s;
 };
 const typeInput = async (el, s, ms) => {
@@ -550,9 +555,10 @@ const typeInput = async (el, s, ms) => {
 const text = $("box").textContent;
 $("box").innerHTML = '<span class="caret"></span>';
 pick(0, "auto");
-await wait(600);
+await pause(600);
 await type($("box"), text, 26);
-await wait(600);
+await pause(600);
+io.disconnect();
 $("form").classList.add("in");
 await wait(2600);
 status();
