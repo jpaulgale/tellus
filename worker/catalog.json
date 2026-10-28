@@ -378,7 +378,7 @@
    "name": "CB2 Manhattan",
    "agency": "CB2",
    "complaint_type": "Community Board Issue",
-   "route": "A neighborhood issue for the community board to discuss or weigh in on: a pattern at a bar or business and its liquor license, a street redesign, development, landmarks, parks policy, schools, or a problem the city keeps failing to fix.",
+   "route": "A neighborhood issue for the community board to discuss or weigh in on: a pattern at a bar or business and its liquor license, a street redesign, traffic safety at a corner (cyclists, drivers, or delivery bikes ignoring lights, speeding, failing to yield), development, landmarks, parks policy, schools, or a problem the city keeps failing to fix.",
    "fields": [
     {
      "id": "committee",
