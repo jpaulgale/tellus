@@ -144,25 +144,37 @@ async function intersections(message: string): Promise<Candidate[]> {
   const st = streets(message).map((s) => s.value).slice(0, 3);
   const pairs: [string, string][] = [];
   for (let i = 0; i < st.length; i++) for (let j = i + 1; j < st.length; j++) pairs.push([st[i], st[j]]);
-  const found = await Promise.all(pairs.map(async ([a, b]): Promise<Candidate | null> => {
-    const node = intersectionNode(a, b);
-    if (!node) return null;
-    const [lng, lat] = node;
-    let near: Candidate | undefined;
-    try {
-      const r = await fetch(`${GEOSEARCH}/reverse?point.lat=${lat}&point.lon=${lng}&size=1`, LOOKUP);
-      near = ((await r.json()) as any).features.map(featureToCandidate)[0];
-    } catch { /* the corner still stands without a nearest address */ }
-    if (!near?.geo) return null;
-    const label = `${titleCase(a)} & ${titleCase(b)}`;
-    return {
-      key: `Corner of ${label}`,
-      value: `${label}, Manhattan (near ${titleCase(near.geo.name)})`,
-      note: `the intersection of ${a} and ${b}`,
-      geo: { ...near.geo, lat, lng, label: `${label}, Manhattan`, corner: true },
-    };
-  }));
+  const found = await Promise.all(pairs.map(([a, b]) => corner(a, b)));
   return found.filter((c): c is Candidate => !!c);
+}
+
+async function corner(a: string, b: string): Promise<Candidate | null> {
+  const node = intersectionNode(a, b);
+  if (!node) return null;
+  const [lng, lat] = node;
+  let near: Candidate | undefined;
+  try {
+    const r = await fetch(`${GEOSEARCH}/reverse?point.lat=${lat}&point.lon=${lng}&size=1`, LOOKUP);
+    near = ((await r.json()) as any).features.map(featureToCandidate)[0];
+  } catch { /* the corner still stands without a nearest address */ }
+  if (!near?.geo) return null;
+  const label = `${titleCase(a)} & ${titleCase(b)}`;
+  return {
+    key: `Corner of ${label}`,
+    value: `${label}, Manhattan (near ${titleCase(near.geo.name)})`,
+    note: `the intersection of ${a} and ${b}`,
+    geo: { ...near.geo, lat, lng, label: `${label}, Manhattan`, corner: true },
+  };
+}
+
+/** "10th Street and Fourth Avenue in Manhattan" → ["10th Street", "Fourth Avenue"], or null. */
+function cornerQuery(text: string): [string, string] | null {
+  const t = text
+    .replace(/^\s*(?:the\s+)?(?:corner|intersection)\s+of\s+/i, "")
+    .replace(/(?:,|\s+in)?\s+(?:manhattan|new york(?:,?\s*ny)?|nyc)\b.*$/i, "")
+    .trim();
+  const parts = t.split(/\s+(?:and|&|at|\/)\s+|\s*[&\/]\s*/i).map((s) => s.trim()).filter(Boolean);
+  return parts.length === 2 ? [parts[0], parts[1]] : null;
 }
 
 async function findLocations(message: string): Promise<Candidate[]> {
@@ -522,13 +534,22 @@ async function record(request: Request, env: Env): Promise<Response> {
 
 async function autocomplete(url: URL): Promise<Response> {
   // GeoSearch sends no CORS headers, so the browser goes through us.
-  const r = await fetch(`${GEOSEARCH}/autocomplete?text=${encodeURIComponent(url.searchParams.get("text") ?? "")}&${CB2_FOCUS}`);
+  const text = url.searchParams.get("text") ?? "";
+  // GeoSearch can't geocode a corner, so "X and Y" goes to the street centerline first.
+  const pair = cornerQuery(text);
+  const [hit, r] = await Promise.all([
+    pair ? corner(...pair) : null,
+    fetch(`${GEOSEARCH}/autocomplete?text=${encodeURIComponent(text)}&${CB2_FOCUS}`),
+  ]);
   const seen = new Set<string>();
-  const out = ((await r.json()) as any).features.map(featureToCandidate).filter((c: Candidate) => {
+  const found = ((await r.json()) as any).features.map(featureToCandidate) as Candidate[];
+  const out = [...(hit ? [hit] : []), ...found].filter((c: Candidate) => {
     const k = `${c.geo!.lat},${c.geo!.lng}`;
     return !seen.has(k) && seen.add(k);
   });
-  return json((await withDistrict(out)).slice(0, 6));
+  const inside = (await withDistrict(out)).slice(0, 6);
+  for (const c of inside) if (c.geo?.corner) { delete c.geo.bbl; delete c.geo.bin; delete c.geo.housenumber; delete c.geo.street; }
+  return json(inside);
 }
 
 /**

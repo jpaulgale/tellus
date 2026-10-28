@@ -72,26 +72,31 @@ const NODES = cscl as unknown as Record<string, Node[]>;
 /** What people call it → what CSCL files it under. */
 const ALIAS: Record<string, string> = { "6 AVE": "AVE OF THE AMERICAS", "AVE OF AMERICAS": "AVE OF THE AMERICAS" };
 
-/** Endpoints of a street's centerline segments, i.e. its corners. */
-export function streetNodes(street: string): Node[] {
-  for (const group of csclCandidates(street)) {
-    const nodes = group.flatMap((label) => NODES[ALIAS[label] ?? label] ?? []);
-    if (nodes.length) return nodes;
-  }
-  return [];
+/** Endpoints of a street's centerline segments, i.e. its corners, for each reading of its name. */
+function nodeGroups(street: string): Node[][] {
+  return csclCandidates(street)
+    .map((group) => group.flatMap((label) => NODES[ALIAS[label] ?? label] ?? []))
+    .filter((nodes) => nodes.length);
 }
 
-/** [lon, lat] where two streets meet, or null. */
+/**
+ * [lon, lat] where two streets meet, or null. Readings are tried likeliest first, so a bare
+ * "10th and 4th" becomes 10 Ave & 4 Ave only if those cross, else E/W 10 St & 4 Ave.
+ */
 export function intersectionNode(a: string, b: string): Node | null {
-  const na = streetNodes(a), nb = streetNodes(b);
-  const hits: Node[] = [];
-  for (const [xa, ya] of na) {
-    for (const [xb, yb] of nb) {
-      if (Math.abs(xa - xb) < NODE_EPSILON && Math.abs(ya - yb) < NODE_EPSILON) hits.push([(xa + xb) / 2, (ya + yb) / 2]);
+  for (const na of nodeGroups(a)) {
+    for (const nb of nodeGroups(b)) {
+      const hits: Node[] = [];
+      for (const [xa, ya] of na) {
+        for (const [xb, yb] of nb) {
+          if (Math.abs(xa - xb) < NODE_EPSILON && Math.abs(ya - yb) < NODE_EPSILON) hits.push([(xa + xb) / 2, (ya + yb) / 2]);
+        }
+      }
+      if (!hits.length) continue;
+      // Two streets can cross more than once (Broadway); take the corner nearest the district.
+      const far = (p: Node) => Math.abs(p[0] - FOCUS[0]) + Math.abs(p[1] - FOCUS[1]);
+      return hits.reduce((best, p) => (far(p) < far(best) ? p : best));
     }
   }
-  if (!hits.length) return null;
-  // Two streets can cross more than once (Broadway); take the corner nearest the district.
-  const far = (p: Node) => Math.abs(p[0] - FOCUS[0]) + Math.abs(p[1] - FOCUS[1]);
-  return hits.reduce((best, p) => (far(p) < far(best) ? p : best));
+  return null;
 }

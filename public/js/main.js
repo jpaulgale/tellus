@@ -152,7 +152,9 @@ const ctx = {
   set(k, v, rerender) {
     state.values[k] = v; state.touched.add(k);
     if (k === "cb2.committee") this.rerender("general.location"); // the resolution card names the committee
-    if (k === "general.location") { state.destination = null; return render(new Set()); } // the board may have changed
+    // A picked place may change the board; typing doesn't, and rebuilding the input mid-word would
+    // reset the caret and drop its autocomplete.
+    if (k === "general.location" && rerender) { state.destination = null; return render(new Set()); }
     renderNeeded();
     if (rerender) this.rerender(k);
     else { // keep focus in the input; just update the badge/filled state
@@ -176,7 +178,8 @@ const ctx = {
 
 function renderForm(changed) {
   const form = activeForm(), res = state.res, root = $("form");
-  const focused = document.activeElement?.closest?.("#form, #needed") ? document.activeElement.id : null;
+  const was = document.activeElement?.closest?.("#form, #needed") ? document.activeElement : null;
+  const focused = was?.id, before = was?.value, caret = was?.selectionStart ?? null;
   const g = Object.fromEntries(res.general.map((f) => [f.id, f]));
   const field = (scope, f) => { const k = `${scope}.${f.id}`; fieldsByKey.set(k, f); return renderField(f, k, ctx); };
   // Which shared fields are required depends on the form (the board needs to reach you; 311 doesn't).
@@ -206,7 +209,16 @@ function renderForm(changed) {
   root.replaceChildren(...main,
     ...(contact.length ? [h("h2.subhead", "Your contact info ", h("span.ff-lab-opt", contactRequired ? "so the board can reach you" : "optional")), ...contact] : []));
   $("needed").replaceChildren(h("p.needed-lead"), h("div.needed-grid", need));
-  if (focused) $(focused)?.focus();
+  if (focused) {
+    // A rebuilt input would otherwise take the caret back to the start: keep it, or put it at the
+    // end when a pick replaced the text.
+    const el = $(focused);
+    el?.focus();
+    if (caret != null && el?.setSelectionRange) {
+      const at = el.value === before ? caret : el.value.length;
+      try { el.setSelectionRange(at, at); } catch { /* not a text input */ }
+    }
+  }
   for (const k of changed) {
     const el = document.querySelector(`.ff[data-key="${CSS.escape(k)}"]`);
     if (!el) continue;
@@ -350,6 +362,8 @@ async function boot() {
   $("clearBtn").addEventListener("click", () => { ta.value = ""; schedule(); ta.focus(); });
   renderTopics($("examples"), (ex) => { ta.value = ex; schedule(); ta.focus(); });
   startTypewriter(ta);
+  // Ready to type on arrival, as in a chat app; not on touch, where focus would open the keyboard over the page.
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) ta.focus();
   try { state.config = await api("/api/config"); } catch (e) { console.warn(e); }
   setMapboxToken(state.config.mapboxToken || "");
   wireMic();

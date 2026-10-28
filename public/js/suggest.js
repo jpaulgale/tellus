@@ -1,6 +1,7 @@
 // What you can ask Tell Us: a typewriter placeholder that cycles full example requests, and a
 // wrapped list of topic chips. Tapping a chip fills its example.
-// The typewriter holds still for prefers-reduced-motion and yields the moment you type.
+// The typewriter holds still for prefers-reduced-motion and yields the moment you type. Its
+// caret hides while the box has focus, where the real one blinks.
 
 import { $, h } from "./util.js";
 
@@ -23,7 +24,7 @@ export const TOPICS = [
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/** Typewriter placeholder: type, hold, erase, next. Pauses while the box has text or focus+text. */
+/** Typewriter placeholder: type, hold, fade, next. Pauses while the box has text. */
 export function startTypewriter(textarea) {
   const ghost = $("ghost");
   if (reduced) {
@@ -40,8 +41,8 @@ export function startTypewriter(textarea) {
       if (wait > 0) wait--;
       else if (dir === 1 && n < full.length) n++;
       else if (dir === 1) { dir = -1; wait = 55; }      // hold the full sentence ~2s
-      else if (n > 0) n = Math.max(0, n - Math.ceil(full.length / 6)); // erase in ~6 ticks (~0.3s), whatever the length
-      else { dir = 1; i = (i + 1) % TOPICS.length; wait = 8; }
+      else if (!ghost.classList.contains("fading")) { ghost.classList.add("fading"); wait = 9; } // fade out (~0.4s)
+      else { ghost.classList.remove("fading"); n = 0; dir = 1; i = (i + 1) % TOPICS.length; wait = 4; }
       ghost.firstChild.textContent = full.slice(0, n);
     }
     setTimeout(tick, 45); // 0.8x of the original 36 ms pace
@@ -52,7 +53,7 @@ export function startTypewriter(textarea) {
 /** A static, wrapped list of topic chips. */
 export function renderTopics(container, onPick) {
   container.replaceChildren(
-    h("div.topics-lead", {}, "Things you can Tell Us about"),
+    h("div.topics-lead", {}, "Try an example"),
     h("div.topic-list", {}, ...TOPICS.map((t) =>
       h("button.topic", { type: "button", title: t.to, onclick: () => onPick(t.ex) }, t.topic))),
   );
