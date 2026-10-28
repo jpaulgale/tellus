@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="What residents sent CB2 Manhattan through Tell Us, with the board's past decisions alongside" />
+  <title>Board view · CB2 Manhattan · Tell Us</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#103FEF" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dashboard/styles.css" />
+</head>
+<body>
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="board-brand" href="/dashboard/"><img class="board-logo" src="/favicon.svg" alt="" /><div><strong><span class="hl">Tell</span> Us</strong><span>CB2 Manhattan · Board view</span></div></a>
+    <nav>
+      <a class="nav-link active" href="#home"><span aria-hidden="true">⌂</span> Home</a>
+      <a class="nav-link" href="#requests"><span aria-hidden="true">▤</span> Resident requests <b id="nav-count"></b></a>
+      <a class="nav-link" href="#topics"><span aria-hidden="true">●</span> Common topics</a>
+      <a class="nav-link" href="/dashboard/insights.html"><span aria-hidden="true">↗</span> Trends</a>
+    </nav>
+    <div class="help-box"><strong>What residents see</strong><a href="/">The Tell Us form ↗</a><a href="/how">How Tell Us works ↗</a></div>
+  </aside>
+
+  <main id="home">
+    <header>
+      <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div><p>CB2 Manhattan</p><h1 id="greeting">Good morning</h1></div>
+    </header>
+    <div class="notice" role="note"><strong>Demo:</strong> The requests are sample messages, but each one went through Tell Us like a real one. The committees, addresses and past board decisions come from the app and CB2's own minutes.</div>
+    <section class="welcome-row" aria-labelledby="page-heading">
+      <div><h2 id="page-heading">Here’s what needs your attention</h2><p id="today"></p></div>
+    </section>
+
+    <section class="summary-grid" aria-label="Request summary">
+      <a class="summary-card urgent" href="#requests"><span class="summary-number" id="count-urgent"></span><div><strong>Need a response soon</strong><p>Waiting more than a week</p></div><span class="arrow">→</span></a>
+      <a class="summary-card" href="#requests"><span class="summary-number" id="count-new"></span><div><strong>New requests</strong><p>Not yet reviewed</p></div><span class="arrow">→</span></a>
+      <a class="summary-card good" href="#resolved"><span class="summary-number" id="count-resolved">24</span><div><strong>Resolved this month</strong><p>Residents received a reply</p></div><span class="arrow">→</span></a>
+    </section>
+
+    <div class="page-grid">
+      <section class="card requests-card" id="requests" aria-labelledby="requests-heading">
+        <div class="card-heading"><div><h2 id="requests-heading">Requests to review</h2><p id="requests-sub">Click a request to read it, see what the board already decided there, and choose what happens next.</p></div></div>
+        <div class="request-list" id="request-list"></div>
+      </section>
+      <div class="side-column">
+        <section class="card topics-card" id="topics" aria-labelledby="topics-heading">
+          <div class="card-heading"><div><h2 id="topics-heading">What residents are talking about</h2><p>Most common topics in the last 30 days</p></div></div>
+          <ol class="topics">
+            <li><span>1</span><div><strong>Street safety</strong><div class="bar"><i style="width:100%"></i></div></div><b>42</b></li>
+            <li><span>2</span><div><strong>Outdoor dining</strong><div class="bar"><i style="width:76%"></i></div></div><b>32</b></li>
+            <li><span>3</span><div><strong>Bars and late-night noise</strong><div class="bar"><i style="width:55%"></i></div></div><b>23</b></li>
+            <li><span>4</span><div><strong>Parks</strong><div class="bar"><i style="width:38%"></i></div></div><b>16</b></li>
+          </ol>
+          <p class="topic-note"><span aria-hidden="true">↑</span> Street safety concerns increased this month.</p>
+        </section>
+      </div>
+    </div>
+    <section class="card resolved-card" id="resolved"><div class="resolved-icon">✓</div><div><h2 id="resolved-heading">24 requests resolved this month</h2><p>Average response time: 3 days</p></div><button id="view-resolved" aria-controls="request-list">View resolved requests</button></section>
+  </main>
+
+  <div class="dialog-backdrop" id="dialog" hidden>
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <button class="close-button" aria-label="Close">×</button><p class="section-label">RESIDENT REQUEST</p><h2 id="dialog-title"></h2><div id="dialog-body"></div>
+      <label for="next-step">Next step</label><select id="next-step"></select>
+      <p class="step-hint" id="step-hint"></p>
+      <button class="primary-button save-button">Save next step</button>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/dashboard/app.js"></script>
+</body>
+</html>

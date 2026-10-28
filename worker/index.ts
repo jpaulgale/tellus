@@ -26,6 +26,7 @@ type FormSpec = { name: string; agency: string; complaint_type: string; route: s
 interface Resolution {
   id: string; meeting_date: string; meeting_iso: string; committee: string; title: string; address: string | null; legal_name: string; dba: string;
   license_type: string; outcome: string; vote: string; bbl: string | null; lat: number | null; lng: number | null; stipulations: string[]; source: string;
+  text?: string | null; // the full item from the minutes, added by withText
 }
 const toResolution = (row: any): Resolution => ({ ...row, stipulations: JSON.parse(row.stipulations) });
 const newestFirst = (a: Resolution, b: Resolution) => b.meeting_iso.localeCompare(a.meeting_iso);
@@ -52,7 +53,8 @@ async function placesFor(db: D1Database, geos: (Geo | undefined)[]): Promise<Pla
   asked.forEach(([g, i], k) => {
     const rows = (results[k].results as any[]).map(toResolution);
     // A corner is not a licensed premises, so nothing is "at" it.
-    const at = g.corner ? [] : rows.filter((r) => (g.bbl && r.bbl === g.bbl) || (placed(r) && metres(r, g) <= AT_M)).sort(newestFirst).slice(0, 2);
+    // Up to four: one meeting can hold two items for a place (a Landmarks review and its recommendation to DOT).
+    const at = g.corner ? [] : rows.filter((r) => (g.bbl && r.bbl === g.bbl) || (placed(r) && metres(r, g) <= AT_M)).sort(newestFirst).slice(0, 4);
     const near = rows.filter((r) => placed(r) && !at.some((x) => x.id === r.id) && metres(r, g) <= NEAR_M)
       .sort((a, b) => metres(a as any, g) - metres(b as any, g)).slice(0, 8);
     out[i] = { at, near };
@@ -215,7 +217,7 @@ const BORO_MAIL: Record<string, string> = { "1": "mn", "2": "bx", "3": "bk", "4"
 function boardFor(cd: string): Board {
   const boro = cd[0], n = Number(cd.slice(1));
   return {
-    cd, key: `CB:${cd}`, short: `CB${n}`, name: `${BORO_NAME[boro]} Community Board ${n}`,
+    cd, key: `CB:${cd}`, short: `CB${n}`, name: `CB${n} ${BORO_NAME[boro]}`,
     outside: cd !== BOARD_CD,
     // City-issued board mailboxes follow this pattern (mn03@cb.nyc.gov).
     email: `${BORO_MAIL[boro]}${String(n).padStart(2, "0")}@cb.nyc.gov`,
@@ -265,18 +267,39 @@ function pickQuestion(premise: string, label: string, hint: string, cands: Candi
  * Jev questions about the board's record for a place: which agreed stipulation the complaint is
  * about (for resolutions at the address), and whether each decision nearby is relevant.
  */
+// Where a decision's title ends and its clauses start: "Whereas", a lettered or numbered clause, "Therefore…".
+const CLAUSE = /^\s*(Whereas|WHEREAS|[A-Z]\.\s|[ivx]+\.\s|\d{1,2}\.\s|Therefore|THEREFORE|Be it|BE IT|Now,? therefore)/;
+
+/** A decision's findings and conditions, one per clause, with the PDF's line wraps joined (as public/js/record.js shows them). */
+function clausesOf(text: string | null | undefined): string[] {
+  const lines = (text ?? "").replace(/\n\s*Vote:[\s\S]*$/, "").split("\n");
+  const start = lines.findIndex((l, i) => i > 0 && CLAUSE.test(l));
+  if (start < 0) return [];
+  const out: string[] = [];
+  for (const l of lines.slice(start).map((x) => x.trim()).filter(Boolean)) {
+    if (CLAUSE.test(l) || !out.length) out.push(l);
+    else out[out.length - 1] += ` ${l}`;
+  }
+  return out.filter((c) => !/^whereas:?$/i.test(c));
+}
+
+/** What a complaint can be about in a decision: a license's stipulations, else the decision's own clauses. */
+const termsOf = (r: Resolution) => (r.stipulations.length ? r.stipulations : clausesOf(r.text));
+
 function recordQuestions(past: Resolution[], nearby: Resolution[]) {
   const questions: Record<string, unknown> = {};
-  // Which of that business's agreed stipulations is this complaint about? (the highlighted quote)
+  // Which stipulation, or which condition of the board's approval, is this complaint about? (the highlighted quote)
   for (const r of past) {
-    if (!r.stipulations.length) continue;
+    const terms = termsOf(r);
+    if (!terms.length) continue;
     questions[`resolution.${r.id}`] = {
       type: "choice",
-      instructions: {
-        context: `In ${r.meeting_date} the business at ${r.address} agreed to these stipulations with Community Board 2.`,
-        question: "Which one stipulation does the resident's complaint in `message` most directly say is being broken?",
-      },
-      criteria: { ...Object.fromEntries(r.stipulations.map((s) => [s, null])), [NONE]: "The complaint is not about any of these stipulations." },
+      instructions: r.stipulations.length
+        ? { context: `In ${r.meeting_date} the business at ${r.address} agreed to these stipulations with Community Board 2.`,
+            question: "Which one stipulation does the resident's complaint in `message` most directly say is being broken?" }
+        : { context: `On ${r.meeting_date} Community Board 2 decided on: ${r.title}. These are the findings and conditions of its decision.`,
+            question: "Which one of these findings or conditions does the resident's complaint in `message` most directly say is not being met or is no longer true?" },
+      criteria: { ...Object.fromEntries(terms.map((s) => [s, null])), [NONE]: "The complaint is not about any of these." },
     };
   }
 
@@ -318,7 +341,8 @@ function buildPlan(message: string, locations: Candidate[], past: Resolution[], 
 
   // A resident says "the bar downstairs"; the board's own record knows which business that is.
   for (const r of past) {
-    const name = r.dba || r.legal_name;
+    // Only licenses name a business; the parser's "legal name" for other items can be a title fragment.
+    const name = /^SLA|Cannabis/.test(r.committee) ? r.dba || r.legal_name : "";
     if (name && !found.proper_names.some((c) => c.key === name)) {
       found.proper_names.push({ key: name, value: name, note: `the ${r.license_type || "business"} at ${r.address}, reviewed by Community Board 2 on ${r.meeting_date}` });
     }
@@ -398,10 +422,20 @@ function presentResolution(r: Resolution, answers: Record<string, Answer>) {
         .filter(([k, p]) => k !== NONE && p >= 0.15)
         .sort((x, y) => y[1] - x[1])
         .slice(0, 2)
-        .map(([text, p]) => ({ index: r.stipulations.indexOf(text), text, p }))
+        .map(([text, p]) => ({ index: termsOf(r).indexOf(text), text, p }))
     : [];
   const { bbl, lat, lng, ...rest } = r;
   return { ...rest, relevant };
+}
+
+/** Adds each decision's full text from the minutes (the "Whereas" clauses and the resolution), for the "Read the decision" disclosure. */
+async function withText(db: D1Database, items: { id: string; text?: string | null }[]) {
+  const ids = [...new Set(items.map((x) => x.id))];
+  if (!ids.length) return;
+  const { results } = await db.prepare(`SELECT id, body FROM resolutions_fts WHERE id IN (${ids.map((_, i) => `?${i + 1}`).join(", ")})`)
+    .bind(...ids).all<{ id: string; body: string }>();
+  const body = new Map(results.map((r) => [r.id, r.body]));
+  for (const x of items) x.text = body.get(x.id) ?? null;
 }
 
 /** Past decisions (nearby, or found by search) that Jev judged relevant to the complaint, most relevant first. */
@@ -440,7 +474,7 @@ function decode(answers: Record<string, Answer>, cands: Record<string, Candidate
   }
   // The committee that reviewed this business before is the one that should hear about it again.
   const chosen = loc?.selected != null ? loc.options[loc.selected] : null;
-  const prior = chosen?.resolutions?.[0];
+  const prior = chosen?.resolutions?.find((r: any) => r.relevant.length) ?? chosen?.resolutions?.[0]; // the decision the complaint is about, else the newest
   const committee = forms.find((f) => f.key === "cb2")?.fields.find((f) => f.id === "committee");
   // "The bar downstairs" is the business the board has on record at that address.
   if (prior) {
@@ -493,6 +527,7 @@ async function route(request: Request, env: Env): Promise<Response> {
   const past = unique(placeList.flatMap((p) => p.at)).slice(0, 3);
   const nearby = unique(locations.filter((l) => !l.geo?.board?.outside).flatMap((l) => places.get(l.key)!.near)).slice(0, 10);
   const found = searched.filter((r) => !past.some((x) => x.id === r.id));
+  await withText(env.DB, placeList.flatMap((p) => p.at)); // the clauses a complaint can be about
   const { questions, cands, boardRecord } = buildPlan(message, locations, past, unique([...nearby, ...found]));
   const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
   let jev;
@@ -502,6 +537,8 @@ async function route(request: Request, env: Env): Promise<Response> {
     return json({ error: (e as Error).message }, 502);
   }
   const out = decode(jev.answers, cands, places, found);
+  const locOptions = out.general.find((f) => f.id === "location")?.options ?? [];
+  await withText(env.DB, [...out.related, ...locOptions.flatMap((o: any) => [...(o.resolutions ?? []), ...(o.related ?? [])])]);
   const latencyMs = Date.now() - t0;
   const top = out.forms[0];
   console.log({ event: "route", form: top.key, p: top.probability, emergency: out.emergency, latencyMs, lookupMs, questions: Object.keys(questions).length });
@@ -520,6 +557,7 @@ async function record(request: Request, env: Env): Promise<Response> {
   const [[place], searched] = await Promise.all([placesFor(env.DB, [geo]), message.length >= 8 ? searchMinutes(env.DB, message) : []]);
   const past = place.at, found = searched.filter((r) => !past.some((x) => x.id === r.id));
   const candidates = unique([...(geo.board?.outside ? [] : place.near), ...found]);
+  await withText(env.DB, past); // the clauses a complaint can be about
   const questions = recordQuestions(past, candidates);
   let answers: Record<string, Answer> = {};
   if (message.length >= 8 && Object.keys(questions).length) {
@@ -529,7 +567,9 @@ async function record(request: Request, env: Env): Promise<Response> {
       console.warn({ event: "record", error: (e as Error).message });
     }
   }
-  return json({ resolutions: past.map((r) => presentResolution(r, answers)), related: relatedFrom(candidates, geo, answers) });
+  const out = { resolutions: past.map((r) => presentResolution(r, answers)), related: relatedFrom(candidates, geo, answers) };
+  await withText(env.DB, [...out.resolutions, ...out.related]);
+  return json(out);
 }
 
 async function autocomplete(url: URL): Promise<Response> {

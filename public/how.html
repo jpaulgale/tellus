@@ -175,6 +175,9 @@ section.tint { background: var(--card); }
 .dest.city { background: var(--amber-soft); color: var(--amber-ink); }
 .dest.other { background: var(--green-soft); color: #064d0e; }
 .note { color: var(--muted); font-size: 14px; margin-top: 14px; }
+.dashlink { margin-top: 14px; }
+.dashlink a { display: inline-block; padding: 9px 18px; border: 1.5px solid var(--blue); border-radius: 99px; color: var(--blue); font-weight: 600; text-decoration: none; }
+.dashlink a:hover { background: var(--blue); color: #fff; }
 
 /* the board's record */
 .record { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 28px; align-items: start; }
@@ -267,7 +270,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
     <div>
       <h1>Say it in your own words. <em>We'll find the form and fill it.</em></h1>
       <p class="lede">No more hunting for the right place to be heard. Tell Us picks the form from what you write, whether that's the community board's own intake or a city form like a 311 service request, fills in what it can, asks for anything required it couldn't, and sends it where it needs to go.</p>
-      <div class="ctas"><a class="btn" href="/">Try it</a><a class="btn alt" href="#how">See how it works</a></div>
+      <div class="ctas"><a class="btn" href="/">Try it</a><a class="btn alt" href="/dashboard/">See the board's view</a></div>
     </div>
 
     <div class="demo" aria-label="Example: a parent's request for a crossing guard fills in an editable form with a map">
@@ -275,7 +278,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
       <div class="box" id="box">I'm a parent. Kids cross at Hudson St and Christopher St every morning on the way to school, and cars don't slow down. Could we get a crossing guard there at drop-off?</div>
       <div class="form reveal" id="form">
         <div class="form-h"><span class="k">Form</span>
-          <span class="sel"><select id="fForm" aria-label="Form"><option>Crossing Guard Request</option><option>Traffic Signal Out (311)</option><option>Community Board 2</option></select></span>
+          <span class="sel"><select id="fForm" aria-label="Form"><option>Crossing Guard Request</option><option>Traffic Signal Out (311)</option><option>CB2 Manhattan</option></select></span>
         </div>
         <div class="fld got"><label for="fReq">Request <i>*</i></label><span class="tag got" data-t>From your message</span>
           <span class="sel"><select id="fReq"><option>New crossing guard at this corner</option><option>Crossing guard is absent</option><option>Need a guard for more hours</option></select></span></div>
@@ -294,7 +297,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
         <div class="fld"><label for="fEmail">Email</label><span class="tag opt" data-t>Optional</span>
           <input id="fEmail" type="email" placeholder="So the board can reply" /></div>
       </div>
-      <div class="ready reveal" id="ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span id="readyMsg"><b>Ready to send to Community Board 2 and NYPD,</b> which assigns crossing guards.</span><small>Every answer stays editable. Try the dropdowns or drag the dot.</small></span></div>
+      <div class="ready reveal" id="ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span id="readyMsg"><b>Ready to send to CB2 Manhattan and NYPD,</b> which assigns crossing guards.</span><small>Every answer stays editable. Try the dropdowns or drag the dot.</small></span></div>
     </div>
   </div>
 </div>
@@ -337,7 +340,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
       </div>
       <div class="rescard">
         <span class="eb">On the board's record</span>
-        <div class="t">Community Board 2 reviewed this address on May 21, 2026.</div>
+        <div class="t">CB2 Manhattan reviewed this address on May 21, 2026.</div>
         <div class="sub">SLA Licensing committee · Caudalie · Wine, beer and cider license · Vote: Unanimous, 29 Board Members in favor</div>
         <blockquote><mark>Will play recorded background music at conversational levels only, inclusive of any private parties or events. No music will be audible in any adjacent residences at any time.</mark><small>Stipulation 6 of 15 the business agreed to</small></blockquote>
         <div class="foot"><span>✓ Attached to your form submission</span><a href="https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/06/05-May-2026-Full-Board-Minutes.pdf" target="_blank" rel="noopener">Read the minutes ↗</a></div>
@@ -353,7 +356,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
       <p>The structured nature of each submission allows Tell Us to surface any related existing resolutions and meeting minutes from each community board's recent history, giving boards a searchable dashboard for spotting issues worth raising in the next meeting.</p>
     </div>
     <div class="dash" role="img" aria-label="Mockup of a board dashboard: resident input grouped into issues, filtered by committee, with past decisions alongside">
-      <div class="dash-top"><b>Manhattan CB2 <span>Dashboard</span></b><div class="dash-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search issues, businesses, addresses…</span></div></div>
+      <div class="dash-top"><b>CB2 Manhattan <span>Dashboard</span></b><div class="dash-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search issues, businesses, addresses…</span></div></div>
       <div class="dash-bar">
         <div class="dash-tabs"><span class="on">New issues<i>14</i></span><span>For next meeting<i>3</i></span><span>Sent to agencies<i>22</i></span></div>
         <div class="dash-chips"><span class="on">All committees</span><span>SLA – 1</span><span>Parks &amp; Waterfront</span><span>Schools &amp; Education</span></div>
@@ -378,6 +381,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
       </div>
     </div>
     <p class="note">A mockup of what a board's view could look like. Every row is built from forms residents confirmed, so it can be grouped, searched and filtered.</p>
+    <p class="dashlink"><a href="/dashboard/">See what it looks like for community board members <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
@@ -391,7 +395,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
       <div class="route">
         <div class="q"><small>A resident writes</small>“Washington Square Park should stay open later at night in the summer.”</div>
         <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        <div class="dest board"><span class="kind">The board's form</span><b>Community Board 2, Parks &amp; Waterfront committee</b><span>Offers to add a name and email so the board can reply.</span></div>
+        <div class="dest board"><span class="kind">The board's form</span><b>CB2 Manhattan, Parks &amp; Waterfront committee</b><span>Offers to add a name and email so the board can reply.</span></div>
       </div>
       <div class="route">
         <div class="q"><small>A resident writes</small>“Our recycling at 75 Bedford St wasn't picked up on Tuesday.”</div>
@@ -401,7 +405,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
       <div class="route">
         <div class="q"><small>A resident writes</small>“The street light in front of 300 W 23rd St has been out for a week.”</div>
         <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        <div class="dest other"><span class="kind">A different board</span><b>Manhattan Community Board 4, and DOT</b><span>The address is outside CB2, so it goes to the board that covers it.</span></div>
+        <div class="dest other"><span class="kind">A different board</span><b>CB4 Manhattan, and DOT</b><span>The address is outside CB2, so it goes to the board that covers it.</span></div>
       </div>
     </div>
   </div>
@@ -436,10 +440,10 @@ footer .credit { color: var(--ink); font-size: 14px; }
 <div class="wrap">
   <div class="closing">
     <h2>Try it yourself.</h2>
-    <p>Write something about a block in Manhattan's CB2 and watch the form fill itself in.</p>
+    <p>Write something about a block in CB2 Manhattan and watch the form fill itself in.</p>
     <a class="btn" href="/">Try Tell Us</a>
   </div>
-  <footer><p class="credit">Built at the <a href="https://statecapacityecosystem.com/" target="_blank" rel="noopener">State Capacity Hackathon</a> by <a href="https://paulgale.dev" target="_blank" rel="noopener">Paul Gale</a>, <a href="https://www.linkedin.com/in/lmszu/" target="_blank" rel="noopener">Luke Szumyckyj</a> and <a href="https://www.linkedin.com/in/sam-ginsberg" target="_blank" rel="noopener">Sam Ginsberg</a>.</p><p>Tell Us is a prototype that uses public information about Manhattan Community Board 2. It is not an official NYC or CB2 service.</p></footer>
+  <footer><p class="credit">Built at the <a href="https://statecapacityecosystem.com/" target="_blank" rel="noopener">State Capacity Hackathon</a> by <a href="https://paulgale.dev" target="_blank" rel="noopener">Paul Gale</a>, <a href="https://www.linkedin.com/in/lmszu/" target="_blank" rel="noopener">Luke Szumyckyj</a> and <a href="https://www.linkedin.com/in/sam-ginsberg" target="_blank" rel="noopener">Sam Ginsberg</a>.</p><p>Tell Us is a prototype that uses public information about CB2 Manhattan. It is not an official NYC or CB2 service.</p></footer>
 </div>
 
 <script type="module">
@@ -492,8 +496,8 @@ function status() {
   const left = asks.filter((id) => !$(id).value.trim()).length;
   $("ready").classList.toggle("todo", left > 0);
   $("readyMsg").innerHTML = left
-    ? `<b>${left === 1 ? "One field" : `${left} fields`} left</b> before we can send to Community Board 2 and NYPD, which assigns crossing guards.`
-    : "<b>Ready to send to Community Board 2 and NYPD,</b> which assigns crossing guards.";
+    ? `<b>${left === 1 ? "One field" : `${left} fields`} left</b> before we can send to CB2 Manhattan and NYPD, which assigns crossing guards.`
+    : "<b>Ready to send to CB2 Manhattan and NYPD,</b> which assigns crossing guards.";
 }
 for (const id of asks) $(id).addEventListener("input", (e) => {
   const v = e.target.value;

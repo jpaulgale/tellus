@@ -28,7 +28,7 @@ export interface Board {
   cd: string; // "103"
   key: string; // destination key, "CB:103"
   short: string; // "CB3"
-  name: string; // "Manhattan Community Board 3"
+  name: string; // "CB3 Manhattan"
   outside: boolean; // not this app's board (CB2)
   email: string;
   url: string;

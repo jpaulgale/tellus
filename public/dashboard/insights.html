@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Trends in resident requests for CB2 Manhattan" />
+  <title>Trends · CB2 Manhattan · Tell Us</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dashboard/styles.css" />
+</head>
+<body>
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="board-brand" href="/dashboard/"><img class="board-logo" src="/favicon.svg" alt="" /><div><strong><span class="hl">Tell</span> Us</strong><span>CB2 Manhattan · Board view</span></div></a>
+    <nav>
+      <a class="nav-link" href="/dashboard/"><span aria-hidden="true">⌂</span> Home</a>
+      <a class="nav-link" href="/dashboard/#requests"><span aria-hidden="true">▤</span> Resident requests <b>5</b></a>
+      <a class="nav-link" href="/dashboard/#topics"><span aria-hidden="true">●</span> Common topics</a>
+      <a class="nav-link active" href="insights.html"><span aria-hidden="true">↗</span> Trends</a>
+    </nav>
+  </aside>
+
+  <main class="insights-page">
+    <header>
+      <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div><p>CB2 Manhattan</p><h1>Trends</h1></div>
+    </header>
+    <div class="notice ai-notice" role="note"><strong>Demo:</strong> These findings are based on sample requests. Read the original submissions before making a decision.</div>
+
+    <section class="insights-intro">
+      <div><h2>What residents are telling us</h2><p>Analysis of 126 requests received in the last 30 days.</p></div>
+      <div class="updated"><strong>Last updated</strong><span>Today at 9:15 AM</span></div>
+    </section>
+
+    <section class="ai-brief card" aria-labelledby="brief-heading">
+      <div class="ai-icon" aria-hidden="true">↗</div>
+      <div><p class="section-label">THIS MONTH</p><h2 id="brief-heading">Street safety is the clearest concern right now.</h2><p>Requests about speeding near schools and difficult crossings increased sharply in the past two weeks. Outdoor dining concerns are also common, especially on MacDougal and Bleecker Streets.</p></div>
+      <a href="#evidence">See the supporting requests ↓</a>
+    </section>
+
+    <section class="sentiment-section" aria-labelledby="sentiment-heading">
+      <div class="section-title"><div><h2 id="sentiment-heading">How residents are feeling</h2><p>Based on the wording of each request.</p></div><button class="info-button" id="method-button">How is this calculated?</button></div>
+      <div class="sentiment-grid">
+        <button class="sentiment-card negative active" data-sentiment="negative"><span class="sentiment-count">51</span><strong>Concerned</strong><p>Requests expressing frustration or urgency</p></button>
+        <button class="sentiment-card neutral" data-sentiment="neutral"><span class="sentiment-count">48</span><strong>Neutral</strong><p>Questions, updates, and information requests</p></button>
+        <button class="sentiment-card positive" data-sentiment="positive"><span class="sentiment-count">27</span><strong>Positive</strong><p>Thanks, praise, and constructive feedback</p></button>
+      </div>
+      <div class="sentiment-detail" id="sentiment-detail" aria-live="polite"></div>
+    </section>
+
+    <div class="insights-grid">
+      <section class="card trend-card" aria-labelledby="trend-heading">
+        <div class="card-heading"><div><p class="section-label">TREND DETECTED</p><h2 id="trend-heading">More street safety requests near schools</h2></div><span class="trend-pill">↑ 48%</span></div>
+        <div class="trend-visual" role="img" aria-label="Street safety mentions increased from 17 to 42 over the last four weeks"><div class="week"><i style="height:32%"></i><span>Sep 8</span></div><div class="week"><i style="height:46%"></i><span>Sep 15</span></div><div class="week"><i style="height:64%"></i><span>Sep 22</span></div><div class="week current"><i style="height:100%"></i><span>Sep 29</span></div></div>
+        <p class="trend-caption"><strong>What stands out:</strong> 31 of 42 street safety requests mention school arrival, dismissal, or children crossing the street.</p>
+      </section>
+
+      <section class="card action-card" aria-labelledby="action-heading">
+        <p class="section-label">SUGGESTED NEXT STEP</p><h2 id="action-heading">Consider adding this to the Transportation Committee agenda</h2>
+        <p>There are enough similar requests to discuss school-zone crossings as one issue, rather than responding to each request separately.</p>
+        <button class="primary-button" id="agenda-button">Add to committee agenda</button>
+        <button class="text-button" id="dismiss-button">Not now</button>
+      </section>
+    </div>
+
+    <section class="card evidence-card" id="evidence" aria-labelledby="evidence-heading">
+      <div class="card-heading"><div><h2 id="evidence-heading">The requests behind this</h2><p>In residents’ own words, so you can check the summary.</p></div></div>
+      <div class="evidence-list">
+        <article><span class="quote-mark">“</span><div><p>Cars are speeding through the intersection right as children are walking to P.S. 41. It feels dangerous every morning.</p><footer>Street safety · Greenwich Village · 4 days ago</footer></div></article>
+        <article><span class="quote-mark">“</span><div><p>Could the board look into a safer crossing on Sixth Avenue near the school? The signal timing is too short for families.</p><footer>Street safety · West Village · 6 days ago</footer></div></article>
+        <article><span class="quote-mark">“</span><div><p>We need something to slow cars down on West 11th. Drivers are not stopping for people in the crosswalk.</p><footer>Street safety · Greenwich Village · 8 days ago</footer></div></article>
+      </div>
+      <button class="secondary-button" id="all-evidence">Show 28 more related requests</button>
+    </section>
+
+    <section class="card transparency-card"><div class="transparency-icon">i</div><div><h2>About these trends</h2><p>Tell Us groups similar requests and summarizes patterns. It does not make decisions, prioritize residents, or send responses. Board members should always read the original request before taking action.</p></div><a href="#" id="learn-more">Learn more about how it works</a></section>
+  </main>
+  <div class="dialog-backdrop" id="method-dialog" hidden><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="method-title"><button class="close-button" aria-label="Close">×</button><p class="section-label">HOW TRENDS ARE FOUND</p><h2 id="method-title">A simple explanation</h2><div id="dialog-body"><p>Tell Us reads the words in each request, groups similar concerns, and sorts the tone into concerned, neutral, or positive.</p><p>It doesn’t know who wrote a request, and it doesn’t decide what the board should do. Board members review every result.</p></div><button class="primary-button close-method">Close</button></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/dashboard/insights.js"></script>
+</body>
+</html>

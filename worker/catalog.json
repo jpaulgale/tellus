@@ -375,7 +375,7 @@
    ]
   },
   "cb2": {
-   "name": "Community Board 2",
+   "name": "CB2 Manhattan",
    "agency": "CB2",
    "complaint_type": "Community Board Issue",
    "route": "A neighborhood issue for the community board to discuss or weigh in on: a pattern at a bar or business and its liquor license, a street redesign, development, landmarks, parks policy, schools, or a problem the city keeps failing to fix.",
@@ -457,7 +457,7 @@
    "email": null
   },
   "CB2": {
-   "label": "Community Board 2 office",
+   "label": "CB2 Manhattan office",
    "url": "https://cbmanhattan.cityofnewyork.us/cb2/",
    "email": "info@manhattancb2.org"
   },

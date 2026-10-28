@@ -1,0 +1,285 @@
+[
+ {
+  "id": "ps41",
+  "title": "Cars speeding near P.S. 41 on West 11th Street",
+  "message": "Cars speed through the intersection by P.S. 41 on West 11th Street during school drop-off and pickup. We need a crossing guard, clearer signs, or a speed camera.",
+  "school": "P.S. 41 Greenwich Village School",
+  "hours_ago": 216,
+  "urgent": true,
+  "form": {
+   "key": "crossing_guard",
+   "name": "Crossing Guard Request",
+   "agency": "NYPD"
+  },
+  "committee": {
+   "name": "Traffic & Transportation",
+   "p": 1,
+   "why": "Streets, bike lanes, crosswalks, traffic signals, bus routes, parking, speeding, truck traffic, Citi Bike, pedestrian safety."
+  },
+  "address": "116 WEST 11 STREET, Manhattan",
+  "geo": {
+   "lat": 40.735536,
+   "lng": -73.99926,
+   "zip": "10011",
+   "bbl": "1006060049"
+  },
+  "resolutions": [],
+  "related": [
+   {
+    "id": "2026-03-050",
+    "meeting_date": "March 19, 2026",
+    "committee": "Traffic & Transportation",
+    "title": "Resolution in Support of Applying Sammy’s Law to Manhattan Community Board 2 District and the Entire Congestion Pricing Zone",
+    "address": null,
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/04/DRAFT-03-March-2026-Full-Board-Minutes-MND-edits-1-1.pdf",
+    "metres": null,
+    "text": "Resolution in Support of Applying Sammy’s Law to\nManhattan Community Board 2 District and the Entire Congestion Pricing Zone\n\nWhereas:\n\n1. Sammy’s Law, enacted in 2024, granted New York City the authority to reduce speed\nlimits to 20 mph on individual streets and within defined geographic zones, following\nnotice and a 60-day advisory comment period to community boards; 16\n2. It has been proven that lower speeds, specifically speeds set at 20 mph radically improve\nthe odds that a pedestrian hit by a car will survive. According to the US Dept. of\nTransportation, every 1 mph reduction in speed results in 5% reduction in crashes. 17 At\nlower speeds, drivers have more time to react, stopping distances are shorter, therefore\nsurvivability in a crash increases dramatically. Lower speeds also dramatically increase a\ndriver’s field of vision;\n3. In Manhattan Community Board 2 (CB2) alone, in 2025, there were 945 crashes resulting\nin 462 injuries (171 cyclists, 110 pedestrians, 172 motorists, 9 unknown) and 2 deaths;\n4. CB2 is a dense neighborhood with high pedestrian counts. In particular, Greenwich\nVillage, SoHo and the Meatpacking District attract a large number of daily visitors;\n5. So far, implementation of Sammy's Law has been slow and piecemeal and in CB2 only\none small area in the West Village has been designated a slow zone;\n6. Automated speed camera enforcement only issues a ticket for speeds exceeding 10 mph\nover the speed limit. Therefore, in a 20-mph zone, cameras would not trigger until a\nvehicle is traveling 31 mph; and,\n7. CB2 believes that applying Sammy’s Law to the entire congestion pricing zone would\nprovide the clearest boundary for drivers who are generally aware when they are crossing\ninto and out of the congestion pricing zone.\n8. The city recently pledged to implement a 15-mph speed limit at all applicable school\nstreets.\n\nTherefore it is resolved that Manhattan Community Board 2 requests that NYC Department of\nTransportation:\n\n1. Begins the notice process to designate the entire Community Board 2 district a slow zone\nat 20 mph, except for school streets which will be set at 15 mph, and provides CB2 with a\n\n\n\nhttps://www.nyc.gov/html/dot/html/pr2024/sammys-law-enactment.shtml\nhttps://highways.dot.gov/sites/fhwa.dot.gov/files/Safe_System_Approach_for_Speed_Management.pdf\n\ntimeline for implementation, including the time needed to update signal timing to create a\n“green wave” at 20 mph; and,\n2. Furthermore, to decrease driver confusion, designate the entire congestion pricing zone as\na slow zone with 20 mph speed limits.\n\nVote: Unanimous, 33 Board Members in favor."
+   }
+  ]
+ },
+ {
+  "id": "caudalie",
+  "title": "Late-night music at Caudalie",
+  "message": "Caudalie on 130 Greene St plays music past midnight every weekend. I can hear the bass in my apartment upstairs. I want the board to hold them to their license conditions.",
+  "hours_ago": 192,
+  "urgent": true,
+  "form": {
+   "key": "cb2",
+   "name": "CB2 Manhattan",
+   "agency": "CB2"
+  },
+  "committee": {
+   "name": "SLA – 1",
+   "why": "It reviewed this address on May 21, 2026."
+  },
+  "address": "130 GREENE STREET, Manhattan",
+  "geo": {
+   "lat": 40.725279,
+   "lng": -73.998803,
+   "zip": "10012",
+   "bbl": "1005137501"
+  },
+  "resolutions": [
+   {
+    "id": "2026-05-008",
+    "meeting_date": "May 21, 2026",
+    "meeting_iso": "2026-05-21",
+    "committee": "SLA – 1",
+    "title": "Caudalie USA Inc dba Caudalie 130 Greene St 10012 (WBC–Tavern) (previously unlicensed)",
+    "address": "130 Greene St",
+    "legal_name": "Caudalie USA Inc",
+    "dba": "Caudalie",
+    "license_type": "WBC–Tavern",
+    "outcome": "deny-unless (stipulations)",
+    "vote": "Unanimous, 29 Board Members in favor.",
+    "stipulations": [
+     "Will be advertised and operated as an upscale spa with food service.",
+     "The hours of operation will be 10 AM to 7 PM Sundays through Saturdays (7 days a week) under normal operations and will close no later than 9 PM during private events. All patrons will be cleared and no patrons will remain after stated closing time.",
+     "Will not operate as a Lounge, Tavern or Sports Bar or allow any portion of premises to be operated in that manner.",
+     "Will have not more than six private events per year.",
+     "Will not operate a backyard garden or any other outdoor area for commercial purposes including any sidewalk café and/or roadbed seating.",
+     "Will play recorded background music at conversational levels only, inclusive of any private parties or events. No music will be audible in any adjacent residences at any time.",
+     "Will not have televisions.",
+     "Will close all doors and windows at all times, allowing only for patron ingress and egress.",
+     "Will not install or have French doors, operable windows or open facade",
+     "Will not make changes to the existing façade except to change signage or awning.",
+     "Will comply with NYC Department of Buildings Regulations and keep current at all times required Permits and Certificates.",
+     "Will not have unlimited drink or unlimited food and drink specials. Will not have “boozy brunches.” No pitchers of beer.",
+     "Will not have: dancing, DJs, live music, promoted events, any event where cover fee is charged, scheduled performances, velvet ropes or metal barricades or security personnel/doorman.",
+     "Will not add more principals as presented to CB2M with greater than 20% share of business prior to submission of original application to the NYSLA.",
+     "Will appear before CB2M prior to submitting any changes to any stipulation agreed to herein."
+    ],
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/06/05-May-2026-Full-Board-Minutes.pdf",
+    "text": "1. Caudalie USA Inc dba Caudalie 130 Greene St 10012 (WBC–Tavern) (previously\nunlicensed)\n\ni. Whereas, the Applicant and the Applicant’s representative appeared before Community\nBoard 2, Manhattan’s (CB2M) SLA Licensing Committee #1 to present an application to the\nNYS Liquor Authority (NYSLA) for a Tavern Wine license to operate an upscale spa with\nfood service in the first floor and cellar of a six (6)-story mixed-use building (c. 1889) on\nGreene Street between Prince and Washington Streets (Block #513/Lot #7501), the building\nbeing located within NYC LPC’s designated SoHo-Cast Iron Historic District and NYC’s\nSpecial SoHo-NoHo Mixed Use District; and\n\nii. Whereas, the premises is approximately 2,875 sq. ft, the first floor premises is approximately\n1,700 sq. ft. and is connected to the 1,175 sq. ft. cellar via an internal staircase; there will be\n3 tables and 9 seats on the first floor and 5 tables and 11 seats in the cellar with no stand up\nbars on either floor, the majority of the premises being used as treatment rooms, the Certificate\nof Occupancy dated September 24, 1981 showing a legal occupancy of 12 persons on the first\nfloor and boiler room and storage in the cellar with zero occupancy; the premises has one (1)\ndoor which will serve as patron ingress and egress and two patron (2) bathrooms; the store\nfront infill being fixed without operable doors or windows that open out to the street; there is\nno outdoor seating included with the application and no plans to have outdoor seating in the\nfuture; and\n\niii. Whereas, the proposed hours of operation will be from 10 AM to 7 PM Sundays through\nSaturdays (7 days a week) with the exception of private events, of which there will be not\nmore than six (6), which may end not later than 9 PM; music will be quiet background only\nconsisting of music from iPod/CDs/streaming services; there will be no dancing, no DJs, no\nlive music, no promoted events, no scheduled performances or cover fees, no velvet ropes, no\nmovable barriers and no security or doormen; and\n\niv. Whereas, the premises, which has never previously been licensed for the service of alcohol,\nmost recently operated as a retail clothing store and from approximately 2009 to 2016 as an\nAlessi retail store; and\n\nv. Whereas, there already are a significant number of licensed establishments in both CB2M\nand in the immediate area, there being 31 active licensed premises and an additional 4\npending licenses within 750 feet of the premises proposed to be licensed according to LAMP,\nthis application being for the service of Beer and Wine only and thus not subject to the 500\nFoot Rule; the method of operation and hours being reasonable, the Applicant having operated\nanother spa in CB2 under the same DBA since 2019 without any known issues; and\n\nvi. Whereas, the Applicant has executed and has had notarized a Stipulations Agreement with\nCB2M that they agreed to submit to the NYSLA and agreed would be attached and\nincorporated into the “method of operation” of the new Tavern Wine license, with those\nstipulations as follows:\n\n1. Will be advertised and operated as an upscale spa with food service.\n2. The hours of operation will be 10 AM to 7 PM Sundays through Saturdays (7 days a\nweek) under normal operations and will close no later than 9 PM during private events.\nAll patrons will be cleared and no patrons will remain after stated closing time.\n3. Will not operate as a Lounge, Tavern or Sports Bar or allow any portion of premises to\nbe operated in that manner.\n4. Will have not more than six private events per year.\n5. Will not operate a backyard garden or any other outdoor area for commercial purposes\nincluding any sidewalk café and/or roadbed seating.\n6. Will play recorded background music at conversational levels only, inclusive of any\nprivate parties or events. No music will be audible in any adjacent residences at any time.\n7. Will not have televisions.\n8. Will close all doors and windows at all times, allowing only for patron ingress and egress.\n9. Will not install or have French doors, operable windows or open facade\n10. Will not make changes to the existing façade except to change signage or awning.\n11. Will comply with NYC Department of Buildings Regulations and keep current at all\ntimes required Permits and Certificates.\n12. Will not have unlimited drink or unlimited food and drink specials. Will not have “boozy\nbrunches.” No pitchers of beer.\n13. Will not have: dancing, DJs, live music, promoted events, any event where cover fee is\ncharged, scheduled performances, velvet ropes or metal barricades or security\npersonnel/doorman.\n14. Will not add more principals as presented to CB2M with greater than 20% share of\nbusiness prior to submission of original application to the NYSLA.\n15. Will appear before CB2M prior to submitting any changes to any stipulation agreed to\nherein.\n\n\n\n\nTHEREFORE BE IT RESOLVED that CB2M recommends denial of the application for a new\nTavern Wine license for Caudalie USA Inc dba Caudalie 130 Greene St 10012 unless the\nstatements the Applicant has presented are accurate and complete, and that those conditions and\nstipulations agreed to by the Applicant above are incorporated into the “method of operation” of\nthe NYSLA liquor license.\n\nVote: Unanimous, 29 Boar Members in favor.",
+    "relevant": [
+     {
+      "index": 5,
+      "text": "Will play recorded background music at conversational levels only, inclusive of any private parties or events. No music will be audible in any adjacent residences at any time.",
+      "p": 0.97
+     }
+    ]
+   }
+  ],
+  "related": []
+ },
+ {
+  "id": "church-bins",
+  "title": "Garbage bins taking over the sidewalk at 232 W 11th St",
+  "message": "The garbage bins in front of the church at 232 W 11th St take up half the sidewalk and smell in the summer. Was this enclosure ever approved?",
+  "hours_ago": 26,
+  "form": {
+   "key": "cb2",
+   "name": "CB2 Manhattan",
+   "agency": "CB2"
+  },
+  "committee": {
+   "name": "Landmarks & Public Aesthetics",
+   "why": "It reviewed this address on February 20, 2025."
+  },
+  "address": "232 WEST 11 STREET, Manhattan",
+  "geo": {
+   "lat": 40.736075,
+   "lng": -74.002749,
+   "zip": "10014",
+   "bbl": "1006130017"
+  },
+  "resolutions": [
+   {
+    "id": "2025-02-008",
+    "meeting_date": "February 20, 2025",
+    "meeting_iso": "2025-02-20",
+    "committee": "Landmarks & Public Aesthetics",
+    "title": "*232 W. 11th St. – Application is to place a garbage bin enclosure in front of the church building.",
+    "address": "232 W. 11th St.",
+    "legal_name": "",
+    "dba": "",
+    "license_type": "",
+    "outcome": "approve/support",
+    "vote": "Unanimous, with 35 Board members in favor.",
+    "stipulations": [],
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/02-February-2025-Full-Board-Minutes-MND-review_EGS-edits-Final.pdf",
+    "text": "6. *232 W. 11th St. – Application is to place a garbage bin enclosure in front of the church\nbuilding.\nA. The church seeks to place two metal bins required by the Department of Sanitation on the\nsidewalk in front of the building; and\nB. The bins are a model specified by the Department and are to be bolted into the sidewalk; and\nC. The width of two bins side by side is 9’ and can only be placed in a location that overlaps a\nwindow and disturbs the symmetry of the building; and\nD. The applicant agreed to place one bin in front of the wall on either side of the windows and in\nthis position will preserve the perfect symmetry of the building; and\nE. This placement, in front of the wall and not fastened to the facade preserves the historic\nbuilding and permits adequate remaining sidewalk width.\nTherefore be it resolved that CB2, Man. recommends approval of this application to place two\nbins on the sidewalk before the building, provided that they are separately placed, as described\nabove\nVote: Unanimous, with 35 Board members in favor.",
+    "relevant": [
+     {
+      "index": 4,
+      "text": "E. This placement, in front of the wall and not fastened to the facade preserves the historic building and permits adequate remaining sidewalk width.",
+      "p": 0.85
+     }
+    ]
+   },
+   {
+    "id": "2025-02-009",
+    "meeting_date": "February 20, 2025",
+    "meeting_iso": "2025-02-20",
+    "committee": "Landmarks & Public Aesthetics",
+    "title": "A recommendation to the Department of Transportation for Revocable Consent 232 W. 11th St. – Application is to place a garbage bin enclosure in front of the church building.",
+    "address": "232 W. 11th St.",
+    "legal_name": "A recommendation to the Department of Transportation for Revocable Consent",
+    "dba": "",
+    "license_type": "",
+    "outcome": "other",
+    "vote": "Unanimous, with 35 Board members in favor.",
+    "stipulations": [],
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/02-February-2025-Full-Board-Minutes-MND-review_EGS-edits-Final.pdf",
+    "text": "A recommendation to the Department of Transportation for Revocable Consent\n232 W. 11th St. – Application is to place a garbage bin enclosure in front of the church\nbuilding.\nWhereas:\nA. The church is required by the Sanitation Department to have specific containers for the storage\nof garbage awaiting pickup; and\nB. The applicant represented that there being no areaway or alleyway on the property that the\nonly practical solution is storage of the required rigid containers; and\nC. The two containers, one on each side of the windows will be bolted into the sidewalk as close\nas practical to the facade and leave ample clearance for pedestrians: now\nTherefore be it resolved that CB2, Man. recommends to the Department of Transportation that\nrevocable consent be given for two sidewalk containers near the facade of the building.\nVote: Unanimous, with 35 Board members in favor.",
+    "relevant": [
+     {
+      "index": 2,
+      "text": "C. The two containers, one on each side of the windows will be bolted into the sidewalk as close as practical to the facade and leave ample clearance for pedestrians: now",
+      "p": 0.99
+     }
+    ]
+   },
+   {
+    "id": "2026-01-008",
+    "meeting_date": "January 22, 2026",
+    "meeting_iso": "2026-01-22",
+    "committee": "Landmarks & Public Aesthetics",
+    "title": "230 West 11th St. (Greenwich Village Historic District) – Application is to construct a rooftop addition; modify the existing rear addition and rear facade window openings; and replace windows at the front facade.",
+    "address": "230 West 11th St.",
+    "legal_name": "",
+    "dba": "",
+    "license_type": "Greenwich Village Historic District",
+    "outcome": "approve/support",
+    "vote": "Unanimous, 37 Board Members in favor.",
+    "stipulations": [],
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/FINAL-01-January-2026-Full-Board-Minutes-MND.pdf",
+    "text": "7. 230 West 11th St. (Greenwich Village Historic District) – Application is to construct a\nrooftop addition; modify the existing rear addition and rear facade window\nopenings; and replace windows at the front facade.\n\nWhereas:\n\n\n\nA. The existing front windows will be replaced, and all facade restoration will be\nconsidered by the Commission staff; and\n\nB. There is an existing rear extension which is to be made two feet deeper, and the windows\nare to be modified to full length windows /doors at the basement and parlor floors and a\nfull height two story window with a curved top to the east; and\n\n\nC. The second floor is full length windows and the top floor the windows are modified to\nreplicate the corresponding historic design windows at the front, and the rear parapet is\nbeing modified and the cornice reconstructed; and\n\nD. The rear facade masonry will be repaired with matching bricks; and\n\nE. The proposed stone clad penthouse is typical in size and design to approved row house\npenthouses in the district and is very minimally visible from a far distance; and\n\nF. The rear cornice will be modified, and safety railings will be installed; and\n\nG. Excavation of the cellar to accommodate a swimming Pool is to be considered by LPC\nStaff. The construction will be with benching and minimal underpinning at the rear\nwithin the property and not adjacent to neighboring properties and the applicant gave\nassurances that all regulations and construction methods to protect the integrity of the\nsubject property and neighboring properties would be followed. Now\n\nTherefore be it resolved that CB2, Man. recommends:\n\nA. Approval of the rear extension and the windows for the extension and the modification\nof the of the top floor windows; and\n\nB. Approval of the stone clad penthouse and modifications to the rear façade cornice\n\nVote: Unanimous, 37 Board Members in favor.",
+    "relevant": []
+   }
+  ],
+  "related": []
+ },
+ {
+  "id": "carmine",
+  "title": "Outdoor dining shed blocking the sidewalk",
+  "message": "The dining shed at Bleecker St and Carmine St blocks most of the sidewalk. Strollers and wheelchairs have to go into the street. The board should not approve it again.",
+  "hours_ago": 20,
+  "form": {
+   "key": "cb2",
+   "name": "CB2 Manhattan",
+   "agency": "CB2"
+  },
+  "committee": {
+   "name": "Outdoor Dining Working Group",
+   "p": 0.98,
+   "why": "Roadway dining sheds and sidewalk dining setups: obstruction, rats, noise, placement."
+  },
+  "address": "Corner of Bleecker St & Carmine St",
+  "geo": {
+   "lat": 40.730333,
+   "lng": -74.00247,
+   "zip": "10014",
+   "corner": true
+  },
+  "resolutions": [],
+  "related": [
+   {
+    "id": "2025-05-077",
+    "meeting_date": "May 22, 2025",
+    "committee": "SLA – 2",
+    "title": "Jankman LLC dba Jacks Wife Freda 50 Carmine St 10014 (Alteration: Dining Out NYC– Sidewalk) (Lic. ID # 0340-22-104395)",
+    "address": "50 Carmine St",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/DRAFT-05-May-2025-Full-Board-Minutes-Final.pdf",
+    "metres": 105,
+    "text": "21. Jankman LLC dba Jacks Wife Freda 50 Carmine St 10014 (Alteration: Dining Out NYC–\nSidewalk) (Lic. ID # 0340-22-104395)\n\ni. Whereas, the Applicant will submit an application to the NYS Liquor Authority for an\nAlteration to the existing On-Premises Liquor License to add sidewalk café seating consisting\nof 10 seats in total as part of the Dining Out NYC program to their licensed premises; and\n\nii. Whereas, the Applicant has executed and has had notarized a supplementary Stipulations\nAgreement with CB2, Man. to address the new Dining Out NYC program seating that they\nagreed to submit to the NYSLA and agreed would be attached and incorporated into the\nexisting method of operation of their On-Premises Liquor License in addition to any other\nexisting stipulations, with those supplementary stipulations as follows:\n\n9. Dining Out NYC sidewalk seating will substantially conform to submitted diagram and\nhave no more than 5 tables and 10 seats on Carmine Street between Bedford and Bleecker\nStreets.\n10. Hours of operation for the Dining Out NYC sidewalk will be from 10 AM to 10 PM\nSundays and 8 AM to 10 PM Mondays through Saturdays. No patrons will remain\noutside after stated closing time and all tables and chairs will be secured.\n11. All outdoor patrons will be seated and any waitstaff will serve only from within the\nDining Out NYC sidewalk café boundaries. There will be no waitstaff service over any\nbarriers or outside the areas indicated as patron areas on submitted diagrams.\n12. There will be no host stands, bus or service stations on the sidewalk or in the roadbed.\n13. There will be no exterior music, speakers, TVs or any other sound reproduction devices\nin the outdoor area.\n14. There will be no speakers or TVs inside the premises pointing outside through any doors\nor windows.\n15. Will follow all rules and regulations of the Dining Out NYC program including clear\npath requirements.\n16. All other stipulations agreed to and executed with Community Board 2, Man. remain in\neffect.\n\nTHEREFORE BE IT RESOLVED that CB2, Man. recommends denial of the application for\nthe alteration to the existing On-Premises Liquor License for Jankman LLC dba Jacks Wife\nFreda 50 Carmine St 10014, to add seating under the Dining Out NYC program unless the\nstatements the Applicant has presented are accurate and complete, and that those conditions and\nsupplementary stipulations agreed to by the Applicant above are added to the existing NYSLA\nLiquor License.\n\nVote: Unanimous, 43 Board Members in favor."
+   },
+   {
+    "id": "2025-05-080",
+    "meeting_date": "May 22, 2025",
+    "committee": "SLA – 2",
+    "title": "Grey Dog Carmine Inc dba The Grey Dog 49 Carmine St 10014 (OP–Restaurant) (Alteration: Dining Out NYC–Sidewalk, Roadway) (Lic. ID # 0340-23-139261)",
+    "address": "49 Carmine St",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/DRAFT-05-May-2025-Full-Board-Minutes-Final.pdf",
+    "metres": 128,
+    "text": "24. Grey Dog Carmine Inc dba The Grey Dog 49 Carmine St 10014 (OP–Restaurant)\n(Alteration: Dining Out NYC–Sidewalk, Roadway) (Lic. ID # 0340-23-139261)\n\ni. Whereas, the Applicant will submit an application to the NYS Liquor Authority for an\nAlteration to the existing On-Premises Liquor License to add a sidewalk café and roadway\ncafé consisting of 12 seats in total as part of the Dining Out NYC program to their licensed\npremises; and\n\nii. Whereas, the Applicant has executed and has had notarized a supplementary Stipulations\nAgreement with CB2, Man. to address the new Dining Out NYC program seating that they\nagreed to submit to the NYSLA and agreed would be attached and incorporated into the\nexisting method of operation of their On-Premises Liquor License in addition to any other\nexisting stipulations, with those supplementary stipulations as follows:\n\n1. Dining Out NYC sidewalk café will substantially conform to submitted diagram and have\nno more than 2 tables and 4 seats on Carmine Street between Bedford and Bleecker\nStreets.\n2. Dining Out NYC roadway seating will substantially conform to submitted diagram and\nhave no more than 4 tables and 8 seats on Bedford Street between Carmine and Leroy\nStreets.\n3. Hours of operation for the Dining Out NYC sidewalk café and roadway seating will be\nfrom 10 AM to 10 PM Sundays and 8 AM to 10 PM Mondays through Saturdays. No\npatrons will remain outside after stated closing time and all tables and chairs will be\nsecured.\n4. All outdoor patrons will be seated and any waitstaff will serve only from within the\nDining Out NYC sidewalk café and/or Dining Out NYC roadway café boundaries. There\nwill be no waitstaff service over any barriers or outside the areas indicated as patron areas\non submitted diagrams.\n5. There will be no host stands, bus or service stations on the sidewalk or in the roadbed.\n6. There will be no exterior music, speakers, TVs or any other sound reproduction devices\nin the outdoor area.\n\n\n\n7. There will be no speakers or TVs inside the premises pointing outside through any doors\nor windows.\n8. Will follow all rules and regulations of the Dining Out NYC program including clear\npath requirements.\n9. All other stipulations agreed to and executed with Community Board 2, Man. remain in\neffect.\n\nTHEREFORE BE IT RESOLVED that CB2, Man. recommends denial of the application for\nthe alteration to the existing On-Premises Liquor License for Grey Dog Carmine Inc dba The\nGrey Dog 49 Carmine St 10014 to add seating under the Dining Out NYC program unless the\nstatements the Applicant has presented are accurate and complete, and that those conditions and\nsupplementary stipulations agreed to by the Applicant above are added to the existing NYSLA\nLiquor License.\n\nVote: Unanimous, 43 Board Members in favor."
+   },
+   {
+    "id": "2026-07-031",
+    "meeting_date": "July 23, 2026",
+    "committee": "SLA – 2",
+    "title": "Miznon Carmine St LLC dba Miznon 38 Carmine St 10014 aka 38-40 Carmine St (WBC–Restaurant)",
+    "address": "38 Carmine St",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "metres": 73,
+    "text": "3. Miznon Carmine St LLC dba Miznon 38 Carmine St 10014 aka 38-40 Carmine St\n(WBC–Restaurant)\n\ni. Whereas, the Applicant and the Applicant’s attorney appeared before Community Board 2,\nManhattan’s (CB2M) SLA Licensing Committee #2 to present an application to the NYS\nLiquor Authority (NYSLA) for a Restaurant Wine license to operate a family friendly\nMediterranean restaurant on the ground floor of a four (4)-story mixed-use building (c. 1826)\non the Carmine Street between Bleecker and Bedford Streets (Block #576/Lot #10), the\nbuilding falling withing NYC LPC’s designated Greenwich Village Historic District\nExtension II; and\n\nii. Whereas, the premises proposed to be licensed is approximately 3,300 sq. ft with 1,600 sq.\nft. on the ground floor and 1,700 sq. ft in the cellar, the cellar being accessed via an interior\nstaircase with no patron use of the cellar; there will be 9 tables with 26 seats and one (1) bar\nwith six (6) seats for a total seated patron occupancy of 32 persons, there is a Letter of No\nObjection dated 9/23/2020 for eating and drinking on the first floor for 74 persons; there are\ntwo (2) doors which will serve as patron ingress and egress and two (2) patron bathroom; the\nstore front infill being fixed without operable doors or windows that open out to the street;\nthere is an existing rear yard that does not have either a Certificate of Occupancy or Letter of\nNo Objection for eating and drinking, the Applicant not including the rear yard as part of the\ninstant application and agreeing to no use of the rear yard now or in the future, there is no\nseating on the sidewalk or roadway included with the application; and\n\niii. Whereas, the proposed hours of operation will be from 11 AM to 12 AM Sundays through\nSaturdays (7 days a week); music will be quiet background only consisting of music from\niPod/CDs/streaming services; there are no televisions; there will be no dancing, no DJs, no\nlive music, no promoted events, no scheduled performances or cover fees, no velvet ropes, no\nmovable barriers and no security or doormen; and\n\niv. Whereas, the premises to be licensed was mostly recently operated and licensed with a\nTavern Wine licensed under the name Cato Wine LLC dba Temperance Wine Bar (Lic ID\n#0267-23-132986) from approximately 2020 to 2025 and had a Restaurant Wine licensed\nunder Bada Garden LLC dba Carma from approximately 2014 to 2019; and\n\nv. Whereas, there already are a number of licensed establishments in the immediate area, there\nbeing 109 active licensed premises and an additional 10 pending licenses within 750 feet of\nthe premises proposed to be licensed according to LAMP, this application being for the\nservice of Beer and Wine only and thus not subject to the 500 Foot Rule; the method of\n\n\n\n\noperation and hours being reasonable, the Applicant having other licensed premises within\nCB2M; and\n\nvi. Whereas, the Applicant has executed and has had notarized a Stipulations Agreement with\nCB2M that they agreed to submit to the NYSLA and agreed would be attached and\nincorporated into the “method of operation” of the new Restaurant Wine license, with those\nstipulations as follows:\n\n16. Will be advertised and operated as full-service family friendly restaurant serving\nMediterranean cuisine with the kitchen open and full menu items available until closing\nevery night.\n17. The hours of operation will be 11 AM to 12 AM Sundays through Saturdays (7 days a\nweek). All patrons will be cleared and no patrons will remain after stated closing time.\n18. Will not operate as a Lounge, Tavern or Sports Bar or allow any portion of premises to\nbe operated in that manner.\n19. There is no backyard garden or any other outdoor area for commercial purposes including\nany sidewalk café and/or roadway café seating included with this application.\n20. Any future outdoor seating will follow all rules and regulations of the Dining Out NYC\nprogram and will close not later than 10 PM every day. No patrons will remain after\nstated closing hour. No exterior music, speakers or TVs.\n21. There will be no use of the rear yard now or in the future.\n22. Will play recorded background music at conversational levels only, inclusive of any\nprivate parties or events. No music will be audible in any adjacent residences at any time.\n23. Will not have televisions.\n24. Will close all doors and windows at all times, allowing only for patron ingress and egress.\n25. Will not install or have French doors, operable windows or open facade\n26. Will not make changes to the existing façade except to change signage or awning and\nwill comply with all NYC Landmark Preservation Commission regulations.\n27. Will comply with NYC Department of Buildings Regulations and keep current at all\ntimes required Permits and Certificates.\n28. Will not have unlimited drink or unlimited food and drink specials. Will not have “boozy\nbrunches.” No pitchers of beer.\n29. Will not have: dancing, DJs, live music, promoted events, any event where cover fee is\ncharged, scheduled performances, velvet ropes or metal barricades or security\npersonnel/doorman.\n30. Will not add more principals as presented to CB2M with greater than 20% share of\nbusiness prior to submission of original application to the NYSLA.\n31. Will appear before CB2M prior to submitting any changes to any stipulation agreed to\nherein.\n\nTHEREFORE BE IT RESOLVED that CB2M recommends denial of the application for a new\nRestaurant Wine license for Miznon Carmine St LLC dba Miznon 38 Carmine St 10014 aka\n38-40 Carmine St unless the statements the Applicant has presented are accurate and complete,\n\n\n\n\n\nand that those conditions and stipulations agreed to by the Applicant above are incorporated into\nthe “method of operation” of the NYSLA liquor license.\n\nVote: Unanimous, 36 Board Members in favor."
+   }
+  ]
+ },
+ {
+  "id": "wsp",
+  "title": "Keep Washington Square Park open later in summer",
+  "message": "Washington Square Park should stay open later at night in the summer. It's the only green space to sit in in the neighborhood.",
+  "hours_ago": 3,
+  "form": {
+   "key": "cb2",
+   "name": "CB2 Manhattan",
+   "agency": "CB2"
+  },
+  "committee": {
+   "name": "Parks & Waterfront",
+   "p": 1,
+   "why": "Parks, playgrounds, Washington Square Park, Hudson River Park, trees and green space, park hours and conduct."
+  },
+  "address": "WASHINGTON SQUARE PARK, Manhattan",
+  "geo": {
+   "lat": 40.73089,
+   "lng": -73.9976,
+   "zip": "10011",
+   "bbl": "1005490001"
+  },
+  "resolutions": [],
+  "related": [
+   {
+    "id": "2026-05-007",
+    "meeting_date": "May 21, 2026",
+    "committee": "Parks & Waterfront",
+    "title": "Resolution Requesting the Department of Parks and Recreation (DPR) to produce and present alternatives to the French barricade system currently employed to enforce closure of Washington Square Park",
+    "address": null,
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/06/05-May-2026-Full-Board-Minutes.pdf",
+    "metres": null,
+    "text": "Resolution Requesting the Department of Parks and Recreation (DPR) to produce and\npresent alternatives to the French barricade system currently employed to enforce closure\nof\nWashington Square Park\n\nWHEREAS:\n\n1. The policy of New York City’s Department of Parks and Recreation (DPR) is to close\nWashington Square Park (WSP) each night, as is done with all NYC parks.\n2. DPR’s policy is to close WSP nightly from midnight to 6am (which is posted on signs\nthroughout the park) to enhance public safety, protect park infrastructure and manage\nresources.\n3. Trespassers are subject to a police summons and fine, though patrols typically just notify\nthose found in the park after hours that the park is closed and ask them to leave.\n4. DPR currently communicates and enforces closure at WSP by means of temporary French\nbarricades, typically locking them together and to the fences. At the Arch entrance on the\nnorth side of the park where Fifth Avenue terminates, the opening in the fence, which is 100’\nfeet wide, is secured by placing a long, interlocked chain of French barricades.\n5. The French barricades are not in keeping with the architectural design of WSP, which lies\nwithin a historic district. The French barricades are often haphazardly stored when the park is\nopen. They are leaned against the fences next to the entrances during the day, they require\npersonnel to install and remove them each evening and morning and, when the park is closed,\nthey are easily dislodged and toppled when placed in the entrances, providing deniability to\nafter-hours users who claim to be unaware that the park is not open.\n6. Gates were an original element of the city-approved renovation design of WSP in 2005, but\nthe renovation project itself was seen as controversial by some members of the community\nand DPR removed the gates from the final project as a means of compromise.\n7. The temporary French barriers have been used to close the park for decades, despite\nrecognition during the redesign of the park, presented and approved in 2005, that there\nshould be landmarks approved design features incorporated into the park design. Therefore,\nthe temporary nature of the French barricades allows landmark’s regulations to be\ncircumvented.\n\n8. The question of installing a more permanent method for closure of WSP has been discussed\nat CB2 meetings several times since the park was renovated and new fences were installed, in\nor around 2005.\n9. This committee has discussed the need to enforce park rules, including nightly park closure\nand means of doing so, in resolutions passed by the full CB2 board in July 2014 and April\n2016.\n10. In the wake of the Covid era, WSP has experienced waves of disruptive behavior after hours\nthat have generated complaints to various City agencies, including the NYPD 6th precinct’s\nCommunity Council and the Village Interagency Task Force. This behavior includes after-\nhours parties, music, fireworks, sleeping overnight, and drug use, including drug overdoses,\nall of which have led to renewed interest in the question of whether the existing chained\ntemporary French barricade closures are effective both at safeguarding the public’s\nenjoyment of the park and in communicating that the park is closed.\n11. At the same time, Washington Square Park is renowned for its open atmosphere, lively\ngroups of people, music and artistic expression, and there is concern that gates would\ninterfere with this “vibe” that is so much a part of the character of the Park and the culture of\nGreenwich Village.\n12. The redesign of WSP in 2005 was meant to further integrate the park into the neighborhood,\nand hence the fence around the park’s perimeter was intentionally kept of low height. That\nopen feeling should be reflected in the design of any park closure, with the goal of clearly\nconveying when the park is closed and hindering entry without preventing it.\n13. Some members of our community believe that closing the park more efficiently, more\neffectively, and in a way that is aesthetically more in keeping with the design will not address\nthe broader issues and underlying causes that lead to drug use and homelessness.\n\n\nTHEREFORE BE IT RESOLVED THAT COMMUNITY BOARD 2, MANHATTAN\nREQUESTS THAT:\n\n1. DPR undertake the effort and expense to produce and present to the community alternatives\nto the temporary French barricade system that is currently employed to enforce closure of the\npark that align with the needs of DPR to operate and maintain Washington Square Park.\n2. These alternatives be sensitive to community concerns, which include safety, inclusivity,\nefficacy, budget, and aesthetics in a historic district.\n3. These alternatives run the gamut from simple chains with a “park closed” sign to more\nsubstantial and ornate gates that align with the historic design of the existing fence.\n4. In support of the need for more effective means of closing the park in the overnight hours,\nboth DPR and NYPD provide information and data that confirm the need for any form of\nblockade or obstruction at all to enforce closing hours as well as the manpower used to install\nand remove the French barricades each day and patrol the park each night because they are so\neasily and frequently dislodged.\n\n5. DPR provide cost estimates and potential funding sources for each of the proposed designs it\npresents.\n\nVote: Passed, 23 Board Members in favor, 6 against (K. Berger, A. Brenna, C. Dignes, M."
+   }
+  ]
+ }
+]

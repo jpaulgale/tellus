@@ -117,7 +117,7 @@ function renderBody(changed) {
     return;
   }
   if (res.none >= 0.5 && top.probability < 0.5) {
-    verdict.append(message("info", "i", "This doesn't look like something for a city agency or Community Board 2. Add more detail if it is, like what's broken and where."));
+    verdict.append(message("info", "i", "This doesn't look like something for a city agency or CB2 Manhattan. Add more detail if it is, like what's broken and where."));
     routed.hidden = true;
     return;
   }
@@ -273,7 +273,7 @@ async function voiceTool(name, args) {
   else if (f.kind === "committee") { v = closest(Object.keys(state.config.committees)); if (!v) return "no such committee"; }
   else if (f.kind === "location") {
     const [hit] = await api(`/api/geosearch?text=${encodeURIComponent(value)}`);
-    if (!hit) return "no address inside Community Board 2 matched that";
+    if (!hit) return "no address inside CB2 Manhattan matched that";
     v = { text: hit.value, label: hit.key, geo: hit.geo ?? null, license: null };
   }
   if (f.kind === "location") pickPlace(key, v, ctx); else ctx.set(key, v, true);

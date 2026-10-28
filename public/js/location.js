@@ -2,6 +2,7 @@
 // autocomplete, a Mapbox map with a pin, borough · ZIP · BBL, and a liquor-license card.
 
 import { h, esc, api } from "./util.js";
+import { normAddress, groupRecord, cardModel } from "./record.js";
 
 const MAPBOX_JS = "https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js";
 const MAPBOX_CSS = "https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css";
@@ -50,26 +51,34 @@ async function showMap(geo) {
 const sameAs = (v, o) => v && (v.text === o.value || v.label === o.label);
 const optValue = (o) => ({ text: o.value, label: o.label, geo: o.geo ?? null, license: o.license ?? null, resolutions: o.resolutions ?? [], related: o.related ?? [] });
 
+const outcome = (o) => (o ? h(`span.outcome.${o.key}`, o.label) : null);
+const marked = ({ text, flagged }) => (flagged ? h("mark", text) : text);
+
 /**
- * What Community Board 2 already decided about this address: the resolution, the stipulation the
- * complaint is about (highlighted), and a note that it rides along to the committee.
+ * What CB2 Manhattan already decided about this address at one meeting (see cardModel): the outcome,
+ * who acts on it, the condition the complaint bears on, and a note that it rides along to the committee.
+ * A neighbor's card starts collapsed to a line.
  */
-function resolutionCard(r, committee) {
-  const hits = r.relevant ?? [];
-  const who = [r.committee, r.dba || r.legal_name, r.license_type].filter(Boolean).join(" · ");
-  return h("div.rescard",
+function resolutionCard(m, committee) {
+  const body = h("div.rescard",
     h("p.rescard-eyebrow", "On the board's record"),
-    h("p.rescard-title", "Community Board 2 reviewed this address on ", h("b", r.meeting_date), "."),
-    h("p.rescard-sub", who, r.vote ? ` · Vote: ${r.vote}` : ""),
-    hits.map((s) => h("blockquote.resquote",
-      h("mark", s.text),
-      h("footer", `Stipulation ${s.index + 1} of ${r.stipulations.length} the business agreed to`))),
-    r.stipulations.length ? h("details.resall",
-      h("summary", `All ${r.stipulations.length} stipulations`),
-      h("ol", r.stipulations.map((t, i) => h("li", hits.some((s) => s.index === i) ? h("mark", t) : t)))) : null,
+    h("p.rescard-title", `CB2 Manhattan reviewed ${m.place} on `, h("b", m.date), "."),
+    h("p.rescard-path", outcome(m.outcome), " ", h("span", m.path, m.vote ? ` · ${m.vote}` : "")),
+    m.who.length ? h("p.rescard-who", h("b", "Recommended to: "), m.who.join(" · ")) : null,
+    m.business ? h("p.rescard-sub", m.business) : null,
+    m.what ? h("p.rescard-what", m.what) : null,
+    m.flags.length ? [h("p.resflag-lead", "Relevant condition"),
+      m.flags.map((f) => h("blockquote.resquote", h("mark", f.text), h("footer", f.from)))] : null,
+    m.stipulations.length ? h("details.resall",
+      h("summary", `All ${m.stipulations.length} stipulations`),
+      h("ol", m.stipulations.map((t) => h("li", marked(t))))) : null,
+    m.also.length ? h("ul.rescard-also", m.also.map((a) => h("li", h("b", "Also at this meeting: "), a.title, " ", outcome(a.outcome)))) : null,
+    m.decisions.length ? h("details.resall.decision", h("summary", m.decisions.length > 1 ? "Read the decisions" : "Read the decision"),
+      m.decisions.map((d) => [d.label ? h("p.decision-label", d.label) : null, d.paras.map((t) => h("p", marked(t)))])) : null,
     h("p.rescard-foot",
       h("span.attach", committee ? `Attached for the ${committee} committee's next meeting` : "Attached to your submission"),
-      h("a", { href: r.source, target: "_blank", rel: "noopener" }, "Read the minutes ↗")));
+      h("a", { href: m.source, target: "_blank", rel: "noopener" }, "Read the minutes ↗")));
+  return m.atHere ? body : h("details.resnear", h("summary", `Neighboring address: ${m.address} · ${m.date} `, outcome(m.outcome)), body);
 }
 
 /** Other decisions the board made that bear on this complaint: on the surrounding blocks, or found in the minutes by topic. */
@@ -155,10 +164,12 @@ export function renderLocation(field, key, ctx, id) {
     const l = v.license;
     card = h("div.bizcard", { html: `<b>${esc(titleCase(l.dba))}</b><span>NYS liquor license: ${esc(l.type)}, expires ${esc(l.expires)}</span>` });
   }
-  const past = (v?.resolutions ?? []).map((r) => resolutionCard(r, ctx.committeeFor?.()));
+  const here = normAddress(v?.geo?.name ?? v?.text);
+  const { groups, rest } = groupRecord(v?.resolutions ?? [], v?.geo ? v.related ?? [] : ctx.relatedFound(), here);
+  const past = groups.map((g) => resolutionCard(cardModel(g, here), ctx.committeeFor?.()));
   return h("div.loc", confirm,
     h("div.combo", h("div.ff-inputwrap", input), list), hint, outside,
-    altsEl, card, mapBox, mapHint, meta, past.length ? h("div.respast", past) : null, relatedMinutes(v?.geo ? v.related : ctx.relatedFound()));
+    altsEl, card, mapBox, mapHint, meta, past.length ? h("div.respast", past) : null, relatedMinutes(rest));
 }
 
 const titleCase = (s) => String(s || "").toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
