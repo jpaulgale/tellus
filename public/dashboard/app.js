@@ -20,7 +20,7 @@ let requests = [], committees = COMMITTEES, mapboxToken = "";
 
 function staticMap({ lat, lng }) {
   if (!mapboxToken) return "";
-  const src = `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-l+103fef(${lng},${lat})/${lng},${lat},15.6,0/640x240@2x?access_token=${mapboxToken}`;
+  const src = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-l+103fef(${lng},${lat})/${lng},${lat},15.6,0/640x240@2x?access_token=${mapboxToken}`;
   return `<img class="request-map" src="${src}" alt="Map of the address" loading="lazy" />`;
 }
 
@@ -166,7 +166,6 @@ document.querySelectorAll(".nav-link").forEach((link) => link.addEventListener("
 
 const now = new Date();
 document.querySelector("#today").textContent = now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
-document.querySelector("#greeting").textContent = now.getHours() < 12 ? "Good morning" : now.getHours() < 18 ? "Good afternoon" : "Good evening";
 
 (async () => {
   // The map token and committee list come from the app; the page still works without them.

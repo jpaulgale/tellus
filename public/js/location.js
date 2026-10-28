@@ -35,7 +35,7 @@ async function showMap(geo) {
   const at = geo ? [geo.lng, geo.lat] : CB2_CENTER;
   if (!map) {
     window.mapboxgl.accessToken = token;
-    map = new window.mapboxgl.Map({ container: mapBox, style: "mapbox://styles/mapbox/light-v11", center: at, zoom: geo ? 16 : 13.5, attributionControl: false, cooperativeGestures: true });
+    map = new window.mapboxgl.Map({ container: mapBox, style: "mapbox://styles/mapbox/streets-v12", center: at, zoom: geo ? 16 : 13.5, attributionControl: false, cooperativeGestures: true });
     map.addControl(new window.mapboxgl.AttributionControl({ compact: true }));
     marker = new window.mapboxgl.Marker({ color: "#103FEF", draggable: true });
     marker.on("dragend", () => { const p = marker.getLngLat(); onDot?.(p.lat, p.lng); });

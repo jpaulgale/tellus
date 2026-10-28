@@ -2,6 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tellus",
   "main": "worker/index.ts",
+  "routes": [{ "pattern": "tellus.paulgale.dev", "custom_domain": true }],
+  "workers_dev": true,
   "compatibility_date": "2026-09-01",
   "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
   "observability": { "enabled": true },
