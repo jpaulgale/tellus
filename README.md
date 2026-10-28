@@ -2,7 +2,7 @@
 
 Share feedback with your community board and city agencies: **https://tellus.paulgale.dev**
 
-Tell Us helps NYC residents be heard: say what's on your mind about your neighborhood, and it fills in the right 311 or community board form for you to review, with the board's past decisions at that address.
+Tell Us helps NYC residents be heard: say what's on your mind about your neighborhood, and it fills in the right 311 or community board form for you to review, along with any past board decisions relevant to your topic.
 
 The demo is set up for Manhattan Community Board 2. The 311 forms work citywide; another board needs only its committee list and its meeting minutes (see [Board minutes](#board-minutes)).
 
