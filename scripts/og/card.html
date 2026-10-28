@@ -37,8 +37,14 @@ h1 span { color: var(--blue); }
 .row .top { width: 112px; flex: none; font-size: 14px; font-weight: 600; color: var(--muted); line-height: 1.2; }
 .val { flex: 1; background: var(--blue-soft); color: var(--blue-dark); border-radius: 9px; padding: 7px 12px; font-size: 17px; font-weight: 500; white-space: nowrap; }
 .row:first-child .val { background: #fff; border: 1px solid var(--line); color: var(--ink); font-weight: 600; }
-.val.typed { background: #fff; border: 1.5px solid var(--line); color: var(--ink); }
-.val.empty { background: #fff; border: 1.5px dashed #E0A100; color: #6b4300; font-size: 15px; font-weight: 600; }
+.req { color: #C8102E; }
+.row .top small { display: block; margin-top: 2px; font-size: 12px; font-weight: 700; color: #8A5A00; }
+.val.input { display: flex; align-items: center; background: #FFF1D6; border: 1.5px solid #E0A100; color: #9A7A3C; font-weight: 400; }
+.val.input.typing { background: #fff; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); color: var(--ink); }
+.val.input.done { background: #fff; border-color: var(--line); color: var(--ink); }
+.val.input .caret { height: 19px; vertical-align: 0; }
+.val .cal { width: 17px; height: 17px; margin-left: auto; color: #8A5A00; }
+.val.typing .cal, .val.done .cal { color: var(--muted); }
 .send { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
 .btn { background: var(--blue); color: #fff; font-weight: 700; font-size: 17px; padding: 11px 20px; border-radius: 999px; }
 .sent { display: flex; align-items: center; gap: 8px; color: var(--green); font-weight: 700; font-size: 16px; }
@@ -76,14 +82,14 @@ h1 span { color: var(--blue); }
     <div class="row" data-at="3.5"><div class="top">Committee</div><div class="val">Street Activities &amp; Resiliency</div></div>
     <div class="row" data-at="3.8"><div class="top">Type of issue</div><div class="val">A proposal or application</div></div>
     <div class="row" data-at="4.1"><div class="top">Location</div><div class="val">Bedford St</div></div>
-    <div class="row" data-at="4.4"><div class="top">Your name</div><div class="val empty" id="name">Needed to send</div></div>
+    <div class="row" data-at="4.4"><div class="top">Date <span class="req">*</span><small>Required</small></div><div class="val input" id="date"><span id="date-text">mm/dd/yy</span><span class="caret" id="date-caret"></span><svg class="cal" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6h13M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
   </div>
   <div class="send" data-at="4.8"><div class="btn" id="btn">Review &amp; send</div><div class="sent" id="sent"><i>✓</i> Sent to CB2</div></div>
 </div>
 
 <script>
-const NAME = "Alex Rivera", NAME_START = 5.0, NAME_END = 5.6;
-const MESSAGE = "We'd love to hold a block party on Bedford St this June. How do we get it approved?";
+const DATE = "07/18/26", DATE_START = 5.0, DATE_END = 5.6;
+const MESSAGE = "We'd love to hold a block party on Bedford St this summer. How do we get it approved?";
 const TYPE_START = 0.4, TYPE_END = 2.4;
 const clamp = (x) => Math.max(0, Math.min(1, x));
 const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
@@ -100,10 +106,12 @@ window.frame = (t, still = false) => {
     el.style.opacity = p;
     el.style.transform = `translateY(${(1 - p) * 10}px)`;
   }
-  // The one required field it can't fill: the resident types their name before sending.
-  const name = document.getElementById("name"), k = Math.round(NAME.length * clamp((t - NAME_START) / (NAME_END - NAME_START)));
-  name.className = !still && k > 0 ? "val typed" : "val empty";
-  name.textContent = !still && k > 0 ? NAME.slice(0, k) : "Needed to send";
+  // "This summer" isn't a date, so the required Date field waits for the resident, who types one before sending.
+  const k = still ? 0 : Math.round(DATE.length * clamp((t - DATE_START) / (DATE_END - DATE_START)));
+  const typing = !still && t >= DATE_START - 0.25 && t < DATE_END + 0.3;
+  document.getElementById("date").className = "val input" + (typing ? " typing" : k === DATE.length ? " done" : "");
+  document.getElementById("date-text").textContent = k ? DATE.slice(0, k) : "mm/dd/yy";
+  document.getElementById("date-caret").style.display = typing ? "" : "none";
   const press = still ? 0 : clamp(1 - Math.abs(t - 6.1) / 0.15);
   document.getElementById("btn").style.transform = `scale(${1 - 0.06 * press})`;
   const s = still ? 0 : ease((t - 6.3) / 0.4);
