@@ -4,7 +4,7 @@ Share feedback with your community board and city agencies: **https://tellus.pau
 
 Tell Us helps NYC residents be heard: say what's on your mind about your neighborhood, and it fills in the right 311 or community board form for you to review, along with any past board decisions relevant to your topic.
 
-The demo is set up for Manhattan Community Board 2. The 311 forms work citywide; another board needs only its committee list and its meeting minutes (see [Board minutes](#board-minutes)).
+The demo is set up for Manhattan Community Board 2. The 311 forms work citywide. Another board needs its committee list, its minutes, and a parser for its minutes' format (see [docs/pilot.md](docs/pilot.md) for what a CB3 port takes).
 
 Built at the [State Capacity Hackathon](https://statecapacityecosystem.com/) by [Paul Gale](https://paulgale.dev), [Luke Szumyckyj](https://www.linkedin.com/in/lmszu/) and [Sam Ginsberg](https://www.linkedin.com/in/sam-ginsberg).
 
@@ -23,7 +23,11 @@ A hackathon demo, not an official NYC service and not affiliated with the City o
 - **Board record.** 1,226 resolutions parsed from CB2's Full Board minutes (Jan 2025 – Jul 2026), geocoded to tax lots and searchable with BM25 in D1. When a resident's address matches, the form shows the board's decision there and the condition their feedback relates to.
 - **Submissions** are stored in D1. NYC 311 has no public submission API, so sending is simulated (optionally forwarded to a webhook).
 
-The dashboard's requests are sample data (`public/dashboard/requests.json`), run through the real pipeline by `scripts/build_dashboard_data.py`.
+The dashboard's requests are real Public Session remarks from the minutes, run through the real pipeline by `scripts/build_dashboard_data.py`. The Trends page and the "Already reported to 311" card come from NYC Open Data's 311 requests (`scripts/fetch_311.py`, `scripts/build_trends.py`, `/api/history`).
+
+## How often it's right
+
+`scripts/eval_routing.py` runs 104 real CB2 311 requests (resident wording written blind, 18 in Spanish or Chinese) and 103 Public Session concerns (two independent raters, committee checked against the minutes) through `/api/route`. Results go to `public/eval.json` and show on `/how`; every case is in `data/eval/results.json`. The demo script and outside checks are in [docs/pilot.md](docs/pilot.md).
 
 ## Usage and performance
 
