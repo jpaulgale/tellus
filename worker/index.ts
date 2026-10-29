@@ -704,6 +704,29 @@ function voiceFields(): string[] {
   return [...seen.values()];
 }
 
+/**
+ * The link-preview video with byte ranges. Static assets answer a Range request with the whole file,
+ * and Apple's players (iMessage previews, Safari) won't play a video served that way.
+ */
+async function video(request: Request, env: Env): Promise<Response> {
+  const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
+  if (!asset.ok) return asset;
+  const body = new Uint8Array(await asset.arrayBuffer()), size = body.length;
+  const headers = new Headers({ "content-type": "video/mp4", "accept-ranges": "bytes", "cache-control": "public, max-age=3600" });
+  const m = /^bytes=(\d*)-(\d*)$/.exec(request.headers.get("range") ?? "");
+  if (!m || (!m[1] && !m[2])) {
+    headers.set("content-length", String(size));
+    return new Response(request.method === "HEAD" ? null : body, { headers });
+  }
+  // "bytes=a-b", "bytes=a-", or the last n bytes ("bytes=-n")
+  const start = m[1] ? +m[1] : Math.max(0, size - +m[2]);
+  const end = m[1] && m[2] ? Math.min(+m[2], size - 1) : size - 1;
+  if (start >= size || start > end) return new Response(null, { status: 416, headers: { "content-range": `bytes */${size}` } });
+  headers.set("content-range", `bytes ${start}-${end}/${size}`);
+  headers.set("content-length", String(end - start + 1));
+  return new Response(request.method === "HEAD" ? null : body.slice(start, end + 1), { status: 206, headers });
+}
+
 export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
@@ -723,6 +746,7 @@ export default {
       return json({ error: (e as Error).message }, 500);
     }
     if (url.pathname.startsWith("/api/")) return json({ error: "not found" }, 404);
+    if (url.pathname.endsWith(".mp4")) return await video(request, env);
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;
