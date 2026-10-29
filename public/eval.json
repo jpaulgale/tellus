@@ -35,8 +35,8 @@
  },
  "committee_public_session": {
   "n": 103,
-  "correct": 84,
-  "accuracy": 0.816
+  "correct": 83,
+  "accuracy": 0.806
  },
  "place_bbl_311": {
   "n": 28,
@@ -45,7 +45,7 @@
   "of": 79
  },
  "false_emergency": 6,
- "latency_ms_p50": 1145,
+ "latency_ms_p50": 1162,
  "confusion_311": [
   [
    "noise_commercial -> cb2",
@@ -78,15 +78,15 @@
  ],
  "confusion_committee": [
   [
+   "SLA – 1 -> Landmarks & Public Aesthetics",
+   3
+  ],
+  [
    "Human Services -> Land Use & Housing",
    2
   ],
   [
    "Landmarks & Public Aesthetics -> Executive Committee",
-   2
-  ],
-  [
-   "SLA – 1 -> Landmarks & Public Aesthetics",
    2
   ],
   [
@@ -137,5 +137,38 @@
    "Street Activities & Resiliency -> Traffic & Transportation",
    1
   ]
- ]
+ ],
+ "misses": [
+  {
+   "message": "Restaurant at 126 W 13th is banging and pounding late at night, sounds like they're moving stuff or doing work after closing. Every night this week until 1am.",
+   "expected": "311 Noise from a Business",
+   "got": "CB2 Manhattan"
+  },
+  {
+   "message": "El bar en el 7 de Cornelia pone la música altísima todas las noches hasta las 3 de la mañana. No podemos dormir.",
+   "expected": "311 Noise from a Business",
+   "got": "CB2 Manhattan"
+  },
+  {
+   "message": "The store at 67 E 11th St has a DJ or speakers blasting music, it's a Tuesday at 10pm, come on.",
+   "expected": "311 Noise from a Business",
+   "got": "CB2 Manhattan"
+  },
+  {
+   "message": "Restaurant downstairs at 181 Thompson keeps playing loud music past midnight. I've asked them nicely twice.",
+   "expected": "311 Noise from a Business",
+   "got": "CB2 Manhattan"
+  },
+  {
+   "message": "Fire egress: Concerns were repeated by many people about the safety of the building and the sufficiency of the fire egress, which was described by a neighbor as requiring residents in the rear of the ",
+   "expected": "Human Services",
+   "got": "Land Use & Housing"
+  },
+  {
+   "message": "What happened to the men who were tenants in the building? Rosenbaum responded that that relationship is between the tenants and the landlord, but it is his understanding that there are three tenants ",
+   "expected": "Human Services",
+   "got": "Land Use & Housing"
+  }
+ ],
+ "run": "2026-10-29"
 }

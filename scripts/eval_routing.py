@@ -12,7 +12,7 @@ Two kinds of cases, each labeled by someone other than the app:
     npx wrangler dev --port 8787   # in another shell
     uv run scripts/eval_routing.py [http://localhost:8787]
 
-Writes data/eval/results.json (every case with what the app answered) and data/eval/summary.json.
+Writes data/eval/results.json (every case with what the app answered) and public/eval.json (the scores, shown on /how).
 """
 
 import csv
@@ -22,6 +22,7 @@ import sys
 import urllib.request
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -56,6 +57,7 @@ def sla_from_minutes(text: str, rater: str) -> str:
     return {"SLA – 1": "SLA – 2", "SLA – 2": "SLA – 1"}[rater]
 
 
+NAMES = {k: f["name"] if k == "cb2" else f"311 {f['name']}" for k, f in json.loads((ROOT / "worker" / "catalog.json").read_text())["forms"].items()}
 RESOLUTIONS = json.loads((ROOT / "data" / "resolutions.json").read_text())
 
 
@@ -130,8 +132,14 @@ def main() -> None:
         "latency_ms_p50": sorted(r["ms"] for r in ok)[len(ok) // 2] if ok else None,
         "confusion_311": Counter(f"{r['expected_form'] or 'none of ours'} -> {r['form']}" for r in t311 if not r["form_ok"]).most_common(),
         "confusion_committee": Counter(f"{r['expected_committee']} -> {r['committee']}" for r in ps if not r["committee_ok"]).most_common(),
+        # A few real misses, for the /how page: what was written, what was right, what the app picked.
+        "misses": [{"message": r["message"], "expected": NAMES.get(r["expected_form"]) or f"not one of our 311 forms (311 filed it as {r['complaint_type']})", "got": NAMES[r["form"]]}
+                   for r in t311 if not r["form_ok"]][:4]
+                  + [{"message": r["message"][:200], "expected": r["expected_committee"], "got": r["committee"]} for r in ps if not r["committee_ok"]][:2],
+        "run": date.today().isoformat(),
     }
-    (EVAL / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n")
+    # The /how page shows this file; data/eval/results.json has every case.
+    (ROOT / "public" / "eval.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n")
     print(json.dumps(summary, ensure_ascii=False, indent=1))
 
 

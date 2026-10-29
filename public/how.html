@@ -208,6 +208,17 @@ section.tint { background: var(--card); }
 .rescard .foot a { color: var(--blue); font-weight: 600; }
 
 /* both sides */
+.acc { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.acc div { background: var(--white, #fff); border: 1px solid rgba(0,0,0,.08); border-radius: 12px; padding: 16px 18px; }
+.acc b { display: block; font-family: var(--display); font-size: 40px; line-height: 1; }
+.acc span { display: block; margin-top: 8px; font-weight: 600; }
+.acc small { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
+.misses { margin-top: 28px; }
+.misses h3 { font-size: 18px; }
+.misses ul { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 10px; }
+.misses li { border-left: 3px solid #d13; padding: 4px 0 4px 12px; }
+.misses q { display: block; }
+.misses small { color: var(--muted); font-size: 14px; }
 .both { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
 .side { background: var(--bg); border-radius: 24px; padding: 26px; }
 .side h3 { font-family: var(--display); font-weight: 600; font-size: 26px; margin-bottom: 12px; }
@@ -419,7 +430,18 @@ footer .credit { color: var(--ink); font-size: 14px; }
   </div>
 </section>
 
-<section class="tint both-sec">
+<section class="tint" id="accuracy">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>How often it's right, and where it isn't.</h2>
+      <p>We ran Tell Us on real CB2 cases it had never seen: requests residents filed with 311, where 311's own complaint type is the answer, and concerns residents raised at the Full Board, labeled by committee and checked against the board's minutes. <span id="acc-run"></span></p>
+    </div>
+    <div class="acc" id="acc"></div>
+    <div class="misses"><h3>Some it got wrong</h3><ul id="misses"></ul></div>
+  </div>
+</section>
+
+<section class="both-sec">
   <div class="wrap">
     <div class="sec-h"><h2>Better for both sides.</h2></div>
     <div class="both">
@@ -549,6 +571,23 @@ $("ready").classList.add("in");
 await wait(1800);
 await typeInput($("fName"), "Washington Irving", 22);
 await typeInput($("fEmail"), "washington.irving@new.york", 14);
+</script>
+<script type="module">
+// How often it's right: public/eval.json, written by scripts/eval_routing.py.
+fetch("/eval.json").then((r) => r.json()).then((e) => {
+  const pc = (x) => `${Math.round(100 * x.accuracy)}%`;
+  const card = (big, label, note) => `<div><b>${big}</b><span>${label}</span><small>${note}</small></div>`;
+  document.getElementById("acc").innerHTML = [
+    card(pc(e.form_311_covered), "Right 311 form", `${e.form_311_covered.correct} of ${e.form_311_covered.n} real 311 requests our forms cover, in English, Spanish and Chinese`),
+    card(pc(e.form_311_uncovered), "Didn't force a wrong form", `${e.form_311_uncovered.correct} of ${e.form_311_uncovered.n} requests none of our forms cover, like heat or homeless outreach`),
+    card(pc(e.form_public_session), "Sent to the board", `${e.form_public_session.correct} of ${e.form_public_session.n} concerns residents raised at the Full Board`),
+    card(pc(e.committee_public_session), "Right committee", `${e.committee_public_session.correct} of ${e.committee_public_session.n}; the board's minutes are the answer key`),
+    card(pc(e.place_bbl_311), "Right tax lot", `${e.place_bbl_311.correct} of ${e.place_bbl_311.n} places it filled in matched the lot 311 recorded. It filled one in for ${e.place_bbl_311.n} of the ${e.place_bbl_311.of} requests; for the rest the resident confirms the place.`),
+  ].join("");
+  document.getElementById("acc-run").textContent = `Model ${e.model}, run ${e.run}.`;
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  document.getElementById("misses").innerHTML = e.misses.map((m) => `<li><q>${esc(m.message)}</q><small>Right: ${esc(m.expected)} · Tell Us picked: ${esc(m.got)}</small></li>`).join("");
+});
 </script>
 <script type="module" src="/js/hit.js"></script>
 </body>
