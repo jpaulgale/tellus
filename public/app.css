@@ -93,8 +93,6 @@ textarea.composer-text { resize: vertical; }
 .fineprint { font-size: 12.5px; color: var(--muted); text-align: center; }
 .handoff { display: flex; flex-wrap: wrap; gap: 6px; }
 .sendresult { display: flex; flex-direction: column; gap: 8px; }
-.payloadbox summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--accent); padding: 4px 0; }
-.payload { margin-top: 6px; max-height: 320px; overflow: auto; font-size: 12px; line-height: 1.4; background: var(--gray-90); border-radius: 6px; padding: 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
 
 /* ---------- what you can ask: typewriter placeholder + topic marquee ---------- */
 .composer-field { position: relative; }
@@ -173,21 +171,32 @@ textarea.composer-text { resize: vertical; }
 /* "Not correct? Change where this goes." sits on its own line under the route */
 .routeline .linkbtn { display: block; padding: 4px 0 0; text-align: left; }
 
-/* ---------- composer: mic on the left, and the whole thing follows you down the form ---------- */
+/* ---------- composer: the box at full width, the mic under it, and the whole thing follows you down the form ---------- */
 .app { overflow-x: clip; }            /* clip (not hidden) so position: sticky works against the page */
 .composer { position: sticky; top: 0; z-index: 20; background: var(--white); padding: 10px 0 4px; }
 .composer.stuck { box-shadow: 0 10px 16px -14px rgba(0,0,0,.35); }
-.composer-row { display: flex; gap: 12px; align-items: flex-start; }
+.composer-row { display: flex; }
 .composer-field { flex: 1; min-width: 0; }
-.composer .dock { flex: none; width: 68px; gap: 4px; }
-.composer .mic-wrap { width: 68px; height: 68px; }
-.composer .mic { width: 54px; height: 54px; }
-.composer .mic svg { width: 22px; height: 22px; }
-.composer .mic-label { font-size: 11px; line-height: 1.25; min-height: 0; color: var(--muted); }
-.composer-bar { padding-left: 80px; }
-/* once a form is showing, the box shrinks so it doesn't crowd the form while it follows */
-.composer.compact .composer-text { min-height: 60px; height: 60px; }
-.composer.compact .mic-label { display: none; }
+/* the box is a frame, as in a chat app: the text on top, and a row inside it with Clear on the left and
+   the mic on the right, so the text gets the full width and the mic takes no extra room */
+.composer-field { border: 1.5px solid var(--gray-70); border-radius: 16px; background: var(--white); cursor: text;
+  transition: border-color .15s, box-shadow .15s; }
+.composer-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.composer .composer-text, .composer .composer-text:focus { display: block; border: 0; box-shadow: none; background: transparent; border-radius: 16px 16px 0 0; padding-bottom: 4px; resize: none; }
+.composer .ghost { padding: 11px 12px; }
+.composer-tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 6px 6px 8px; min-height: 46px; }
+.composer .dock { flex: none; flex-direction: row-reverse; gap: 8px; margin-left: auto; }
+.composer .mic-wrap { width: 40px; height: 40px; }
+.composer .mic { width: 40px; height: 40px; border-width: 0; box-shadow: none; }
+.composer .mic svg { width: 18px; height: 18px; }
+.composer .mic-label { font-size: 13px; line-height: 1.25; min-height: 0; color: var(--muted); text-align: right; }
+/* at rest the icon speaks for itself; the label only shows what the mic is doing */
+.composer .dock:not(:has(.listening, .busy)) .mic-label { display: none; }
+/* the ripple says "you can talk" three times on arrival, then the button holds still */
+.composer .mic.idle-pulse::before { inset: -4px; animation-iteration-count: 3; opacity: 0; }
+/* once a form is showing, the box fits its whole message (never clipped) without the empty space it
+   starts with, so it doesn't crowd the form while it follows you down */
+.composer.compact .composer-text { min-height: calc(3lh + 15px); height: auto; max-height: 40svh; field-sizing: content; }
 
 /* quieter "Not correct?" link */
 .routeline .linkbtn { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration-color: var(--gray-70); }
@@ -196,7 +205,7 @@ textarea.composer-text { resize: vertical; }
   /* the pinned bar spans the whole card so the form never shows through beside it */
   .composer { max-width: none; }
   .composer-row, .composer-bar { max-width: 720px; margin-inline: auto; }
-  .composer-bar { padding-left: 80px; box-sizing: border-box; width: 100%; }
+  .composer-bar { box-sizing: border-box; width: 100%; }
 }
 @media (min-width: 1000px) {
   /* text box runs the full width of the card, same as the form below it */
@@ -272,3 +281,21 @@ body { height: auto; min-height: 100%; }
 input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 400; color: #6E6E78; }
 .ff.filled input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 500; color: var(--ink); }
 
+
+/* ---------- phones: writing and reviewing are two modes (main.js syncMode) ---------- */
+.intro { display: flex; flex-direction: column; gap: 14px; }
+.composer-bar .status { flex: 1; }
+.reviewbtn { flex: none; border: 0; border-radius: 99px; padding: 7px 14px; background: var(--accent); color: #fff;
+  font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+@media (max-width: 759px) {
+  /* once you've started, the intro steps aside and leaves a small wordmark, as a chat's welcome screen does */
+  .app.started .intro > :not(.wordmark) { display: none; }
+  .app.started .wordmark { font-size: 26px; gap: 8px; margin-top: 0; }
+  /* while you type: the box keeps its size and grows with the text; the form waits behind "Review form" */
+  .app.writing #needed, .app.writing #routed { display: none; }
+  .app.writing .composer .composer-text { height: auto; min-height: 150px; max-height: 40svh; field-sizing: content; }
+}
+
+/* Clear and the footer's links: blue, no underline, darker on hover */
+#clearBtn, .credit a { color: var(--accent); text-decoration: none; font-weight: 600; }
+#clearBtn:hover, .credit a:hover { color: color-mix(in srgb, var(--accent) 65%, #000); }

@@ -132,10 +132,6 @@ export function renderSendPanel(root, getState, destinations) {
     if (!names.length) return "Submit";
     return `Submit to ${names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : names[0]}`;
   };
-  const preview = h("pre.payload");
-  const refresh = () => (preview.textContent = JSON.stringify(buildPayload(getState()), null, 2));
-  refresh();
-
   async function send() {
     const st = getState();
     const missing = [...missingRequired(st), ...invalidFields(st)];
@@ -197,7 +193,5 @@ export function renderSendPanel(root, getState, destinations) {
     h("div.ff", h("div.ff-top", h("span.ff-lab", "Send to"), h("span.ff-lab-opt", "pick any")), destBox),
     btn,
     result,
-    h("details.payloadbox", h("summary", "Preview the payload (311 Service Request columns)"), preview),
   );
-  return { refresh };
 }

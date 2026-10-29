@@ -22,7 +22,7 @@ const state = {
   destination: null,  // the person's "Send to" pick
   loading: false, error: "",
 };
-let sentSeq = 0, appliedSeq = 0, lastSent = "", timer = 0, sendPanel = null;
+let sentSeq = 0, appliedSeq = 0, lastSent = "", timer = 0;
 const fieldsByKey = new Map();
 let needKeys = []; // keys of the fields shown in the "Needed" box
 
@@ -70,6 +70,7 @@ function schedule() {
   const text = $("message").value;
   $("clearBtn").hidden = !text;
   $("examples").hidden = !!text.trim();
+  syncMode();
   if (!text.trim()) return reset();
   timer = setTimeout(() => route(text), DEBOUNCE_MS);
 }
@@ -84,10 +85,32 @@ function reset() {
 
 function renderStatus() {
   const el = $("status");
+  // On a phone, the form waits behind "Review form" while you type: the line under the box names what the draft still needs from you.
+  const preview = writing() && formShowing();
+  $("reviewBtn").hidden = !preview;
   if (state.loading) el.replaceChildren(h("span.spin"), state.res ? "Updating…" : "Reading…");
   else if (state.error) el.replaceChildren(h("span.err", state.error));
-  else if (state.res) el.textContent = "Keep typing to refine, or edit in the form.";
+  else if (preview) {
+    const left = needKeys.filter((k) => isEmpty(state.values[k])).map((k) => fieldsByKey.get(k).label.toLowerCase());
+    el.textContent = left.length ? `Still needed: ${left.length > 1 ? `${left.slice(0, -1).join(", ")} and ${left.at(-1)}` : left[0]}` : "Everything's filled in";
+  }
+  else if (state.res) el.textContent = $("micBtn").classList.contains("listening")
+    ? "Keep talking to refine, or edit in the form." : "Keep typing to refine, or edit directly in the form.";
   else el.textContent = "";
+}
+
+// Phones: while the message box has focus, the keyboard covers half the screen, so the page is just the
+// box, the route, and that one status line, as in a chat app. Leaving the box (Return, closing the
+// keyboard, or "Review form") shows the form. The intro stays out of the way once you've started.
+const phone = matchMedia("(max-width: 759px)");
+const writing = () => phone.matches && document.activeElement === $("message");
+
+function syncMode() {
+  const app = document.querySelector(".app"), was = app.classList.contains("writing");
+  app.classList.toggle("writing", writing());
+  app.classList.toggle("started", phone.matches && (writing() || !!$("message").value.trim()));
+  if (writing() && !was) scrollTo({ top: 0 });
+  renderStatus();
 }
 
 function message(kind, icon, html) {
@@ -162,7 +185,6 @@ const ctx = {
       el?.classList.toggle("need", !!fieldsByKey.get(k)?.required && (v == null || v === ""));
       el?.querySelector(".ff-tag")?.replaceWith(h("span.ff-tag.you", "Your edit"));
     }
-    sendPanel?.refresh();
   },
   rerender(k) {
     const el = document.querySelector(`.ff[data-key="${CSS.escape(k)}"]`);
@@ -223,7 +245,7 @@ function renderForm(changed) {
     setTimeout(() => el.classList.remove("flash"), 450);
   }
   renderNeeded();
-  sendPanel = renderSendPanel($("sendPanel"), () => ({
+  renderSendPanel($("sendPanel"), () => ({
     ...state, form: activeForm(), board: otherBoard(),
     destination: state.destination ?? defaultDestinations(activeForm(), otherBoard()),
     setDestination: (d) => (state.destination = d),
@@ -307,6 +329,7 @@ function wireMic() {
       label.textContent = s === "connecting" ? "Connecting…" : live ? "Listening. Tap to stop." : s === "error" ? msg : "Tap to talk";
       if (!live) ring.style.transform = "scale(.6)";
       if (s === "error" || live) announce(label.textContent);
+      renderStatus();
     },
     onLevel(rms) { ring.style.transform = `scale(${0.6 + Math.min(0.6, rms * 6)})`; },
   }));
@@ -355,9 +378,30 @@ async function boot() {
   });
   ta.addEventListener("input", schedule);
   ta.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); clearTimeout(timer); lastSent = ""; route(ta.value); }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); clearTimeout(timer); lastSent = ""; route(ta.value);
+      if (writing()) ta.blur(); // Return is "Done" on a phone keyboard
+    }
+  });
+  ta.addEventListener("focus", syncMode);
+  ta.addEventListener("blur", syncMode);
+  // Buttons around the box don't take focus from it, so tapping one leaves the keyboard up and the
+  // layout doesn't shift between press and release.
+  for (const id of ["composer", "verdict", "examples"])
+    $(id).addEventListener("mousedown", (e) => { if (e.target.closest("button")) e.preventDefault(); });
+  $("reviewBtn").addEventListener("click", () => ta.blur());
+  // Closing the phone keyboard without leaving the box (Android's back gesture) ends writing too.
+  let lowest = Infinity;
+  ta.addEventListener("focus", () => (lowest = visualViewport?.height ?? Infinity));
+  visualViewport?.addEventListener("resize", () => {
+    if (!writing()) return;
+    lowest = Math.min(lowest, visualViewport.height);
+    if (visualViewport.height - lowest > 150) ta.blur();
   });
   $("clearBtn").addEventListener("click", () => { ta.value = ""; schedule(); ta.focus(); });
+  // The row of buttons is inside the box, so a tap on its empty part means "type here".
+  // On mousedown, so the box never loses focus in between and the page doesn't flip to the form and back.
+  document.querySelector(".composer-tools").addEventListener("mousedown", (e) => { if (!e.target.closest("button")) { e.preventDefault(); ta.focus(); } });
   renderTopics($("examples"), (ex) => { ta.value = ex; schedule(); ta.focus(); });
   startTypewriter(ta);
   // Ready to type on arrival, as in a chat app; not on touch, where focus would open the keyboard over the page.

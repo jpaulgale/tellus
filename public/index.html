@@ -44,31 +44,36 @@
 <div class="app">
   <div class="sr-only" id="srAnnounce" aria-live="polite" role="status" aria-atomic="true"></div>
   <main class="appmain">
-    <p class="demochip"><span>Demo based on CB2 Manhattan</span></p>
-    <h1 class="wordmark"><img class="wordmark-mark" src="favicon.svg" alt="" /><span class="hl">Tell</span> Us</h1>
-    <p class="hero tagline">Describe your <span class="hl">thought, comment, or concern</span> about <span class="hl">something in CB2 Manhattan.</span></p>
-    <p class="lede">We'll make sure your voice is heard and your issue addressed.</p>
-    <p class="howlink"><a href="/how">How Tell Us works <span aria-hidden="true">→</span></a></p>
+    <header class="intro">
+      <p class="demochip"><span>Demo based on CB2 Manhattan</span></p>
+      <h1 class="wordmark"><img class="wordmark-mark" src="favicon.svg" alt="" /><span class="hl">Tell</span> Us</h1>
+      <p class="hero tagline">Describe your <span class="hl">thought, comment, or concern</span> about <span class="hl">something in CB2 Manhattan.</span></p>
+      <p class="lede">We'll make sure your voice is heard and your issue addressed.</p>
+      <p class="howlink"><a href="/how">How Tell Us works <span aria-hidden="true">→</span></a></p>
+    </header>
 
     <div class="composer" id="composer">
       <div class="composer-row">
-        <div class="dock" id="dock">
-          <div class="mic-wrap"><div class="ring" id="ring"></div>
-            <button class="mic idle-pulse" id="micBtn" type="button" aria-pressed="false" aria-label="Start microphone">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
-            </button>
-          </div>
-          <div class="mic-label" id="micLabel">Tap to talk</div>
-        </div>
         <div class="composer-field">
           <label class="sr-only" for="message">What's on your mind?</label>
-          <textarea id="message" class="ff-input composer-text" rows="4"></textarea>
+          <textarea id="message" class="ff-input composer-text" rows="4" enterkeyhint="done"></textarea>
           <div class="ghost" id="ghost" aria-hidden="true"><span></span><i class="ghost-caret"></i></div>
+          <div class="composer-tools">
+            <button type="button" class="linkbtn" id="clearBtn" hidden>Clear</button>
+            <div class="dock" id="dock">
+              <div class="mic-wrap"><div class="ring" id="ring"></div>
+                <button class="mic idle-pulse" id="micBtn" type="button" aria-pressed="false" aria-label="Start microphone">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+                </button>
+              </div>
+              <div class="mic-label" id="micLabel">Tap to talk</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="composer-bar">
         <span class="status" id="status" aria-live="polite"></span>
-        <button type="button" class="linkbtn" id="clearBtn" hidden>Clear</button>
+        <button type="button" class="reviewbtn" id="reviewBtn" hidden>Review form <span aria-hidden="true">↓</span></button>
       </div>
     </div>
 
