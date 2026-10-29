@@ -1,0 +1,1263 @@
+{
+ "generated": "2026-10-29",
+ "through": "2026-10-27",
+ "source": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
+ "district": "Manhattan Community District 2",
+ "total30": 4639,
+ "prev30": 4513,
+ "total365": 47430,
+ "types": [
+  {
+   "type": "Illegal Parking",
+   "agency": "NYPD",
+   "count": 506,
+   "prev": 581,
+   "closed": 506,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 297
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 101
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 100
+    }
+   ]
+  },
+  {
+   "type": "Noise - Commercial",
+   "agency": "NYPD",
+   "count": 339,
+   "prev": 260,
+   "closed": 338,
+   "outcomes": [
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 195
+    },
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 141
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "type": "Encampment",
+   "agency": "DHS",
+   "count": 310,
+   "prev": 401,
+   "closed": 310,
+   "outcomes": []
+  },
+  {
+   "type": "Noise - Street/Sidewalk",
+   "agency": "NYPD",
+   "count": 297,
+   "prev": 394,
+   "closed": 297,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 171
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 122
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "type": "Noise - Residential",
+   "agency": "NYPD",
+   "count": 284,
+   "prev": 296,
+   "closed": 283,
+   "outcomes": [
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 117
+    },
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 108
+    },
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 55
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "type": "HEAT/HOT WATER",
+   "agency": "HPD",
+   "count": 232,
+   "prev": 53,
+   "closed": 174,
+   "outcomes": [
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 72
+    },
+    {
+     "key": "duplicate",
+     "label": "duplicate of an earlier report",
+     "count": 43
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 35
+    },
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 12
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 9
+    }
+   ]
+  },
+  {
+   "type": "Noise",
+   "agency": "DEP",
+   "count": 178,
+   "prev": 159,
+   "closed": 128,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 67
+    },
+    {
+     "key": "duplicate",
+     "label": "duplicate of an earlier report",
+     "count": 27
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "type": "General Construction/Plumbing",
+   "agency": "DOB",
+   "count": 156,
+   "prev": 92,
+   "closed": 108,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 32
+    },
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 4
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 1
+    }
+   ]
+  }
+ ],
+ "rising": [
+  {
+   "type": "HEAT/HOT WATER",
+   "count": 232,
+   "prev": 53,
+   "weeks": [
+    {
+     "week": "2026-08-05",
+     "count": 12
+    },
+    {
+     "week": "2026-08-12",
+     "count": 5
+    },
+    {
+     "week": "2026-08-19",
+     "count": 1
+    },
+    {
+     "week": "2026-08-26",
+     "count": 7
+    },
+    {
+     "week": "2026-09-02",
+     "count": 17
+    },
+    {
+     "week": "2026-09-09",
+     "count": 11
+    },
+    {
+     "week": "2026-09-16",
+     "count": 8
+    },
+    {
+     "week": "2026-09-23",
+     "count": 16
+    },
+    {
+     "week": "2026-09-30",
+     "count": 22
+    },
+    {
+     "week": "2026-10-07",
+     "count": 22
+    },
+    {
+     "week": "2026-10-14",
+     "count": 85
+    },
+    {
+     "week": "2026-10-21",
+     "count": 99
+    }
+   ]
+  },
+  {
+   "type": "Noise - Commercial",
+   "count": 339,
+   "prev": 260,
+   "weeks": [
+    {
+     "week": "2026-08-05",
+     "count": 22
+    },
+    {
+     "week": "2026-08-12",
+     "count": 35
+    },
+    {
+     "week": "2026-08-19",
+     "count": 43
+    },
+    {
+     "week": "2026-08-26",
+     "count": 33
+    },
+    {
+     "week": "2026-09-02",
+     "count": 48
+    },
+    {
+     "week": "2026-09-09",
+     "count": 83
+    },
+    {
+     "week": "2026-09-16",
+     "count": 62
+    },
+    {
+     "week": "2026-09-23",
+     "count": 59
+    },
+    {
+     "week": "2026-09-30",
+     "count": 80
+    },
+    {
+     "week": "2026-10-07",
+     "count": 67
+    },
+    {
+     "week": "2026-10-14",
+     "count": 105
+    },
+    {
+     "week": "2026-10-21",
+     "count": 74
+    }
+   ]
+  },
+  {
+   "type": "General Construction/Plumbing",
+   "count": 156,
+   "prev": 92,
+   "weeks": [
+    {
+     "week": "2026-08-05",
+     "count": 29
+    },
+    {
+     "week": "2026-08-12",
+     "count": 15
+    },
+    {
+     "week": "2026-08-19",
+     "count": 14
+    },
+    {
+     "week": "2026-08-26",
+     "count": 19
+    },
+    {
+     "week": "2026-09-02",
+     "count": 12
+    },
+    {
+     "week": "2026-09-09",
+     "count": 20
+    },
+    {
+     "week": "2026-09-16",
+     "count": 27
+    },
+    {
+     "week": "2026-09-23",
+     "count": 30
+    },
+    {
+     "week": "2026-09-30",
+     "count": 98
+    },
+    {
+     "week": "2026-10-07",
+     "count": 13
+    },
+    {
+     "week": "2026-10-14",
+     "count": 22
+    },
+    {
+     "week": "2026-10-21",
+     "count": 15
+    }
+   ]
+  }
+ ],
+ "hotspots": [
+  {
+   "related": true,
+   "bbl": "1005630037",
+   "address": "67 East 11 St",
+   "count": 143,
+   "lat": 40.732834412142914,
+   "lng": -73.99217735930414,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 116,
+    "weeks": [
+     {
+      "week": "2026-08-05",
+      "count": 1
+     },
+     {
+      "week": "2026-08-12",
+      "count": 1
+     },
+     {
+      "week": "2026-08-19",
+      "count": 8
+     },
+     {
+      "week": "2026-08-26",
+      "count": 7
+     },
+     {
+      "week": "2026-09-02",
+      "count": 12
+     },
+     {
+      "week": "2026-09-09",
+      "count": 15
+     },
+     {
+      "week": "2026-09-16",
+      "count": 14
+     },
+     {
+      "week": "2026-09-23",
+      "count": 10
+     },
+     {
+      "week": "2026-09-30",
+      "count": 10
+     },
+     {
+      "week": "2026-10-07",
+      "count": 13
+     },
+     {
+      "week": "2026-10-14",
+      "count": 11
+     },
+     {
+      "week": "2026-10-21",
+      "count": 13
+     }
+    ],
+    "hours": [
+     [
+      7,
+      25
+     ],
+     [
+      8,
+      20
+     ],
+     [
+      18,
+      18
+     ]
+    ],
+    "closed": 116,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 81
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 34
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     116
+    ],
+    [
+     "Noise - Residential",
+     22
+    ],
+    [
+     "Noise",
+     2
+    ],
+    [
+     "Homeless Person Assistance",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "2025-07-013",
+     "committee": "SLA – 1",
+     "meeting_date": "July 24, 2025",
+     "title": "Hex Squared LLC dba Hex & Co 801 Broadway, store no. 4 10003 (TW–Board Game Café)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 13,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2025/09/07-July-2025-Full-Board-Minutes-bis.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1005357501",
+   "address": "1 West 3 St",
+   "count": 42,
+   "lat": 40.72842650831632,
+   "lng": -73.99537816425884,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 10,
+    "weeks": [
+     {
+      "week": "2026-08-05",
+      "count": 0
+     },
+     {
+      "week": "2026-08-12",
+      "count": 0
+     },
+     {
+      "week": "2026-08-19",
+      "count": 0
+     },
+     {
+      "week": "2026-08-26",
+      "count": 1
+     },
+     {
+      "week": "2026-09-02",
+      "count": 3
+     },
+     {
+      "week": "2026-09-09",
+      "count": 2
+     },
+     {
+      "week": "2026-09-16",
+      "count": 0
+     },
+     {
+      "week": "2026-09-23",
+      "count": 0
+     },
+     {
+      "week": "2026-09-30",
+      "count": 2
+     },
+     {
+      "week": "2026-10-07",
+      "count": 0
+     },
+     {
+      "week": "2026-10-14",
+      "count": 1
+     },
+     {
+      "week": "2026-10-21",
+      "count": 1
+     }
+    ],
+    "hours": [
+     [
+      18,
+      2
+     ],
+     [
+      23,
+      2
+     ],
+     [
+      15,
+      1
+     ]
+    ],
+    "closed": 10,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 8
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 2
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     10
+    ],
+    [
+     "Food Establishment",
+     5
+    ],
+    [
+     "Noise - Street/Sidewalk",
+     5
+    ],
+    [
+     "Noise - Residential",
+     5
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "2026-01-014",
+     "committee": "SLA – 1",
+     "meeting_date": "January 22, 2026",
+     "title": "Ronnie Scott’s Jazz Club LLC 250 Mercer St aka 246 Mercer Street 10012 (OP– Restaurant/Jazz Club) (previously unlicensed)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 21,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/FINAL-01-January-2026-Full-Board-Minutes-MND.pdf"
+    },
+    {
+     "id": "2025-12-023",
+     "committee": "SLA – 1",
+     "meeting_date": "December 18, 2025",
+     "title": "Ronnie’s Scott’s Jazz Club LLC 250 Mercer St 10012 (OP–Restaurant) (previously unlicensed)",
+     "outcome": "other",
+     "stipulations": 0,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/01/DRAFT-12-December-2025-Full-Board-Minutes-MND_EGS-2.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1005370037",
+   "address": "206 Thompson St",
+   "count": 26,
+   "lat": 40.72832504382953,
+   "lng": -73.99945880225974,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 11,
+    "weeks": [
+     {
+      "week": "2026-08-05",
+      "count": 0
+     },
+     {
+      "week": "2026-08-12",
+      "count": 0
+     },
+     {
+      "week": "2026-08-19",
+      "count": 1
+     },
+     {
+      "week": "2026-08-26",
+      "count": 2
+     },
+     {
+      "week": "2026-09-02",
+      "count": 0
+     },
+     {
+      "week": "2026-09-09",
+      "count": 0
+     },
+     {
+      "week": "2026-09-16",
+      "count": 2
+     },
+     {
+      "week": "2026-09-23",
+      "count": 1
+     },
+     {
+      "week": "2026-09-30",
+      "count": 2
+     },
+     {
+      "week": "2026-10-07",
+      "count": 2
+     },
+     {
+      "week": "2026-10-14",
+      "count": 0
+     },
+     {
+      "week": "2026-10-21",
+      "count": 0
+     }
+    ],
+    "hours": [
+     [
+      0,
+      3
+     ],
+     [
+      23,
+      2
+     ],
+     [
+      22,
+      2
+     ]
+    ],
+    "closed": 11,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 8
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 3
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     11
+    ],
+    [
+     "Noise - Street/Sidewalk",
+     5
+    ],
+    [
+     "Real Time Enforcement",
+     2
+    ],
+    [
+     "Noise - Vehicle",
+     2
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "2026-06-020",
+     "committee": "SLA – 1",
+     "meeting_date": "June 18, 2026",
+     "title": "Jam Associates NY LLC 206 Thompson St 10012 (OP–Restaurant) (Transfer)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 16,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/07/06-June-2026-Full-Board-Minutes.pdf"
+    },
+    {
+     "id": "2025-06-027",
+     "committee": "SLA – 1",
+     "meeting_date": "June 18, 2025",
+     "title": "151 Bleecker LLC dba Red Lion 151 Bleecker St 10012 (OP–Restaurant) (Alteration: DONYC–Roadway) (Lic. ID # 0340-22-106097) (appearance waived)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 8,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2025/08/DRAFT-06-June-2025-Full-Board-Minutes-MND-comments.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1004920041",
+   "address": "5 Spring St",
+   "count": 22,
+   "lat": 40.72111716702185,
+   "lng": -73.9942170256473,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 12,
+    "weeks": [
+     {
+      "week": "2026-08-05",
+      "count": 1
+     },
+     {
+      "week": "2026-08-12",
+      "count": 0
+     },
+     {
+      "week": "2026-08-19",
+      "count": 0
+     },
+     {
+      "week": "2026-08-26",
+      "count": 0
+     },
+     {
+      "week": "2026-09-02",
+      "count": 1
+     },
+     {
+      "week": "2026-09-09",
+      "count": 1
+     },
+     {
+      "week": "2026-09-16",
+      "count": 0
+     },
+     {
+      "week": "2026-09-23",
+      "count": 0
+     },
+     {
+      "week": "2026-09-30",
+      "count": 3
+     },
+     {
+      "week": "2026-10-07",
+      "count": 2
+     },
+     {
+      "week": "2026-10-14",
+      "count": 2
+     },
+     {
+      "week": "2026-10-21",
+      "count": 1
+     }
+    ],
+    "hours": [
+     [
+      21,
+      4
+     ],
+     [
+      23,
+      2
+     ],
+     [
+      22,
+      1
+     ]
+    ],
+    "closed": 12,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 7
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 5
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     12
+    ],
+    [
+     "Noise - Residential",
+     2
+    ],
+    [
+     "PAINT/PLASTER",
+     2
+    ],
+    [
+     "Lost Property",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "2025-02-016",
+     "committee": "SLA – 1",
+     "meeting_date": "February 20, 2025",
+     "title": "Delta Charlie NYC LLC dba TBD 5 Spring St 10012 (OP–Tavern)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 22,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/02/02-February-2025-Full-Board-Minutes-MND-review_EGS-edits-Final.pdf"
+    }
+   ]
+  },
+  {
+   "related": false,
+   "bbl": "1005257501",
+   "address": "168 Bleecker St",
+   "count": 185,
+   "lat": 40.72855834935655,
+   "lng": -73.99997474401702,
+   "top": {
+    "type": "Encampment",
+    "count": 117,
+    "weeks": [
+     {
+      "week": "2026-08-05",
+      "count": 4
+     },
+     {
+      "week": "2026-08-12",
+      "count": 9
+     },
+     {
+      "week": "2026-08-19",
+      "count": 7
+     },
+     {
+      "week": "2026-08-26",
+      "count": 15
+     },
+     {
+      "week": "2026-09-02",
+      "count": 24
+     },
+     {
+      "week": "2026-09-09",
+      "count": 17
+     },
+     {
+      "week": "2026-09-16",
+      "count": 30
+     },
+     {
+      "week": "2026-09-23",
+      "count": 7
+     },
+     {
+      "week": "2026-09-30",
+      "count": 0
+     },
+     {
+      "week": "2026-10-07",
+      "count": 1
+     },
+     {
+      "week": "2026-10-14",
+      "count": 1
+     },
+     {
+      "week": "2026-10-21",
+      "count": 2
+     }
+    ],
+    "hours": [
+     [
+      9,
+      15
+     ],
+     [
+      8,
+      14
+     ],
+     [
+      7,
+      14
+     ]
+    ],
+    "closed": 106,
+    "outcomes": [
+     {
+      "key": "action",
+      "label": "summons, violation or repair",
+      "count": 27
+     },
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 25
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 3
+     }
+    ]
+   },
+   "types": [
+    [
+     "Encampment",
+     117
+    ],
+    [
+     "Homeless Person Assistance",
+     16
+    ],
+    [
+     "Noise - Commercial",
+     11
+    ],
+    [
+     "Dirty Condition",
+     9
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "2026-05-011",
+     "committee": "SLA – 1",
+     "meeting_date": "May 21, 2026",
+     "title": "Forget About Hospitality LLC dba Forget About It 168 Bleecker St 10012 (OP– Restaurant)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 18,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/06/05-May-2026-Full-Board-Minutes.pdf"
+    }
+   ]
+  },
+  {
+   "related": false,
+   "bbl": "1005860045",
+   "address": "29 7 Ave South",
+   "count": 52,
+   "lat": 40.73081170977062,
+   "lng": -74.00439468964238,
+   "top": {
+    "type": "UNSANITARY CONDITION",
+    "count": 18,
+    "weeks": [
+     {
+      "week": "2026-08-05",
+      "count": 5
+     },
+     {
+      "week": "2026-08-12",
+      "count": 7
+     },
+     {
+      "week": "2026-08-19",
+      "count": 3
+     },
+     {
+      "week": "2026-08-26",
+      "count": 0
+     },
+     {
+      "week": "2026-09-02",
+      "count": 0
+     },
+     {
+      "week": "2026-09-09",
+      "count": 1
+     },
+     {
+      "week": "2026-09-16",
+      "count": 0
+     },
+     {
+      "week": "2026-09-23",
+      "count": 0
+     },
+     {
+      "week": "2026-09-30",
+      "count": 0
+     },
+     {
+      "week": "2026-10-07",
+      "count": 0
+     },
+     {
+      "week": "2026-10-14",
+      "count": 0
+     },
+     {
+      "week": "2026-10-21",
+      "count": 0
+     }
+    ],
+    "hours": [
+     [
+      14,
+      3
+     ],
+     [
+      17,
+      3
+     ],
+     [
+      7,
+      2
+     ]
+    ],
+    "closed": 18,
+    "outcomes": [
+     {
+      "key": "no_access",
+      "label": "agency couldn't get in or find it",
+      "count": 14
+     },
+     {
+      "key": "action",
+      "label": "summons, violation or repair",
+      "count": 3
+     }
+    ]
+   },
+   "types": [
+    [
+     "UNSANITARY CONDITION",
+     18
+    ],
+    [
+     "Noise - Residential",
+     18
+    ],
+    [
+     "PAINT/PLASTER",
+     4
+    ],
+    [
+     "Rodent",
+     2
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "2026-09-030",
+     "committee": "SLA – 1",
+     "meeting_date": "September 24, 2026",
+     "title": "Johnson Pollheimer Hospitality LLC 29 7th Ave S 10014 (OP–Restaurant)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 17,
+     "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/10/FINAL-09-September-2026-Full-Board-Minutes-FL.pdf"
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "count": 103,
+  "year": "2026",
+  "meetings": 17,
+  "by_committee": [
+   [
+    "Traffic & Transportation",
+    33
+   ],
+   [
+    "SLA – 1",
+    14
+   ],
+   [
+    "Landmarks & Public Aesthetics",
+    12
+   ],
+   [
+    "Parks & Waterfront",
+    7
+   ],
+   [
+    "Human Services",
+    3
+   ],
+   [
+    "Executive Committee",
+    2
+   ],
+   [
+    "Land Use & Housing",
+    2
+   ],
+   [
+    "Street Activities & Resiliency",
+    1
+   ],
+   [
+    "SLA – 2",
+    1
+   ],
+   [
+    "Schools & Education",
+    1
+   ],
+   [
+    "Cannabis Licensing Committee",
+    1
+   ]
+  ],
+  "latest": [
+   {
+    "id": "2026-09-ps06",
+    "meeting_date": "September 24, 2026",
+    "topic": "",
+    "speaker_line": "Noise pollution caused by grease recycling trucks operated by NYC Clean Air Group - Paul Hallsy",
+    "text": "Trucks start operating at 7am, and noise extends across several blocks. Paul has reached out to the company, which temporarily agreed to delay operations but no longer does. Company claims that this is legal. W. Benesh invited Paul to join an upcoming Street Activities & Resiliency meeting on noise.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/10/FINAL-09-September-2026-Full-Board-Minutes-FL.pdf",
+    "committee": "Street Activities & Resiliency"
+   },
+   {
+    "id": "2026-09-ps03",
+    "meeting_date": "September 24, 2026",
+    "topic": "",
+    "speaker_line": "No More 24 Bill",
+    "text": "Supports - Kim Beck, Shannon Burkett, Susan Breindel",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/10/FINAL-09-September-2026-Full-Board-Minutes-FL.pdf",
+    "committee": "Executive Committee"
+   },
+   {
+    "id": "2026-09-ps01",
+    "meeting_date": "September 24, 2026",
+    "topic": "",
+    "speaker_line": "Dapolito Center, 388 Hudson - Andrew Berman, Executive Director, Village Preservation",
+    "text": "Thanks the Community Board for its recently issued letter supporting the restoration of the Dapolito Center Urges the Board to recognize that the fate of the Dapolito Center is intertwined with the fate of 388 Hudson. The Parks Department has been clear about this. We can \"walk and chew gum,\" but it isn't going to happen unless the Parks Department integrates into its planning the recreational uses slated for 388 Hudson.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/10/FINAL-09-September-2026-Full-Board-Minutes-FL.pdf",
+    "committee": "Parks & Waterfront"
+   },
+   {
+    "id": "2026-07-ps11",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Christopher Good",
+    "text": "Living on Grand Street – owns a commercial building. Fully support the 2-way bike lane on Grand Street. It will make the area safer.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps10",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Andrea Pedersen",
+    "text": "Fitting to support the plan in the memory of Kevin Cruickshank and Mae Kwan. Improvements are simple – wider sidewalks and installing bollards. Would also be great to have more daylighting. Simple plan that will solve many problems. Chinatown needs these improvements as well.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps09",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Michael Hassin",
+    "text": "Resident of CB3; work in CB2. Office on Canal Street. Avoid biking and walking on Canal Street because it is so dangerous. Supports the left-turn bans.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps08",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Kevin O’Connor",
+    "text": "Manhattan resident. Disappointed that the east side improvements on Canal Street are delayed. Good friend Kevin Cruickshank and Mae Kwan were killed by a car that was speeding coming off the Manhattan Bridge. Dangers to pedestrians on Canal Street are not theoretical. Don’t let the perfect be the enemy of the good. Too many lives have already been lost on Canal Street.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps07",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Chris Sanders",
+    "text": "Support of the Canal Street and Grand Street improvements. Used to work at Spring and Varick, and knows that Canal Street is very dangerous. Supports improvements for bus through-put as well. Plan is not perfect, but should be implemented and later improved.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps06",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Esther Rigelson",
+    "text": "Biking in NYC for 43 years – lives in lower Manhattan. Biking on Canal is taking one’s life in one’s hands. Critical to implement the improvements from end to end on Canal.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps05",
+    "meeting_date": "July 23, 2026",
+    "topic": "Online:",
+    "speaker_line": "Corey Kunz",
+    "text": "SVP at the Hudson Square BID. Support of the DOT Canal Street redesign. Local stakeholders – businesses, residents, property owners. Improvements are critical to the neighborhood. Canal Street is a barrier to use of our businesses because the traffic congestion is so bad. Curb extension and crossings are improvements. Hoping improvements can be implemented as soon as possible. Q: (Jeannine Kiely): Does the BID support the addition of hardscape safety measures at the corner of Hudson and Canal to prevent cars from taking the turn too quickly. A: Advocated to keep the curb extension at that corner to keep cars from taking the turn too fast. The initial DOT proposal sought to eliminate that curb extension. BID is eager to support greening that area with additional planters.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps04",
+    "meeting_date": "July 23, 2026",
+    "topic": "In Person:",
+    "speaker_line": "Andy Hort and David Liten",
+    "text": "On the Board of 104 Charlton Street between Greenwich and Hudson Streets. Former printing building was converted to commercial use and eliminated one loading dock. The new superintendent of the building uses both the current and former loading docks to park cars that encroach on the sidewalk and force pedestrians onto the street to their peril. Filed complaints through 311, but the situation persists. Looking for guidance on how to shame the building into doing the right thing. [District Manager provided contact information for follow-up.] [Jeannine Kiely (Traffic & Transportation Committee Chair) – introduction to the representative of Council Member Carl Wilson.]",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "Traffic & Transportation"
+   },
+   {
+    "id": "2026-07-ps02",
+    "meeting_date": "July 23, 2026",
+    "topic": "In Person:",
+    "speaker_line": "Frank [no last name given]",
+    "text": "Owner of the bar Nightingale (Par Avion) – 37 Carmine Street. Appealing to the Full Board to approve the SLA license application that the SLA-2 Committee recommended be denied. Statements in the draft resolution are misleading and unfair. Claims that the community oppose the application are a myth – there are 111 signatures in support of the application. Opposition is from just two people. Have performed multiple layers of soundproofing. Objects to “all-or-nothing” vote on separate applications relating to hours, operations and outdoor seating. Q: (Dr. Shirley Smith) – was the Carmine Street Block Association in opposition to the applications? A: Felt blind-sided by the opposition of the Block Association after meeting at length.",
+    "source": "https://cbmanhattan.cityofnewyork.us/cb2/wp-content/uploads/sites/9/2026/09/DRAFT-07-July-2026-Full-Board-Minutes-Final-1.pdf",
+    "committee": "SLA – 2"
+   }
+  ]
+ }
+}

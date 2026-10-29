@@ -1,25 +1,61 @@
-const sentimentMessages={
-  negative:"51 requests were marked concerned. The most common words were “unsafe,” “noise,” and “blocked.” These requests may need a faster response.",
-  neutral:"48 requests were marked neutral. Most were questions about city services, meeting information, or requests for an update.",
-  positive:"27 requests were marked positive. Residents most often thanked the board for park improvements, cleaner streets, and helpful staff responses."
-};
-const detail=document.querySelector("#sentiment-detail");
-function setSentiment(type){detail.textContent=sentimentMessages[type];document.querySelectorAll(".sentiment-card").forEach(card=>card.classList.toggle("active",card.dataset.sentiment===type))}
-setSentiment("negative");
-document.querySelectorAll(".sentiment-card").forEach(card=>card.addEventListener("click",()=>setSentiment(card.dataset.sentiment)));
+// Trends: what CB2 residents report to 311 and tell the Full Board, from trends.json
+// (scripts/build_trends.py). Every number here is computed from public records.
 
-const methodDialog=document.querySelector("#method-dialog");
-const closeMethod=()=>methodDialog.hidden=true;
-document.querySelector("#method-button").addEventListener("click",()=>{methodDialog.hidden=false;document.querySelector(".close-button").focus()});
-document.querySelector(".close-button").addEventListener("click",closeMethod);
-document.querySelector(".close-method").addEventListener("click",closeMethod);
-methodDialog.addEventListener("click",event=>{if(event.target===methodDialog)closeMethod()});
-document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMethod()});
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const fmt = (n) => n.toLocaleString("en-US");
+const day = (iso, opts = { month: "short", day: "numeric" }) => new Date(iso + "T12:00").toLocaleDateString("en-US", opts);
+const pct = (a, b) => (b ? Math.round((100 * a) / b) : 0);
+const hour = (h) => `${h % 12 || 12} ${h < 12 ? "am" : "pm"}`;
+const change = (now, before) => (before ? `${now >= before ? "↑" : "↓"} ${Math.abs(pct(now - before, before))}%` : "new");
 
-function toast(message){const el=document.querySelector("#toast");el.textContent=message;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2400)}
-document.querySelector("#agenda-button").addEventListener("click",()=>toast("Added to the Transportation Committee agenda"));
-document.querySelector("#dismiss-button").addEventListener("click",()=>toast("Suggestion dismissed"));
-document.querySelector("#all-evidence").addEventListener("click",()=>toast("Showing all related requests is coming next"));
-document.querySelector("#learn-more").addEventListener("click",event=>{event.preventDefault();methodDialog.hidden=false});
-const menuButton=document.querySelector(".menu-button"),sidebar=document.querySelector(".sidebar");
-menuButton.addEventListener("click",()=>{const open=sidebar.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(open))});
+/** "61% fixed when the agency arrived · 30% no violation found" for a type's closed requests. */
+const closedLine = (t) => t.outcomes.slice(0, 2).map((o) => `${pct(o.count, t.closed)}% ${o.label}`).join(" · ");
+
+function bars(el, weeks, label) {
+  const max = Math.max(...weeks.map((w) => w.count), 1);
+  el.setAttribute("aria-label", `${label}: ${weeks.map((w) => `${w.count} in the week of ${day(w.week)}`).join(", ")}`);
+  el.innerHTML = weeks.map((w, i) => `<div class="week${i === weeks.length - 1 ? " current" : ""}"><b>${w.count}</b><i style="height:${Math.max(2, (78 * w.count) / max)}%"></i><span>${i % 3 === 2 || i === weeks.length - 1 ? day(w.week) : ""}</span></div>`).join("");
+}
+
+function render(t) {
+  $("intro").textContent = `${fmt(t.total30)} requests to 311 in ${t.district} in the last 30 days (${change(t.total30, t.prev30)} on the 30 days before), out of ${fmt(t.total365)} in the past year.`;
+  $("through").textContent = day(t.through, { month: "long", day: "numeric", year: "numeric" });
+  $("source-link").href = t.source;
+
+  const [h] = t.hotspots;
+  if (h) {
+    const [r] = h.resolutions;
+    $("brief-heading").textContent = `${fmt(h.top.count)} “${h.top.type}” reports at ${h.address} in 90 days.`;
+    $("brief-body").textContent = `Most come in around ${h.top.hours.map(([x]) => hour(x)).join(", ")}. On ${r.meeting_date}, ${r.committee} reviewed a business on this lot` +
+      (r.stipulations ? ` and it agreed to ${r.stipulations} stipulations.` : ".") + " Worth checking whether it's the same business.";
+  }
+
+  const [rise] = t.rising;
+  $("trend-heading").textContent = rise.type;
+  $("trend-pill").textContent = change(rise.count, rise.prev);
+  bars($("trend-visual"), rise.weeks, `${rise.type} requests per week`);
+  const others = t.rising.slice(1).map((x) => `${x.type} (${fmt(x.prev)} → ${fmt(x.count)})`).join(" and ");
+  $("trend-caption").innerHTML = `<strong>${fmt(rise.prev)} → ${fmt(rise.count)}</strong> requests, 30 days on 30 days.` +
+    (/HEAT/.test(rise.type) ? " Heating season started October 1, so some of this rise happens every year." : "") + (others ? ` Also rising: ${esc(others)}.` : "");
+
+  $("types").innerHTML = t.types.map((x) => `<li><div><strong>${esc(x.type)}</strong> <span class="agency">${esc(x.agency)}</span><small>${esc(closedLine(x))}</small></div><b>${fmt(x.count)}</b></li>`).join("");
+
+  $("hot-list").innerHTML = t.hotspots.map((x) => `<article class="hot${x.related ? "" : " unrelated"}">
+    <div class="hot-head"><strong>${esc(x.address)}</strong><span>${fmt(x.count)} requests in 90 days · BBL ${esc(x.bbl)}</span></div>
+    <p>${fmt(x.top.count)} × ${esc(x.top.type)}${x.top.closed ? ` — ${esc(closedLine(x.top))}` : ""}</p>
+    ${x.resolutions.map((r) => `<p class="hot-res"><span class="outcome">${esc(r.committee)}</span> ${esc(r.meeting_date)}: ${esc(r.title.replace(/^\*\s*/, "").slice(0, 140))}${r.stipulations ? ` · ${r.stipulations} stipulations` : ""} <a href="${esc(r.source)}" target="_blank" rel="noopener">Minutes ↗</a></p>`).join("")}
+    ${x.related ? "" : `<p class="hot-note">The complaints here are not the kind of thing these decisions govern.</p>`}
+  </article>`).join("");
+
+  const v = t.voices;
+  $("voices-sub").textContent = `${v.count} concerns raised in Public Session at ${v.meetings} Full Board meetings, in the secretary's summary of each speaker. By the committee that would take it up, ${v.year}:`;
+  $("voice-tally").innerHTML = v.by_committee.slice(0, 6).map(([c, n]) => `<li><span>${esc(c)}</span><b>${n}</b></li>`).join("");
+  $("voices").innerHTML = v.latest.slice(0, 6).map((x) => `<article><span class="quote-mark" aria-hidden="true">“</span><div><p>${esc(x.text.length > 320 ? x.text.slice(0, 317) + "…" : x.text)}</p>
+    <footer>${esc(x.speaker_line.replace(/:$/, ""))}${x.topic ? ` · ${esc(x.topic)}` : ""} · ${esc(x.meeting_date)} · ${esc(x.committee)} · <a href="${esc(x.source)}" target="_blank" rel="noopener">Minutes ↗</a></footer></div></article>`).join("");
+}
+
+fetch("/dashboard/trends.json").then((r) => r.json()).then(render).catch(() => { $("intro").textContent = "Couldn't load the data."; });
+
+const menuButton = document.querySelector(".menu-button"), sidebar = document.querySelector(".sidebar");
+menuButton.addEventListener("click", () => { const open = sidebar.classList.toggle("open"); menuButton.setAttribute("aria-expanded", String(open)); });
