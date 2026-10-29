@@ -466,7 +466,7 @@ select.ff-select:invalid, select.ff-select option[value=""] { color: var(--gray-
 .credit a:hover { color: var(--accent-dark); }
 .credit-foot { margin-top: 2px; padding-bottom: 4px; }
 /* "Optional" tag next to the feedback label */
-.ff-lab-opt { font-size: 11px; font-weight: 600; color: var(--gray-40); text-transform: uppercase; letter-spacing: .04em; }
+.ff-lab-opt { font-size: 11px; font-weight: 600; color: var(--gray-30); text-transform: uppercase; letter-spacing: .04em; }
 
 .hidden { display: none !important; }
 .err { color: var(--warn-text); font-size: 13px; font-weight: 600; }

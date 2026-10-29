@@ -106,7 +106,7 @@ body.sheet-open{overflow:hidden}
 .types li>b{font-size:20px}
 .hot-list{border-top:1px solid var(--line)}
 .hot{padding:16px 23px;border-bottom:1px solid var(--line)}
-.hot.unrelated{opacity:.75}
+.hot.unrelated{background:var(--gray-90)}
 .hot-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px}
 .hot-head span,.hot-note{color:var(--muted);font-size:13px}
 .hot p{margin:6px 0 0;font-size:15px}
