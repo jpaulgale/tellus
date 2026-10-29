@@ -10,11 +10,11 @@
 <meta property="og:site_name" content="Tell Us" />
 <meta property="og:url" content="https://tellus.paulgale.dev/how" />
 <meta property="og:title" content="Tell Us: say it in your own words, we'll find the form and fill it" />
-<meta property="og:description" content="Type or speak. Tell Us picks the 311 request or community board committee from what you write, then drafts it for you to review and submit." />
+<meta property="og:description" content="Type or speak. Tell Us finds the right community board form or 311 request and fills it in for you to review and send." />
 <meta property="og:image" content="https://tellus.paulgale.dev/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="628" />
-<meta property="og:image:alt" content="A resident types &quot;We'd love to hold a block party on Bedford St this summer&quot; and Tell Us fills in a Community Board 2 form, then asks for the date it needs." />
+<meta property="og:image:alt" content="A parent types &quot;I'm a parent at PS 3. We need a crossing guard at Hudson St and Christopher St&quot; and Tell Us fills in a crossing guard request for NYPD and CB2 Manhattan: the corner, the school, and the time of day." />
 <meta property="og:video" content="https://tellus.paulgale.dev/og.mp4" />
 <meta property="og:video:secure_url" content="https://tellus.paulgale.dev/og.mp4" />
 <meta property="og:video:type" content="video/mp4" />
@@ -283,7 +283,7 @@ footer .credit { color: var(--ink); font-size: 14px; }
 
     <div class="demo" aria-label="Example: a parent's request for a crossing guard fills in an editable form with a map">
       <div class="demo-q">What's on your mind?</div>
-      <div class="box" id="box">I'm a parent. Kids cross at Hudson St and Christopher St every morning on the way to school, and cars don't slow down. Could we get a crossing guard there at drop-off?</div>
+      <div class="box" id="box">I'm a parent at PS 3. We need a crossing guard at Hudson St and Christopher St, cars run the light every morning at drop-off.</div>
       <div class="form reveal" id="form">
         <div class="form-h"><span class="k">Form</span>
           <span class="sel"><select id="fForm" aria-label="Form"><option>Crossing Guard Request</option><option>Traffic Signal Out (311)</option><option>CB2 Manhattan</option></select></span>
@@ -298,8 +298,8 @@ footer .credit { color: var(--ink); font-size: 14px; }
           <span class="sel"><select id="fAddr"></select></span>
           <div class="map" id="map" aria-label="Map: drag the dot or tap the map to move it"></div>
           <small class="hint">Drag the dot or tap the map to move it.</small></div>
-        <div class="fld missing"><label for="fSchool">School name <i>*</i></label><span class="tag need" data-t>Required</span>
-          <input id="fSchool" type="text" placeholder="Which school?" /></div>
+        <div class="fld got"><label for="fSchool">School name <i>*</i></label><span class="tag got" data-t>From your message</span>
+          <input id="fSchool" type="text" placeholder="Which school?" value="PS 3" /></div>
         <div class="fld"><label for="fName">Your name</label><span class="tag opt" data-t>Optional</span>
           <input id="fName" type="text" placeholder="So the board can reply" /></div>
         <div class="fld"><label for="fEmail">Email</label><span class="tag opt" data-t>Optional</span>
@@ -547,9 +547,6 @@ await wait(2600);
 status();
 $("ready").classList.add("in");
 await wait(1800);
-await typeInput($("fSchool"), "PS 3", 90);
-status();
-await wait(250);
 await typeInput($("fName"), "Washington Irving", 22);
 await typeInput($("fEmail"), "washington.irving@new.york", 14);
 </script>

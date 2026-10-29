@@ -28,8 +28,8 @@ h1 span { color: var(--blue); }
 
 .card { position: absolute; right: 56px; top: 50%; translate: 0 -50%; width: 500px; background: var(--card); border-radius: 22px; padding: 22px; box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 30px 60px -28px rgba(5,5,96,.45); }
 .label { font-size: 15px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
-.msg { border: 2px solid var(--blue); box-shadow: 0 0 0 4px var(--blue-soft); border-radius: 14px; padding: 12px 14px; font-size: 19px; line-height: 1.4; height: 86px; }
-.caret { display: inline-block; width: 2px; height: 22px; background: var(--ink); vertical-align: -4px; margin-left: 1px; }
+.msg { border: 2px solid var(--blue); box-shadow: 0 0 0 4px var(--blue-soft); border-radius: 14px; padding: 12px 14px; font-size: 19px; line-height: 1.4; height: 112px; }
+#typed span { display: inline-block; }
 .thinking { margin-top: 14px; font-size: 16px; color: var(--blue); font-weight: 600; height: 0; overflow: visible; }
 .rows { margin-top: 14px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 .row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-top: 1px solid var(--line); }
@@ -37,14 +37,6 @@ h1 span { color: var(--blue); }
 .row .top { width: 112px; flex: none; font-size: 14px; font-weight: 600; color: var(--muted); line-height: 1.2; }
 .val { flex: 1; background: var(--blue-soft); color: var(--blue-dark); border-radius: 9px; padding: 7px 12px; font-size: 17px; font-weight: 500; white-space: nowrap; }
 .row:first-child .val { background: #fff; border: 1px solid var(--line); color: var(--ink); font-weight: 600; }
-.req { color: #C8102E; }
-.row .top small { display: block; margin-top: 2px; font-size: 12px; font-weight: 700; color: #8A5A00; }
-.val.input { display: flex; align-items: center; background: #FFF1D6; border: 1.5px solid #E0A100; color: #9A7A3C; font-weight: 400; }
-.val.input.typing { background: #fff; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); color: var(--ink); }
-.val.input.done { background: #fff; border-color: var(--line); color: var(--ink); }
-.val.input .caret { height: 19px; vertical-align: 0; }
-.val .cal { width: 17px; height: 17px; margin-left: auto; color: #8A5A00; }
-.val.typing .cal, .val.done .cal { color: var(--muted); }
 .send { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
 .btn { background: var(--blue); color: #fff; font-weight: 700; font-size: 17px; padding: 11px 20px; border-radius: 999px; }
 .sent { display: flex; align-items: center; gap: 8px; color: var(--green); font-weight: 700; font-size: 16px; }
@@ -70,53 +62,63 @@ h1 span { color: var(--blue); }
     <div><b>Tell</b> Us</div>
   </div>
   <h1>Say it in your own words. <span>We'll find the form and fill it.</span></h1>
-  <p class="sub">Type or speak. Tell Us picks the <strong>311 request</strong> or <strong>community board committee</strong> and drafts it for you to review and submit.</p>
+  <p class="sub">Type or speak. Tell Us finds the right <strong>community board form</strong> or <strong>311 request</strong> and fills it in for you to review and send.</p>
 </div>
 
 <div class="card">
   <div class="label">What's on your mind?</div>
-  <div class="msg"><span id="typed"></span><span class="caret" id="caret"></span></div>
+  <div class="msg"><span id="typed"></span></div>
   <div class="thinking" id="thinking">Finding the right form…</div>
-  <div class="rows" data-at="3.15">
-    <div class="row" data-at="3.2"><div class="top">Sends to</div><div class="val">Community Board 2 Manhattan</div></div>
-    <div class="row" data-at="3.5"><div class="top">Committee</div><div class="val">Street Activities &amp; Resiliency</div></div>
-    <div class="row" data-at="3.8"><div class="top">Type of issue</div><div class="val">A proposal or application</div></div>
-    <div class="row" data-at="4.1"><div class="top">Location</div><div class="val">Bedford St</div></div>
-    <div class="row" data-at="4.4"><div class="top">Date <span class="req">*</span><small>Required</small></div><div class="val input" id="date"><span id="date-text">mm/dd/yy</span><span class="caret" id="date-caret"></span><svg class="cal" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6h13M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+  <div class="rows" data-at="3.75">
+    <div class="row" data-at="3.8"><div class="top">Sends to</div><div class="val">NYPD and CB2 Manhattan</div></div>
+    <div class="row" data-at="4.1"><div class="top">Request</div><div class="val">New crossing guard at this corner</div></div>
+    <div class="row" data-at="4.4"><div class="top">Corner</div><div class="val">Hudson St &amp; Christopher St</div></div>
+    <div class="row" data-at="4.7"><div class="top">School</div><div class="val">PS 3</div></div>
+    <div class="row" data-at="5.0"><div class="top">Time of day</div><div class="val">Morning drop-off</div></div>
   </div>
-  <div class="send" data-at="4.8"><div class="btn" id="btn">Review &amp; send</div><div class="sent" id="sent"><i>✓</i> Sent to CB2</div></div>
+  <div class="send" data-at="5.4"><div class="btn" id="btn">Review &amp; send</div><div class="sent" id="sent"><i>✓</i> Sent to NYPD and CB2</div></div>
 </div>
 
 <script>
-const DATE = "07/18/26", DATE_START = 5.0, DATE_END = 5.6;
-const MESSAGE = "We'd love to hold a block party on Bedford St this summer. How do we get it approved?";
-const TYPE_START = 0.4, TYPE_END = 2.4;
+const MESSAGE = "I'm a parent at PS 3. We need a crossing guard at Hudson St and Christopher St, cars run the light every morning at drop-off.";
+const LINE_START = 0.4, LINE_GAP = 0.5; // the message arrives a line at a time, rising like the rows below
+const THINK_START = 2.0, THINK_END = 3.8, LOOP_FADE = 7.95; // the video is 8.5 s
 const clamp = (x) => Math.max(0, Math.min(1, x));
 const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const rise = (el, p) => { el.style.opacity = p; el.style.transform = `translateY(${(1 - p) * 10}px)`; };
+
+// The message as words (inline-block, so they can move), grouped into the lines they wrap to in the box.
+// Measured on every frame, so the lines match the wrap once the fonts load; transforms don't change offsetTop.
+const typed = document.getElementById("typed");
+typed.replaceChildren(...MESSAGE.split(" ").flatMap((w, i) => [i ? " " : "", Object.assign(document.createElement("span"), { textContent: w })]));
+const words = [...typed.querySelectorAll("span")];
+const wrap = () => {
+  const lines = [];
+  for (const w of words) { const last = lines.at(-1); if (last && last[0].offsetTop === w.offsetTop) last.push(w); else lines.push([w]); }
+  return lines;
+};
 
 // Draws the card as it looks at time t (seconds). still=true is the og:image: everything filled, nothing sent yet.
 window.frame = (t, still = false) => {
-  const n = Math.round(MESSAGE.length * clamp((t - TYPE_START) / (TYPE_END - TYPE_START)));
-  document.getElementById("typed").textContent = MESSAGE.slice(0, n);
-  document.getElementById("caret").style.opacity = still || t > 2.8 ? 0 : (Math.floor(t * 2.2) % 2 === 0 || t < TYPE_END ? 1 : 0);
+  wrap().forEach((line, i) => {
+    const p = still ? 1 : ease((t - LINE_START - i * LINE_GAP) / 0.45);
+    for (const w of line) rise(w, p);
+  });
   const think = document.getElementById("thinking");
-  think.style.opacity = !still && t > 2.5 && t < 3.3 ? 0.55 + 0.45 * Math.sin(t * 9) : 0;
+  think.style.opacity = !still && t > THINK_START && t < THINK_END ? 0.55 + 0.45 * Math.sin((t - THINK_START) * 5) : 0;
   for (const el of document.querySelectorAll("[data-at]")) {
-    const p = still ? 1 : ease((t - +el.dataset.at) / 0.45);
-    el.style.opacity = p;
-    el.style.transform = `translateY(${(1 - p) * 10}px)`;
+    rise(el, still ? 1 : ease((t - +el.dataset.at) / 0.45));
   }
-  // "This summer" isn't a date, so the required Date field waits for the resident, who types one before sending.
-  const k = still ? 0 : Math.round(DATE.length * clamp((t - DATE_START) / (DATE_END - DATE_START)));
-  const typing = !still && t >= DATE_START - 0.25 && t < DATE_END + 0.3;
-  document.getElementById("date").className = "val input" + (typing ? " typing" : k === DATE.length ? " done" : "");
-  document.getElementById("date-text").textContent = k ? DATE.slice(0, k) : "mm/dd/yy";
-  document.getElementById("date-caret").style.display = typing ? "" : "none";
-  const press = still ? 0 : clamp(1 - Math.abs(t - 6.1) / 0.15);
+  const press = still ? 0 : clamp(1 - Math.abs(t - 6.6) / 0.15);
   document.getElementById("btn").style.transform = `scale(${1 - 0.06 * press})`;
-  const s = still ? 0 : ease((t - 6.3) / 0.4);
+  const s = still ? 0 : ease((t - 6.8) / 0.4);
   const sent = document.getElementById("sent");
   sent.style.opacity = s; sent.style.transform = `translateX(${(1 - s) * -8}px)`;
+  // The last half second fades back to the empty box, so the preview (which plays on a loop) wraps
+  // around without a jump.
+  const fade = still ? 1 : 1 - clamp((t - LOOP_FADE) / 0.45);
+  typed.style.opacity = fade;
+  for (const el of document.querySelectorAll(".rows, .send")) el.style.opacity = +el.style.opacity * fade;
 };
 const q = new URLSearchParams(location.search);
 frame(q.has("t") ? +q.get("t") : 99, !q.has("t"));

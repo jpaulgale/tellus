@@ -1,7 +1,7 @@
 // Renders card.html frame by frame through Chrome's DevTools protocol and pipes PNGs into ffmpeg.
 import { spawn } from "node:child_process";
 const [, , page, out, fps = "30", secs = "7.5"] = process.argv;
-const chrome = spawn("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+const chrome = spawn(process.env.CHROME ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   ["--headless=new", "--remote-debugging-port=9333", "--hide-scrollbars", "--user-data-dir=" + out + ".profile", "about:blank"], { stdio: "ignore" });
 let target;
 for (let i = 0; i < 50 && !target; i++) {
