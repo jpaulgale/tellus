@@ -1,4 +1,4 @@
-"""Build public/dashboard/requests.json: the sample requests on the board dashboard.
+"""Build public/dashboard/requests.json: the requests on the board dashboard, real Public Session remarks.
 
 Each request goes through the running Worker the same way a resident's would: /api/route for the
 committee Jev suggests, /api/geosearch for the address the resident confirmed, and /api/record for
@@ -18,50 +18,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8787"
 
-# What residents sent, and the place each one confirmed on the form.
+# Real remarks from the Full Board's Public Session (parse_public_session.py), in the secretary's
+# words, and the place each one is about. The titles are ours.
+PS = {x["id"]: x for x in json.loads((ROOT / "data" / "public_session.json").read_text())}
+PICKS = [
+    ("2026-05-ps40", "Business using outdoor space it agreed not to use", "15 E 13th St"),
+    ("2026-05-ps31", "Bass and traffic from a proposed event space", "45 Howard St"),
+    ("2025-05-ps02", "Club crowds and cars from 2 to 5 am", "281 Lafayette St"),
+    ("2026-03-ps05", "Smoking provisions in a café's liquor license", "110 Thompson St"),
+    ("2026-05-ps04", "Two-way bike lane near Grace Church School", "Grace Church School"),
+    ("2026-01-ps02", "Off-leash morning hours in Washington Square Park", "Washington Square Park"),
+]
 REQUESTS = [
-    {
-        "id": "ps41",
-        "title": "Cars speeding near P.S. 41 on West 11th Street",
-        "message": "Cars speed through the intersection by P.S. 41 on West 11th Street during school drop-off and pickup. "
-        "We need a crossing guard, clearer signs, or a speed camera.",
-        "place": "116 W 11th St",
-        "school": "P.S. 41 Greenwich Village School",
-        "hours_ago": 216,
-        "urgent": True,
-    },
-    {
-        "id": "caudalie",
-        "title": "Late-night music at Caudalie",
-        "message": "Caudalie on 130 Greene St plays music past midnight every weekend. I can hear the bass in my apartment upstairs. "
-        "I want the board to hold them to their license conditions.",
-        "place": "130 Greene St",
-        "hours_ago": 192,
-        "urgent": True,
-    },
-    {
-        "id": "church-bins",
-        "title": "Garbage bins taking over the sidewalk at 232 W 11th St",
-        "message": "The garbage bins in front of the church at 232 W 11th St take up half the sidewalk and smell in the summer. "
-        "Was this enclosure ever approved?",
-        "place": "232 W 11th St",
-        "hours_ago": 26,
-    },
-    {
-        "id": "carmine",
-        "title": "Outdoor dining shed blocking the sidewalk",
-        "message": "The dining shed at Bleecker St and Carmine St blocks most of the sidewalk. Strollers and wheelchairs have to go into the street. "
-        "The board should not approve it again.",
-        "place": "Bleecker St and Carmine St",
-        "hours_ago": 20,
-    },
-    {
-        "id": "wsp",
-        "title": "Keep Washington Square Park open later in summer",
-        "message": "Washington Square Park should stay open later at night in the summer. It's the only green space to sit in in the neighborhood.",
-        "place": "Washington Square Park",
-        "hours_ago": 3,
-    },
+    {"id": i, "title": title, "place": place, "message": PS[i]["text"], "speaker": PS[i]["speaker_line"].rstrip(":"),
+     "received": PS[i]["meeting_date"], "source": PS[i]["source"]}
+    for i, title, place in PICKS
 ]
 
 
@@ -77,9 +48,9 @@ def words(text: str) -> set[str]:
 
 
 def by_overlap(message: str, resolutions: list) -> list:
-    """The address's resolutions, the one whose wording shares most with the message first."""
+    """The address's resolutions: one Jev tied a stipulation of to the complaint first, then the one whose wording shares most with it."""
     said = words(message)
-    return sorted(resolutions, key=lambda r: (len(said & words(r["title"] + " " + " ".join(r["stipulations"]))), r["meeting_iso"]), reverse=True)
+    return sorted(resolutions, key=lambda r: (bool(r.get("relevant")), len(said & words(r["title"] + " " + " ".join(r["stipulations"]))), r["meeting_iso"]), reverse=True)
 
 
 def committee(route: dict, resolutions: list) -> dict | None:

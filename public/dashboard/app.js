@@ -1,5 +1,6 @@
-// Board view: sample requests that went through Tell Us (scripts/build_dashboard_data.py writes
+// Board view: real Public Session remarks run through Tell Us (scripts/build_dashboard_data.py writes
 // requests.json), each with its suggested committee, a map, and what the board already decided there.
+// The topics are the district's 311 requests (trends.json, scripts/build_trends.py).
 
 import { normAddress, groupRecord, cardModel } from "/js/record.js";
 
@@ -10,11 +11,7 @@ const titleCase = (s) => s.toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCas
 const street = (r) => r.geo.corner ? r.address : titleCase(r.address.replace(/, Manhattan$/, ""));
 const shortMonth = (d) => d.replace(/^(\w+) \d+, (\d+)$/, (_, m, y) => `${m.slice(0, 3)} ${y}`);
 
-function ago(hours) {
-  if (hours < 24) return `${hours} hours ago`;
-  const days = Math.round(hours / 24);
-  return days === 1 ? "Yesterday" : `${days} days ago`;
-}
+const ago = (r) => `Full Board, ${shortMonth(r.received)}`;
 
 let requests = [], committees = COMMITTEES, mapboxToken = "";
 
@@ -67,7 +64,6 @@ function relatedMinutes(list) {
 
 // Requests marked resolved in this tab; a reload brings them back.
 const resolved = new Set();
-const RESOLVED_BEFORE = 24;
 let showingResolved = false;
 
 function renderList() {
@@ -76,22 +72,22 @@ function renderList() {
   const shown = requests.filter((r) => resolved.has(r.id) === showingResolved);
   list.innerHTML = shown.map((r) => {
     const rec = r.resolutions[0];
-    return `<button class="request ${r.urgent && !showingResolved ? "urgent" : ""} ${showingResolved ? "done" : ""}" data-request="${esc(r.id)}"><span class="request-status" aria-hidden="true"></span><span>
-      <strong>${esc(r.title)}</strong><p>${esc(street(r))}${r.school ? ` · ${esc(r.school)}` : ""}</p>
+    return `<button class="request ${rec && !showingResolved ? "urgent" : ""} ${showingResolved ? "done" : ""}" data-request="${esc(r.id)}"><span class="request-status" aria-hidden="true"></span><span>
+      <strong>${esc(r.title)}</strong><p>${esc(street(r))}</p>
       ${r.committee ? `<span class="tag">${esc(r.committee.name)}</span>` : ""}${rec ? `<span class="tag record">On the board's record · ${esc(shortMonth(rec.meeting_date))}</span>` : ""}
-    </span><time>${showingResolved ? "Resolved today" : ago(r.hours_ago)}</time></button>`;
+    </span><time>${showingResolved ? "Resolved today" : ago(r)}</time></button>`;
   }).join("") || `<p class="empty">${showingResolved ? "Nothing resolved yet in this session. Open a request and choose “Mark as resolved” to see it here." : "Every request has been handled."}</p>`;
   document.querySelector("#requests-heading").textContent = showingResolved ? "Resolved requests" : "Requests to review";
   document.querySelector("#requests-sub").textContent = showingResolved
-    ? "Resolved in this session. Earlier resolved requests aren't part of this demo."
-    : "Click a request to read it, see what the board already decided there, and choose what happens next.";
+    ? "Resolved in this session. Nothing is saved; a reload brings them back."
+    : "Real remarks from the Full Board's Public Session. Click one to read it, see what the board already decided there, and choose what happens next.";
   document.querySelector("#view-resolved").textContent = showingResolved ? "Back to requests to review" : "View resolved requests";
-  const total = RESOLVED_BEFORE + resolved.size;
+  const total = resolved.size;
   document.querySelector("#nav-count").textContent = open.length;
   document.querySelector("#count-new").textContent = open.length;
-  document.querySelector("#count-urgent").textContent = open.filter((r) => r.urgent).length;
+  document.querySelector("#count-urgent").textContent = open.filter((r) => r.resolutions.length).length;
   document.querySelector("#count-resolved").textContent = total;
-  document.querySelector("#resolved-heading").textContent = `${total} requests resolved this month`;
+  document.querySelector("#resolved-heading").textContent = `${total} ${total === 1 ? "request" : "requests"} resolved in this session`;
 }
 
 function renderSteps(r) {
@@ -118,16 +114,24 @@ function renderSteps(r) {
   hint.hidden = !hint.textContent;
 }
 
+/** The district's most reported 311 complaint types in the last 30 days. */
+function renderTopics(t) {
+  const top = t.types.slice(0, 5), max = top[0].count;
+  document.querySelector("#topics-sub").textContent = `Requests to 311 in the 30 days to ${new Date(t.through + "T12:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+  document.querySelector("#topics-list").innerHTML = top.map((x, i) => `<li><span>${i + 1}</span><div><strong>${esc(x.type)}</strong><div class="bar"><i style="width:${Math.round((100 * x.count) / max)}%"></i></div></div><b>${x.count.toLocaleString("en-US")}</b></li>`).join("");
+  const [rise] = t.rising;
+  document.querySelector("#topic-note").innerHTML = `<span aria-hidden="true">↑</span> ${esc(rise.type)}: ${rise.prev} → ${rise.count} on the 30 days before. <a href="/dashboard/insights.html">Trends</a>`;
+}
+
 let current = null;
 function openRequest(r) {
   current = r;
   const routed = r.form.key === "cb2" ? null : `Also sent to ${r.form.agency} as a ${r.form.name}`;
   document.querySelector("#dialog-title").textContent = r.title;
   document.querySelector("#dialog-body").innerHTML = `
-    <blockquote class="resident-words">${esc(r.message)}<footer>What the resident wrote · ${ago(r.hours_ago)}</footer></blockquote>
+    <blockquote class="resident-words">${esc(r.message)}<footer>${esc(r.speaker)} at the Full Board, ${esc(r.received)} · <a href="${esc(r.source)}" target="_blank" rel="noopener">Minutes ↗</a></footer></blockquote>
     <dl class="facts">
       <dt>Address</dt><dd>${esc(street(r))}${r.geo.zip ? `, ${esc(r.geo.zip)}` : ""}</dd>
-      ${r.school ? `<dt>School</dt><dd>${esc(r.school)}</dd>` : ""}
       ${routed ? `<dt>Routing</dt><dd>${esc(routed)}</dd>` : ""}
     </dl>
     ${staticMap(r.geo)}
@@ -176,6 +180,7 @@ document.querySelector("#today").textContent = now.toLocaleDateString("en-US", {
   } catch { /* static hosting: no map */ }
   requests = await (await fetch("/dashboard/requests.json")).json();
   renderList();
+  renderTopics(await (await fetch("/dashboard/trends.json")).json());
   // #r-caudalie opens that request, so other pages can link straight to one.
   const linked = requests.find((r) => location.hash === `#r-${r.id}`);
   if (linked) openRequest(linked);

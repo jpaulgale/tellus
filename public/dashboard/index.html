@@ -28,16 +28,16 @@
   <main id="home">
     <header>
       <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
-      <h1>Sample Board Member Dashboard</h1>
+      <h1>Board view</h1>
     </header>
     <section class="welcome-row" aria-labelledby="page-heading">
       <div><h2 id="page-heading">Here’s what needs your attention</h2><p id="today"></p></div>
     </section>
 
     <section class="summary-grid" aria-label="Request summary">
-      <a class="summary-card urgent" href="#requests"><span class="summary-number" id="count-urgent"></span><div><strong>Need a response soon</strong><p>Waiting more than a week</p></div><span class="arrow">→</span></a>
+      <a class="summary-card urgent" href="#requests"><span class="summary-number" id="count-urgent"></span><div><strong>On the board's record</strong><p>The board has ruled at the address</p></div><span class="arrow">→</span></a>
       <a class="summary-card" href="#requests"><span class="summary-number" id="count-new"></span><div><strong>New requests</strong><p>Not yet reviewed</p></div><span class="arrow">→</span></a>
-      <a class="summary-card good" href="#resolved"><span class="summary-number" id="count-resolved">24</span><div><strong>Resolved this month</strong><p>Residents received a reply</p></div><span class="arrow">→</span></a>
+      <a class="summary-card good" href="#resolved"><span class="summary-number" id="count-resolved">0</span><div><strong>Resolved</strong><p>In this session</p></div><span class="arrow">→</span></a>
     </section>
 
     <div class="page-grid">
@@ -47,18 +47,13 @@
       </section>
       <div class="side-column">
         <section class="card topics-card" id="topics" aria-labelledby="topics-heading">
-          <div class="card-heading"><div><h2 id="topics-heading">What residents are talking about</h2><p>Most common topics in the last 30 days</p></div></div>
-          <ol class="topics">
-            <li><span>1</span><div><strong>Street safety</strong><div class="bar"><i style="width:100%"></i></div></div><b>42</b></li>
-            <li><span>2</span><div><strong>Outdoor dining</strong><div class="bar"><i style="width:76%"></i></div></div><b>32</b></li>
-            <li><span>3</span><div><strong>Bars and late-night noise</strong><div class="bar"><i style="width:55%"></i></div></div><b>23</b></li>
-            <li><span>4</span><div><strong>Parks</strong><div class="bar"><i style="width:38%"></i></div></div><b>16</b></li>
-          </ol>
-          <p class="topic-note"><span aria-hidden="true">↑</span> Street safety concerns increased this month.</p>
+          <div class="card-heading"><div><h2 id="topics-heading">What the district reports to 311</h2><p id="topics-sub"></p></div></div>
+          <ol class="topics" id="topics-list"></ol>
+          <p class="topic-note" id="topic-note"></p>
         </section>
       </div>
     </div>
-    <section class="card resolved-card" id="resolved"><div class="resolved-icon">✓</div><div><h2 id="resolved-heading">24 requests resolved this month</h2><p>Average response time: 3 days</p></div><button id="view-resolved" aria-controls="request-list">View resolved requests</button></section>
+    <section class="card resolved-card" id="resolved"><div class="resolved-icon">✓</div><div><h2 id="resolved-heading"></h2><p>Mark a request resolved to see it here.</p></div><button id="view-resolved" aria-controls="request-list">View resolved requests</button></section>
   </main>
 
   <div class="dialog-backdrop" id="dialog" hidden>
