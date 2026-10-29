@@ -191,6 +191,7 @@ export function renderSendPanel(root, getState, destinations) {
   root.replaceChildren(
     errBox,
     h("div.ff", h("div.ff-top", h("span.ff-lab", "Send to"), h("span.ff-lab-opt", "pick any")), destBox),
+    h("p.fieldhint.demo-send", "Demo: nothing is sent to 311 or the board. Tell Us saves a copy and gives you the filled-in details to submit yourself."),
     btn,
     result,
   );
