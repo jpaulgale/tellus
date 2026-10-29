@@ -153,7 +153,33 @@ export function renderLocation(field, key, ctx, id) {
   const note = boardNote(groups.map((g) => cardModel(g, here)).filter((m) => m.atHere));
   return h("div.loc", confirm,
     h("div.combo", h("div.ff-inputwrap", input), list), hint, outside,
-    altsEl, card, mapBox, mapHint, meta, note);
+    altsEl, card, mapBox, mapHint, meta, note, v?.geo ? historyCard(v.geo) : null);
+}
+
+// What 311 already knows about the place, from NYC Open Data (/api/history). One request per place.
+const histories = new Map();
+const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
+
+function historyCard(geo) {
+  const key = geo.bbl ? `bbl=${geo.bbl}` : `lat=${geo.lat.toFixed(5)}&lng=${geo.lng.toFixed(5)}`;
+  if (!histories.has(key)) histories.set(key, api(`/api/history?${key}&lat=${geo.lat}&lng=${geo.lng}`).catch(() => null));
+  const box = h("div.histcard", { "aria-live": "polite" });
+  histories.get(key).then((hist) => {
+    if (!hist) return box.remove();
+    const where = geo.bbl ? "this address" : "this corner";
+    if (!hist.total) return box.replaceChildren(h("p.histcard-title", `311 has no requests at ${where} in the last year.`));
+    const outcome = (t) => Object.entries(t.outcomes).filter(([k]) => k !== "other").sort((a, b) => b[1] - a[1])
+      .map(([k, n]) => `${n} ${hist.labels[k]}`).join(" · ");
+    const row = (t) => h("li", h("b", `${t.type}`), h("span", ` ${plural(t.count, "request")}${t.open ? `, ${t.open} still open` : ""}`),
+      outcome(t) ? h("small", outcome(t)) : null);
+    box.replaceChildren(
+      h("p.rescard-eyebrow", "Already reported to 311"),
+      h("p.histcard-title", `${plural(hist.total, "request")} at ${where} since ${new Date(hist.since + "T12:00").toLocaleDateString("en-US", { month: "short", year: "numeric" })}`),
+      h("ul.histlist", hist.types.slice(0, 3).map(row)),
+      hist.types.length > 3 ? h("details.resall", h("summary", `${hist.types.length - 3} more kinds of request`), h("ul.histlist", hist.types.slice(3).map(row))) : null,
+      h("p.rescard-foot", h("span.histsrc", "How each was closed is the agency's own note, grouped."), h("a", { href: hist.url, target: "_blank", rel: "noopener" }, "Check on NYC Open Data ↗")));
+  });
+  return box;
 }
 
 const titleCase = (s) => String(s || "").toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());

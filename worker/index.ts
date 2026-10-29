@@ -5,6 +5,7 @@
 import catalog from "./catalog.json";
 import { type Board, type Candidate, type Geo, type License, FINDERS, addressQueries, properNames, streets } from "./candidates";
 import { intersectionNode } from "./intersection";
+import { history } from "./history";
 
 interface Env {
   ASSETS: Fetcher;
@@ -737,6 +738,11 @@ export default {
       if (url.pathname === "/api/geosearch") return await autocomplete(url);
       if (url.pathname === "/api/reverse") return await reverse(url);
       if (url.pathname === "/api/record" && request.method === "POST") return await record(request, env, track);
+      if (url.pathname === "/api/history") {
+        const lat = Number(url.searchParams.get("lat")), lng = Number(url.searchParams.get("lng"));
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return json({ error: "lat and lng are required" }, 400);
+        return json(await history({ bbl: url.searchParams.get("bbl") ?? undefined, lat, lng }));
+      }
       if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env, track);
       if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env, track);
       if (url.pathname === "/api/config")

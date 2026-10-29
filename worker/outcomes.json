@@ -1,0 +1,30 @@
+{
+  "_": "How a closed 311 request ended, read from the agency's resolution_description. The first class whose pattern matches wins (case-insensitive); anything else is 'other' (no detail, or 'see the agency's website'). Shared by worker/history.ts and scripts/build_trends.py.",
+  "classes": [
+    {
+      "key": "duplicate",
+      "label": "duplicate of an earlier report",
+      "pattern": "duplicate|earlier complaint about the same"
+    },
+    {
+      "key": "no_access",
+      "label": "agency couldn't get in or find it",
+      "pattern": "unable to (complete|gain|access|inspect)|not able to gain access|was not able to|could not gain|attempted to conduct|could not find the individual|could not access"
+    },
+    {
+      "key": "action",
+      "label": "summons, violation or repair",
+      "pattern": "violation of law occurred|issued a summons|summons was issued|violations? (were|was) issued|issued a (notice of )?violation|repaired|made an arrest|took action to fix|completed the work|issued a (citation|ticket)|vehicle was towed|referred to the department of homeless|corrected the problem|collected the requested|cleaned the location|removed the graffiti|pled guilty|found guilty|was fixed|has been fixed|has been completed|found violations"
+    },
+    {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "pattern": "condition was corrected|has been restored|had been restored|indicated that the condition was corrected"
+    },
+    {
+      "key": "no_violation",
+      "label": "no violation found",
+      "pattern": "no (criminal )?violation|no evidence|not necessary|found no condition|didn't observe|did not observe|did not violate|observed no|no further action was necessary|not warranted|unfounded|no action was necessary|meets its standards|no (illegal|unlicensed) |was not (present|observed)|no encampment|nothing was found|did not find any violations"
+    }
+  ]
+}

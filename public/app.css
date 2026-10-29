@@ -299,3 +299,13 @@ input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 400; color: #6
 /* Clear and the footer's links: blue, no underline, darker on hover */
 #clearBtn, .credit a { color: var(--accent); text-decoration: none; font-weight: 600; }
 #clearBtn:hover, .credit a:hover { color: color-mix(in srgb, var(--accent) 65%, #000); }
+
+/* What 311 already knows about the place (location.js historyCard) */
+.histcard { margin-top: 12px; border: 1px solid var(--line, #d6d9e0); border-radius: 10px; padding: 14px 18px; background: var(--white); }
+.histcard:empty { display: none; }
+.histcard .rescard-eyebrow { color: var(--muted); }
+.histcard-title { font-weight: 600; font-size: 15px; margin-top: 4px; }
+.histlist { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; font-size: 14px; }
+.histlist small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.histsrc { color: var(--muted); font-size: 12px; }
+@media (min-width: 760px) { .loc .histcard { grid-column: 1 / -1; } }
