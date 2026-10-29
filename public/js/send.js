@@ -6,9 +6,9 @@ import { isEmpty, invalidReason } from "./fields.js";
 
 const GENERAL_SR = { when: "when_observed", name: "resident_name", email: "resident_email", phone: "resident_phone" };
 
-/** Where a form goes unless the person changes it. `board` is set when the address is outside CB2. */
-export function defaultDestinations(form, board) {
-  const cb = board?.key ?? "CB2";
+/** Where a form goes unless the person changes it. `board` is set when the address is outside `home`, the board the app runs as. */
+export function defaultDestinations(form, board, home) {
+  const cb = (board ?? home).key;
   if (form.key === "cb2") return [cb];
   if (form.key === "crossing_guard") return [cb, "NYPD"]; // the board advocates, the precinct assigns the guard
   // Service requests go to the board and to the agency that fixes it (via 311 where that's the intake).
@@ -28,7 +28,7 @@ export function buildPayload(s) {
     borough: g.borough ? g.borough.toUpperCase() : null, bbl: g.bbl ?? null,
     latitude: g.lat ?? null, longitude: g.lng ?? null,
     cross_street_1: null, cross_street_2: null,
-    community_board: g.board ? `${g.board.cd.slice(1)} ${g.board.name.split(" Community")[0].toUpperCase()}` : "02 MANHATTAN",
+    community_board: g.board ? `${g.board.cd.slice(1)} ${g.board.name.split(" ")[1].toUpperCase()}` : s.home.community_board_311,
   };
   if (form.key === "cb2" && !g.board?.outside) p.committee = val(form.key, "committee");
   Object.assign(p, { description: s.message, resident_name: null, resident_email: null, resident_phone: null, when_observed: null, extra: {} });
@@ -116,7 +116,8 @@ export function renderSendPanel(root, getState, destinations) {
   const result = h("div.sendresult");
   // Any number of destinations; NYPD is always there to add by hand.
   const picked = new Set(s.destination);
-  const options = [...(s.board ? [[s.board.key, s.board.name]] : []), ...Object.entries(destinations).map(([k, d]) => [k, d.label])];
+  const cb = s.board ?? s.home; // the board this goes to: the address's own when it's outside the home board
+  const options = [[cb.key, cb.name], ...Object.entries(destinations).map(([k, d]) => [k, d.label])];
   const toggle = (k, el) => {
     picked.has(k) ? picked.delete(k) : picked.add(k);
     el.classList.toggle("on", picked.has(k)); el.setAttribute("aria-pressed", String(picked.has(k)));
@@ -126,9 +127,9 @@ export function renderSendPanel(root, getState, destinations) {
   const destBox = h("div.chips.dests", { id: "destSel", role: "group", "aria-label": "Send to" },
     options.map(([k, label]) => h("button.chip" + (picked.has(k) ? ".on" : ""), { type: "button", "aria-pressed": String(picked.has(k)), "data-dest": k,
       onclick: (e) => toggle(k, e.currentTarget) }, label)));
-  const SHORT = { "311": "311", CB2: "CB2", DOT: "DOT", NYPD: "NYPD", DSNY: "DSNY", DOHMH: "the Health Department" };
+  const SHORT = { "311": "311", DOT: "DOT", NYPD: "NYPD", DSNY: "DSNY", DOHMH: "the Health Department" };
   const sendLabel = () => {
-    const names = options.filter(([k]) => picked.has(k)).map(([k]) => (k === s.board?.key ? s.board.short : SHORT[k] ?? k));
+    const names = options.filter(([k]) => picked.has(k)).map(([k]) => (k === cb.key ? cb.short : SHORT[k] ?? k));
     if (!names.length) return "Submit";
     return `Submit to ${names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : names[0]}`;
   };
@@ -164,8 +165,8 @@ export function renderSendPanel(root, getState, destinations) {
       const r = sent[0];
       const text = JSON.stringify(payload, null, 2);
       const keys = [...picked];
-      const name = (k) => (k === s.board?.key ? s.board.short : SHORT[k] ?? k);
-      const mailto = (x, i) => `mailto:${x.email}?subject=${encodeURIComponent(`${payload.complaint_type} – ${payload.incident_address ?? "CB2"}`)}&body=${encodeURIComponent(emailBody(st, payload, keys.filter((_, j) => j !== i).map(name)))}`;
+      const name = (k) => (k === cb.key ? cb.short : SHORT[k] ?? k);
+      const mailto = (x, i) => `mailto:${x.email}?subject=${encodeURIComponent(`${payload.complaint_type} – ${payload.incident_address ?? cb.short}`)}&body=${encodeURIComponent(emailBody(st, payload, keys.filter((_, j) => j !== i).map(name)))}`;
       result.replaceChildren(
         h("div.nyc-inlinemessage.nyc-inlinemessage--success", { role: "status" },
           h("span.nyc-inlinemessage__icon", "✓"),

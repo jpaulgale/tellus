@@ -1,0 +1,1276 @@
+{
+ "generated": "2026-10-29",
+ "through": "2026-10-28",
+ "source": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
+ "district": "Manhattan Community District 3",
+ "labeled": false,
+ "total30": 8189,
+ "prev30": 6521,
+ "total365": 72922,
+ "types": [
+  {
+   "type": "Traffic",
+   "agency": "NYPD",
+   "count": 1814,
+   "prev": 253,
+   "closed": 1814,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 1783
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 31
+    }
+   ]
+  },
+  {
+   "type": "Noise - Residential",
+   "agency": "NYPD",
+   "count": 797,
+   "prev": 731,
+   "closed": 796,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 377
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 277
+    },
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 124
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 5
+    }
+   ]
+  },
+  {
+   "type": "Illegal Parking",
+   "agency": "NYPD",
+   "count": 538,
+   "prev": 503,
+   "closed": 537,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 315
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 172
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 46
+    }
+   ]
+  },
+  {
+   "type": "Noise - Street/Sidewalk",
+   "agency": "NYPD",
+   "count": 504,
+   "prev": 486,
+   "closed": 503,
+   "outcomes": [
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 284
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 212
+    },
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 5
+    }
+   ]
+  },
+  {
+   "type": "Noise - Commercial",
+   "agency": "NYPD",
+   "count": 457,
+   "prev": 504,
+   "closed": 456,
+   "outcomes": [
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 242
+    },
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 204
+    },
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 7
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "type": "HEAT/HOT WATER",
+   "agency": "HPD",
+   "count": 434,
+   "prev": 93,
+   "closed": 341,
+   "outcomes": [
+    {
+     "key": "no_access",
+     "label": "agency couldn't get in or find it",
+     "count": 146
+    },
+    {
+     "key": "duplicate",
+     "label": "duplicate of an earlier report",
+     "count": 93
+    },
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 79
+    },
+    {
+     "key": "corrected",
+     "label": "fixed when the agency arrived",
+     "count": 10
+    },
+    {
+     "key": "no_violation",
+     "label": "no violation found",
+     "count": 5
+    }
+   ]
+  },
+  {
+   "type": "Encampment",
+   "agency": "DHS",
+   "count": 362,
+   "prev": 639,
+   "closed": 362,
+   "outcomes": []
+  },
+  {
+   "type": "Maintenance or Facility",
+   "agency": "DPR",
+   "count": 223,
+   "prev": 106,
+   "closed": 156,
+   "outcomes": [
+    {
+     "key": "action",
+     "label": "summons, violation or repair",
+     "count": 59
+    }
+   ]
+  }
+ ],
+ "rising": [
+  {
+   "type": "Traffic",
+   "count": 1814,
+   "prev": 253,
+   "top": {
+    "address": "20 Clinton Street",
+    "count": 1810
+   },
+   "weeks": [
+    {
+     "week": "2026-08-06",
+     "count": 2
+    },
+    {
+     "week": "2026-08-13",
+     "count": 1
+    },
+    {
+     "week": "2026-08-20",
+     "count": 1
+    },
+    {
+     "week": "2026-08-27",
+     "count": 2
+    },
+    {
+     "week": "2026-09-03",
+     "count": 2
+    },
+    {
+     "week": "2026-09-10",
+     "count": 4
+    },
+    {
+     "week": "2026-09-17",
+     "count": 3
+    },
+    {
+     "week": "2026-09-24",
+     "count": 419
+    },
+    {
+     "week": "2026-10-01",
+     "count": 426
+    },
+    {
+     "week": "2026-10-08",
+     "count": 448
+    },
+    {
+     "week": "2026-10-15",
+     "count": 452
+    },
+    {
+     "week": "2026-10-22",
+     "count": 311
+    }
+   ]
+  },
+  {
+   "type": "HEAT/HOT WATER",
+   "count": 434,
+   "prev": 93,
+   "top": {
+    "address": "16 Avenue A",
+    "count": 29
+   },
+   "weeks": [
+    {
+     "week": "2026-08-06",
+     "count": 8
+    },
+    {
+     "week": "2026-08-13",
+     "count": 5
+    },
+    {
+     "week": "2026-08-20",
+     "count": 33
+    },
+    {
+     "week": "2026-08-27",
+     "count": 26
+    },
+    {
+     "week": "2026-09-03",
+     "count": 15
+    },
+    {
+     "week": "2026-09-10",
+     "count": 23
+    },
+    {
+     "week": "2026-09-17",
+     "count": 23
+    },
+    {
+     "week": "2026-09-24",
+     "count": 28
+    },
+    {
+     "week": "2026-10-01",
+     "count": 50
+    },
+    {
+     "week": "2026-10-08",
+     "count": 51
+    },
+    {
+     "week": "2026-10-15",
+     "count": 186
+    },
+    {
+     "week": "2026-10-22",
+     "count": 139
+    }
+   ]
+  },
+  {
+   "type": "Maintenance or Facility",
+   "count": 223,
+   "prev": 106,
+   "top": {
+    "address": "144 Avenue A",
+    "count": 22
+   },
+   "weeks": [
+    {
+     "week": "2026-08-06",
+     "count": 25
+    },
+    {
+     "week": "2026-08-13",
+     "count": 18
+    },
+    {
+     "week": "2026-08-20",
+     "count": 26
+    },
+    {
+     "week": "2026-08-27",
+     "count": 22
+    },
+    {
+     "week": "2026-09-03",
+     "count": 27
+    },
+    {
+     "week": "2026-09-10",
+     "count": 24
+    },
+    {
+     "week": "2026-09-17",
+     "count": 34
+    },
+    {
+     "week": "2026-09-24",
+     "count": 48
+    },
+    {
+     "week": "2026-10-01",
+     "count": 26
+    },
+    {
+     "week": "2026-10-08",
+     "count": 84
+    },
+    {
+     "week": "2026-10-15",
+     "count": 57
+    },
+    {
+     "week": "2026-10-22",
+     "count": 17
+    }
+   ]
+  }
+ ],
+ "hotspots": [
+  {
+   "related": true,
+   "bbl": "1002760021",
+   "address": "41 Monroe St",
+   "count": 53,
+   "lat": 40.71157913806931,
+   "lng": -73.99449559819786,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 38,
+    "weeks": [
+     {
+      "week": "2026-08-06",
+      "count": 0
+     },
+     {
+      "week": "2026-08-13",
+      "count": 0
+     },
+     {
+      "week": "2026-08-20",
+      "count": 0
+     },
+     {
+      "week": "2026-08-27",
+      "count": 0
+     },
+     {
+      "week": "2026-09-03",
+      "count": 4
+     },
+     {
+      "week": "2026-09-10",
+      "count": 2
+     },
+     {
+      "week": "2026-09-17",
+      "count": 4
+     },
+     {
+      "week": "2026-09-24",
+      "count": 9
+     },
+     {
+      "week": "2026-10-01",
+      "count": 12
+     },
+     {
+      "week": "2026-10-08",
+      "count": 1
+     },
+     {
+      "week": "2026-10-15",
+      "count": 2
+     },
+     {
+      "week": "2026-10-22",
+      "count": 4
+     }
+    ],
+    "hours": [
+     [
+      22,
+      16
+     ],
+     [
+      23,
+      10
+     ],
+     [
+      0,
+      7
+     ]
+    ],
+    "closed": 38,
+    "outcomes": [
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 35
+     },
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 3
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     38
+    ],
+    [
+     "Outdoor Dining",
+     9
+    ],
+    [
+     "Unleashed Dog",
+     2
+    ],
+    [
+     "Illegal Parking",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "cb3-2025-10-005",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "October 28, 2025",
+     "title": "Tinto (Tinto LLC), 41 Monroe St (op)",
+     "outcome": "deny",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-10.pdf"
+    },
+    {
+     "id": "cb3-2025-04-006",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "April 22, 2025",
+     "title": "Bolzot (Wolf and Bear LLC), 55 Market St (op)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 13,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-04.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1004590031",
+   "address": "61 2 Ave",
+   "count": 47,
+   "lat": 40.72592017187683,
+   "lng": -73.9896346333224,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 36,
+    "weeks": [
+     {
+      "week": "2026-08-06",
+      "count": 0
+     },
+     {
+      "week": "2026-08-13",
+      "count": 0
+     },
+     {
+      "week": "2026-08-20",
+      "count": 3
+     },
+     {
+      "week": "2026-08-27",
+      "count": 3
+     },
+     {
+      "week": "2026-09-03",
+      "count": 0
+     },
+     {
+      "week": "2026-09-10",
+      "count": 5
+     },
+     {
+      "week": "2026-09-17",
+      "count": 1
+     },
+     {
+      "week": "2026-09-24",
+      "count": 9
+     },
+     {
+      "week": "2026-10-01",
+      "count": 6
+     },
+     {
+      "week": "2026-10-08",
+      "count": 5
+     },
+     {
+      "week": "2026-10-15",
+      "count": 0
+     },
+     {
+      "week": "2026-10-22",
+      "count": 4
+     }
+    ],
+    "hours": [
+     [
+      23,
+      10
+     ],
+     [
+      1,
+      9
+     ],
+     [
+      0,
+      8
+     ]
+    ],
+    "closed": 36,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 24
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 11
+     },
+     {
+      "key": "no_access",
+      "label": "agency couldn't get in or find it",
+      "count": 1
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     36
+    ],
+    [
+     "Noise",
+     6
+    ],
+    [
+     "General Construction/Plumbing",
+     2
+    ],
+    [
+     "Lost Property",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "cb3-2025-07-045",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "July 22, 2025",
+     "title": "The Gray Mare, 61 2nd Ave",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-07.pdf"
+    },
+    {
+     "id": "cb3-2025-05-053",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "May 27, 2025",
+     "title": "The Gray Mare, 61 2nd Ave (Sidewalk Cafe)",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-05.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1004140030",
+   "address": "286 Broome St",
+   "count": 45,
+   "lat": 40.7185204568837,
+   "lng": -73.99150805286503,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 36,
+    "weeks": [
+     {
+      "week": "2026-08-06",
+      "count": 9
+     },
+     {
+      "week": "2026-08-13",
+      "count": 7
+     },
+     {
+      "week": "2026-08-20",
+      "count": 0
+     },
+     {
+      "week": "2026-08-27",
+      "count": 0
+     },
+     {
+      "week": "2026-09-03",
+      "count": 10
+     },
+     {
+      "week": "2026-09-10",
+      "count": 0
+     },
+     {
+      "week": "2026-09-17",
+      "count": 1
+     },
+     {
+      "week": "2026-09-24",
+      "count": 0
+     },
+     {
+      "week": "2026-10-01",
+      "count": 0
+     },
+     {
+      "week": "2026-10-08",
+      "count": 9
+     },
+     {
+      "week": "2026-10-15",
+      "count": 0
+     },
+     {
+      "week": "2026-10-22",
+      "count": 0
+     }
+    ],
+    "hours": [
+     [
+      20,
+      6
+     ],
+     [
+      12,
+      5
+     ],
+     [
+      21,
+      4
+     ]
+    ],
+    "closed": 36,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 19
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 13
+     },
+     {
+      "key": "action",
+      "label": "summons, violation or repair",
+      "count": 4
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     36
+    ],
+    [
+     "Noise - Residential",
+     3
+    ],
+    [
+     "Noise - Street/Sidewalk",
+     2
+    ],
+    [
+     "Encampment",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "cb3-2026-07-016",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "July 28, 2026",
+     "title": "Rabbit LES LLC, 286 Broome St (Basement) (wb) (bar/tavern)",
+     "outcome": "other",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf"
+    },
+    {
+     "id": "cb3-2024-12-030",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "December 17, 2024",
+     "title": "Rabbit LES LLC, 286 Broome St (wb)",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2024/minutes2024-12.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1003110013",
+   "address": "175 Clinton St",
+   "count": 44,
+   "lat": 40.71428493594177,
+   "lng": -73.9875911461834,
+   "top": {
+    "type": "Noise - Street/Sidewalk",
+    "count": 15,
+    "weeks": [
+     {
+      "week": "2026-08-06",
+      "count": 0
+     },
+     {
+      "week": "2026-08-13",
+      "count": 0
+     },
+     {
+      "week": "2026-08-20",
+      "count": 2
+     },
+     {
+      "week": "2026-08-27",
+      "count": 0
+     },
+     {
+      "week": "2026-09-03",
+      "count": 1
+     },
+     {
+      "week": "2026-09-10",
+      "count": 0
+     },
+     {
+      "week": "2026-09-17",
+      "count": 3
+     },
+     {
+      "week": "2026-09-24",
+      "count": 2
+     },
+     {
+      "week": "2026-10-01",
+      "count": 4
+     },
+     {
+      "week": "2026-10-08",
+      "count": 1
+     },
+     {
+      "week": "2026-10-15",
+      "count": 0
+     },
+     {
+      "week": "2026-10-22",
+      "count": 1
+     }
+    ],
+    "hours": [
+     [
+      16,
+      11
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      22,
+      1
+     ]
+    ],
+    "closed": 15,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 8
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 7
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Street/Sidewalk",
+     15
+    ],
+    [
+     "Noise - Vehicle",
+     6
+    ],
+    [
+     "Rodent",
+     4
+    ],
+    [
+     "Food Establishment",
+     3
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "cb3-2025-03-043",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "March 25, 2025",
+     "title": "Kossar & Beyond (Kossar & Beyond LLC), 367 Grand St (Sidewalk Cafe)",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-03.pdf"
+    },
+    {
+     "id": "cb3-2025-01-003",
+     "committee": "Transportation, Public Safety, Sanitation & Environment",
+     "meeting_date": "January 21, 2025",
+     "title": "Support for Neighborhood Loading Zones at 208-212 East Broadway, 264-268 East Broadway, 383-387 Grand Street, and 413-417 Grand Street",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-01.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1004090041",
+   "address": "92 Ludlow St",
+   "count": 35,
+   "lat": 40.718394005171284,
+   "lng": -73.98920651756731,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 32,
+    "weeks": [
+     {
+      "week": "2026-08-06",
+      "count": 5
+     },
+     {
+      "week": "2026-08-13",
+      "count": 0
+     },
+     {
+      "week": "2026-08-20",
+      "count": 4
+     },
+     {
+      "week": "2026-08-27",
+      "count": 1
+     },
+     {
+      "week": "2026-09-03",
+      "count": 2
+     },
+     {
+      "week": "2026-09-10",
+      "count": 5
+     },
+     {
+      "week": "2026-09-17",
+      "count": 1
+     },
+     {
+      "week": "2026-09-24",
+      "count": 1
+     },
+     {
+      "week": "2026-10-01",
+      "count": 2
+     },
+     {
+      "week": "2026-10-08",
+      "count": 2
+     },
+     {
+      "week": "2026-10-15",
+      "count": 3
+     },
+     {
+      "week": "2026-10-22",
+      "count": 1
+     }
+    ],
+    "hours": [
+     [
+      0,
+      15
+     ],
+     [
+      23,
+      7
+     ],
+     [
+      1,
+      4
+     ]
+    ],
+    "closed": 32,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 23
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 9
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     32
+    ],
+    [
+     "Lost Property",
+     2
+    ],
+    [
+     "Noise - Street/Sidewalk",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "cb3-2025-09-007",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "September 24, 2025",
+     "title": "AIK Hospitality Inc, 92 Ludlow St (op)",
+     "outcome": "other",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-09.pdf"
+    },
+    {
+     "id": "cb3-2025-07-007",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "July 22, 2025",
+     "title": "AIK Hospitality Inc, 92 Ludlow St (op)",
+     "outcome": "other",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-07.pdf"
+    },
+    {
+     "id": "cb3-2025-06-011",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "June 24, 2025",
+     "title": "AIK Hospitality Inc, 92 Ludlow St (op)",
+     "outcome": "other",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-06.pdf"
+    }
+   ]
+  },
+  {
+   "related": true,
+   "bbl": "1004177501",
+   "address": "190 Allen St",
+   "count": 33,
+   "lat": 40.722247617621264,
+   "lng": -73.9888992427031,
+   "top": {
+    "type": "Noise - Commercial",
+    "count": 28,
+    "weeks": [
+     {
+      "week": "2026-08-06",
+      "count": 0
+     },
+     {
+      "week": "2026-08-13",
+      "count": 6
+     },
+     {
+      "week": "2026-08-20",
+      "count": 3
+     },
+     {
+      "week": "2026-08-27",
+      "count": 6
+     },
+     {
+      "week": "2026-09-03",
+      "count": 5
+     },
+     {
+      "week": "2026-09-10",
+      "count": 0
+     },
+     {
+      "week": "2026-09-17",
+      "count": 1
+     },
+     {
+      "week": "2026-09-24",
+      "count": 0
+     },
+     {
+      "week": "2026-10-01",
+      "count": 0
+     },
+     {
+      "week": "2026-10-08",
+      "count": 5
+     },
+     {
+      "week": "2026-10-15",
+      "count": 2
+     },
+     {
+      "week": "2026-10-22",
+      "count": 0
+     }
+    ],
+    "hours": [
+     [
+      1,
+      8
+     ],
+     [
+      2,
+      7
+     ],
+     [
+      0,
+      6
+     ]
+    ],
+    "closed": 28,
+    "outcomes": [
+     {
+      "key": "corrected",
+      "label": "fixed when the agency arrived",
+      "count": 21
+     },
+     {
+      "key": "no_violation",
+      "label": "no violation found",
+      "count": 7
+     }
+    ]
+   },
+   "types": [
+    [
+     "Noise - Commercial",
+     28
+    ],
+    [
+     "Graffiti",
+     2
+    ],
+    [
+     "Noise - Street/Sidewalk",
+     1
+    ],
+    [
+     "Illegal Parking",
+     1
+    ]
+   ],
+   "resolutions": [
+    {
+     "id": "cb3-2026-06-009",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "June 23, 2026",
+     "title": "Bella LES LLC, 187 Orchard St (op)",
+     "outcome": "deny-unless (stipulations)",
+     "stipulations": 12,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf"
+    },
+    {
+     "id": "cb3-2026-03-017",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "March 24, 2026",
+     "title": "Make Believe, Blue Ribbon Sushi Izakaya, Blue Ribbon Kanpai Garden (Orchard Street Restaurant LLC & Cosmic Debris LLC), 187 Orchard St (op/alt: reallocating certain existing food and beverage outlets within the hotel from this on-premise liquor license in the building to the hotel liquor license) (r",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-03.pdf"
+    },
+    {
+     "id": "cb3-2026-03-018",
+     "committee": "SLA Licensing & Outdoor Dining",
+     "meeting_date": "March 24, 2026",
+     "title": "Sixty LES (Allen Operating Company LLC & Orchard Street Restaurant LLC), 190 Allen St (op/alt: reallocating certain existing food and beverage outlets within the hotel from the on-premise liquor license in the building to this hotel liquor license) (hotel)",
+     "outcome": "approve/support",
+     "stipulations": 0,
+     "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-03.pdf"
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "count": 51,
+  "year": "2026",
+  "meetings": 19,
+  "by_committee": [],
+  "latest": [
+   {
+    "id": "2026-07-ps05",
+    "meeting_date": "July 28, 2026",
+    "topic": "",
+    "speaker_line": "Marion Aguas (NYC Commission on Racial Equity)",
+    "text": "introduction of the organization's work on creating community racial equity. Information session next Monday at 6 pm: invite will be submitted to CB3 for sharing with general CB3 community. CB3 office to connect Marion with CUNY Research Center for the equity report",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-07-ps04",
+    "meeting_date": "July 28, 2026",
+    "topic": "",
+    "speaker_line": "Emilio Gonzalez (ConEd)",
+    "text": "Announce the murals project on Ave A. Introduction of an electrical infrastructure update project: upgrading of transformer to move electricity load from Ave A to Cherry. 3-year project, 3 phases till 2028.",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-07-ps03",
+    "meeting_date": "July 28, 2026",
+    "topic": "",
+    "speaker_line": "Jon Souza (ArtBridge)",
+    "text": "Creating public art: murals on Ave A on construction fence. Beautify a building, between 5th and 6th, collaboration with ConEd. Currently recruiting about 10 artists and volunteers. Planning a paint-day event in Sep. Surveys will be send out to gather community feedback",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-07-ps02",
+    "meeting_date": "July 28, 2026",
+    "topic": "",
+    "speaker_line": "Myles Smutney (My LES Cultural Center)",
+    "text": "introduction of a proposal for new cultural center on Delancey in response to RFP Solicitation #MY-25-2024. To restore the public bathroom at Allen and Delancey to operate a café with a LES Cultural Center. Presented to Park Committee.",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-07-ps01",
+    "meeting_date": "July 28, 2026",
+    "topic": "",
+    "speaker_line": "Kylie (climate scientist, CB3 residents)",
+    "text": "concerning regarding adequate community preparedness concerning extreme inclimate weather, advocating for community involvement",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-06-ps05",
+    "meeting_date": "June 23, 2026",
+    "topic": "",
+    "speaker_line": "Jean Standish",
+    "text": "Opposed the concentration of shelters and intake facilities in the area. Called for fair share analysis, greater transparency, resident representation",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-06-ps04",
+    "meeting_date": "June 23, 2026",
+    "topic": "",
+    "speaker_line": "David Mulkins",
+    "text": "concerns about the East 3rd St Intake Center opening, urged CB2 & 3 to establish a join committee to this issue",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-06-ps03",
+    "meeting_date": "June 23, 2026",
+    "topic": "",
+    "speaker_line": "Ane Hayes",
+    "text": "didn't speak. Mic didn't work",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-06-ps02",
+    "meeting_date": "June 23, 2026",
+    "topic": "",
+    "speaker_line": "Anne Mitcheltree",
+    "text": "raised concerns regarding complaints about customers gathering the sidewalk at 93 ½ 7th Street. CB answered that they were not violating any laws",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-06-ps01",
+    "meeting_date": "June 23, 2026",
+    "topic": "",
+    "speaker_line": "Jennybella Verona",
+    "text": "SLA #7 applicant, a new local restaurant owner, seeking support",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-05-ps09",
+    "meeting_date": "May 26, 2026",
+    "topic": "",
+    "speaker_line": "Benjamin Solitaire (Civic Engagement Commission)",
+    "text": "remind people to vote for the city-wide participatory budgeting. 10 projects on the ballot. An upcoming training session in July on NYC Open Data Portal",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-05.pdf",
+    "committee": null
+   },
+   {
+    "id": "2026-05-ps08",
+    "meeting_date": "May 26, 2026",
+    "topic": "",
+    "speaker_line": "Anna Goldstein (resident next to Kinlaw Square)",
+    "text": "oppose the moving of the Kinlaw Memorial Arch redesign plan because of lack of outreach",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-05.pdf",
+    "committee": null
+   }
+  ]
+ }
+}

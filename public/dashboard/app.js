@@ -1,10 +1,10 @@
 // Board view: real Public Session remarks run through Tell Us (scripts/build_dashboard_data.py writes
 // requests.json), each with its suggested committee, a map, and what the board already decided there.
-// The topics are the district's 311 requests (trends.json, scripts/build_trends.py).
+// The topics are the district's 311 requests (trends.json, scripts/build_trends.py). Each board has its own (board.js).
 
 import { normAddress, groupRecord, cardModel } from "/js/record.js";
+import { dataUrl, showBoard } from "/dashboard/board.js";
 
-const COMMITTEES = ["SLA – 1", "SLA – 2", "Cannabis Licensing Committee", "Street Activities & Resiliency", "Outdoor Dining Working Group", "Traffic & Transportation", "Parks & Waterfront", "Landmarks & Public Aesthetics", "Land Use & Housing", "Human Services", "Schools & Education", "Arts & Culture Working Group", "Community Facilities Advisory Panel", "Executive Committee"];
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const titleCase = (s) => s.toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
@@ -13,7 +13,7 @@ const shortMonth = (d) => d.replace(/^(\w+) \d+, (\d+)$/, (_, m, y) => `${m.slic
 
 const ago = (r) => `Full Board, ${shortMonth(r.received)}`;
 
-let requests = [], committees = COMMITTEES, mapboxToken = "";
+let requests = [], committees = [], boardName = "CB2 Manhattan", mapboxToken = "";
 
 function staticMap({ lat, lng }) {
   if (!mapboxToken) return "";
@@ -28,7 +28,7 @@ const marked = ({ text, flagged }) => (flagged ? `<mark>${esc(text)}</mark>` : e
 function resolutionCard(m) {
   const body = `<div class="rescard">
     <p class="rescard-eyebrow">On the board's record</p>
-    <p class="rescard-title">CB2 Manhattan reviewed ${m.place} on <b>${esc(m.date)}</b>.</p>
+    <p class="rescard-title">${esc(boardName)} reviewed ${m.place} on <b>${esc(m.date)}</b>.</p>
     <p class="rescard-path">${badge(m.outcome)} <span>${esc(m.path)}${m.vote ? ` · ${esc(m.vote)}` : ""}</span></p>
     ${m.who.length ? `<p class="rescard-who"><b>Recommended to:</b> ${m.who.map(esc).join(" · ")}</p>` : ""}
     ${m.business ? `<p class="rescard-sub">${esc(m.business)}</p>` : ""}
@@ -120,7 +120,7 @@ function renderTopics(t) {
   document.querySelector("#topics-sub").textContent = `Requests to 311 in the 30 days to ${new Date(t.through + "T12:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
   document.querySelector("#topics-list").innerHTML = top.map((x, i) => `<li><span>${i + 1}</span><div><strong>${esc(x.type)}</strong><div class="bar"><i style="width:${Math.round((100 * x.count) / max)}%"></i></div></div><b>${x.count.toLocaleString("en-US")}</b></li>`).join("");
   const [rise] = t.rising;
-  document.querySelector("#topic-note").innerHTML = `<span aria-hidden="true">↑</span> ${esc(rise.type)}: ${rise.prev} → ${rise.count} on the 30 days before. <a href="/dashboard/insights.html">Trends</a>`;
+  document.querySelector("#topic-note").innerHTML = `<span aria-hidden="true">↑</span> ${esc(rise.type)}: ${rise.prev} → ${rise.count} on the 30 days before. <a href="${location.pathname.replace(/\/?$/, "/")}insights.html${location.search}">Trends</a>`;
 }
 
 let current = null;
@@ -174,13 +174,14 @@ document.querySelector("#today").textContent = now.toLocaleDateString("en-US", {
 (async () => {
   // The map token and committee list come from the app; the page still works without them.
   try {
-    const config = await (await fetch("/api/config")).json();
+    const config = await showBoard();
     mapboxToken = config.mapboxToken || "";
-    if (config.committees?.length) committees = config.committees;
+    committees = Object.keys(config.committees);
+    boardName = config.board.name;
   } catch { /* static hosting: no map */ }
-  requests = await (await fetch("/dashboard/requests.json")).json();
+  requests = await (await fetch(dataUrl("requests.json"))).json();
   renderList();
-  renderTopics(await (await fetch("/dashboard/trends.json")).json());
+  renderTopics(await (await fetch(dataUrl("trends.json"))).json());
   // #r-caudalie opens that request, so other pages can link straight to one.
   const linked = requests.find((r) => location.hash === `#r-${r.id}`);
   if (linked) openRequest(linked);

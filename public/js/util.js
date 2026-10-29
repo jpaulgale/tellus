@@ -4,6 +4,11 @@ import { session } from "./hit.js";
 
 export const $ = (id) => document.getElementById(id);
 
+/** Which community board this page runs as (?board=cb3); the worker reads it from x-board. CB2 when absent. */
+export const BOARD = new URLSearchParams(location.search).get("board") || "cb2";
+/** A same-site link that keeps the board: withBoard("/how"). */
+export const withBoard = (path) => (BOARD === "cb2" ? path : `${path}${path.includes("?") ? "&" : "?"}board=${BOARD}`);
+
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
@@ -34,8 +39,8 @@ export function announce(msg) {
 }
 
 export async function api(path, body) {
-  const r = await fetch(path, body === undefined ? { headers: { "x-session": session } } : {
-    method: "POST", headers: { "content-type": "application/json", "x-session": session }, body: JSON.stringify(body),
+  const r = await fetch(path, body === undefined ? { headers: { "x-session": session, "x-board": BOARD } } : {
+    method: "POST", headers: { "content-type": "application/json", "x-session": session, "x-board": BOARD }, body: JSON.stringify(body),
   });
   const j = await r.json().catch(() => ({}));
   if (!r.ok || j.error) throw new Error(j.error || `${path} failed (${r.status})`);

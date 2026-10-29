@@ -2,12 +2,13 @@
 # requires-python = ">=3.12"
 # dependencies = ["httpx"]
 # ///
-"""Download a year of 311 service requests in Manhattan Community District 2 from NYC Open Data
-(dataset erm2-nwe9) into data/311/cb2.csv. Every count on the board dashboard comes from this file.
+"""Download a year of 311 service requests in one community district from NYC Open Data
+(dataset erm2-nwe9) into data/311/<board>.csv. Every count on the board dashboard comes from this file.
 
-Usage: uv run scripts/fetch_311.py [days=365]
+Usage: uv run scripts/fetch_311.py [board=cb2] [days=365]   (board: a key of worker/boards.json)
 """
 
+import json
 import sys
 from datetime import date, timedelta
 from pathlib import Path
@@ -15,7 +16,6 @@ from pathlib import Path
 import httpx
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "data" / "311" / "cb2.csv"
 URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.csv"
 COLUMNS = (
     "unique_key,created_date,closed_date,agency,complaint_type,descriptor,location_type,incident_address,"
@@ -25,11 +25,14 @@ COLUMNS = (
 
 
 def main() -> None:
-    days = int(sys.argv[1]) if len(sys.argv) > 1 else 365
+    board = sys.argv[1] if len(sys.argv) > 1 else "cb2"
+    days = int(sys.argv[2]) if len(sys.argv) > 2 else 365
+    district = json.loads((ROOT / "worker" / "boards.json").read_text())[board]["community_board_311"]
+    OUT = ROOT / "data" / "311" / f"{board}.csv"
     since = (date.today() - timedelta(days=days)).isoformat()
     params = {
         "$select": COLUMNS,
-        "$where": f"community_board='02 MANHATTAN' AND created_date >= '{since}'",
+        "$where": f"community_board='{district}' AND created_date >= '{since}'",
         "$order": "created_date",
         "$limit": 500000,
     }

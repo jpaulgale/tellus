@@ -2,9 +2,9 @@
 // One /api/route call returns emergency?, every form's probability, and every field of every
 // form, so switching forms is instant. Fields the person edited are never overwritten.
 
-import { $, h, api, announce, rankRow } from "./util.js";
+import { $, h, api, announce, rankRow, withBoard } from "./util.js";
 import { renderField, jevValue, isEmpty } from "./fields.js";
-import { setMapboxToken, pickPlace } from "./location.js";
+import { setMapboxToken, setHome, pickPlace } from "./location.js";
 import { renderSendPanel, defaultDestinations, missingRequired } from "./send.js";
 import { toggleMic } from "./voice.js";
 import { renderTopics, startTypewriter } from "./suggest.js";
@@ -26,7 +26,8 @@ let sentSeq = 0, appliedSeq = 0, lastSent = "", timer = 0;
 const fieldsByKey = new Map();
 let needKeys = []; // keys of the fields shown in the "Needed" box
 
-/** The community board of the chosen location, when it isn't CB2. */
+/** The community board of the chosen location, when it isn't the home board. */
+const home = () => state.config.board;
 const otherBoard = () => { const b = state.values["general.location"]?.geo?.board; return b?.outside ? b : null; };
 const activeForm = () => state.res && (state.res.forms.find((f) => f.key === state.formKey) ?? state.res.forms[0]);
 
@@ -140,7 +141,7 @@ function renderBody(changed) {
     return;
   }
   if (res.none >= 0.5 && top.probability < 0.5) {
-    verdict.append(message("info", "i", "This doesn't look like something for a city agency or CB2 Manhattan. Add more detail if it is, like what's broken and where."));
+    verdict.append(message("info", "i", `This doesn't look like something for a city agency or ${home().name}. Add more detail if it is, like what's broken and where.`));
     routed.hidden = true;
     return;
   }
@@ -162,10 +163,10 @@ function routeLine() {
       onPick: () => { state.formKey = f.key === top.key ? null : f.key; state.open.form = false; state.destination = null; render(new Set()); announce(`Switched to ${f.name}`); } }))) : null;
   return h("div.routebox",
     h("p.routeline", "Will be routed to ", h("b", form.key === "cb2" && board ? board.name : form.name),
-      form.key === "cb2" ? "" : ` · ${form.key === "crossing_guard" ? `${board?.short ?? "CB2"} + ` : board ? `${board.short} + ` : ""}${form.agency}`,
+      form.key === "cb2" ? "" : ` · ${form.key === "crossing_guard" ? `${board?.short ?? home().short} + ` : board ? `${board.short} + ` : ""}${form.agency}`,
       mine ? [" ", h("span.tag", "your choice")] : null, " ", toggle),
     mine ? h("p.fieldhint", `We suggested ${top.name}.`) : null,
-    board ? h("p.fieldhint.reason", `That address is outside CB2, so this goes to ${board.name}.`) : null,
+    board ? h("p.fieldhint.reason", `That address is outside ${home().short}, so this goes to ${board.name}.`) : null,
     list);
 }
 
@@ -204,7 +205,7 @@ function renderForm(changed) {
   // Which shared fields are required depends on the form (the board needs to reach you; 311 doesn't).
   for (const f of res.general) f.required = (form.requiredGeneral ?? ["location"]).includes(f.id);
   const contactRequired = g.name.required || g.email.required;
-  // CB2's committees don't apply to another board's district.
+  // The home board's committees don't apply to another board's district.
   const board = otherBoard();
   for (const f of form.fields) if (f.kind === "committee") f.required = !board;
   const committee = form.fields.find((f) => f.kind === "committee");
@@ -247,7 +248,7 @@ function renderForm(changed) {
   renderNeeded();
   renderSendPanel($("sendPanel"), () => ({
     ...state, form: activeForm(), board: otherBoard(),
-    destination: state.destination ?? defaultDestinations(activeForm(), otherBoard()),
+    home: home(), destination: state.destination ?? defaultDestinations(activeForm(), otherBoard(), home()),
     setDestination: (d) => (state.destination = d),
   }), state.config.destinations);
 }
@@ -292,7 +293,7 @@ async function voiceTool(name, args) {
   else if (f.kind === "committee") { v = closest(Object.keys(state.config.committees)); if (!v) return "no such committee"; }
   else if (f.kind === "location") {
     const [hit] = await api(`/api/geosearch?text=${encodeURIComponent(value)}`);
-    if (!hit) return "no address inside CB2 Manhattan matched that";
+    if (!hit) return `no address inside ${home().name} matched that`;
     v = { text: hit.value, label: hit.key, geo: hit.geo ?? null, license: null };
   }
   if (f.kind === "location") pickPlace(key, v, ctx); else ctx.set(key, v, true);
@@ -402,15 +403,26 @@ async function boot() {
   // The row of buttons is inside the box, so a tap on its empty part means "type here".
   // On mousedown, so the box never loses focus in between and the page doesn't flip to the form and back.
   document.querySelector(".composer-tools").addEventListener("mousedown", (e) => { if (!e.target.closest("button")) { e.preventDefault(); ta.focus(); } });
-  renderTopics($("examples"), (ex) => { ta.value = ex; schedule(); ta.focus(); });
-  startTypewriter(ta);
   // Ready to type on arrival, as in a chat app; not on touch, where focus would open the keyboard over the page.
   if (matchMedia("(hover: hover) and (pointer: fine)").matches) ta.focus();
   try { state.config = await api("/api/config"); } catch (e) { console.warn(e); }
   setMapboxToken(state.config.mapboxToken || "");
+  showBoard(state.config);
+  renderTopics($("examples"), state.config.board.examples, (ex) => { ta.value = ex; schedule(); ta.focus(); });
+  startTypewriter(ta, state.config.board.examples);
   wireMic();
   // shadow under the composer once it's pinned to the top of the page
   const pin = () => $("composer").classList.toggle("stuck", $("composer").getBoundingClientRect().top <= 0.5);
   addEventListener("scroll", pin, { passive: true });
 }
+/** The board this page runs as, in the header, with links to the other boards' modes. */
+function showBoard({ board, boards }) {
+  setHome(board);
+  for (const el of document.querySelectorAll("[data-board-name]")) el.textContent = board.name;
+  document.title = document.title.replace("CB2 Manhattan", board.name);
+  $("boardSwitch").replaceChildren(...boards.filter((b) => b.id !== board.id).map((b) =>
+    h("a", { href: b.id === "cb2" ? "/" : `/?board=${b.id}` }, `Switch to ${b.short}`)));
+  for (const a of document.querySelectorAll("a[data-keep-board]")) a.href = withBoard(a.getAttribute("href"));
+}
+
 boot();

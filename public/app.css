@@ -14,7 +14,8 @@
 .lede { text-align: center; color: var(--muted); font-size: 15px; line-height: 1.45; text-wrap: pretty; margin-top: -6px; }
 .howlink { text-align: center; margin: -4px 0 4px; }
 .demochip { text-align: center; margin-bottom: -8px; }
-.demochip span { display: inline-block; padding: 4px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-dark); font-size: 13px; font-weight: 700; }
+.boardswitch a { margin-left: 10px; font-size: 13px; font-weight: 700; color: var(--accent-dark); }
+.demochip > span:first-child { display: inline-block; padding: 4px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-dark); font-size: 13px; font-weight: 700; }
 .howlink a { display: inline-block; padding: 7px 16px; border: 1.5px solid var(--accent); border-radius: 99px;
   color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: none; transition: background .15s; }
 .howlink a:hover { background: var(--accent-soft); }

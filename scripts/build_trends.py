@@ -1,24 +1,28 @@
-"""Build public/dashboard/trends.json, everything the Trends page shows, from public records only:
+"""Build public/dashboard/data/<board>/trends.json, everything the Trends page shows, from public records only:
 
-  - data/311/cb2.csv (fetch_311.py): what was reported to 311 in the district and how agencies closed it
+  - data/311/<board>.csv (fetch_311.py): what was reported to 311 in the district and how agencies closed it
   - the D1 resolutions table (build_resolution_index.py, loaded locally): what the board decided, per tax lot
-  - data/public_session.json + data/eval/ps_labels_{a,b}.json: what residents told the Full Board
+  - the board's Public Session remarks: what residents told the Full Board. For CB2, only remarks both
+    raters (data/eval/ps_labels_{a,b}.json) called a concern, with their committee; CB3's aren't labeled.
 
-    npx wrangler d1 execute DB --local --file data/resolutions.sql   # once
-    uv run scripts/build_trends.py
+    npx wrangler d1 execute DB --local --file data/resolutions.sql   # once per board
+    uv run scripts/build_trends.py [board=cb2]
 """
 
 import csv
 import json
 import re
 import subprocess
+import sys
 from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path
 
-from eval_routing import sla_from_minutes  # the board's own SLA committee for a premises
 
 ROOT = Path(__file__).resolve().parent.parent
+BOARD = sys.argv[1] if len(sys.argv) > 1 else "cb2"
+CONFIG = json.loads((ROOT / "worker" / "boards.json").read_text())[BOARD]
+DATA = ROOT / "data" if BOARD == "cb2" else ROOT / "data" / BOARD
 CLASSES = [(c["key"], re.compile(c["pattern"], re.I)) for c in json.loads((ROOT / "worker" / "outcomes.json").read_text())["classes"]]
 LABELS = {c["key"]: c["label"] for c in json.loads((ROOT / "worker" / "outcomes.json").read_text())["classes"]}
 
@@ -41,7 +45,7 @@ def outcome(text: str) -> str:
 def resolutions_by_lot() -> dict[str, list[dict]]:
     out = subprocess.run(
         ["npx", "wrangler", "d1", "execute", "DB", "--local", "--json", "--command",
-         "SELECT id, bbl, address, committee, meeting_date, meeting_iso, title, outcome, stipulations, source FROM resolutions WHERE bbl IS NOT NULL"],
+         f"SELECT id, bbl, address, committee, meeting_date, meeting_iso, title, outcome, stipulations, source FROM resolutions WHERE bbl IS NOT NULL AND board = '{BOARD}'"],
         cwd=ROOT, capture_output=True, text=True, check=True).stdout
     by = defaultdict(list)
     for r in json.loads(out)[0]["results"]:
@@ -57,7 +61,7 @@ def street(a: str) -> str:
 
 
 def main() -> None:
-    rows = list(csv.DictReader((ROOT / "data" / "311" / "cb2.csv").open()))
+    rows = list(csv.DictReader((ROOT / "data" / "311" / f"{BOARD}.csv").open()))
     for r in rows:
         r["day"] = date.fromisoformat(r["created_date"][:10])
     end = max(r["day"] for r in rows)
@@ -80,7 +84,12 @@ def main() -> None:
         return [{"week": (end - timedelta(days=7 * w + 6)).isoformat(), "count": weeks[w]} for w in range(11, -1, -1)]
 
     risers = sorted((t for t in c if c[t] >= 40), key=lambda t: c[t] - p[t], reverse=True)[:3]
-    rising = [{"type": t, "count": c[t], "prev": p[t], "weeks": weekly([r for r in rows if r["complaint_type"] == t])} for t in risers]
+    # The address with the most of each rising type: a rise can be one caller or one building, not the district.
+    def top_address(t: str) -> dict:
+        addr, n = Counter(r["incident_address"] for r in cur if r["complaint_type"] == t and r["incident_address"]).most_common(1)[0]
+        return {"address": addr.title(), "count": n}
+    rising = [{"type": t, "count": c[t], "prev": p[t], "top": top_address(t),
+               "weeks": weekly([r for r in rows if r["complaint_type"] == t])} for t in risers]
 
     # Where 311 and the board's record meet: busy lots (90 days) that the board has decided on.
     res = resolutions_by_lot()
@@ -107,27 +116,32 @@ def main() -> None:
     hotspots = hotspots[:6]
 
     # What residents told the Full Board: remarks both raters called a concern, newest meetings first.
-    ps = json.loads((ROOT / "data" / "public_session.json").read_text())
-    la = {x["id"]: x for x in json.loads((ROOT / "data" / "eval" / "ps_labels_a.json").read_text())}
-    lb = {x["id"]: x for x in json.loads((ROOT / "data" / "eval" / "ps_labels_b.json").read_text())}
-    def committee(x: dict) -> str:
-        c = la[x["id"]]["committee"]
-        return sla_from_minutes(f"{x['topic']} {x['speaker_line']} {x['text']}", c) if c.startswith("SLA") else c
-    voices = [{**{k: x[k] for k in ("id", "meeting_date", "topic", "speaker_line", "text", "source")}, "committee": committee(x)}
-              for x in ps if la[x["id"]]["concern"] and lb[x["id"]]["concern"]]
+    ps = json.loads((DATA / "public_session.json").read_text())
+    keep = lambda x: {k: x[k] for k in ("id", "meeting_date", "topic", "speaker_line", "text", "source")}
+    if BOARD == "cb2":
+        from eval_routing import sla_from_minutes  # the board's own SLA committee for a premises
+        la = {x["id"]: x for x in json.loads((ROOT / "data" / "eval" / "ps_labels_a.json").read_text())}
+        lb = {x["id"]: x for x in json.loads((ROOT / "data" / "eval" / "ps_labels_b.json").read_text())}
+        def committee(x: dict) -> str:
+            c = la[x["id"]]["committee"]
+            return sla_from_minutes(f"{x['topic']} {x['speaker_line']} {x['text']}", c) if c.startswith("SLA") else c
+        voices = [{**keep(x), "committee": committee(x)} for x in ps if la[x["id"]]["concern"] and lb[x["id"]]["concern"]]
+    else:  # not labeled: every remark with words in it, and no committee tally
+        voices = [{**keep(x), "committee": None} for x in ps if len(x["text"]) > 20]
     voices.sort(key=lambda x: x["id"], reverse=True)
     year = voices[0]["id"][:4]
-    by_topic = Counter(v["committee"] for v in voices if v["id"].startswith(year))
+    by_topic = Counter(v["committee"] for v in voices if v["id"].startswith(year) and v["committee"])
 
     out = {
         "generated": date.today().isoformat(), "through": end.isoformat(),
         "source": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
-        "district": "Manhattan Community District 2", "total30": len(cur), "prev30": len(prev), "total365": len(rows),
+        "district": f"Manhattan Community District {int(CONFIG['cd'][1:])}", "labeled": BOARD == "cb2", "total30": len(cur), "prev30": len(prev), "total365": len(rows),
         "types": types, "rising": rising, "hotspots": hotspots,
         "voices": {"count": len(voices), "year": year, "meetings": len({v["meeting_date"] for v in voices}), "by_committee": by_topic.most_common(),
                    "latest": voices[:12]},
     }
-    path = ROOT / "public" / "dashboard" / "trends.json"
+    path = ROOT / "public" / "dashboard" / "data" / BOARD / "trends.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n")
     print(f"{len(cur)} requests in the 30 days to {end}; {len(hotspots)} hotspots; {len(voices)} public-session concerns -> {path.relative_to(ROOT)}")
 

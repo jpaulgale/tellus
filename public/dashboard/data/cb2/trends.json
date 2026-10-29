@@ -3,6 +3,7 @@
  "through": "2026-10-27",
  "source": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
  "district": "Manhattan Community District 2",
+ "labeled": true,
  "total30": 4639,
  "prev30": 4513,
  "total365": 47430,
@@ -204,6 +205,10 @@
    "type": "HEAT/HOT WATER",
    "count": 232,
    "prev": 53,
+   "top": {
+    "address": "131 Christopher Street",
+    "count": 46
+   },
    "weeks": [
     {
      "week": "2026-08-05",
@@ -259,6 +264,10 @@
    "type": "Noise - Commercial",
    "count": 339,
    "prev": 260,
+   "top": {
+    "address": "67 East 11 Street",
+    "count": 50
+   },
    "weeks": [
     {
      "week": "2026-08-05",
@@ -314,6 +323,10 @@
    "type": "General Construction/Plumbing",
    "count": 156,
    "prev": 92,
+   "top": {
+    "address": "231 Grand Street",
+    "count": 4
+   },
    "weeks": [
     {
      "week": "2026-08-05",

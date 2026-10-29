@@ -14,19 +14,20 @@
 </head>
 <body>
   <aside class="sidebar" aria-label="Main navigation">
-    <a class="board-brand" href="/dashboard/"><img class="board-logo" src="/favicon.svg" alt="" /><div><strong><span class="hl">Tell</span> Us</strong><span>CB2 Manhattan · Board view</span></div></a>
+    <a class="board-brand" href="/dashboard/"><img class="board-logo" src="/favicon.svg" alt="" /><div><strong><span class="hl">Tell</span> Us</strong><span><span data-board-name>CB2 Manhattan</span> · Board view</span></div></a>
     <nav>
       <a class="nav-link" href="/dashboard/"><span aria-hidden="true">⌂</span> Home</a>
-      <a class="nav-link" href="/dashboard/#requests"><span aria-hidden="true">▤</span> Resident requests <b>6</b></a>
+      <a class="nav-link" href="/dashboard/#requests"><span aria-hidden="true">▤</span> Resident requests</a>
       <a class="nav-link" href="/dashboard/#topics"><span aria-hidden="true">●</span> Common topics</a>
-      <a class="nav-link active" href="insights.html"><span aria-hidden="true">↗</span> Trends</a>
+      <a class="nav-link active" href="/dashboard/insights.html"><span aria-hidden="true">↗</span> Trends</a>
     </nav>
+    <div class="board-switch" id="boardSwitch" aria-label="Switch board"></div>
   </aside>
 
   <main class="insights-page">
     <header>
       <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
-      <div><p>CB2 Manhattan</p><h1>Trends</h1></div>
+      <div><p data-board-name>CB2 Manhattan</p><h1>Trends</h1></div>
     </header>
     <section class="insights-intro">
       <div><h2>What the district is reporting</h2><p id="intro">Loading the public record…</p></div>
@@ -63,10 +64,10 @@
       <div class="evidence-list" id="voices"></div>
     </section>
 
-    <section class="card transparency-card"><div class="transparency-icon">i</div><div><h2>Where these numbers come from</h2><p>Every number on this page is computed from public records by <code>scripts/build_trends.py</code>: NYC 311 Service Requests on Open Data, CB2's Full Board minutes, and the Public Session remarks in them. Nothing is estimated or generated. "How it was closed" groups each agency's own resolution note; a request closed with no detail counts as closed but not in a group.</p></div><a id="source-link" href="#" target="_blank" rel="noopener">Open the 311 dataset ↗</a></section>
+    <section class="card transparency-card"><div class="transparency-icon">i</div><div><h2>Where these numbers come from</h2><p>Every number on this page is computed from public records by <code>scripts/build_trends.py</code>: NYC 311 Service Requests on Open Data, the board's Full Board minutes, and the Public Session remarks in them. Nothing is estimated or generated. "How it was closed" groups each agency's own resolution note; a request closed with no detail counts as closed but not in a group.</p></div><a id="source-link" href="#" target="_blank" rel="noopener">Open the 311 dataset ↗</a></section>
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="/dashboard/insights.js"></script>
+  <script type="module" src="/dashboard/insights.js"></script>
   <script type="module" src="/js/hit.js"></script>
 </body>
 </html>

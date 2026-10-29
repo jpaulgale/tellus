@@ -25,14 +25,16 @@ function loadMapbox() {
   return mapLoading;
 }
 
-const CB2_CENTER = [-74.0005, 40.7265];
+// The home board (from /api/config): where the map opens and what "outside" means.
+let home = { short: "CB2", center: [40.7265, -74.0005] };
+export const setHome = (b) => (home = b);
 let onDot = null;   // set by the latest render: (lat, lng) => resolve the dot to an address
 
 /** Shows the map; with no geo it opens on the district so the person can place the dot. */
 async function showMap(geo) {
   if (!token) return;
   await loadMapbox();
-  const at = geo ? [geo.lng, geo.lat] : CB2_CENTER;
+  const at = geo ? [geo.lng, geo.lat] : [home.center[1], home.center[0]];
   if (!map) {
     window.mapboxgl.accessToken = token;
     map = new window.mapboxgl.Map({ container: mapBox, style: "mapbox://styles/mapbox/streets-v12", center: at, zoom: geo ? 16 : 13.5, attributionControl: false, cooperativeGestures: true });
@@ -136,7 +138,7 @@ export function renderLocation(field, key, ctx, id) {
   const outside = board?.outside
     ? h("div.nyc-inlinemessage.nyc-inlinemessage--info.outside", { role: "status" },
         h("span.nyc-inlinemessage__icon", "i"),
-        h("span.nyc-inlinemessage__text", h("b", titleCase(v.geo.name || v.text)), ` is in ${board.name}, outside CB2. This will go to ${board.short} instead.`))
+        h("span.nyc-inlinemessage__text", h("b", titleCase(v.geo.name || v.text)), ` is in ${board.name}, outside ${home.short}. This will go to ${board.short} instead.`))
     : null;
   let meta = null, card = null;
   if (v?.geo) {

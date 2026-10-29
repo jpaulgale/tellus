@@ -1,5 +1,7 @@
 // Trends: what CB2 residents report to 311 and tell the Full Board, from trends.json
-// (scripts/build_trends.py). Every number here is computed from public records.
+// (scripts/build_trends.py, one per board). Every number here is computed from public records.
+
+import { dataUrl, showBoard } from "/dashboard/board.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -36,7 +38,9 @@ function render(t) {
   $("trend-pill").textContent = change(rise.count, rise.prev);
   bars($("trend-visual"), rise.weeks, `${rise.type} requests per week`);
   const others = t.rising.slice(1).map((x) => `${x.type} (${fmt(x.prev)} → ${fmt(x.count)})`).join(" and ");
-  $("trend-caption").innerHTML = `<strong>${fmt(rise.prev)} → ${fmt(rise.count)}</strong> requests, 30 days on 30 days.` +
+  const one = rise.top && rise.top.count >= rise.count / 2
+    ? ` ${fmt(rise.top.count)} of them are at one address, ${esc(rise.top.address)}, so this is one place, not the district.` : "";
+  $("trend-caption").innerHTML = `<strong>${fmt(rise.prev)} → ${fmt(rise.count)}</strong> requests, 30 days on 30 days.${one}` +
     (/HEAT/.test(rise.type) ? " Heating season started October 1, so some of this rise happens every year." : "") + (others ? ` Also rising: ${esc(others)}.` : "");
 
   $("types").innerHTML = t.types.map((x) => `<li><div><strong>${esc(x.type)}</strong> <span class="agency">${esc(x.agency)}</span><small>${esc(closedLine(x))}</small></div><b>${fmt(x.count)}</b></li>`).join("");
@@ -49,13 +53,16 @@ function render(t) {
   </article>`).join("");
 
   const v = t.voices;
-  $("voices-sub").textContent = `${v.count} concerns raised in Public Session at ${v.meetings} Full Board meetings, in the secretary's summary of each speaker. By the committee that would take it up, ${v.year}:`;
+  $("voices-sub").textContent = t.labeled
+    ? `${v.count} concerns raised in Public Session at ${v.meetings} Full Board meetings, in the secretary's summary of each speaker. By the committee that would take it up, ${v.year}:`
+    : `${v.count} remarks in Public Session at ${v.meetings} Full Board meetings, in the secretary's summary of each speaker. Not yet labeled by committee.`;
   $("voice-tally").innerHTML = v.by_committee.slice(0, 6).map(([c, n]) => `<li><span>${esc(c)}</span><b>${n}</b></li>`).join("");
   $("voices").innerHTML = v.latest.slice(0, 6).map((x) => `<article><span class="quote-mark" aria-hidden="true">“</span><div><p>${esc(x.text.length > 320 ? x.text.slice(0, 317) + "…" : x.text)}</p>
-    <footer>${esc(x.speaker_line.replace(/:$/, ""))}${x.topic ? ` · ${esc(x.topic)}` : ""} · ${esc(x.meeting_date)} · ${esc(x.committee)} · <a href="${esc(x.source)}" target="_blank" rel="noopener">Minutes ↗</a></footer></div></article>`).join("");
+    <footer>${esc(x.speaker_line.replace(/:$/, ""))}${x.topic ? ` · ${esc(x.topic)}` : ""} · ${esc(x.meeting_date)}${x.committee ? ` · ${esc(x.committee)}` : ""} · <a href="${esc(x.source)}" target="_blank" rel="noopener">Minutes ↗</a></footer></div></article>`).join("");
 }
 
-fetch("/dashboard/trends.json").then((r) => r.json()).then(render).catch(() => { $("intro").textContent = "Couldn't load the data."; });
+showBoard().catch(() => null);
+fetch(dataUrl("trends.json")).then((r) => r.json()).then(render).catch(() => { $("intro").textContent = "Couldn't load the data."; });
 
 const menuButton = document.querySelector(".menu-button"), sidebar = document.querySelector(".sidebar");
 menuButton.addEventListener("click", () => { const open = sidebar.classList.toggle("open"); menuButton.setAttribute("aria-expanded", String(open)); });

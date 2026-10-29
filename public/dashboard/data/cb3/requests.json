@@ -1,0 +1,253 @@
+[
+ {
+  "id": "2026-06-ps02",
+  "title": "Customers crowding the sidewalk on East 7th St",
+  "message": "raised concerns regarding complaints about customers gathering the sidewalk at 93 ½ 7th Street. CB answered that they were not violating any laws",
+  "speaker": "Anne Mitcheltree",
+  "received": "June 23, 2026",
+  "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+  "form": {
+   "key": "cb2",
+   "name": "CB3 Manhattan",
+   "agency": "CB3"
+  },
+  "committee": {
+   "name": "SLA Licensing & Outdoor Dining",
+   "why": "It reviewed this address on March 25, 2025."
+  },
+  "address": "93 EAST 7 STREET, Manhattan",
+  "geo": {
+   "lat": 40.726949,
+   "lng": -73.985255,
+   "zip": "10009",
+   "bbl": "1004350057"
+  },
+  "resolutions": [
+   {
+    "id": "cb3-2025-03-025",
+    "meeting_date": "March 25, 2025",
+    "meeting_iso": "2025-03-25",
+    "committee": "SLA Licensing & Outdoor Dining",
+    "title": "7th Street Burger (TPK Holdings LLC), 91 E 7th St (Roadway Cafe)",
+    "address": "91 E 7th St",
+    "legal_name": "7th Street Burger (TPK Holdings LLC),",
+    "dba": "",
+    "license_type": "TPK Holdings LLC",
+    "outcome": "approve/support",
+    "vote": "Passed, 34 in favor, 0 opposed, 0 abstaining, 0 present not voting.",
+    "stipulations": [],
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-03.pdf",
+    "board": "cb3",
+    "text": "7th Street Burger (TPK Holdings LLC), 91 E 7th St (Roadway Cafe)",
+    "relevant": []
+   }
+  ],
+  "related": []
+ },
+ {
+  "id": "2026-04-ps02",
+  "title": "Bike corral blocking storefronts on 1st Ave",
+  "message": "11th Street bike corrals. I’m also here to speak about the bike corral. All the storefront on that block from the corner to 11th streets, 6-7 of them, they’re either closed or cannot pay their rent because of what’s going on. We have been speaking to you guys for a couple of years now. How I this a normal thing, It’s become a parking lot, why isn’t there one Infront of a school or Tompkins square park. But those are all small business. No chipotle or sweet greens. All people have gone out of business. Residential tenants trouble getting gin out and out because people sit on stoop. It’s several years and has only gotten worse and worse. Nobody responds to anything. They sway we are looking at it thinking about it talking about, but it’s only gotten worse. Bangladeshi deli there 22 years are 7months behind on rent. He was going to come down here. He is about to go out of business also. He’s the last retail tenant of 9 storefronts that er impacted by these bikes that block foot traffic . how many people must lose their jobs before we care?",
+  "speaker": "Max Koshkeraman",
+  "received": "April 28, 2026",
+  "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-04.pdf",
+  "form": {
+   "key": "cb2",
+   "name": "CB3 Manhattan",
+   "agency": "CB3"
+  },
+  "committee": {
+   "name": "Transportation, Public Safety, Sanitation & Environment",
+   "p": 0.65,
+   "why": "Streets, bike lanes, crosswalks, traffic signals, bus stops and intercity buses, parking, street co-namings, police and public safety, garbage, sanitation and the environment."
+  },
+  "address": "Corner of 1st Ave & E 11th St",
+  "geo": {
+   "lat": 40.729378,
+   "lng": -73.983999,
+   "zip": "10009",
+   "corner": true
+  },
+  "resolutions": [],
+  "related": []
+ },
+ {
+  "id": "2026-01-ps01",
+  "title": "Canal St redesign cuts loading and patient drop-off",
+  "message": "Medical practitioner on Canal Street. Concerns about reduced parking for truck loading/deliveries and patient drop-off access.",
+  "speaker": "Thomas Chan",
+  "received": "January 27, 2026",
+  "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-01.pdf",
+  "form": {
+   "key": "cb2",
+   "name": "CB3 Manhattan",
+   "agency": "CB3"
+  },
+  "committee": {
+   "name": "Transportation, Public Safety, Sanitation & Environment",
+   "p": 1,
+   "why": "Streets, bike lanes, crosswalks, traffic signals, bus stops and intercity buses, parking, street co-namings, police and public safety, garbage, sanitation and the environment."
+  },
+  "address": "Corner of Canal St & Mott St",
+  "geo": {
+   "lat": 40.716822,
+   "lng": -73.997764,
+   "zip": "10013",
+   "corner": true
+  },
+  "resolutions": [],
+  "related": [
+   {
+    "id": "cb3-2026-01-001",
+    "meeting_date": "January 27, 2026",
+    "committee": "Transportation, Public Safety, Sanitation & Environment",
+    "title": "Support for NYC DOT's \"Reimaging Canal Street\" Redesign Proposal",
+    "address": null,
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-01.pdf",
+    "metres": null,
+    "text": "Recommendations for Canal Street redesign\n\nWHEREAS, the NYC Department of Transportation (DOT) has released the Reimagining Canal Street\n redesign proposal, which aims to address long-standing safety, mobility, and public space challenges\n along Canal Street from West Street to the Bowery; and\n\n WHEREAS, Manhattan Community Board 1, Manhattan Community Board 2, and Manhattan\n Community Board 3 (CB3) have participated in DOT outreach and joint meetings regarding the Canal\n Street redesign proposal presented in late 2025; and\n\n WHEREAS, DOT data shows that Canal Street experiences high volumes of pedestrians, cyclists, and\n vehicles, with both AM and PM mode-split analysis indicating heavy reliance on walking and transit,\n highlighting the need for safer and more accessible pedestrian facilities; and\n\n WHEREAS, from 2020–2024 Canal Street experienced a significant number of injuries including 34\n pedestrian injuries (4 severe, 2 fatalities) on the eastern segment and 15 pedestrian injuries (1 severe,\n 1 fatality) on the western segment demonstrating that Canal Street is a high-injury corridor requiring\n urgent safety improvements 1 1; and\n\n WHEREAS, the redesign proposal responds to these safety concerns by introducing:\n  full-block sidewalk extensions to reduce crowding;\n  new marked crosswalks, painted curb extensions, and concrete pedestrian islands to shorten\n crossings and improve pedestrian safety;\n  protected bike-lane connections to close major east–west and north–south network gaps;\n  simplified intersections through realigned crosswalks and shortened crossings;\n  improved curb management including simplified curb regulations, organized local delivery areas\n on side streets, designated passenger-loading zones, and microhubs; and\n\n WHEREAS, DOT's merchant survey conducted in March 2022 found that most Canal Street businesses\n receive deliveries between 9–11 AM, often from private vendors that choose their own delivery times,\n meaning businesses cannot control when deliveries arrive; and\n\n\n New York City Department of Transportation, Reimagining Canal Street: Redesign Proposal (Fall 2025), Safety Data Injury\nSummary, 2020–2024.\n\n\n\n\nWHEREAS, DOT has committed to updating this merchant survey in the next few months; and\n\nWHEREAS, DOT has reduced the speed limits of all streets south of Canal Street to 20 MPH as part of\nthe Lower Manhattan Regional Slow Zone to improve pedestrian safety; and\n\nWHEREAS, the New York City Department of Transportation has identified Canal Street as a Global\nCorridor, a designation used in NYC DOT's Pedestrian Mobility and Street Design Guidelines to\ndescribe streets with exceptionally high pedestrian volumes, significant destination density, and\ncomplex, multidirectional pedestrian movement; and\n\nWHEREAS, for Global Corridors, NYC DOT's design guidance recommends substantially wider\nsidewalks than typical streets in order to safely and comfortably accommodate pedestrian demand,\nincluding an overall sidewalk width of approximately 25 feet, comprised of generous clear walking\npaths, furnishing zones, and space for street trees and amenities, where feasible;\n\nWHEREAS, the proposed project timeline anticipates Phase 1 implementation beginning in July 2026,\nfollowing continued engagement with Community Boards, elected officials, schools, small businesses,\nand other stakeholders through spring 2026.\n\nWHEREAS, that New York City Department of Transportation acknowledge and/or address the\nprimary community concerns raised during outreach, including:\n Illegal vending on sidewalks and the lack of consistent enforcement;\n Use of sidewalks for display by shop owners, as well as, legal permitted vendors;\n Need for drop-off and pick-up points given the large number of critical health care providers,\n medical offices and specialized clinics along and adjacent to Canal Street;\n Loss of street space on Canal Street necessary for loading and unloading of deliveries for local\n businesses located on Canal Street;\n Relocating loading zones to side streets, especially where current roadside dining is permitted or\n the streets are already narrow needs to be clarified and defined;\n Placard parking abuses and possibility of additional placard parking taking over any new\n open/public spaces;\n Projected congestion on narrow streets, such as Baxter and Walker Streets, related to the\n construction of the Manhattan Detention Center and Mulberry Street related to the\n reconstruction of 80 Mulberry Street;\n Comprehensive traffic study to also include the expected traffic via the through streets related to\n the construction of the Manhattan Detention Center; and\n More recent and extensive outreach to the local businesses along the Canal Street corridor; and\n\nWHEREAS, that New York City Department of Transportation acknowledges the primary community\nsupport for the goals to address long-standing safety, mobility, and public space challenges along\nCanal Street and the redesign plan for Canal Street, as submitted in emails to CB3;\n\nTHEREFORE, BE IT RESOLVED that CB3 strongly supports the overall project goal of the New York City\nDepartment of Transportation's Canal Street redesign to improve corridor safety, while noting that the\nproposal currently lacks a complete and comprehensive plan for loading, unloading, and street\nvending, and requests that such a plan be developed incorporating the following feedback; and\n\nBE IT FURTHER RESOLVED that CB3 urges the New York City Department of Transportation to work\nwith relevant City agencies to advance a coordinated operations, enforcement, and compliance\nframework for legal vending along Canal Street that prioritizes pedestrian clear paths, accessibility,\nand orderly curbside activity, including the following actions:\n1) NYC DOT is urged to coordinate interagency efforts and support compliance through curbside\n organization, clear delineation of pedestrian clear paths, and street design measures that reduce\n conflicts between pedestrians, vendors, and vehicles:\n2) The Department of Consumer and Worker Protection (DCWP) is urged to enforce street vending\n licensing and permitting requirements and to provide clear guidance, outreach, and compliance\n pathways to support lawful vending activity;\n3) The New York City Police Department (NYPD) is urged to support enforcement of public safety,\n and quality-of-life regulations, as appropriate and in coordination with partner agencies;\n4) The Department of Sanitation (DSNY) is urged to address sanitation-related conditions, including\n the obstruction of sidewalks;\n5) All relevant City agencies are urged to ensure that enforcement actions are paired with education\n and outreach to promote compliance, support lawful vending, and minimize conflicts with\n pedestrians, residents, and local businesses; and\n\n\n\n BE IT FURTHER RESOLVED that CB3 urges NYC DOT to advance the Canal Street re-design with an\n emphasis on providing for pedestrian safety and accessibility in the support of local residents and the\n operational needs for local businesses and institutions, including the following:\n 1) Reducing pedestrian crossing distances across Canal Street through the use of protected curb\n extensions (bulb-outs), reduced travel lane widths, and include median pedestrian refuge areas\n where feasible;\n 2) Improving intersection safety through the review and adjustment of traffic signal timing and the\n installation of Leading Pedestrian Intervals (LPIs) where appropriate;\n 3) Reallocating street space by removing the existing rush-hour travel lane on Canal Street and\n prioritizing pedestrian space and organized curbside uses in support of local residents, businesses,\n and institutions, including:\n a. Designated commercial and neighborhood loading and unloading zones with\n accommodations for micromobility uses;\n 4) Reduce sidewalk congestion by providing areas within an expanded sidewalk to support orderly\n and legal vending activity while minimizing conflicts with pedestrian movement;\n 5) Supporting the closure of Walker Street between Baxter Street and Canal Street to expand\n pedestrian space around the Chinatown kiosk, and urging NYC DOT to address community\n concerns of placard abuse through the installation of physical barriers to prevent vehicle access;\n and\n 6) Exploring new opportunities with the expanded pedestrian spaces for green infrastructure\n elements such as street trees, planters, and stormwater features to deliver environmental and\n public-health benefits, including improved air quality, urban heat island mitigation, stormwater\n management, and enhanced pedestrian comfort;\n\n BE IT FURTHER RESOLVED that NYC DOT include CB3 on any block by block community outreach;\n\n BE IT FURTHER RESOLVED that CB3 may have additional requests due to any potential negative health\n impacts or impacts to emergency vehicle access. CB3 requests that NYC DOT return to CB3 to present\n a refined plan incorporating this feedback prior to implementation.\n\n Discussion: anything regarding emergency vehicles? Anything regarding Manhattan Bridge?\n\n Motion to vote: to add \"CB3 may have additional requests due to any potential negative health impacts or\n impacts to emergency vehicle access.\""
+   },
+   {
+    "id": "cb3-2025-01-001",
+    "meeting_date": "January 21, 2025",
+    "committee": "Transportation, Public Safety, Sanitation & Environment",
+    "title": "Expand loading zone on Clinton Street between Stanton and Rivington Streets to accommodate box truck deliveries serving Clinton Street businesses.",
+    "address": null,
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-01.pdf",
+    "metres": null,
+    "text": "Request for loading zone expansion on Clinton Street between Stanton and Rivington Streets or alternate means to accommodate box truck deliveries serving Clinton Street businesses\n\nWhereas Clinton Street has many hospitality businesses that receive deliveries from box trucks, and\n\n Whereas there is a loading zone on Clinton Street between Stanton and Rivington Streets, but this\n zone is not long enough to accommodate the frequent deliveries by box trucks, causing the trucks to\n double park to unload, or park on the sidewalk, creating unsafe conditions for pedestrians, and\n\n Whereas the double parking on Clinton Street, which is a narrow street, causes traffic backups, and\n\n Whereas businesses on Clinton Street have requested that the current loading zone be expanded to\n accommodate box truck deliveries, thereby mitigating traffic problems, so\n\n Therefore, be it resolved that Community Board 3 requests that the Department of Transportation\n expand the delivery zone on Clinton Street to accommodate box truck deliveries up to 35 feet."
+   }
+  ]
+ },
+ {
+  "id": "2026-06-ps04",
+  "title": "Worries about the East 3rd St intake center",
+  "message": "concerns about the East 3rd St Intake Center opening, urged CB2 & 3 to establish a join committee to this issue",
+  "speaker": "David Mulkins",
+  "received": "June 23, 2026",
+  "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+  "form": {
+   "key": "cb2",
+   "name": "CB3 Manhattan",
+   "agency": "CB3"
+  },
+  "committee": {
+   "name": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+   "p": 0.59,
+   "why": "Homelessness and shelters, mental health, seniors, public health, schools, youth programs, human rights."
+  },
+  "address": "8 EAST 3 STREET, Manhattan",
+  "geo": {
+   "lat": 40.725867,
+   "lng": -73.991115,
+   "zip": "10003",
+   "bbl": "1004580011"
+  },
+  "resolutions": [],
+  "related": [
+   {
+    "id": "cb3-2025-09-029",
+    "meeting_date": "September 24, 2025",
+    "committee": "SLA Licensing & Outdoor Dining",
+    "title": "Gemma, 4 E 3rd St (Sidewalk Cafe)",
+    "address": "4 E 3rd St",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-09.pdf",
+    "metres": 34,
+    "text": "Gemma, 4 E 3rd St (Sidewalk Cafe)\n\nLicense Expansion for Dining Out - Not heard at Committee"
+   },
+   {
+    "id": "cb3-2025-02-072",
+    "meeting_date": "February 25, 2025",
+    "committee": "SLA Licensing & Outdoor Dining",
+    "title": "Gemma (Bowery F & B, LLC), 4 E 3rd St (Roadway Cafe)",
+    "address": "4 E 3rd St",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2025/minutes2025-02.pdf",
+    "metres": 34,
+    "text": "Gemma (Bowery F & B, LLC), 4 E 3rd St (Roadway Cafe)\n\nLicense Expansion for Dining Out - Not heard at Committee"
+   }
+  ]
+ },
+ {
+  "id": "2026-05-ps01",
+  "title": "A community green space at the empty lot on 2nd Ave",
+  "message": "regarding to create a green space for community located at an empty lot at 112 Second Ave. Space will be created next to the building where the historical pieces of the façade will be kept. Going to have an open house for community partners.",
+  "speaker": "Reverend Mackie Alston (from Middle Church at 2nd Ave & 7th St)",
+  "received": "May 26, 2026",
+  "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-05.pdf",
+  "form": {
+   "key": "cb2",
+   "name": "CB3 Manhattan",
+   "agency": "CB3"
+  },
+  "committee": {
+   "name": "Landmarks",
+   "why": "It reviewed this address on July 28, 2026."
+  },
+  "address": "112 2 AVENUE, Manhattan",
+  "geo": {
+   "lat": 40.72765,
+   "lng": -73.987917,
+   "zip": "10003",
+   "bbl": "1004480005"
+  },
+  "resolutions": [
+   {
+    "id": "cb3-2026-07-030",
+    "meeting_date": "July 28, 2026",
+    "meeting_iso": "2026-07-28",
+    "committee": "Landmarks",
+    "title": "Certificate of appropriateness for Middle Collegiate Church to create greenspace at 112 Second Avenue",
+    "address": "112 Second Avenue",
+    "legal_name": "Certificate of appropriateness for Middle Collegiate Church to create greenspace at",
+    "dba": "",
+    "license_type": "",
+    "outcome": "approve/support",
+    "vote": "Passed, 36 in favor, 0 opposed, 0 abstaining, 0 present not voting.",
+    "stipulations": [],
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-07.pdf",
+    "board": "cb3",
+    "text": "Certificate of appropriateness for Middle Collegiate Church to create greenspace at 112 Second Avenue\n\nWHEREAS, Middle Collegiate Church (destroyed by fire in 2020) dated from 1891 and was a\n contributing building within the East Village/Lower East Side Historic District; and\n\n WHEREAS, the site remains designated within the Historic District; and\n\n WHEREAS, although there are plans to replace the church with a new structure, sufficient funds are\n not yet available; and\n\n WHEREAS, the lot at 112 2nd Avenue has remained vacant and contains salvaged stones from the\n former church structure; and\n\n WHEREAS, the church is utilizing worship space at 50 East 7th Street adjacent to the vacant lot; and\n\n WHEREAS, the current proposal is to redevelop the lot into a safe, accessible outdoor space that will\n support the use of the 50 East 7th Street worship space; and\n\n WHEREAS, the view from 2nd Avenue will be of a 10-foot-tall cast-iron fence with trees; and\n\n WHEREAS, the fence is designed in the spirit of the fence that was previously there; and\n\n WHEREAS, the salvaged stones will be protected underneath a concrete stage and will be visible\n through glazed openings; so\n\n THEREFORE, BE IT RESOLVED that CB3 approves the plan to create a temporary garden at 212 East 7th\n Street adjacent to Middle Collegiate Church's current worship space at 50 7th Avenue.",
+    "relevant": []
+   }
+  ],
+  "related": []
+ },
+ {
+  "id": "2026-05-ps04",
+  "title": "Banks left out of the Chatham Square Plaza design",
+  "message": "regarding the design of Chatham Square Plaza. Request more communication with the surrounding banks being impacted.",
+  "speaker": "Wong Mei Chun (Chinatown Block Association)",
+  "received": "May 26, 2026",
+  "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-05.pdf",
+  "form": {
+   "key": "cb2",
+   "name": "CB3 Manhattan",
+   "agency": "CB3"
+  },
+  "committee": {
+   "name": "Land Use, Zoning, Public & Private Housing",
+   "p": 0.78,
+   "why": "Zoning, new development, construction, affordable housing, NYCHA, tenant issues."
+  },
+  "address": "13 CHATHAM SQUARE, Manhattan",
+  "geo": {
+   "lat": 40.714109,
+   "lng": -73.997798,
+   "zip": "10038",
+   "bbl": "1001620034"
+  },
+  "resolutions": [],
+  "related": [
+   {
+    "id": "cb3-2026-06-004",
+    "meeting_date": "June 23, 2026",
+    "committee": "Transportation, Public Safety, Sanitation & Environment",
+    "title": "Approval for an Intercity Bus Stop Permit for Fortune Coach, Inc. at 9 Chatham Square",
+    "address": "9 Chatham Square",
+    "source": "https://www.nyc.gov/assets/manhattancb3/downloads/minutes/2026/minutes2026-06.pdf",
+    "metres": 25,
+    "text": "Fortune Coach Inc on W/S of Chatham Sq, in front of 9 Chatham Sq\n\nWHEREAS, Fortune Coach, Inc. has applied for a designated bus stop for curb-side loading/unloading\n operations on the west side of Chatham Square between Doyers Street and Mott Street, in front of 9\n Chatham Square. The buses will be providing service between New York and Atlantic City, New Jersey\n with two daily pick-ups at approximately 10:15 AM and 12:30 PM and two daily drop-offs at\n approximately 7:45 PM and 9:45 PM; and\n\n WHEREAS, the proposed location is an existing designated intercity bus stop currently operated by\n A&W Tours Inc., and NYC DOT has determined that there is sufficient space to accommodate an\n additional operator at this location; and\n\n WHEREAS, the surrounding area already experiences heavy intercity bus activity, pedestrian\n congestion, and vehicular traffic associated with nearby Chinatown transportation corridors; and\n\n WHEREAS, Community Board 3 has concerns about sidewalk congestion, noise, idling, sanitation, and\n pedestrian safety impacts associated with intercity bus operations at this location; and\n\n WHEREAS, the applicant has entered into an agreement with CB 3 to adhere to the following\n stipulations:\n  Tickets shall be sold online or at an off-site location and not on the sidewalk.\n  Tickets shall be sold only for specific boarding times and shall not be oversold.\n  A staff person shall be present during all arrivals and departures to manage boarding, crowd\n control, passenger inquiries, and direct customers to restroom facilities.\n  Passengers waiting to board shall form orderly single-file lines that do not obstruct the public\n sidewalk.\n  The operator shall maintain cleanliness around the bus stop and remove all litter associated with\n bus operations.\n  Buses shall adhere to scheduled arrival and departure times to the greatest extent possible.\n  Buses shall not idle for extended periods and shall comply with all applicable NYC idling\n regulations.\n  The number of daily pick-ups and drop-offs shall not exceed the amounts approved by NYC DOT\n without further review by Community Board 3; now\n\n THEREFORE, BE IT RESOLVED, that CB 3 Manhattan recommends that NYC DOT approve a permit for\n Fortune Coach, Inc. to operate at the existing designated intercity bus stop at 9 Chatham Square,\n provided that the above stipulations will be attached to and enforced as part of the permit approval."
+   }
+  ]
+ }
+]

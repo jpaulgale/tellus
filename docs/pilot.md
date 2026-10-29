@@ -7,7 +7,7 @@
 3. **A resident writes (2 min).** On `/`, type: *"The bar at 1 West 3rd Street plays loud music until 2am every weekend."* It fills the board's form, names Ronnie Scott's from the board's own record, shows the stipulation the complaint matches, and under it "Already reported to 311": 113 requests on that lot, with how each was closed and a link to the same query on Open Data. Then type the same thing in Spanish: *"El bar en el 7 de Cornelia pone la música altísima todas las noches."* Point out the note above Submit: nothing is filed.
 4. **What the board sees (90 s).** `/dashboard/`, open "Business using outdoor space it agreed not to use": Brian Pape's words at the May 21, 2026 Full Board, verbatim from the minutes, with stipulation 4 of 15 highlighted ("Will not operate … any sidewalk café and/or roadbed seating") and "Refer to State Liquor Authority" suggested.
 5. **How often it's wrong (60 s).** `/how#accuracy`: 94% right 311 form, 70% didn't force a wrong form on requests we have no form for, 81% right committee against the minutes. Read one miss aloud: bar-noise complaints go to the board instead of 311 noise, because the board has stipulations there. Whether that's wrong is a policy question for the board.
-6. **Your board (60 s).** Don't port live yet (see below). Show the CB3 minutes and say what a port takes.
+6. **Your board (60 s).** Click CB3 in the board switch. Type *"The bar at 117 Avenue A keeps its front doors open after 10pm and the music fills my apartment."* It goes to CB3's SLA Licensing & Outdoor Dining committee and highlights the stipulation CB3 set on June 23, 2026: close the front doors at 10 pm. Then open CB3's Trends: Traffic is "up 617%", but 1,810 of the 1,814 reports are truck-route complaints at 20 Clinton Street. The page says so; that's what a district manager would check first.
 
 ## Portability: Manhattan CB3
 
@@ -20,7 +20,7 @@
 
 Why it needed its own parser: CB3's minutes are on nyc.gov, not the cbmanhattan site; each committee report is a numbered agenda with a status line under each item, and the Full Board tally comes once per committee. `build_resolution_index.py` gained CB3's address forms ("117 Ave A", "221 E B'way", "St Marks Pl") and its `1)` stipulations; CB2's output is byte-identical.
 
-Not done: loading CB3 into the app. The `resolutions` table has no board column, and CB2 is still hard-coded in ~40 places (`BOARD_CD`, the GeoSearch focus, Jev prompts that say "Community Board 2", page copy). That's the next step: one board config, then `?board=cb3`.
+CB3 is now a mode: `?board=cb3` on `/`, `/dashboard/` and `/dashboard/insights.html`. The board's district, committees, areas, map center and examples come from `worker/boards.json`; the worker reads the board from `?board=` or the `x-board` header. Not done for CB3: committee labels on its Public Session remarks (Trends says "Not yet labeled"), its own routing eval, and its board-view requests are picked by hand from its minutes.
 
 ## Clairic (Workers AI) in form filling
 

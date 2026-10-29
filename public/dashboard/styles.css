@@ -116,3 +116,8 @@ body.sheet-open{overflow:hidden}
 .voice-tally{list-style:none;margin:0;padding:0 23px 16px;display:flex;flex-wrap:wrap;gap:8px}
 .voice-tally li{border:1px solid var(--line);padding:4px 10px;font-size:14px;display:flex;gap:8px}
 .evidence-list footer{color:var(--muted);font-size:13px;margin-top:6px}
+.board-switch{display:flex;align-items:center;gap:6px;margin:18px 0 0;font-size:14px}
+.board-switch strong{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.board-switch a,.board-switch span{border:1px solid var(--line);padding:3px 10px;font-weight:700}
+.board-switch a{color:var(--accent-dark);background:var(--white)}
+.board-switch span{background:var(--accent);border-color:var(--accent);color:#fff}

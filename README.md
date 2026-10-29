@@ -4,7 +4,7 @@ Share feedback with your community board and city agencies: **https://tellus.pau
 
 Tell Us helps NYC residents be heard: say what's on your mind about your neighborhood, and it fills in the right 311 or community board form for you to review, along with any past board decisions relevant to your topic.
 
-The demo is set up for Manhattan Community Board 2. The 311 forms work citywide. Another board needs its committee list, its minutes, and a parser for its minutes' format; `scripts/parse_minutes_cb3.py` is the one for CB3 (see [docs/pilot.md](docs/pilot.md)).
+The demo runs for Manhattan Community Boards 2 and 3: CB2 by default, CB3 with `?board=cb3` on any page (or the switch in the header). The 311 forms work citywide. Each board is one entry in `worker/boards.json` (district, committees, areas, examples) plus its minutes, its 311 file and a parser for its minutes' format; see [docs/pilot.md](docs/pilot.md).
 
 Built at the [State Capacity Hackathon](https://statecapacityecosystem.com/) by [Paul Gale](https://paulgale.dev), [Luke Szumyckyj](https://www.linkedin.com/in/lmszu/) and [Sam Ginsberg](https://www.linkedin.com/in/sam-ginsberg).
 
@@ -77,5 +77,7 @@ uv run scripts/parse_minutes.py          # split them into resolutions
 uv run scripts/build_resolution_index.py # geocode and write data/resolutions.sql
 npx wrangler d1 execute DB --local --file data/resolutions.sql
 ```
+
+For CB3: `uv run scripts/parse_minutes_cb3.py`, then `uv run scripts/build_resolution_index.py cb3` and load `data/cb3/resolutions.sql` the same way. Each board's rows are tagged with a `board` column (migration 0005), so loading one board leaves the other alone. The dashboard data for each board is in `public/dashboard/data/<board>/`, built by `scripts/fetch_311.py <board>`, `build_trends.py <board>` and `build_dashboard_data.py <base> <board>`.
 
 `.agents/` holds setup scripts for [Amp](https://ampcode.com) cloud workspaces; they aren't needed to run locally.
