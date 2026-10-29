@@ -17,7 +17,7 @@
   "committee_ok": null,
   "place_bbl": "1005450059",
   "related": [],
-  "ms": 1231,
+  "ms": 1640,
   "model": "jev-1.14.0"
  },
  {
@@ -32,13 +32,13 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.04,
+  "emergency": 0.03,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 148,
+  "ms": 1353,
   "model": "jev-1.14.0"
  },
  {
@@ -55,11 +55,11 @@
   "none": 0,
   "emergency": 0.04,
   "form_ok": true,
-  "committee": "Street Activities & Resiliency",
+  "committee": "Traffic & Transportation",
   "committee_ok": null,
-  "place_bbl": "1005210077",
+  "place_bbl": null,
   "related": [],
-  "ms": 1172,
+  "ms": 1751,
   "model": "jev-1.14.0"
  },
  {
@@ -76,13 +76,13 @@
   "none": 0,
   "emergency": 0.04,
   "form_ok": true,
-  "committee": "Traffic & Transportation",
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1004960012",
   "related": [
    "2025-12-021"
   ],
-  "ms": 1375,
+  "ms": 1537,
   "model": "jev-1.14.0"
  },
  {
@@ -94,7 +94,7 @@
   "complaint_type": "Street Light Condition",
   "bbl": null,
   "form": "street_light",
-  "p": 0.98,
+  "p": 0.97,
   "second": "crossing_guard",
   "none": 0,
   "emergency": 0.21,
@@ -103,7 +103,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 2610,
+  "ms": 1016,
   "model": "jev-1.14.0"
  },
  {
@@ -115,8 +115,8 @@
   "complaint_type": "Street Light Condition",
   "bbl": null,
   "form": "street_light",
-  "p": 1,
-  "second": "crossing_guard",
+  "p": 0.99,
+  "second": "traffic_signal",
   "none": 0,
   "emergency": 0.02,
   "form_ok": true,
@@ -126,7 +126,7 @@
   "related": [
    "2025-02-003"
   ],
-  "ms": 87,
+  "ms": 346,
   "model": "jev-1.14.0"
  },
  {
@@ -145,9 +145,9 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1004930009",
   "related": [],
-  "ms": 675,
+  "ms": 1194,
   "model": "jev-1.14.0"
  },
  {
@@ -168,7 +168,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 935,
+  "ms": 1240,
   "model": "jev-1.14.0"
  },
  {
@@ -183,13 +183,13 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.11,
+  "emergency": 0.13,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 700,
+  "ms": 1476,
   "model": "jev-1.14.0"
  },
  {
@@ -201,16 +201,16 @@
   "complaint_type": "Traffic Signal Condition",
   "bbl": null,
   "form": "traffic_signal",
-  "p": 0.87,
+  "p": 0.88,
   "second": "cb2",
   "none": 0,
-  "emergency": 0.07,
+  "emergency": 0.06,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 977,
+  "ms": 1257,
   "model": "jev-1.14.0"
  },
  {
@@ -222,16 +222,16 @@
   "complaint_type": "Traffic Signal Condition",
   "bbl": null,
   "form": "traffic_signal",
-  "p": 0.9,
+  "p": 0.93,
   "second": "street_light",
   "none": 0.01,
-  "emergency": 0.26,
+  "emergency": 0.27,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 604,
+  "ms": 828,
   "model": "jev-1.14.0"
  },
  {
@@ -252,7 +252,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 282,
+  "ms": 864,
   "model": "jev-1.14.0"
  },
  {
@@ -267,7 +267,7 @@
   "p": 0.99,
   "second": "cb2",
   "none": 0,
-  "emergency": 0.08,
+  "emergency": 0.07,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
@@ -275,7 +275,7 @@
   "related": [
    "2025-05-120"
   ],
-  "ms": 265,
+  "ms": 724,
   "model": "jev-1.14.0"
  },
  {
@@ -290,13 +290,13 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.05,
+  "emergency": 0.06,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 534,
+  "ms": 907,
   "model": "jev-1.14.0"
  },
  {
@@ -311,7 +311,7 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.05,
+  "emergency": 0.06,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
@@ -319,7 +319,7 @@
   "related": [
    "2025-05-120"
   ],
-  "ms": 989,
+  "ms": 1156,
   "model": "jev-1.14.0"
  },
  {
@@ -331,16 +331,16 @@
   "complaint_type": "Traffic Signal Condition",
   "bbl": null,
   "form": "traffic_signal",
-  "p": 0.98,
-  "second": "street_light",
+  "p": 0.99,
+  "second": "cb2",
   "none": 0,
-  "emergency": 0.08,
+  "emergency": 0.1,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 955,
+  "ms": 1154,
   "model": "jev-1.14.0"
  },
  {
@@ -352,7 +352,7 @@
   "complaint_type": "Noise - Commercial",
   "bbl": "1006080026",
   "form": "cb2",
-  "p": 0.68,
+  "p": 0.59,
   "second": "noise_commercial",
   "none": 0.04,
   "emergency": 0.03,
@@ -361,7 +361,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 865,
+  "ms": 1074,
   "model": "jev-1.14.0"
  },
  {
@@ -373,8 +373,8 @@
   "complaint_type": "Noise - Commercial",
   "bbl": "1005357501",
   "form": "noise_commercial",
-  "p": 1,
-  "second": "crossing_guard",
+  "p": 0.99,
+  "second": "cb2",
   "none": 0,
   "emergency": 0.03,
   "form_ok": true,
@@ -382,7 +382,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 677,
+  "ms": 902,
   "model": "jev-1.14.0"
  },
  {
@@ -401,9 +401,9 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006340036",
   "related": [],
-  "ms": 254,
+  "ms": 732,
   "model": "jev-1.14.0"
  },
  {
@@ -418,13 +418,13 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.14,
+  "emergency": 0.13,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 84,
+  "ms": 325,
   "model": "jev-1.14.0"
  },
  {
@@ -443,12 +443,12 @@
   "form_ok": false,
   "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005900034",
   "related": [
    "2025-02-028",
    "2025-01-017"
   ],
-  "ms": 883,
+  "ms": 1088,
   "model": "jev-1.14.0"
  },
  {
@@ -460,16 +460,16 @@
   "complaint_type": "Noise - Commercial",
   "bbl": "1005630037",
   "form": "cb2",
-  "p": 0.89,
+  "p": 0.87,
   "second": "noise_commercial",
-  "none": 0,
+  "none": 0.01,
   "emergency": 0.02,
   "form_ok": false,
   "committee": "SLA – 1",
   "committee_ok": null,
   "place_bbl": "1005630037",
   "related": [],
-  "ms": 880,
+  "ms": 817,
   "model": "jev-1.14.0"
  },
  {
@@ -481,7 +481,7 @@
   "complaint_type": "Noise - Commercial",
   "bbl": "1005257503",
   "form": "cb2",
-  "p": 0.91,
+  "p": 0.88,
   "second": "noise_commercial",
   "none": 0,
   "emergency": 0.02,
@@ -490,7 +490,7 @@
   "committee_ok": null,
   "place_bbl": "1005257503",
   "related": [],
-  "ms": 1081,
+  "ms": 1031,
   "model": "jev-1.14.0"
  },
  {
@@ -511,7 +511,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 129,
+  "ms": 729,
   "model": "jev-1.14.0"
  },
  {
@@ -523,16 +523,16 @@
   "complaint_type": "Noise - Residential",
   "bbl": "1005680033",
   "form": "noise_residential",
-  "p": 0.93,
+  "p": 0.94,
   "second": "cb2",
   "none": 0,
-  "emergency": 0.02,
+  "emergency": 0.03,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": null,
   "place_bbl": "1005680033",
   "related": [],
-  "ms": 815,
+  "ms": 884,
   "model": "jev-1.14.0"
  },
  {
@@ -553,7 +553,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 109,
+  "ms": 366,
   "model": "jev-1.14.0"
  },
  {
@@ -574,7 +574,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 283,
+  "ms": 602,
   "model": "jev-1.14.0"
  },
  {
@@ -586,18 +586,18 @@
   "complaint_type": "Noise - Residential",
   "bbl": "1002307504",
   "form": "noise_residential",
-  "p": 1,
-  "second": "crossing_guard",
-  "none": 0,
-  "emergency": 0.07,
+  "p": 0.63,
+  "second": "cb2",
+  "none": 0.01,
+  "emergency": 0.06,
   "form_ok": true,
-  "committee": "SLA – 1",
+  "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1002307504",
   "related": [
    "2026-01-014"
   ],
-  "ms": 595,
+  "ms": 831,
   "model": "jev-1.14.0"
  },
  {
@@ -609,7 +609,7 @@
   "complaint_type": "Noise - Residential",
   "bbl": "1005007502",
   "form": "noise_residential",
-  "p": 0.82,
+  "p": 0.73,
   "second": "cb2",
   "none": 0.01,
   "emergency": 0.04,
@@ -618,9 +618,10 @@
   "committee_ok": null,
   "place_bbl": "1005007502",
   "related": [
-   "2025-02-016"
+   "2025-02-016",
+   "2026-07-019"
   ],
-  "ms": 1664,
+  "ms": 1619,
   "model": "jev-1.14.0"
  },
  {
@@ -632,14 +633,14 @@
   "complaint_type": "Noise - Residential",
   "bbl": "1006220059",
   "form": "noise_residential",
-  "p": 0.56,
+  "p": 0.65,
   "second": "cb2",
   "none": 0,
   "emergency": 0.04,
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006220059",
   "related": [],
   "ms": 1816,
   "model": "jev-1.14.0"
@@ -653,7 +654,7 @@
   "complaint_type": "Noise - Residential",
   "bbl": "1005690001",
   "form": "noise_residential",
-  "p": 0.66,
+  "p": 0.64,
   "second": "cb2",
   "none": 0.02,
   "emergency": 0.02,
@@ -664,7 +665,7 @@
   "related": [
    "2026-07-019"
   ],
-  "ms": 1867,
+  "ms": 1686,
   "model": "jev-1.14.0"
  },
  {
@@ -676,7 +677,7 @@
   "complaint_type": "Noise - Residential",
   "bbl": "1005210077",
   "form": "noise_residential",
-  "p": 0.62,
+  "p": 0.52,
   "second": "cb2",
   "none": 0.01,
   "emergency": 0.04,
@@ -685,10 +686,9 @@
   "committee_ok": null,
   "place_bbl": "1005210077",
   "related": [
-   "2026-06-014",
-   "2025-12-014"
+   "2026-06-014"
   ],
-  "ms": 1382,
+  "ms": 1630,
   "model": "jev-1.14.0"
  },
  {
@@ -700,16 +700,16 @@
   "complaint_type": "Missed Collection",
   "bbl": "1006130028",
   "form": "missed_collection",
-  "p": 0.96,
+  "p": 0.94,
   "second": "cb2",
   "none": 0.01,
-  "emergency": 0.01,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006130028",
   "related": [],
-  "ms": 804,
+  "ms": 1297,
   "model": "jev-1.14.0"
  },
  {
@@ -721,16 +721,16 @@
   "complaint_type": "Missed Collection",
   "bbl": "1005260054",
   "form": "missed_collection",
-  "p": 1,
-  "second": "crossing_guard",
-  "none": 0,
+  "p": 0.88,
+  "second": "cb2",
+  "none": 0.01,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005260054",
   "related": [],
-  "ms": 1000,
+  "ms": 1228,
   "model": "jev-1.14.0"
  },
  {
@@ -751,7 +751,7 @@
   "committee_ok": null,
   "place_bbl": "1005620040",
   "related": [],
-  "ms": 719,
+  "ms": 963,
   "model": "jev-1.14.0"
  },
  {
@@ -772,7 +772,7 @@
   "committee_ok": null,
   "place_bbl": "1005760052",
   "related": [],
-  "ms": 840,
+  "ms": 951,
   "model": "jev-1.14.0"
  },
  {
@@ -784,16 +784,16 @@
   "complaint_type": "Missed Collection",
   "bbl": "1006220021",
   "form": "missed_collection",
-  "p": 1,
-  "second": "crossing_guard",
+  "p": 0.94,
+  "second": "cb2",
   "none": 0,
   "emergency": 0.02,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006220021",
   "related": [],
-  "ms": 931,
+  "ms": 1240,
   "model": "jev-1.14.0"
  },
  {
@@ -805,16 +805,16 @@
   "complaint_type": "Missed Collection",
   "bbl": "1006320056",
   "form": "missed_collection",
-  "p": 0.95,
+  "p": 0.97,
   "second": "cb2",
-  "none": 0.01,
-  "emergency": 0.01,
+  "none": 0,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": null,
   "place_bbl": "1006320056",
   "related": [],
-  "ms": 1527,
+  "ms": 1431,
   "model": "jev-1.14.0"
  },
  {
@@ -835,7 +835,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 75,
+  "ms": 289,
   "model": "jev-1.14.0"
  },
  {
@@ -854,9 +854,9 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005000001",
   "related": [],
-  "ms": 249,
+  "ms": 866,
   "model": "jev-1.14.0"
  },
  {
@@ -871,13 +871,13 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.09,
+  "emergency": 0.08,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": "1005010012",
   "related": [],
-  "ms": 1169,
+  "ms": 1135,
   "model": "jev-1.14.0"
  },
  {
@@ -892,13 +892,13 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.07,
+  "emergency": 0.06,
   "form_ok": true,
-  "committee": "Traffic & Transportation",
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1002370017",
   "related": [],
-  "ms": 261,
+  "ms": 789,
   "model": "jev-1.14.0"
  },
  {
@@ -919,7 +919,7 @@
   "committee_ok": null,
   "place_bbl": "1006407501",
   "related": [],
-  "ms": 954,
+  "ms": 749,
   "model": "jev-1.14.0"
  },
  {
@@ -934,7 +934,7 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.1,
+  "emergency": 0.09,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
@@ -943,7 +943,7 @@
    "2025-04-091",
    "2026-05-059"
   ],
-  "ms": 1022,
+  "ms": 1018,
   "model": "jev-1.14.0"
  },
  {
@@ -962,9 +962,9 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1002047501",
   "related": [],
-  "ms": 1095,
+  "ms": 1397,
   "model": "jev-1.14.0"
  },
  {
@@ -976,16 +976,16 @@
   "complaint_type": "Street Condition",
   "bbl": "1006200037",
   "form": "street_condition",
-  "p": 0.97,
-  "second": "noise_residential",
-  "none": 0.01,
+  "p": 0.68,
+  "second": "cb2",
+  "none": 0.09,
   "emergency": 0.05,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006200037",
   "related": [],
-  "ms": 2788,
+  "ms": 1527,
   "model": "jev-1.14.0"
  },
  {
@@ -1006,7 +1006,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 554,
+  "ms": 788,
   "model": "jev-1.14.0"
  },
  {
@@ -1018,16 +1018,16 @@
   "complaint_type": "Street Condition",
   "bbl": "1006220021",
   "form": "street_condition",
-  "p": 1,
-  "second": "crossing_guard",
+  "p": 0.99,
+  "second": "cb2",
   "none": 0,
-  "emergency": 0.07,
+  "emergency": 0.06,
   "form_ok": true,
-  "committee": "Traffic & Transportation",
+  "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006220021",
   "related": [],
-  "ms": 669,
+  "ms": 1172,
   "model": "jev-1.14.0"
  },
  {
@@ -1048,7 +1048,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 726,
+  "ms": 962,
   "model": "jev-1.14.0"
  },
  {
@@ -1060,7 +1060,7 @@
   "complaint_type": "Illegal Parking",
   "bbl": "1005640001",
   "form": "illegal_parking",
-  "p": 0.89,
+  "p": 0.88,
   "second": "cb2",
   "none": 0,
   "emergency": 0.06,
@@ -1069,7 +1069,7 @@
   "committee_ok": null,
   "place_bbl": "1005640001",
   "related": [],
-  "ms": 872,
+  "ms": 831,
   "model": "jev-1.14.0"
  },
  {
@@ -1093,7 +1093,7 @@
    "2025-04-091",
    "2026-03-049"
   ],
-  "ms": 729,
+  "ms": 643,
   "model": "jev-1.14.0"
  },
  {
@@ -1105,16 +1105,16 @@
   "complaint_type": "Illegal Parking",
   "bbl": "1005790047",
   "form": "illegal_parking",
-  "p": 0.69,
+  "p": 0.7,
   "second": "cb2",
-  "none": 0.02,
+  "none": 0.03,
   "emergency": 0.02,
   "form_ok": true,
-  "committee": "Traffic & Transportation",
+  "committee": "SLA – 2",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005790047",
   "related": [],
-  "ms": 992,
+  "ms": 1249,
   "model": "jev-1.14.0"
  },
  {
@@ -1135,7 +1135,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 257,
+  "ms": 560,
   "model": "jev-1.14.0"
  },
  {
@@ -1147,16 +1147,16 @@
   "complaint_type": "Illegal Parking",
   "bbl": null,
   "form": "illegal_parking",
-  "p": 0.83,
+  "p": 0.82,
   "second": "cb2",
   "none": 0.01,
-  "emergency": 0.09,
+  "emergency": 0.08,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 1092,
+  "ms": 1251,
   "model": "jev-1.14.0"
  },
  {
@@ -1177,7 +1177,7 @@
   "committee_ok": null,
   "place_bbl": "1005640041",
   "related": [],
-  "ms": 568,
+  "ms": 921,
   "model": "jev-1.14.0"
  },
  {
@@ -1189,16 +1189,16 @@
   "complaint_type": "Illegal Parking",
   "bbl": "1004910046",
   "form": "illegal_parking",
-  "p": 0.93,
+  "p": 0.92,
   "second": "cb2",
   "none": 0,
-  "emergency": 0.05,
+  "emergency": 0.04,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 372,
+  "ms": 1107,
   "model": "jev-1.14.0"
  },
  {
@@ -1221,7 +1221,7 @@
   "related": [
    "2025-05-004"
   ],
-  "ms": 1180,
+  "ms": 1380,
   "model": "jev-1.14.0"
  },
  {
@@ -1233,18 +1233,18 @@
   "complaint_type": "Rodent",
   "bbl": "1005740026",
   "form": "rodents",
-  "p": 1,
-  "second": "crossing_guard",
+  "p": 0.95,
+  "second": "cb2",
   "none": 0,
-  "emergency": 0.04,
+  "emergency": 0.03,
   "form_ok": true,
-  "committee": "Street Activities & Resiliency",
+  "committee": "Landmarks & Public Aesthetics",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005740026",
   "related": [
    "2025-05-004"
   ],
-  "ms": 321,
+  "ms": 790,
   "model": "jev-1.14.0"
  },
  {
@@ -1256,7 +1256,7 @@
   "complaint_type": "Rodent",
   "bbl": "1005860045",
   "form": "rodents",
-  "p": 0.67,
+  "p": 0.66,
   "second": "cb2",
   "none": 0,
   "emergency": 0.03,
@@ -1267,7 +1267,7 @@
   "related": [
    "2025-05-004"
   ],
-  "ms": 1407,
+  "ms": 1423,
   "model": "jev-1.14.0"
  },
  {
@@ -1290,7 +1290,7 @@
   "related": [
    "2025-05-004"
   ],
-  "ms": 91,
+  "ms": 284,
   "model": "jev-1.14.0"
  },
  {
@@ -1309,11 +1309,11 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006330008",
   "related": [
    "2025-05-004"
   ],
-  "ms": 1578,
+  "ms": 1223,
   "model": "jev-1.14.0"
  },
  {
@@ -1325,16 +1325,16 @@
   "complaint_type": "Rodent",
   "bbl": "1004700019",
   "form": "rodents",
-  "p": 0.92,
+  "p": 0.89,
   "second": "cb2",
   "none": 0,
   "emergency": 0.03,
   "form_ok": true,
-  "committee": "Street Activities & Resiliency",
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1004700019",
   "related": [],
-  "ms": 1049,
+  "ms": 1045,
   "model": "jev-1.14.0"
  },
  {
@@ -1357,7 +1357,7 @@
   "related": [
    "2025-05-004"
   ],
-  "ms": 1162,
+  "ms": 1316,
   "model": "jev-1.14.0"
  },
  {
@@ -1369,16 +1369,16 @@
   "complaint_type": "Rodent",
   "bbl": "1006310034",
   "form": "rodents",
-  "p": 1,
-  "second": "crossing_guard",
+  "p": 0.99,
+  "second": "cb2",
   "none": 0,
   "emergency": 0.05,
   "form_ok": true,
-  "committee": "Street Activities & Resiliency",
+  "committee": "Landmarks & Public Aesthetics",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006310034",
   "related": [],
-  "ms": 709,
+  "ms": 1096,
   "model": "jev-1.14.0"
  },
  {
@@ -1392,14 +1392,14 @@
   "form": "cb2",
   "p": 0.02,
   "second": "crossing_guard",
-  "none": 0.1,
-  "emergency": 0.88,
+  "none": 0.11,
+  "emergency": 0.87,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": null,
   "place_bbl": "1004927505",
   "related": [],
-  "ms": 840,
+  "ms": 1334,
   "model": "jev-1.14.0"
  },
  {
@@ -1411,16 +1411,16 @@
   "complaint_type": "HEAT/HOT WATER",
   "bbl": "1006210042",
   "form": "cb2",
-  "p": 0.06,
+  "p": 0.04,
   "second": "crossing_guard",
-  "none": 0.93,
+  "none": 0.95,
   "emergency": 0.04,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
   "place_bbl": "1006210042",
   "related": [],
-  "ms": 1185,
+  "ms": 1463,
   "model": "jev-1.14.0"
  },
  {
@@ -1432,16 +1432,16 @@
   "complaint_type": "Food Poisoning",
   "bbl": "1005290072",
   "form": "cb2",
-  "p": 0.28,
+  "p": 0.26,
   "second": "rodents",
-  "none": 0.67,
+  "none": 0.69,
   "emergency": 0.05,
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005290072",
   "related": [],
-  "ms": 1024,
+  "ms": 1119,
   "model": "jev-1.14.0"
  },
  {
@@ -1455,14 +1455,14 @@
   "form": "cb2",
   "p": 0.01,
   "second": "crossing_guard",
-  "none": 0.67,
-  "emergency": 0.33,
+  "none": 0.72,
+  "emergency": 0.35,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": null,
   "place_bbl": "1005650021",
   "related": [],
-  "ms": 829,
+  "ms": 995,
   "model": "jev-1.14.0"
  },
  {
@@ -1476,14 +1476,14 @@
   "form": "street_condition",
   "p": 0.01,
   "second": "crossing_guard",
-  "none": 0.25,
-  "emergency": 0.74,
+  "none": 0.18,
+  "emergency": 0.81,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 367,
+  "ms": 421,
   "model": "jev-1.14.0"
  },
  {
@@ -1495,16 +1495,16 @@
   "complaint_type": "General Construction/Plumbing",
   "bbl": "1005040019",
   "form": "cb2",
-  "p": 0.15,
+  "p": 0.13,
   "second": "noise_commercial",
-  "none": 0.76,
-  "emergency": 0.05,
+  "none": 0.8,
+  "emergency": 0.06,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
   "place_bbl": "1005040019",
   "related": [],
-  "ms": 1184,
+  "ms": 1330,
   "model": "jev-1.14.0"
  },
  {
@@ -1516,10 +1516,10 @@
   "complaint_type": "For Hire Vehicle Complaint",
   "bbl": "1005650021",
   "form": "cb2",
-  "p": 0.42,
+  "p": 0.39,
   "second": "traffic_signal",
-  "none": 0.39,
-  "emergency": 0.17,
+  "none": 0.38,
+  "emergency": 0.21,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
@@ -1527,7 +1527,7 @@
   "related": [
    "2026-03-050"
   ],
-  "ms": 1226,
+  "ms": 1562,
   "model": "jev-1.14.0"
  },
  {
@@ -1548,7 +1548,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 1197,
+  "ms": 1382,
   "model": "jev-1.14.0"
  },
  {
@@ -1560,16 +1560,16 @@
   "complaint_type": "Encampment",
   "bbl": null,
   "form": "cb2",
-  "p": 0.18,
+  "p": 0.2,
   "second": "street_condition",
-  "none": 0.78,
+  "none": 0.77,
   "emergency": 0.08,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 1185,
+  "ms": 1385,
   "model": "jev-1.14.0"
  },
  {
@@ -1581,16 +1581,16 @@
   "complaint_type": "For Hire Vehicle Complaint",
   "bbl": null,
   "form": "cb2",
-  "p": 0.36,
+  "p": 0.39,
   "second": "street_condition",
-  "none": 0.33,
+  "none": 0.32,
   "emergency": 0.3,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 81,
+  "ms": 364,
   "model": "jev-1.14.0"
  },
  {
@@ -1602,16 +1602,16 @@
   "complaint_type": "HEAT/HOT WATER",
   "bbl": "1006170042",
   "form": "cb2",
-  "p": 0.07,
+  "p": 0.06,
   "second": "crossing_guard",
-  "none": 0.92,
+  "none": 0.93,
   "emergency": 0.08,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
   "place_bbl": "1006170042",
   "related": [],
-  "ms": 652,
+  "ms": 1278,
   "model": "jev-1.14.0"
  },
  {
@@ -1623,19 +1623,16 @@
   "complaint_type": "Obstruction",
   "bbl": "1002360026",
   "form": "cb2",
-  "p": 0.8,
+  "p": 0.79,
   "second": "illegal_parking",
-  "none": 0.17,
+  "none": 0.18,
   "emergency": 0.04,
   "form_ok": true,
-  "committee": "Outdoor Dining Working Group",
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
-  "related": [
-   "2026-05-021",
-   "2026-07-027"
-  ],
-  "ms": 826,
+  "place_bbl": "1002360026",
+  "related": [],
+  "ms": 977,
   "model": "jev-1.14.0"
  },
  {
@@ -1647,16 +1644,16 @@
   "complaint_type": "Homeless Person Assistance",
   "bbl": "1004760054",
   "form": "cb2",
-  "p": 0.04,
+  "p": 0.03,
   "second": "crossing_guard",
-  "none": 0.96,
+  "none": 0.97,
   "emergency": 0.04,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 974,
+  "ms": 1030,
   "model": "jev-1.14.0"
  },
  {
@@ -1668,16 +1665,16 @@
   "complaint_type": "Damaged Tree",
   "bbl": null,
   "form": "street_condition",
-  "p": 0.18,
+  "p": 0.15,
   "second": "cb2",
   "none": 0.71,
   "emergency": 0.11,
   "form_ok": true,
-  "committee": "SLA – 1",
+  "committee": "Parks & Waterfront",
   "committee_ok": null,
-  "place_bbl": "1005270027",
+  "place_bbl": null,
   "related": [],
-  "ms": 1062,
+  "ms": 1341,
   "model": "jev-1.14.0"
  },
  {
@@ -1691,7 +1688,7 @@
   "form": "rodents",
   "p": 0.51,
   "second": "cb2",
-  "none": 0.1,
+  "none": 0.09,
   "emergency": 0.03,
   "form_ok": false,
   "committee": "SLA – 1",
@@ -1700,7 +1697,7 @@
   "related": [
    "2025-05-004"
   ],
-  "ms": 1396,
+  "ms": 1401,
   "model": "jev-1.14.0"
  },
  {
@@ -1711,17 +1708,17 @@
   "expected_form": null,
   "complaint_type": "Noise - Street/Sidewalk",
   "bbl": "1005400007",
-  "form": "noise_residential",
-  "p": 0.84,
+  "form": "cb2",
+  "p": 0.82,
   "second": "noise_commercial",
-  "none": 0.02,
-  "emergency": 0.03,
-  "form_ok": false,
-  "committee": "SLA – 2",
+  "none": 0.01,
+  "emergency": 0.04,
+  "form_ok": true,
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005400007",
   "related": [],
-  "ms": 959,
+  "ms": 1231,
   "model": "jev-1.14.0"
  },
  {
@@ -1735,14 +1732,14 @@
   "form": "street_condition",
   "p": 0.01,
   "second": "crossing_guard",
-  "none": 0.35,
-  "emergency": 0.64,
+  "none": 0.43,
+  "emergency": 0.56,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 1099,
+  "ms": 1243,
   "model": "jev-1.14.0"
  },
  {
@@ -1757,13 +1754,13 @@
   "p": 0.07,
   "second": "street_condition",
   "none": 0.92,
-  "emergency": 0.04,
+  "emergency": 0.03,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
   "place_bbl": "1005570017",
   "related": [],
-  "ms": 1035,
+  "ms": 1145,
   "model": "jev-1.14.0"
  },
  {
@@ -1784,7 +1781,7 @@
   "committee_ok": null,
   "place_bbl": "1005357501",
   "related": [],
-  "ms": 816,
+  "ms": 959,
   "model": "jev-1.14.0"
  },
  {
@@ -1795,21 +1792,17 @@
   "expected_form": null,
   "complaint_type": "Commercial Disposal Complaint",
   "bbl": "1005020012",
-  "form": "rodents",
-  "p": 0.68,
-  "second": "missed_collection",
-  "none": 0.08,
+  "form": "cb2",
+  "p": 0.74,
+  "second": "rodents",
+  "none": 0.03,
   "emergency": 0.02,
-  "form_ok": false,
-  "committee": "Street Activities & Resiliency",
+  "form_ok": true,
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
-  "related": [
-   "2026-03-016",
-   "2025-06-017",
-   "2025-06-022"
-  ],
-  "ms": 270,
+  "place_bbl": "1005020012",
+  "related": [],
+  "ms": 780,
   "model": "jev-1.14.0"
  },
  {
@@ -1821,16 +1814,16 @@
   "complaint_type": "Consumer Complaint",
   "bbl": "1005110015",
   "form": "cb2",
-  "p": 0.06,
+  "p": 0.05,
   "second": "crossing_guard",
-  "none": 0.94,
+  "none": 0.95,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": null,
   "place_bbl": "1005110015",
   "related": [],
-  "ms": 533,
+  "ms": 752,
   "model": "jev-1.14.0"
  },
  {
@@ -1845,13 +1838,13 @@
   "p": 0.01,
   "second": "crossing_guard",
   "none": 0.99,
-  "emergency": 0.05,
+  "emergency": 0.04,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 78,
+  "ms": 363,
   "model": "jev-1.14.0"
  },
  {
@@ -1863,16 +1856,16 @@
   "complaint_type": "Real Time Enforcement",
   "bbl": "1004730010",
   "form": "noise_residential",
-  "p": 0.84,
+  "p": 0.81,
   "second": "cb2",
-  "none": 0.07,
+  "none": 0.08,
   "emergency": 0.03,
   "form_ok": false,
   "committee": "Land Use & Housing",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1004730010",
   "related": [],
-  "ms": 274,
+  "ms": 716,
   "model": "jev-1.14.0"
  },
  {
@@ -1884,16 +1877,16 @@
   "complaint_type": "Standing Water",
   "bbl": "1006310033",
   "form": "street_condition",
-  "p": 0.62,
+  "p": 0.65,
   "second": "rodents",
-  "none": 0.31,
+  "none": 0.29,
   "emergency": 0.03,
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006310033",
   "related": [],
-  "ms": 1272,
+  "ms": 792,
   "model": "jev-1.14.0"
  },
  {
@@ -1905,16 +1898,16 @@
   "complaint_type": "Non-Emergency Police Matter",
   "bbl": "1006080039",
   "form": "cb2",
-  "p": 0.06,
+  "p": 0.07,
   "second": "street_condition",
-  "none": 0.41,
-  "emergency": 0.52,
+  "none": 0.42,
+  "emergency": 0.5,
   "form_ok": true,
   "committee": "Executive Committee",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006080039",
   "related": [],
-  "ms": 790,
+  "ms": 908,
   "model": "jev-1.14.0"
  },
  {
@@ -1926,16 +1919,16 @@
   "complaint_type": "Noise",
   "bbl": null,
   "form": "noise_commercial",
-  "p": 0.4,
+  "p": 0.48,
   "second": "cb2",
-  "none": 0.4,
+  "none": 0.35,
   "emergency": 0.03,
   "form_ok": false,
   "committee": "Land Use & Housing",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 1029,
+  "ms": 1358,
   "model": "jev-1.14.0"
  },
  {
@@ -1947,16 +1940,16 @@
   "complaint_type": "Boilers",
   "bbl": "1005090014",
   "form": "cb2",
-  "p": 0.02,
+  "p": 0.16,
   "second": "crossing_guard",
-  "none": 0.98,
-  "emergency": 0.06,
+  "none": 0.84,
+  "emergency": 0.05,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005090014",
   "related": [],
-  "ms": 2609,
+  "ms": 932,
   "model": "jev-1.14.0"
  },
  {
@@ -1968,16 +1961,16 @@
   "complaint_type": "Vendor Enforcement",
   "bbl": "1005650011",
   "form": "cb2",
-  "p": 0.47,
+  "p": 0.53,
   "second": "noise_commercial",
-  "none": 0.5,
+  "none": 0.44,
   "emergency": 0.04,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
   "place_bbl": "1005650011",
   "related": [],
-  "ms": 478,
+  "ms": 772,
   "model": "jev-1.14.0"
  },
  {
@@ -1991,14 +1984,14 @@
   "form": "noise_residential",
   "p": 0.59,
   "second": "noise_commercial",
-  "none": 0.06,
-  "emergency": 0.02,
+  "none": 0.08,
+  "emergency": 0.03,
   "form_ok": false,
   "committee": "SLA – 1",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 263,
+  "ms": 654,
   "model": "jev-1.14.0"
  },
  {
@@ -2019,7 +2012,7 @@
   "committee_ok": null,
   "place_bbl": "1005020023",
   "related": [],
-  "ms": 1001,
+  "ms": 1121,
   "model": "jev-1.14.0"
  },
  {
@@ -2040,7 +2033,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 75,
+  "ms": 298,
   "model": "jev-1.14.0"
  },
  {
@@ -2054,14 +2047,14 @@
   "form": "street_condition",
   "p": 0.01,
   "second": "cb2",
-  "none": 0.88,
+  "none": 0.86,
   "emergency": 0.12,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 149,
+  "ms": 353,
   "model": "jev-1.14.0"
  },
  {
@@ -2075,14 +2068,14 @@
   "form": "cb2",
   "p": 0.54,
   "second": "noise_commercial",
-  "none": 0.13,
-  "emergency": 0.11,
+  "none": 0.1,
+  "emergency": 0.1,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005180043",
   "related": [],
-  "ms": 964,
+  "ms": 1290,
   "model": "jev-1.14.0"
  },
  {
@@ -2094,18 +2087,16 @@
   "complaint_type": "Outdoor Dining",
   "bbl": "1005260028",
   "form": "cb2",
-  "p": 0.66,
-  "second": "illegal_parking",
-  "none": 0.29,
+  "p": 0.99,
+  "second": "crossing_guard",
+  "none": 0.01,
   "emergency": 0.02,
   "form_ok": true,
-  "committee": "Outdoor Dining Working Group",
+  "committee": "SLA – 2",
   "committee_ok": null,
-  "place_bbl": null,
-  "related": [
-   "2026-07-017"
-  ],
-  "ms": 679,
+  "place_bbl": "1005260028",
+  "related": [],
+  "ms": 972,
   "model": "jev-1.14.0"
  },
  {
@@ -2117,7 +2108,7 @@
   "complaint_type": "Dirty Condition",
   "bbl": null,
   "form": "missed_collection",
-  "p": 0.63,
+  "p": 0.61,
   "second": "rodents",
   "none": 0.04,
   "emergency": 0.04,
@@ -2126,7 +2117,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 290,
+  "ms": 918,
   "model": "jev-1.14.0"
  },
  {
@@ -2147,7 +2138,7 @@
   "committee_ok": null,
   "place_bbl": null,
   "related": [],
-  "ms": 607,
+  "ms": 821,
   "model": "jev-1.14.0"
  },
  {
@@ -2159,16 +2150,16 @@
   "complaint_type": "HEAT/HOT WATER",
   "bbl": "1004800004",
   "form": "cb2",
-  "p": 0.01,
+  "p": 0.12,
   "second": "crossing_guard",
-  "none": 0.97,
-  "emergency": 0.08,
+  "none": 0.87,
+  "emergency": 0.06,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1004800004",
   "related": [],
-  "ms": 325,
+  "ms": 745,
   "model": "jev-1.14.0"
  },
  {
@@ -2180,16 +2171,16 @@
   "complaint_type": "Encampment",
   "bbl": "1005257501",
   "form": "cb2",
-  "p": 0.25,
-  "second": "street_condition",
-  "none": 0.73,
-  "emergency": 0.05,
+  "p": 0.89,
+  "second": "noise_commercial",
+  "none": 0.1,
+  "emergency": 0.04,
   "form_ok": true,
-  "committee": "Human Services",
+  "committee": "SLA – 1",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1005257501",
   "related": [],
-  "ms": 245,
+  "ms": 730,
   "model": "jev-1.14.0"
  },
  {
@@ -2201,16 +2192,16 @@
   "complaint_type": "Vendor Enforcement",
   "bbl": "1004837501",
   "form": "rodents",
-  "p": 0.41,
+  "p": 0.39,
   "second": "cb2",
-  "none": 0.33,
-  "emergency": 0.04,
+  "none": 0.31,
+  "emergency": 0.05,
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1004837501",
   "related": [],
-  "ms": 73,
+  "ms": 651,
   "model": "jev-1.14.0"
  },
  {
@@ -2222,16 +2213,16 @@
   "complaint_type": "Noise - Street/Sidewalk",
   "bbl": "1006270009",
   "form": "noise_commercial",
-  "p": 0.88,
+  "p": 0.85,
   "second": "noise_residential",
   "none": 0,
   "emergency": 0.03,
   "form_ok": false,
   "committee": "SLA – 2",
   "committee_ok": null,
-  "place_bbl": null,
+  "place_bbl": "1006270009",
   "related": [],
-  "ms": 249,
+  "ms": 737,
   "model": "jev-1.14.0"
  },
  {
@@ -2243,16 +2234,16 @@
   "expected_committee": "Executive Committee",
   "rater_committee": "Executive Committee",
   "form": "cb2",
-  "p": 0.42,
+  "p": 0.39,
   "second": "crossing_guard",
-  "none": 0.58,
+  "none": 0.61,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Executive Committee",
   "committee_ok": true,
   "place_bbl": null,
   "related": [],
-  "ms": 888,
+  "ms": 1161,
   "model": "jev-1.14.0"
  },
  {
@@ -2264,10 +2255,10 @@
   "expected_committee": "Human Services",
   "rater_committee": "Human Services",
   "form": "cb2",
-  "p": 0.69,
+  "p": 0.68,
   "second": "street_condition",
   "none": 0.29,
-  "emergency": 0.03,
+  "emergency": 0.04,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": false,
@@ -2275,7 +2266,7 @@
   "related": [
    "2026-07-004"
   ],
-  "ms": 1268,
+  "ms": 1311,
   "model": "jev-1.14.0"
  },
  {
@@ -2287,16 +2278,16 @@
   "expected_committee": "Human Services",
   "rater_committee": "Human Services",
   "form": "cb2",
-  "p": 0.73,
+  "p": 0.72,
   "second": "crossing_guard",
-  "none": 0.27,
-  "emergency": 0.03,
+  "none": 0.28,
+  "emergency": 0.04,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
   "place_bbl": "1005750064",
   "related": [],
-  "ms": 2799,
+  "ms": 1110,
   "model": "jev-1.14.0"
  },
  {
@@ -2308,16 +2299,16 @@
   "expected_committee": "Human Services",
   "rater_committee": "Human Services",
   "form": "cb2",
-  "p": 0.75,
+  "p": 0.65,
   "second": "crossing_guard",
-  "none": 0.25,
+  "none": 0.35,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 1102,
+  "ms": 1044,
   "model": "jev-1.14.0"
  },
  {
@@ -2329,16 +2320,16 @@
   "expected_committee": "Human Services",
   "rater_committee": "Human Services",
   "form": "cb2",
-  "p": 0.83,
+  "p": 0.82,
   "second": "crossing_guard",
-  "none": 0.17,
+  "none": 0.18,
   "emergency": 0.03,
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
   "place_bbl": null,
   "related": [],
-  "ms": 1110,
+  "ms": 1650,
   "model": "jev-1.14.0"
  },
  {
@@ -2350,9 +2341,9 @@
   "expected_committee": "Human Services",
   "rater_committee": "Human Services",
   "form": "cb2",
-  "p": 0.72,
+  "p": 0.73,
   "second": "crossing_guard",
-  "none": 0.28,
+  "none": 0.27,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Human Services",
@@ -2361,7 +2352,7 @@
   "related": [
    "2025-10-003"
   ],
-  "ms": 1337,
+  "ms": 1525,
   "model": "jev-1.14.0"
  },
  {
@@ -2373,18 +2364,16 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.91,
+  "p": 0.93,
   "second": "street_light",
-  "none": 0.07,
+  "none": 0.05,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
   "place_bbl": "1005100038",
-  "related": [
-   "2026-09-008"
-  ],
-  "ms": 1404,
+  "related": [],
+  "ms": 1545,
   "model": "jev-1.14.0"
  },
  {
@@ -2405,11 +2394,11 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2026-06-016",
    "2025-04-020",
+   "2026-06-016",
    "2025-03-023"
   ],
-  "ms": 3117,
+  "ms": 576,
   "model": "jev-1.14.0"
  },
  {
@@ -2421,16 +2410,16 @@
   "expected_committee": "Executive Committee",
   "rater_committee": "Executive Committee",
   "form": "cb2",
-  "p": 0.92,
-  "second": "crossing_guard",
-  "none": 0.08,
+  "p": 0.93,
+  "second": "noise_commercial",
+  "none": 0.05,
   "emergency": 0.01,
   "form_ok": true,
-  "committee": "Land Use & Housing",
+  "committee": "SLA – 1",
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 285,
+  "ms": 786,
   "model": "jev-1.14.0"
  },
  {
@@ -2442,16 +2431,16 @@
   "expected_committee": "Street Activities & Resiliency",
   "rater_committee": "Street Activities & Resiliency",
   "form": "cb2",
-  "p": 0.62,
+  "p": 0.66,
   "second": "noise_commercial",
-  "none": 0.37,
+  "none": 0.33,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
   "place_bbl": null,
   "related": [],
-  "ms": 263,
+  "ms": 557,
   "model": "jev-1.14.0"
  },
  {
@@ -2463,16 +2452,16 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.93,
+  "p": 0.9,
   "second": "noise_commercial",
   "none": 0,
-  "emergency": 0.03,
+  "emergency": 0.04,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
   "place_bbl": "1005100033",
   "related": [],
-  "ms": 1374,
+  "ms": 1789,
   "model": "jev-1.14.0"
  },
  {
@@ -2484,7 +2473,7 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.84,
+  "p": 0.82,
   "second": "illegal_parking",
   "none": 0.01,
   "emergency": 0.15,
@@ -2496,7 +2485,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 1476,
+  "ms": 1762,
   "model": "jev-1.14.0"
  },
  {
@@ -2508,18 +2497,16 @@
   "expected_committee": "Parks & Waterfront",
   "rater_committee": "Parks & Waterfront",
   "form": "cb2",
-  "p": 0.88,
+  "p": 0.84,
   "second": "crossing_guard",
-  "none": 0.12,
+  "none": 0.16,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": false,
   "place_bbl": null,
-  "related": [
-   "2026-01-003"
-  ],
-  "ms": 507,
+  "related": [],
+  "ms": 800,
   "model": "jev-1.14.0"
  },
  {
@@ -2531,9 +2518,9 @@
   "expected_committee": "Land Use & Housing",
   "rater_committee": "Land Use & Housing",
   "form": "cb2",
-  "p": 0.98,
+  "p": 0.96,
   "second": "crossing_guard",
-  "none": 0.02,
+  "none": 0.04,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Land Use & Housing",
@@ -2541,10 +2528,10 @@
   "place_bbl": null,
   "related": [
    "2025-09-006",
-   "2025-01-001",
-   "2026-03-004"
+   "2026-03-004",
+   "2025-01-001"
   ],
-  "ms": 1230,
+  "ms": 1620,
   "model": "jev-1.14.0"
  },
  {
@@ -2567,7 +2554,7 @@
   "related": [
    "2026-05-007"
   ],
-  "ms": 505,
+  "ms": 1061,
   "model": "jev-1.14.0"
  },
  {
@@ -2588,7 +2575,7 @@
   "committee_ok": true,
   "place_bbl": "1005307506",
   "related": [],
-  "ms": 512,
+  "ms": 950,
   "model": "jev-1.14.0"
  },
  {
@@ -2611,7 +2598,7 @@
   "related": [
    "2025-07-021"
   ],
-  "ms": 1431,
+  "ms": 1254,
   "model": "jev-1.14.0"
  },
  {
@@ -2625,7 +2612,7 @@
   "form": "cb2",
   "p": 0.57,
   "second": "noise_commercial",
-  "none": 0.4,
+  "none": 0.42,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
@@ -2634,7 +2621,7 @@
   "related": [
    "2025-07-073"
   ],
-  "ms": 331,
+  "ms": 542,
   "model": "jev-1.14.0"
  },
  {
@@ -2646,16 +2633,16 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.67,
+  "p": 0.71,
   "second": "crossing_guard",
-  "none": 0.33,
+  "none": 0.29,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Community Facilities Advisory Panel",
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 1027,
+  "ms": 991,
   "model": "jev-1.14.0"
  },
  {
@@ -2667,16 +2654,16 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.74,
+  "p": 0.76,
   "second": "crossing_guard",
-  "none": 0.26,
+  "none": 0.24,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Executive Committee",
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 257,
+  "ms": 507,
   "model": "jev-1.14.0"
  },
  {
@@ -2688,9 +2675,9 @@
   "expected_committee": "Street Activities & Resiliency",
   "rater_committee": "Street Activities & Resiliency",
   "form": "cb2",
-  "p": 0.68,
+  "p": 0.64,
   "second": "noise_commercial",
-  "none": 0.11,
+  "none": 0.13,
   "emergency": 0.02,
   "form_ok": true,
   "committee": "SLA – 1",
@@ -2699,7 +2686,7 @@
   "related": [
    "2025-07-073"
   ],
-  "ms": 1942,
+  "ms": 1541,
   "model": "jev-1.14.0"
  },
  {
@@ -2711,9 +2698,9 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.93,
+  "p": 0.95,
   "second": "crossing_guard",
-  "none": 0.07,
+  "none": 0.05,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "SLA – 2",
@@ -2722,7 +2709,7 @@
   "related": [
    "2025-11-005"
   ],
-  "ms": 2454,
+  "ms": 1893,
   "model": "jev-1.14.0"
  },
  {
@@ -2734,16 +2721,16 @@
   "expected_committee": "Executive Committee",
   "rater_committee": "Executive Committee",
   "form": "cb2",
-  "p": 0.03,
+  "p": 0.23,
   "second": "crossing_guard",
-  "none": 0.97,
+  "none": 0.77,
   "emergency": 0.01,
   "form_ok": true,
-  "committee": "Executive Committee",
-  "committee_ok": true,
+  "committee": "Schools & Education",
+  "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 270,
+  "ms": 2010,
   "model": "jev-1.14.0"
  },
  {
@@ -2764,7 +2751,7 @@
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 1943,
+  "ms": 2065,
   "model": "jev-1.14.0"
  },
  {
@@ -2776,16 +2763,16 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.98,
+  "p": 0.99,
   "second": "noise_commercial",
-  "none": 0.01,
-  "emergency": 0.01,
+  "none": 0,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
   "place_bbl": "1005210081",
   "related": [],
-  "ms": 2077,
+  "ms": 1140,
   "model": "jev-1.14.0"
  },
  {
@@ -2797,16 +2784,16 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "cb2",
-  "p": 0.97,
+  "p": 0.98,
   "second": "noise_commercial",
-  "none": 0.02,
+  "none": 0.01,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
   "place_bbl": "1005210082",
   "related": [],
-  "ms": 1931,
+  "ms": 1784,
   "model": "jev-1.14.0"
  },
  {
@@ -2818,9 +2805,9 @@
   "expected_committee": "Cannabis Licensing Committee",
   "rater_committee": "Cannabis Licensing Committee",
   "form": "cb2",
-  "p": 0.92,
+  "p": 0.94,
   "second": "crossing_guard",
-  "none": 0.08,
+  "none": 0.06,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
@@ -2829,7 +2816,7 @@
   "related": [
    "2025-10-001"
   ],
-  "ms": 1787,
+  "ms": 1932,
   "model": "jev-1.14.0"
  },
  {
@@ -2848,11 +2835,11 @@
   "form_ok": true,
   "committee": "Parks & Waterfront",
   "committee_ok": true,
-  "place_bbl": null,
+  "place_bbl": "1005490001",
   "related": [
    "2026-05-007"
   ],
-  "ms": 1664,
+  "ms": 1726,
   "model": "jev-1.14.0"
  },
  {
@@ -2864,9 +2851,9 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.93,
+  "p": 0.95,
   "second": "crossing_guard",
-  "none": 0.07,
+  "none": 0.05,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Executive Committee",
@@ -2876,7 +2863,7 @@
    "2026-01-010",
    "2026-06-003"
   ],
-  "ms": 1550,
+  "ms": 1797,
   "model": "jev-1.14.0"
  },
  {
@@ -2888,9 +2875,9 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.95,
+  "p": 0.96,
   "second": "crossing_guard",
-  "none": 0.05,
+  "none": 0.04,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
@@ -2899,7 +2886,7 @@
   "related": [
    "2026-02-006"
   ],
-  "ms": 1813,
+  "ms": 1807,
   "model": "jev-1.14.0"
  },
  {
@@ -2911,9 +2898,9 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.95,
+  "p": 0.96,
   "second": "crossing_guard",
-  "none": 0.05,
+  "none": 0.04,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
@@ -2922,7 +2909,7 @@
   "related": [
    "2026-02-006"
   ],
-  "ms": 1785,
+  "ms": 2326,
   "model": "jev-1.14.0"
  },
  {
@@ -2945,7 +2932,7 @@
   "related": [
    "2026-02-001"
   ],
-  "ms": 1540,
+  "ms": 1881,
   "model": "jev-1.14.0"
  },
  {
@@ -2957,16 +2944,18 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.96,
+  "p": 0.95,
   "second": "crossing_guard",
-  "none": 0.04,
+  "none": 0.05,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
   "place_bbl": "1005317503",
-  "related": [],
-  "ms": 1823,
+  "related": [
+   "2026-02-001"
+  ],
+  "ms": 1793,
   "model": "jev-1.14.0"
  },
  {
@@ -2978,16 +2967,16 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.93,
+  "p": 0.91,
   "second": "crossing_guard",
-  "none": 0.07,
+  "none": 0.09,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
   "place_bbl": "1005440072",
   "related": [],
-  "ms": 896,
+  "ms": 888,
   "model": "jev-1.14.0"
  },
  {
@@ -3008,7 +2997,7 @@
   "committee_ok": true,
   "place_bbl": "1005440072",
   "related": [],
-  "ms": 1324,
+  "ms": 1769,
   "model": "jev-1.14.0"
  },
  {
@@ -3020,9 +3009,9 @@
   "expected_committee": "Land Use & Housing",
   "rater_committee": "Land Use & Housing",
   "form": "cb2",
-  "p": 0.92,
-  "second": "noise_commercial",
-  "none": 0.07,
+  "p": 0.94,
+  "second": "crossing_guard",
+  "none": 0.06,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Land Use & Housing",
@@ -3031,7 +3020,7 @@
   "related": [
    "2026-02-009"
   ],
-  "ms": 1409,
+  "ms": 1740,
   "model": "jev-1.14.0"
  },
  {
@@ -3054,7 +3043,7 @@
   "related": [
    "2026-02-009"
   ],
-  "ms": 1178,
+  "ms": 1347,
   "model": "jev-1.14.0"
  },
  {
@@ -3068,7 +3057,7 @@
   "form": "cb2",
   "p": 0.93,
   "second": "street_condition",
-  "none": 0.05,
+  "none": 0.06,
   "emergency": 0.02,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
@@ -3077,7 +3066,7 @@
   "related": [
    "2026-02-009"
   ],
-  "ms": 1251,
+  "ms": 1443,
   "model": "jev-1.14.0"
  },
  {
@@ -3098,7 +3087,7 @@
   "committee_ok": true,
   "place_bbl": "1005020012",
   "related": [],
-  "ms": 1636,
+  "ms": 2046,
   "model": "jev-1.14.0"
  },
  {
@@ -3121,7 +3110,7 @@
   "related": [
    "2026-05-007"
   ],
-  "ms": 1638,
+  "ms": 2232,
   "model": "jev-1.14.0"
  },
  {
@@ -3133,9 +3122,9 @@
   "expected_committee": "Executive Committee",
   "rater_committee": "Executive Committee",
   "form": "cb2",
-  "p": 0.63,
-  "second": "street_condition",
-  "none": 0.34,
+  "p": 0.69,
+  "second": "crossing_guard",
+  "none": 0.29,
   "emergency": 0.03,
   "form_ok": true,
   "committee": "SLA – 2",
@@ -3145,7 +3134,7 @@
    "2025-05-083",
    "2026-05-013"
   ],
-  "ms": 1675,
+  "ms": 2224,
   "model": "jev-1.14.0"
  },
  {
@@ -3164,9 +3153,9 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
-  "place_bbl": null,
+  "place_bbl": "1005810045",
   "related": [],
-  "ms": 467,
+  "ms": 1740,
   "model": "jev-1.14.0"
  },
  {
@@ -3187,7 +3176,7 @@
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 1172,
+  "ms": 1708,
   "model": "jev-1.14.0"
  },
  {
@@ -3211,7 +3200,7 @@
    "2025-04-091",
    "2026-05-059"
   ],
-  "ms": 2471,
+  "ms": 1815,
   "model": "jev-1.14.0"
  },
  {
@@ -3235,7 +3224,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 3089,
+  "ms": 2315,
   "model": "jev-1.14.0"
  },
  {
@@ -3259,7 +3248,7 @@
    "2025-04-091",
    "2026-05-059"
   ],
-  "ms": 2778,
+  "ms": 2270,
   "model": "jev-1.14.0"
  },
  {
@@ -3283,7 +3272,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 2871,
+  "ms": 2197,
   "model": "jev-1.14.0"
  },
  {
@@ -3295,9 +3284,9 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "cb2",
-  "p": 1,
+  "p": 0.99,
   "second": "crossing_guard",
-  "none": 0,
+  "none": 0.01,
   "emergency": 0.02,
   "form_ok": true,
   "committee": "Traffic & Transportation",
@@ -3307,7 +3296,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 1899,
+  "ms": 2368,
   "model": "jev-1.14.0"
  },
  {
@@ -3331,7 +3320,7 @@
    "2025-04-091",
    "2026-05-059"
   ],
-  "ms": 2586,
+  "ms": 3028,
   "model": "jev-1.14.0"
  },
  {
@@ -3355,7 +3344,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 2793,
+  "ms": 3053,
   "model": "jev-1.14.0"
  },
  {
@@ -3376,10 +3365,10 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2025-04-091",
-   "2026-05-059"
+   "2026-05-059",
+   "2025-04-091"
   ],
-  "ms": 2797,
+  "ms": 2921,
   "model": "jev-1.14.0"
  },
  {
@@ -3401,9 +3390,9 @@
   "place_bbl": null,
   "related": [
    "2026-05-059",
-   "2026-03-049"
+   "2025-04-091"
   ],
-  "ms": 2821,
+  "ms": 3354,
   "model": "jev-1.14.0"
  },
  {
@@ -3427,7 +3416,7 @@
    "2026-05-059",
    "2026-07-062"
   ],
-  "ms": 2854,
+  "ms": 3002,
   "model": "jev-1.14.0"
  },
  {
@@ -3448,11 +3437,11 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2025-04-091",
    "2026-05-059",
+   "2025-04-091",
    "2026-03-049"
   ],
-  "ms": 2947,
+  "ms": 3254,
   "model": "jev-1.14.0"
  },
  {
@@ -3473,10 +3462,11 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
+   "2025-04-091",
    "2026-05-059",
-   "2025-04-091"
+   "2026-02-001"
   ],
-  "ms": 3035,
+  "ms": 2749,
   "model": "jev-1.14.0"
  },
  {
@@ -3500,7 +3490,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 2433,
+  "ms": 2953,
   "model": "jev-1.14.0"
  },
  {
@@ -3515,7 +3505,7 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.01,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
@@ -3523,9 +3513,9 @@
   "related": [
    "2026-05-059",
    "2025-04-091",
-   "2026-03-049"
+   "2026-03-050"
   ],
-  "ms": 1988,
+  "ms": 3065,
   "model": "jev-1.14.0"
  },
  {
@@ -3546,10 +3536,10 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2026-05-059",
-   "2025-04-091"
+   "2025-04-091",
+   "2026-05-059"
   ],
-  "ms": 3047,
+  "ms": 3051,
   "model": "jev-1.14.0"
  },
  {
@@ -3570,11 +3560,11 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2025-04-091",
    "2026-05-059",
+   "2025-04-091",
    "2026-03-049"
   ],
-  "ms": 2969,
+  "ms": 3273,
   "model": "jev-1.14.0"
  },
  {
@@ -3589,7 +3579,7 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.01,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
@@ -3599,7 +3589,7 @@
    "2026-05-059",
    "2026-03-049"
   ],
-  "ms": 3004,
+  "ms": 2955,
   "model": "jev-1.14.0"
  },
  {
@@ -3623,7 +3613,7 @@
    "2026-05-059",
    "2025-04-091"
   ],
-  "ms": 2822,
+  "ms": 2930,
   "model": "jev-1.14.0"
  },
  {
@@ -3645,10 +3635,9 @@
   "place_bbl": null,
   "related": [
    "2025-04-091",
-   "2026-05-059",
-   "2026-03-049"
+   "2026-05-059"
   ],
-  "ms": 2891,
+  "ms": 3280,
   "model": "jev-1.14.0"
  },
  {
@@ -3672,7 +3661,7 @@
    "2025-04-091",
    "2026-05-059"
   ],
-  "ms": 3079,
+  "ms": 2575,
   "model": "jev-1.14.0"
  },
  {
@@ -3694,9 +3683,9 @@
   "place_bbl": null,
   "related": [
    "2026-05-059",
-   "2026-07-062"
+   "2026-03-049"
   ],
-  "ms": 2959,
+  "ms": 2879,
   "model": "jev-1.14.0"
  },
  {
@@ -3721,7 +3710,7 @@
    "2026-03-049",
    "2025-04-091"
   ],
-  "ms": 3011,
+  "ms": 2802,
   "model": "jev-1.14.0"
  },
  {
@@ -3736,16 +3725,16 @@
   "p": 1,
   "second": "crossing_guard",
   "none": 0,
-  "emergency": 0.02,
+  "emergency": 0.01,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2026-05-059",
-   "2025-04-091"
+   "2025-04-091",
+   "2026-05-059"
   ],
-  "ms": 2935,
+  "ms": 2568,
   "model": "jev-1.14.0"
  },
  {
@@ -3770,7 +3759,7 @@
    "2025-04-091",
    "2026-02-001"
   ],
-  "ms": 2783,
+  "ms": 3261,
   "model": "jev-1.14.0"
  },
  {
@@ -3782,8 +3771,8 @@
   "expected_committee": "Parks & Waterfront",
   "rater_committee": "Parks & Waterfront",
   "form": "cb2",
-  "p": 0.98,
-  "second": "noise_commercial",
+  "p": 0.99,
+  "second": "crossing_guard",
   "none": 0.01,
   "emergency": 0.01,
   "form_ok": true,
@@ -3793,7 +3782,7 @@
   "related": [
    "2026-05-007"
   ],
-  "ms": 2669,
+  "ms": 1984,
   "model": "jev-1.14.0"
  },
  {
@@ -3805,9 +3794,9 @@
   "expected_committee": "Parks & Waterfront",
   "rater_committee": "Parks & Waterfront",
   "form": "cb2",
-  "p": 0.97,
+  "p": 0.98,
   "second": "crossing_guard",
-  "none": 0.03,
+  "none": 0.02,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Parks & Waterfront",
@@ -3816,7 +3805,7 @@
   "related": [
    "2026-05-007"
   ],
-  "ms": 1990,
+  "ms": 1266,
   "model": "jev-1.14.0"
  },
  {
@@ -3836,10 +3825,8 @@
   "committee": "Parks & Waterfront",
   "committee_ok": true,
   "place_bbl": "1005490001",
-  "related": [
-   "2026-05-007"
-  ],
-  "ms": 785,
+  "related": [],
+  "ms": 1220,
   "model": "jev-1.14.0"
  },
  {
@@ -3862,7 +3849,7 @@
   "related": [
    "2026-05-007"
   ],
-  "ms": 2058,
+  "ms": 913,
   "model": "jev-1.14.0"
  },
  {
@@ -3874,9 +3861,9 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.91,
+  "p": 0.94,
   "second": "noise_commercial",
-  "none": 0.06,
+  "none": 0.04,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "SLA – 1",
@@ -3887,7 +3874,7 @@
    "2025-07-022",
    "2026-04-024"
   ],
-  "ms": 1567,
+  "ms": 2618,
   "model": "jev-1.14.0"
  },
  {
@@ -3899,7 +3886,7 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.6,
+  "p": 0.63,
   "second": "noise_commercial",
   "none": 0,
   "emergency": 0.01,
@@ -3912,7 +3899,7 @@
    "2025-07-022",
    "2026-04-024"
   ],
-  "ms": 2118,
+  "ms": 2564,
   "model": "jev-1.14.0"
  },
  {
@@ -3924,20 +3911,20 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.71,
+  "p": 0.68,
   "second": "noise_commercial",
   "none": 0,
-  "emergency": 0.01,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
   "place_bbl": "1002310008",
   "related": [
    "2025-06-013",
-   "2025-07-021",
+   "2025-07-022",
    "2026-04-024"
   ],
-  "ms": 1654,
+  "ms": 2336,
   "model": "jev-1.14.0"
  },
  {
@@ -3949,10 +3936,10 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.77,
+  "p": 0.78,
   "second": "noise_commercial",
   "none": 0,
-  "emergency": 0.01,
+  "emergency": 0.02,
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
@@ -3961,7 +3948,7 @@
    "2025-06-013",
    "2025-07-022"
   ],
-  "ms": 1286,
+  "ms": 2336,
   "model": "jev-1.14.0"
  },
  {
@@ -3983,10 +3970,10 @@
   "place_bbl": "1002310008",
   "related": [
    "2025-06-013",
-   "2026-04-024",
-   "2025-07-022"
+   "2025-07-022",
+   "2026-04-024"
   ],
-  "ms": 2020,
+  "ms": 2816,
   "model": "jev-1.14.0"
  },
  {
@@ -3998,7 +3985,7 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.84,
+  "p": 0.83,
   "second": "noise_commercial",
   "none": 0.01,
   "emergency": 0.01,
@@ -4011,7 +3998,7 @@
    "2025-07-022",
    "2026-04-024"
   ],
-  "ms": 1975,
+  "ms": 2619,
   "model": "jev-1.14.0"
  },
  {
@@ -4023,9 +4010,9 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.87,
+  "p": 0.89,
   "second": "crossing_guard",
-  "none": 0.13,
+  "none": 0.11,
   "emergency": 0.02,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
@@ -4033,10 +4020,10 @@
   "place_bbl": "1002310008",
   "related": [
    "2025-06-013",
-   "2025-07-022",
-   "2026-04-024"
+   "2026-04-024",
+   "2025-07-021"
   ],
-  "ms": 2133,
+  "ms": 2666,
   "model": "jev-1.14.0"
  },
  {
@@ -4058,10 +4045,10 @@
   "place_bbl": "1002310008",
   "related": [
    "2025-06-013",
-   "2026-04-024",
-   "2025-07-022"
+   "2025-07-021",
+   "2026-04-024"
   ],
-  "ms": 2066,
+  "ms": 2658,
   "model": "jev-1.14.0"
  },
  {
@@ -4086,7 +4073,7 @@
    "2025-07-022",
    "2026-04-024"
   ],
-  "ms": 1989,
+  "ms": 2976,
   "model": "jev-1.14.0"
  },
  {
@@ -4098,7 +4085,7 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.91,
+  "p": 0.92,
   "second": "noise_commercial",
   "none": 0,
   "emergency": 0.02,
@@ -4111,7 +4098,7 @@
    "2026-04-024",
    "2025-07-022"
   ],
-  "ms": 1957,
+  "ms": 2805,
   "model": "jev-1.14.0"
  },
  {
@@ -4123,9 +4110,9 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.74,
+  "p": 0.72,
   "second": "noise_commercial",
-  "none": 0.24,
+  "none": 0.25,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "SLA – 1",
@@ -4136,7 +4123,7 @@
    "2026-04-024",
    "2025-07-022"
   ],
-  "ms": 2500,
+  "ms": 2939,
   "model": "jev-1.14.0"
  },
  {
@@ -4157,7 +4144,7 @@
   "committee_ok": true,
   "place_bbl": "1005710031",
   "related": [],
-  "ms": 1730,
+  "ms": 2799,
   "model": "jev-1.14.0"
  },
  {
@@ -4169,18 +4156,16 @@
   "expected_committee": "Schools & Education",
   "rater_committee": "Schools & Education",
   "form": "cb2",
-  "p": 0.99,
+  "p": 0.91,
   "second": "crossing_guard",
-  "none": 0.01,
+  "none": 0.09,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
   "place_bbl": null,
-  "related": [
-   "2026-05-001"
-  ],
-  "ms": 1306,
+  "related": [],
+  "ms": 980,
   "model": "jev-1.14.0"
  },
  {
@@ -4201,7 +4186,7 @@
   "committee_ok": false,
   "place_bbl": "1005210077",
   "related": [],
-  "ms": 1134,
+  "ms": 2275,
   "model": "jev-1.14.0"
  },
  {
@@ -4222,7 +4207,7 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [],
-  "ms": 1596,
+  "ms": 2203,
   "model": "jev-1.14.0"
  },
  {
@@ -4234,7 +4219,7 @@
   "expected_committee": "SLA – 1",
   "rater_committee": "SLA – 2",
   "form": "cb2",
-  "p": 0.94,
+  "p": 0.95,
   "second": "noise_commercial",
   "none": 0,
   "emergency": 0.01,
@@ -4244,10 +4229,10 @@
   "place_bbl": null,
   "related": [
    "2026-06-016",
-   "2025-03-023",
-   "2025-04-020"
+   "2025-04-020",
+   "2025-03-023"
   ],
-  "ms": 2041,
+  "ms": 2333,
   "model": "jev-1.14.0"
  },
  {
@@ -4268,11 +4253,11 @@
   "committee_ok": false,
   "place_bbl": null,
   "related": [
-   "2025-09-007",
    "2025-01-001",
+   "2025-09-007",
    "2025-09-006"
   ],
-  "ms": 357,
+  "ms": 616,
   "model": "jev-1.14.0"
  },
  {
@@ -4297,7 +4282,7 @@
    "2026-06-007",
    "2026-05-005"
   ],
-  "ms": 1654,
+  "ms": 1316,
   "model": "jev-1.14.0"
  },
  {
@@ -4309,16 +4294,16 @@
   "expected_committee": "Landmarks & Public Aesthetics",
   "rater_committee": "Landmarks & Public Aesthetics",
   "form": "cb2",
-  "p": 0.95,
+  "p": 0.93,
   "second": "crossing_guard",
-  "none": 0.05,
+  "none": 0.07,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
   "place_bbl": "1002090001",
   "related": [],
-  "ms": 1671,
+  "ms": 2146,
   "model": "jev-1.14.0"
  },
  {
@@ -4343,7 +4328,7 @@
    "2025-04-091",
    "2026-07-001"
   ],
-  "ms": 875,
+  "ms": 1418,
   "model": "jev-1.14.0"
  },
  {
@@ -4355,7 +4340,7 @@
   "expected_committee": "SLA – 2",
   "rater_committee": "SLA – 1",
   "form": "cb2",
-  "p": 0.95,
+  "p": 0.94,
   "second": "noise_commercial",
   "none": 0.02,
   "emergency": 0.01,
@@ -4364,7 +4349,7 @@
   "committee_ok": true,
   "place_bbl": "1005860036",
   "related": [],
-  "ms": 1749,
+  "ms": 2162,
   "model": "jev-1.14.0"
  },
  {
@@ -4376,16 +4361,16 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "illegal_parking",
-  "p": 0.63,
+  "p": 0.7,
   "second": "cb2",
   "none": 0,
-  "emergency": 0.07,
+  "emergency": 0.06,
   "form_ok": false,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
   "place_bbl": "1005977502",
   "related": [],
-  "ms": 2034,
+  "ms": 2376,
   "model": "jev-1.14.0"
  },
  {
@@ -4406,10 +4391,10 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2026-07-001",
-   "2025-12-048"
+   "2025-12-048",
+   "2026-07-001"
   ],
-  "ms": 1574,
+  "ms": 1449,
   "model": "jev-1.14.0"
  },
  {
@@ -4421,19 +4406,19 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "cb2",
-  "p": 1,
-  "second": "crossing_guard",
-  "none": 0,
+  "p": 0.92,
+  "second": "street_condition",
+  "none": 0.01,
   "emergency": 0.03,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
-  "place_bbl": null,
+  "place_bbl": "1002270063",
   "related": [
    "2025-12-048",
    "2026-07-001"
   ],
-  "ms": 1624,
+  "ms": 1801,
   "model": "jev-1.14.0"
  },
  {
@@ -4445,18 +4430,19 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "cb2",
-  "p": 0.97,
-  "second": "traffic_signal",
+  "p": 0.99,
+  "second": "crossing_guard",
   "none": 0.01,
-  "emergency": 0.02,
+  "emergency": 0.01,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2025-12-048"
+   "2025-12-048",
+   "2026-07-001"
   ],
-  "ms": 2656,
+  "ms": 3001,
   "model": "jev-1.14.0"
  },
  {
@@ -4481,7 +4467,7 @@
    "2026-07-001",
    "2025-05-120"
   ],
-  "ms": 2929,
+  "ms": 2765,
   "model": "jev-1.14.0"
  },
  {
@@ -4493,9 +4479,9 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "cb2",
-  "p": 0.95,
-  "second": "traffic_signal",
-  "none": 0.04,
+  "p": 0.98,
+  "second": "crossing_guard",
+  "none": 0.02,
   "emergency": 0.02,
   "form_ok": true,
   "committee": "Traffic & Transportation",
@@ -4506,7 +4492,7 @@
    "2026-07-001",
    "2025-05-120"
   ],
-  "ms": 2912,
+  "ms": 3008,
   "model": "jev-1.14.0"
  },
  {
@@ -4528,10 +4514,10 @@
   "place_bbl": null,
   "related": [
    "2025-12-048",
-   "2025-04-091",
-   "2026-05-059"
+   "2026-05-059",
+   "2025-04-091"
   ],
-  "ms": 341,
+  "ms": 1446,
   "model": "jev-1.14.0"
  },
  {
@@ -4543,19 +4529,19 @@
   "expected_committee": "Traffic & Transportation",
   "rater_committee": "Traffic & Transportation",
   "form": "cb2",
-  "p": 0.98,
+  "p": 0.99,
   "second": "crossing_guard",
-  "none": 0.02,
+  "none": 0.01,
   "emergency": 0.01,
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
   "place_bbl": null,
   "related": [
-   "2025-12-048",
-   "2026-07-001"
+   "2026-07-001",
+   "2025-12-048"
   ],
-  "ms": 2935,
+  "ms": 1340,
   "model": "jev-1.14.0"
  },
  {
@@ -4576,7 +4562,7 @@
   "committee_ok": true,
   "place_bbl": null,
   "related": [],
-  "ms": 291,
+  "ms": 736,
   "model": "jev-1.14.0"
  },
  {
@@ -4588,16 +4574,16 @@
   "expected_committee": "Executive Committee",
   "rater_committee": "Executive Committee",
   "form": "cb2",
-  "p": 0.17,
+  "p": 0.2,
   "second": "crossing_guard",
-  "none": 0.83,
+  "none": 0.8,
   "emergency": 0.03,
   "form_ok": true,
   "committee": "Executive Committee",
   "committee_ok": true,
   "place_bbl": null,
   "related": [],
-  "ms": 352,
+  "ms": 517,
   "model": "jev-1.14.0"
  },
  {
@@ -4611,14 +4597,14 @@
   "form": "noise_commercial",
   "p": 0.73,
   "second": "cb2",
-  "none": 0.03,
+  "none": 0.04,
   "emergency": 0.02,
   "form_ok": false,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
   "place_bbl": null,
   "related": [],
-  "ms": 922,
+  "ms": 1123,
   "model": "jev-1.14.0"
  }
 ]

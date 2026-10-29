@@ -6,9 +6,11 @@ import catalog from "./catalog.json";
 import { type Board, type Candidate, type Geo, type License, FINDERS, addressQueries, properNames, streets } from "./candidates";
 import { intersectionNode } from "./intersection";
 import { history } from "./history";
+import { type Extracted, extract, placeQueries, cornerOf } from "./clairic";
 
 interface Env {
   ASSETS: Fetcher;
+  AI?: Ai;
   DB: D1Database;
   TYPESAFE_API_KEY?: string;
   TYPESAFE_MODEL?: string;
@@ -196,10 +198,13 @@ function cornerQuery(text: string): [string, string] | null {
   return parts.length === 2 ? [parts[0], parts[1]] : null;
 }
 
-async function findLocations(message: string): Promise<Candidate[]> {
-  const addressLookups = addressQueries(message).flatMap((q) => [geosearch(q), geosearch(`${q}, Manhattan`, 2)]);
-  const businessLookups = properNames(message).slice(0, 4).map(async (n): Promise<Candidate[]> => {
-    const lic = await liquorLicenses(n.value);
+async function findLocations(message: string, x: Extracted = {}): Promise<Candidate[]> {
+  const queries = [...new Set([...placeQueries(x), ...addressQueries(message)])].slice(0, 6);
+  const addressLookups = queries.flatMap((q) => [geosearch(q), geosearch(`${q}, Manhattan`, 2)]);
+  const pair = cornerOf(x);
+  const names = [...new Set([...(x.business ? [x.business] : []), ...properNames(message).map((n) => n.value)])];
+  const businessLookups = names.slice(0, 4).map(async (n): Promise<Candidate[]> => {
+    const lic = await liquorLicenses(n);
     return Promise.all(
       lic.map(async (l) => {
         const [g] = await geosearch(`${l.address}, ${l.zip}`, 1);
@@ -213,7 +218,8 @@ async function findLocations(message: string): Promise<Candidate[]> {
       }),
     );
   });
-  const all = (await Promise.all([intersections(message), ...businessLookups, ...addressLookups])).flat();
+  const cornerLookup = pair ? corner(...pair).then((c) => (c ? [c] : [])) : Promise.resolve([]);
+  const all = (await Promise.all([cornerLookup, intersections(message), ...businessLookups, ...addressLookups])).flat();
   const seen = new Set<string>();
   const unique = all.filter((c) => !seen.has(c.key) && seen.add(c.key));
   const inside = (await withDistrict(unique)).slice(0, 12);
@@ -333,7 +339,7 @@ function recordQuestions(past: Resolution[], nearby: Resolution[]) {
   return questions;
 }
 
-function buildPlan(message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[]) {
+function buildPlan(message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[], x: Extracted = {}) {
   const questions: Record<string, unknown> = {
     emergency: {
       type: "noul",
@@ -355,6 +361,12 @@ function buildPlan(message: string, locations: Candidate[], past: Resolution[], 
   };
   const cands: Record<string, Candidate[]> = {};
   const found = Object.fromEntries(Object.entries(FINDERS).map(([k, fn]) => [k, fn(message)]));
+  // What Clairic read in the message ("every weekend", "Ronnie Scott's") joins the regex finds.
+  const add = (k: string, v: string | undefined, note: string) => {
+    if (v && found[k] && !found[k].some((c) => c.key.toLowerCase() === v.toLowerCase())) found[k].unshift({ key: v, value: v, note });
+  };
+  add("times", x.when, "when it happens, as the message says it");
+  add("proper_names", x.business, "the business the message names");
 
   // A resident says "the bar downstairs"; the board's own record knows which business that is.
   for (const r of past) {
@@ -537,7 +549,9 @@ async function route(request: Request, env: Env, track: Track): Promise<Response
   const message = (raw ?? "").trim().slice(0, 4000);
   if (message.length < 8) return json({ error: "Tell us a bit more first" }, 400);
   const t0 = Date.now();
-  const locations = await findLocations(message);
+  const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
+  const clairic = await extract(env.AI, message, new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" }));
+  const locations = await findLocations(message, clairic.found);
   const lookupMs = Date.now() - t0;
   const [placeList, searched] = await Promise.all([placesFor(env.DB, locations.map((l) => l.geo)), searchMinutes(env.DB, message)]);
   const places = new Map(locations.map((l, i) => [l.key, placeList[i]]));
@@ -545,8 +559,7 @@ async function route(request: Request, env: Env, track: Track): Promise<Response
   const nearby = unique(locations.filter((l) => !l.geo?.board?.outside).flatMap((l) => places.get(l.key)!.near)).slice(0, 10);
   const found = searched.filter((r) => !past.some((x) => x.id === r.id));
   await withText(env.DB, placeList.flatMap((p) => p.at)); // the clauses a complaint can be about
-  const { questions, cands, boardRecord } = buildPlan(message, locations, past, unique([...nearby, ...found]));
-  const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
+  const { questions, cands, boardRecord } = buildPlan(message, locations, past, unique([...nearby, ...found]), clairic.found);
   let jev;
   const t1 = Date.now();
   try {
@@ -567,10 +580,11 @@ async function route(request: Request, env: Env, track: Track): Promise<Response
     data: {
       p: top.probability, second: next?.key, margin: top.probability - (next?.probability ?? 0), emergency: out.emergency,
       lookupMs, jevMs, chars: message.length, locations: locations.length, candidates: Object.values(cands).flat().length,
-      questions: Object.keys(questions).length, pastAtAddress: past.length, related: out.related.length, model: jev.model, usage: jev.usage,
+      questions: Object.keys(questions).length, clairicMs: clairic.ms, clairic: Object.keys(clairic.found), clairicError: clairic.error, pastAtAddress: past.length, related: out.related.length, model: jev.model, usage: jev.usage,
     },
   });
-  return json({ ...out, routeId, jev: { model: jev.model, usage: jev.usage, questions: Object.keys(questions).length, latencyMs, lookupMs } });
+  return json({ ...out, routeId, jev: { model: jev.model, usage: jev.usage, questions: Object.keys(questions).length, latencyMs, lookupMs },
+    clairic: { found: clairic.found, ms: clairic.ms, error: clairic.error } });
 }
 
 /**

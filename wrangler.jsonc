@@ -7,6 +7,7 @@
   "compatibility_date": "2026-09-01",
   "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*", "/*.mp4"] },
   "observability": { "enabled": true },
+  "ai": { "binding": "AI", "remote": true }, // Clairic (Workers AI) finds the place, business and time in the message
   "vars": { "TYPESAFE_MODEL": "jev-latest" },
   "d1_databases": [{ "binding": "DB", "database_name": "cbform", "database_id": "29534f2c-a6f3-4213-974c-a08c44e3b12d", "migrations_dir": "migrations" }]
   // Secrets (locally in .dev.vars): TYPESAFE_API_KEY, GEMINI_API_KEY, MAPBOX_TOKEN, optional SEND_WEBHOOK_URL

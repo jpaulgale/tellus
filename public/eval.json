@@ -8,14 +8,14 @@
  },
  "form_311_uncovered": {
   "n": 40,
-  "correct": 28,
-  "accuracy": 0.7
+  "correct": 30,
+  "accuracy": 0.75
  },
  "form_311_by_lang": {
   "en": {
    "n": 86,
-   "correct": 72,
-   "accuracy": 0.837
+   "correct": 74,
+   "accuracy": 0.86
   },
   "es": {
    "n": 10,
@@ -35,17 +35,17 @@
  },
  "committee_public_session": {
   "n": 103,
-  "correct": 83,
-  "accuracy": 0.806
+  "correct": 82,
+  "accuracy": 0.796
  },
  "place_bbl_311": {
-  "n": 28,
-  "correct": 28,
+  "n": 61,
+  "correct": 61,
   "accuracy": 1.0,
   "of": 79
  },
  "false_emergency": 6,
- "latency_ms_p50": 1162,
+ "latency_ms_p50": 1311,
  "confusion_311": [
   [
    "noise_commercial -> cb2",
@@ -53,11 +53,11 @@
   ],
   [
    "none of ours -> rodents",
-   3
+   2
   ],
   [
    "none of ours -> noise_residential",
-   3
+   2
   ],
   [
    "none of ours -> street_condition",
@@ -94,7 +94,7 @@
    2
   ],
   [
-   "Executive Committee -> Land Use & Housing",
+   "Executive Committee -> SLA – 1",
    1
   ],
   [
@@ -111,6 +111,10 @@
   ],
   [
    "Landmarks & Public Aesthetics -> SLA – 2",
+   1
+  ],
+  [
+   "Executive Committee -> Schools & Education",
    1
   ],
   [
