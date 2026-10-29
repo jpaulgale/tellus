@@ -375,8 +375,8 @@
    ]
   },
   "cb2": {
-   "name": "CB2 Manhattan",
-   "agency": "CB2",
+   "name": "Community board",
+   "agency": "Board",
    "complaint_type": "Community Board Issue",
    "route": "A neighborhood issue for the community board to discuss or weigh in on: a pattern at a bar or business and its liquor license, a street redesign, traffic safety at a corner (cyclists, drivers, or delivery bikes ignoring lights, speeding, failing to yield), development, landmarks, parks policy, schools, or a problem the city keeps failing to fix.",
    "fields": [
@@ -385,7 +385,7 @@
      "label": "Committee",
      "kind": "committee",
      "required": true,
-     "hint": "which CB2 committee should review it"
+     "hint": "which of the board's committees should review it"
     },
     {
      "id": "issue",
@@ -434,32 +434,11 @@
    "contact_required": true
   }
  },
- "committees": {
-  "SLA – 1": "Bars, restaurants and venues with liquor licenses, mostly in the eastern part of CB2 (SoHo, NoHo, Little Italy, Chinatown, the Bowery): noise and music from licensed premises, hours, crowds, new or renewed liquor licenses.",
-  "SLA – 2": "Bars, restaurants and venues with liquor licenses, mostly in the western part of CB2 (West Village, Greenwich Village, Hudson Square, Gansevoort): noise and music from licensed premises, hours, crowds, new or renewed liquor licenses.",
-  "Cannabis Licensing Committee": "Cannabis dispensaries and smoke shops: licensing, unlicensed sales, location near schools.",
-  "Street Activities & Resiliency": "Street fairs, block parties, sidewalk vendors, film shoots, sanitation and garbage on streets, flooding and climate resiliency.",
-  "Outdoor Dining Working Group": "Roadway dining sheds and sidewalk dining setups: obstruction, rats, noise, placement.",
-  "Traffic & Transportation": "Streets, bike lanes, crosswalks, traffic signals, bus routes, parking, speeding, truck traffic, Citi Bike, pedestrian safety.",
-  "Parks & Waterfront": "Parks, playgrounds, Washington Square Park, Hudson River Park, trees and green space, park hours and conduct.",
-  "Landmarks & Public Aesthetics": "Changes to buildings in historic districts: facades, windows, signage, storefronts, rooftop additions, public art.",
-  "Land Use & Housing": "Zoning, new development, construction projects, affordable housing, tenant issues, SoHo/NoHo rezoning.",
-  "Human Services": "Homelessness, shelters, mental health, seniors, public health, social services.",
-  "Schools & Education": "Public schools, school siting and space, education programs, libraries.",
-  "Arts & Culture Working Group": "Arts organizations, cultural events, galleries, performance spaces.",
-  "Community Facilities Advisory Panel": "Community facility uses such as houses of worship, medical facilities, and nonprofit spaces in buildings.",
-  "Executive Committee": "Board-wide policy, budget priorities, or issues that span several committees or fit no other committee."
- },
  "destinations": {
   "311": {
    "label": "NYC 311",
    "url": "https://portal.311.nyc.gov/",
    "email": null
-  },
-  "CB2": {
-   "label": "CB2 Manhattan office",
-   "url": "https://cbmanhattan.cityofnewyork.us/cb2/",
-   "email": "info@manhattancb2.org"
   },
   "DOT": {
    "label": "NYC DOT",

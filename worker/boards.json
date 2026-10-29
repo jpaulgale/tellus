@@ -1,0 +1,81 @@
+{
+  "_": "One entry per community board the app can run as (?board=cb3). Committee names match what each board's minutes call them, so a past resolution's committee can be picked again. Read by worker/index.ts and the build scripts.",
+  "cb2": {
+    "cd": "102",
+    "short": "CB2",
+    "name": "CB2 Manhattan",
+    "full": "Community Board 2",
+    "community_board_311": "02 MANHATTAN",
+    "center": [40.7265, -74.0005],
+    "url": "https://cbmanhattan.cityofnewyork.us/cb2/",
+    "email": "info@manhattancb2.org",
+    "areas": "Greenwich Village, West Village, SoHo, NoHo, Hudson Square, Little Italy and part of Chinatown",
+    "committees": {
+      "SLA – 1": "Bars, restaurants and venues with liquor licenses, mostly in the eastern part of CB2 (SoHo, NoHo, Little Italy, Chinatown, the Bowery): noise and music from licensed premises, hours, crowds, new or renewed liquor licenses.",
+      "SLA – 2": "Bars, restaurants and venues with liquor licenses, mostly in the western part of CB2 (West Village, Greenwich Village, Hudson Square, Gansevoort): noise and music from licensed premises, hours, crowds, new or renewed liquor licenses.",
+      "Cannabis Licensing Committee": "Cannabis dispensaries and smoke shops: licensing, unlicensed sales, location near schools.",
+      "Street Activities & Resiliency": "Street fairs, block parties, sidewalk vendors, film shoots, sanitation and garbage on streets, flooding and climate resiliency.",
+      "Outdoor Dining Working Group": "Roadway dining sheds and sidewalk dining setups: obstruction, rats, noise, placement.",
+      "Traffic & Transportation": "Streets, bike lanes, crosswalks, traffic signals, bus routes, parking, speeding, truck traffic, Citi Bike, pedestrian safety.",
+      "Parks & Waterfront": "Parks, playgrounds, Washington Square Park, Hudson River Park, trees and green space, park hours and conduct.",
+      "Landmarks & Public Aesthetics": "Changes to buildings in historic districts: facades, windows, signage, storefronts, rooftop additions, public art.",
+      "Land Use & Housing": "Zoning, new development, construction projects, affordable housing, tenant issues, SoHo/NoHo rezoning.",
+      "Human Services": "Homelessness, shelters, mental health, seniors, public health, social services.",
+      "Schools & Education": "Public schools, school siting and space, education programs, libraries.",
+      "Arts & Culture Working Group": "Arts organizations, cultural events, galleries, performance spaces.",
+      "Community Facilities Advisory Panel": "Community facility uses such as houses of worship, medical facilities, and nonprofit spaces in buildings.",
+      "Executive Committee": "Board-wide policy, budget priorities, or issues that span several committees or fit no other committee."
+    },
+    "examples": [
+      { "topic": "Park hours", "to": "CB2 · Parks", "ex": "Washington Square Park should not close at night." },
+      { "topic": "Crossing guard", "to": "NYPD", "ex": "I'm a parent at PS 3. We need a crossing guard at Hudson St and Christopher St, cars run the light every morning at drop-off." },
+      { "topic": "Bar downstairs", "to": "CB2 · SLA", "ex": "I live above the bar at 2 Bleecker St. They leave the windows wide open until 1am and I can hear everything in my bedroom." },
+      { "topic": "Liquor license", "to": "CB2 · SLA", "ex": "Caudalie on 130 Greene St plays music past midnight every weekend. I want the board to add conditions to their license." },
+      { "topic": "Bike lane redesign", "to": "CB2 · Transportation", "ex": "I want to testify about the two-way bike lane proposal on Lafayette St. It's dangerous for seniors crossing." },
+      { "topic": "Historic storefront", "to": "CB2 · Landmarks", "ex": "The new illuminated sign at 770 Broadway doesn't fit the NoHo historic district" },
+      { "topic": "Outdoor dining shed", "to": "CB2 · Outdoor Dining", "ex": "The dining shed on Thompson St blocks the crosswalk and the board should not approve it again" },
+      { "topic": "New development", "to": "CB2 · Land Use", "ex": "The tower proposed at 60 Spring St is too tall for the block and has no affordable housing" },
+      { "topic": "Cannabis shop", "to": "CB2 · Cannabis", "ex": "A cannabis dispensary is applying to open across from the school on Bleecker St and I oppose it" },
+      { "topic": "Street fair", "to": "CB2 · Street Activities", "ex": "The street fair on Bleecker St closes our block every month and the board should limit the permits" },
+      { "topic": "School space", "to": "CB2 · Schools", "ex": "Our middle school needs to expand into the empty floor of its building and I want the board's support" },
+      { "topic": "Arts & culture", "to": "CB2 · Arts", "ex": "We want the board's support for a public mural and performance series in Hudson Square" },
+      { "topic": "Street light out", "to": "311 · DOT", "ex": "The street light in front of 60 Spring St has been out for a week" },
+      { "topic": "Rats", "to": "311 · Health", "ex": "Rats are running all over the sidewalk outside 200 Spring St every night" }
+    ]
+  },
+  "cb3": {
+    "cd": "103",
+    "short": "CB3",
+    "name": "CB3 Manhattan",
+    "full": "Community Board 3",
+    "community_board_311": "03 MANHATTAN",
+    "center": [40.7200, -73.9870],
+    "url": "https://www.nyc.gov/site/manhattancb3/index.page",
+    "email": "mn03@cb.nyc.gov",
+    "areas": "the East Village, Lower East Side and Chinatown",
+    "committees": {
+      "SLA Licensing & Outdoor Dining": "Bars, restaurants and venues with liquor licenses anywhere in CB3: noise and music from licensed premises, hours, crowds, new or renewed liquor licenses, sidewalk and roadway dining.",
+      "Transportation, Public Safety, Sanitation & Environment": "Streets, bike lanes, crosswalks, traffic signals, bus stops and intercity buses, parking, street co-namings, police and public safety, garbage, sanitation and the environment.",
+      "Parks, Recreation, Waterfront, & Resiliency": "Parks and playgrounds, Tompkins Square Park, East River Park, the waterfront, trees and green space, flood and climate resiliency.",
+      "Land Use, Zoning, Public & Private Housing": "Zoning, new development, construction, affordable housing, NYCHA, tenant issues.",
+      "Landmarks": "Changes to landmarked buildings and historic districts: facades, windows, signage, storefronts, rooftop additions.",
+      "Health, Seniors & Human Services / Youth, Education & Human Rights": "Homelessness and shelters, mental health, seniors, public health, schools, youth programs, human rights.",
+      "Economic Development": "Small businesses, commercial rents and storefronts, markets like Essex Market, street vendors, jobs.",
+      "Cannabis Control Task Force": "Cannabis dispensaries and smoke shops: licensing, unlicensed sales, location near schools.",
+      "Executive": "Board-wide policy, budget priorities, proposed city and state laws, or issues that fit no other committee."
+    },
+    "examples": [
+      { "topic": "Bar downstairs", "to": "CB3 · SLA", "ex": "The bar at 117 Avenue A keeps its front doors open after 10pm and the music fills my apartment." },
+      { "topic": "Liquor license", "to": "CB3 · SLA", "ex": "Kotobuki is opening at 8 Stuyvesant St. I want the board to make sure the backyard isn't used late at night." },
+      { "topic": "Crowds on the sidewalk", "to": "CB3 · SLA", "ex": "Customers crowd the sidewalk outside 93 1/2 East 7th St every night and nobody can get by." },
+      { "topic": "Bike lane redesign", "to": "CB3 · Transportation", "ex": "I support the two-way bike lane on Grand St. Crossing at Essex is dangerous right now." },
+      { "topic": "Intercity buses", "to": "CB3 · Transportation", "ex": "The intercity buses at 9 Chatham Square idle for an hour and block the crosswalk." },
+      { "topic": "Park", "to": "CB3 · Parks", "ex": "The sandbox at Hester Street Playground has been broken all summer and needs to be replaced." },
+      { "topic": "Shelter siting", "to": "CB3 · Human Services", "ex": "I'm worried about the new intake center on East 3rd St. The neighborhood already has many shelters." },
+      { "topic": "Essex Market", "to": "CB3 · Economic Development", "ex": "Small vendors at Essex Market are being priced out and the board should weigh in on the new manager." },
+      { "topic": "Cannabis shop", "to": "CB3 · Cannabis", "ex": "An unlicensed smoke shop on Orchard St sells to kids from the school down the block." },
+      { "topic": "Street light out", "to": "311 · DOT", "ex": "The street light in front of 228 Mott St has been out for a week" },
+      { "topic": "Rats", "to": "311 · Health", "ex": "Rats are running all over the sidewalk outside 125 Elizabeth St every night" }
+    ]
+  }
+}

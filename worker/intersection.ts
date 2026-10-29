@@ -13,8 +13,6 @@ const NODE_EPSILON = 0.00015;
 /** [lon, lat] */
 export type Node = [number, number];
 
-/** CB2 centroid: picks the nearest corner when two streets cross more than once. */
-const FOCUS: Node = [-74.0005, 40.7265];
 
 const ORDINAL = /\b(\d+)\s*(?:st|nd|rd|th)\b/gi;
 
@@ -65,7 +63,7 @@ export function csclCandidates(street: string): string[][] {
   return groups;
 }
 
-// Corner nodes per street label for the area around CB2, bundled by scripts/fetch_centerline.py.
+// Corner nodes per street label for the area around CB2 and CB3, bundled by scripts/fetch_centerline.py.
 // The live centerline API is intermittently slow, and these never change.
 const NODES = cscl as unknown as Record<string, Node[]>;
 
@@ -83,7 +81,8 @@ function nodeGroups(street: string): Node[][] {
  * [lon, lat] where two streets meet, or null. Readings are tried likeliest first, so a bare
  * "10th and 4th" becomes 10 Ave & 4 Ave only if those cross, else E/W 10 St & 4 Ave.
  */
-export function intersectionNode(a: string, b: string): Node | null {
+/** `near` (the board center) picks the corner when two streets cross more than once. */
+export function intersectionNode(a: string, b: string, near: Node): Node | null {
   for (const na of nodeGroups(a)) {
     for (const nb of nodeGroups(b)) {
       const hits: Node[] = [];
@@ -94,7 +93,7 @@ export function intersectionNode(a: string, b: string): Node | null {
       }
       if (!hits.length) continue;
       // Two streets can cross more than once (Broadway); take the corner nearest the district.
-      const far = (p: Node) => Math.abs(p[0] - FOCUS[0]) + Math.abs(p[1] - FOCUS[1]);
+      const far = (p: Node) => Math.abs(p[0] - near[0]) + Math.abs(p[1] - near[1]);
       return hits.reduce((best, p) => (far(p) < far(best) ? p : best));
     }
   }

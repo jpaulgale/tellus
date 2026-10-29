@@ -1,10 +1,11 @@
-// CB2 / 311 intake Worker. Say or type what's wrong; one speculative Jev fan-out call decides
+// Community board / 311 intake Worker (one board per request, worker/boards.json). Say or type what's wrong; one speculative Jev fan-out call decides
 // emergency?, which form?, and every field of every form (the jev-form-router pattern).
 // Code finds every candidate value (regex spans, NYC GeoSearch, NYS liquor licenses); Jev only picks.
 
 import catalog from "./catalog.json";
+import boards from "./boards.json";
 import { type Board, type Candidate, type Geo, type License, FINDERS, addressQueries, properNames, streets } from "./candidates";
-import { intersectionNode } from "./intersection";
+import { type Node, intersectionNode } from "./intersection";
 import { history } from "./history";
 import { type Extracted, extract, placeQueries, cornerOf } from "./clairic";
 
@@ -25,7 +26,7 @@ type FieldSpec = {
 };
 type FormSpec = { name: string; agency: string; complaint_type: string; route: string; fields: FieldSpec[]; contact_required?: boolean };
 
-/** A past CB2 resolution, from the Full Board minutes (the D1 `resolutions` table; scripts/build_resolution_index.py). */
+/** A past board resolution, from the Full Board minutes (the D1 `resolutions` table; scripts/build_resolution_index.py). */
 interface Resolution {
   id: string; meeting_date: string; meeting_iso: string; committee: string; title: string; address: string | null; legal_name: string; dba: string;
   license_type: string; outcome: string; vote: string; bbl: string | null; lat: number | null; lng: number | null; stipulations: string[]; source: string;
@@ -62,12 +63,12 @@ function tracker(env: Env, ctx: ExecutionContext, session: string | null): Track
 }
 
 /** The board's record around each place, in one D1 round trip: rows on the same tax lot or within a box about NEAR_M across. */
-async function placesFor(db: D1Database, geos: (Geo | undefined)[]): Promise<Place[]> {
+async function placesFor(db: D1Database, b: BoardConfig, geos: (Geo | undefined)[]): Promise<Place[]> {
   const dLat = NEAR_M / 111_320, dLng = NEAR_M / 84_000; // a degree of longitude is about 84 km at this latitude
   const asked = geos.map((g, i) => [g, i] as const).filter((x): x is readonly [Geo, number] => !!x[0]);
   if (!asked.length) return geos.map(() => NO_PLACE);
-  const stmt = db.prepare("SELECT * FROM resolutions WHERE bbl = ?1 OR (lat BETWEEN ?2 AND ?3 AND lng BETWEEN ?4 AND ?5)");
-  const results = await db.batch(asked.map(([g]) => stmt.bind(g.bbl ?? "", g.lat - dLat, g.lat + dLat, g.lng - dLng, g.lng + dLng)));
+  const stmt = db.prepare("SELECT * FROM resolutions WHERE board = ?6 AND (bbl = ?1 OR (lat BETWEEN ?2 AND ?3 AND lng BETWEEN ?4 AND ?5))");
+  const results = await db.batch(asked.map(([g]) => stmt.bind(g.bbl ?? "", g.lat - dLat, g.lat + dLat, g.lng - dLng, g.lng + dLng, b.id)));
   const out = geos.map(() => NO_PLACE);
   asked.forEach(([g, i], k) => {
     const rows = (results[k].results as any[]).map(toResolution);
@@ -84,14 +85,14 @@ async function placesFor(db: D1Database, geos: (Geo | undefined)[]): Promise<Pla
 const STOPWORDS = new Set("a an and are at be but by for from has have i in is it its my of on or our so that the their there they this to was we were with you your very really every all just near outside about been get got too many much street streets avenue ave place there".split(" "));
 
 /** BM25 search of the minutes for the resident's own words: the topic, the business, the street. */
-async function searchMinutes(db: D1Database, message: string, limit = 6): Promise<Resolution[]> {
+async function searchMinutes(db: D1Database, b: BoardConfig, message: string, limit = 6): Promise<Resolution[]> {
   // Words only: a bare house number matches every address that shares it.
   const terms = [...new Set(message.toLowerCase().match(/[a-z][a-z0-9]{2,}/g) ?? [])].filter((t) => !STOPWORDS.has(t)).slice(0, 24);
   if (!terms.length) return [];
   const rows = await db.prepare(
     `SELECT r.* FROM resolutions_fts f JOIN resolutions r ON r.id = f.id
-     WHERE resolutions_fts MATCH ?1 ORDER BY bm25(resolutions_fts, 0, 3, 4, 3, 1, 1) LIMIT ?2`,
-  ).bind(terms.map((t) => `"${t}"`).join(" OR "), limit).all();
+     WHERE resolutions_fts MATCH ?1 AND r.board = ?3 ORDER BY bm25(resolutions_fts, 0, 3, 4, 3, 1, 1) LIMIT ?2`,
+  ).bind(terms.map((t) => `"${t}"`).join(" OR "), limit, b.id).all();
   return (rows.results as any[]).map(toResolution);
 }
 type Answer =
@@ -100,12 +101,22 @@ type Answer =
 
 const GENERAL = catalog.general as FieldSpec[];
 const FORMS = catalog.forms as Record<string, FormSpec>;
-const COMMITTEES = catalog.committees as Record<string, string>;
+/** A board the app can run as: its district, committees and contact (worker/boards.json). */
+interface BoardConfig {
+  id: string; cd: string; short: string; name: string; full: string; community_board_311: string; center: [number, number];
+  url: string; email: string; areas: string; committees: Record<string, string>; examples: { topic: string; to: string; ex: string }[];
+}
+const BOARDS: Record<string, BoardConfig> = Object.fromEntries(
+  Object.entries(boards).filter(([k]) => k !== "_").map(([id, b]) => [id, { ...(b as unknown as Omit<BoardConfig, "id">), id }]),
+);
+/** The board a request is for: the page sends it as x-board (from ?board=); CB2 when it doesn't. */
+const boardOf = (request: Request, url: URL) => BOARDS[request.headers.get("x-board") ?? url.searchParams.get("board") ?? ""] ?? BOARDS.cb2;
+const focus = (b: BoardConfig) => `focus.point.lat=${b.center[0]}&focus.point.lon=${b.center[1]}`;
+const lngLat = (b: BoardConfig): Node => [b.center[1], b.center[0]];
 const NONE = "none of these";
 const NOT_STATED = "not stated";
 const INCLUDE_AT = 0.5;
 const GEOSEARCH = "https://geosearch.planninglabs.nyc/v2";
-const CB2_FOCUS = "focus.point.lat=40.7265&focus.point.lon=-74.0";
 const PLUTO = "https://data.cityofnewyork.us/resource/64uk-42ks.json"; // tax lots, with community district
 const SLA_LICENSES = "https://data.ny.gov/resource/9s3h-dpkz.json"; // NYS Liquor Authority active licenses
 
@@ -128,9 +139,9 @@ function featureToCandidate(f: any): Candidate {
   return { key: `${p.name}, ${p.borough ?? p.locality ?? ""}`.replace(/, $/, ""), value: p.label, note: `${p.borough ?? ""} ${p.postalcode ?? ""}`.trim(), geo };
 }
 
-async function geosearch(q: string, size = 3): Promise<Candidate[]> {
+async function geosearch(b: BoardConfig, q: string, size = 3): Promise<Candidate[]> {
   try {
-    const r = await fetch(`${GEOSEARCH}/search?text=${encodeURIComponent(q)}&size=${size}&${CB2_FOCUS}`, LOOKUP);
+    const r = await fetch(`${GEOSEARCH}/search?text=${encodeURIComponent(q)}&size=${size}&${focus(b)}`, LOOKUP);
     return ((await r.json()) as any).features.map(featureToCandidate);
   } catch {
     return [];
@@ -161,16 +172,16 @@ async function liquorLicenses(name: string): Promise<License[]> {
  * "Hudson St and Christopher St" → a dot on that corner. The corner comes from the street
  * centerline; the nearest address supplies the block, ZIP, and district check.
  */
-async function intersections(message: string): Promise<Candidate[]> {
+async function intersections(b: BoardConfig, message: string): Promise<Candidate[]> {
   const st = streets(message).map((s) => s.value).slice(0, 3);
   const pairs: [string, string][] = [];
   for (let i = 0; i < st.length; i++) for (let j = i + 1; j < st.length; j++) pairs.push([st[i], st[j]]);
-  const found = await Promise.all(pairs.map(([a, b]) => corner(a, b)));
+  const found = await Promise.all(pairs.map(([x, y]) => corner(b, x, y)));
   return found.filter((c): c is Candidate => !!c);
 }
 
-async function corner(a: string, b: string): Promise<Candidate | null> {
-  const node = intersectionNode(a, b);
+async function corner(board: BoardConfig, a: string, b: string): Promise<Candidate | null> {
+  const node = intersectionNode(a, b, lngLat(board));
   if (!node) return null;
   const [lng, lat] = node;
   let near: Candidate | undefined;
@@ -198,16 +209,16 @@ function cornerQuery(text: string): [string, string] | null {
   return parts.length === 2 ? [parts[0], parts[1]] : null;
 }
 
-async function findLocations(message: string, x: Extracted = {}): Promise<Candidate[]> {
+async function findLocations(b: BoardConfig, message: string, x: Extracted = {}): Promise<Candidate[]> {
   const queries = [...new Set([...placeQueries(x), ...addressQueries(message)])].slice(0, 6);
-  const addressLookups = queries.flatMap((q) => [geosearch(q), geosearch(`${q}, Manhattan`, 2)]);
+  const addressLookups = queries.flatMap((q) => [geosearch(b, q), geosearch(b, `${q}, Manhattan`, 2)]);
   const pair = cornerOf(x);
   const names = [...new Set([...(x.business ? [x.business] : []), ...properNames(message).map((n) => n.value)])];
   const businessLookups = names.slice(0, 4).map(async (n): Promise<Candidate[]> => {
     const lic = await liquorLicenses(n);
     return Promise.all(
       lic.map(async (l) => {
-        const [g] = await geosearch(`${l.address}, ${l.zip}`, 1);
+        const [g] = await geosearch(b, `${l.address}, ${l.zip}`, 1);
         return {
           key: `${titleCase(l.dba)}, ${titleCase(l.address)}`,
           value: g?.value ?? `${l.address}, New York, NY ${l.zip}`,
@@ -218,11 +229,11 @@ async function findLocations(message: string, x: Extracted = {}): Promise<Candid
       }),
     );
   });
-  const cornerLookup = pair ? corner(...pair).then((c) => (c ? [c] : [])) : Promise.resolve([]);
-  const all = (await Promise.all([cornerLookup, intersections(message), ...businessLookups, ...addressLookups])).flat();
+  const cornerLookup = pair ? corner(b, ...pair).then((c) => (c ? [c] : [])) : Promise.resolve([]);
+  const all = (await Promise.all([cornerLookup, intersections(b, message), ...businessLookups, ...addressLookups])).flat();
   const seen = new Set<string>();
   const unique = all.filter((c) => !seen.has(c.key) && seen.add(c.key));
-  const inside = (await withDistrict(unique)).slice(0, 12);
+  const inside = (await withDistrict(b, unique)).slice(0, 12);
   // A corner is not a tax lot: the nearest building's lot was only borrowed for the district check.
   for (const c of inside) if (c.geo?.corner) { delete c.geo.bbl; delete c.geo.bin; delete c.geo.housenumber; delete c.geo.street; }
   return inside;
@@ -230,30 +241,30 @@ async function findLocations(message: string, x: Extracted = {}): Promise<Candid
 
 // ---------- community district boundary ----------
 
-const BOARD_CD = "102"; // Manhattan Community District 2
 const BORO_CODE: Record<string, string> = { "1": "MN", "2": "BX", "3": "BK", "4": "QN", "5": "SI" };
 
 const BORO_NAME: Record<string, string> = { "1": "Manhattan", "2": "Bronx", "3": "Brooklyn", "4": "Queens", "5": "Staten Island" };
 const BORO_MAIL: Record<string, string> = { "1": "mn", "2": "bx", "3": "bk", "4": "qn", "5": "si" };
 
-/** The community board for a district code like "103" (Manhattan 3). */
-function boardFor(cd: string): Board {
+/** The community board for a district code like "103" (Manhattan 3), seen from board `home`. */
+function boardFor(cd: string, home: BoardConfig): Board {
   const boro = cd[0], n = Number(cd.slice(1));
+  const known = Object.values(BOARDS).find((b) => b.cd === cd);
   return {
     cd, key: `CB:${cd}`, short: `CB${n}`, name: `CB${n} ${BORO_NAME[boro]}`,
-    outside: cd !== BOARD_CD,
+    outside: cd !== home.cd,
     // City-issued board mailboxes follow this pattern (mn03@cb.nyc.gov).
-    email: `${BORO_MAIL[boro]}${String(n).padStart(2, "0")}@cb.nyc.gov`,
-    url: "https://www.nyc.gov/site/cau/community-boards/community-boards.page",
+    email: known?.email ?? `${BORO_MAIL[boro]}${String(n).padStart(2, "0")}@cb.nyc.gov`,
+    url: known?.url ?? "https://www.nyc.gov/site/cau/community-boards/community-boards.page",
   };
 }
 
 /**
- * Tags each location with its community board, CB2 locations first. Nothing is dropped: an
+ * Tags each location with its community board, the home board locations first. Nothing is dropped: an
  * address outside the district still shows, marked as belonging to another board. PLUTO has no
  * rows for condo unit lots, so the district is looked up per tax block (a block never spans two).
  */
-async function withDistrict<T extends { geo?: Geo }>(cands: T[]): Promise<T[]> {
+async function withDistrict<T extends { geo?: Geo }>(home: BoardConfig, cands: T[]): Promise<T[]> {
   const blockOf = (c: T) => (c.geo?.bbl ? `${BORO_CODE[c.geo.bbl[0]]}:${Number(c.geo.bbl.slice(1, 6))}` : null);
   const blocks = [...new Set(cands.map(blockOf).filter((b): b is string => !!b))];
   if (!blocks.length) return cands;
@@ -264,7 +275,7 @@ async function withDistrict<T extends { geo?: Geo }>(cands: T[]): Promise<T[]> {
     for (const row of (await r.json()) as any[]) if (row.cd) cd.set(`${row.borough}:${row.block}`, row.cd);
     for (const c of cands) {
       const code = cd.get(blockOf(c) ?? "");
-      if (code && c.geo) c.geo.board = boardFor(code);
+      if (code && c.geo) c.geo.board = boardFor(code, home);
     }
   } catch { /* PLUTO down: locations stay untagged rather than disappear */ }
   const rank = (c: T) => (c.geo?.board ? (c.geo.board.outside ? 1 : 0) : 2);
@@ -309,7 +320,7 @@ function clausesOf(text: string | null | undefined): string[] {
 /** What a complaint can be about in a decision: a license's stipulations, else the decision's own clauses. */
 const termsOf = (r: Resolution) => (r.stipulations.length ? r.stipulations : clausesOf(r.text));
 
-function recordQuestions(past: Resolution[], nearby: Resolution[]) {
+function recordQuestions(b: BoardConfig, past: Resolution[], nearby: Resolution[]) {
   const questions: Record<string, unknown> = {};
   // Which stipulation, or which condition of the board's approval, is this complaint about? (the highlighted quote)
   for (const r of past) {
@@ -318,9 +329,9 @@ function recordQuestions(past: Resolution[], nearby: Resolution[]) {
     questions[`resolution.${r.id}`] = {
       type: "choice",
       instructions: r.stipulations.length
-        ? { context: `In ${r.meeting_date} the business at ${r.address} agreed to these stipulations with Community Board 2.`,
+        ? { context: `In ${r.meeting_date} the business at ${r.address} agreed to these stipulations with ${b.full}.`,
             question: "Which one stipulation does the resident's complaint in `message` most directly say is being broken?" }
-        : { context: `On ${r.meeting_date} Community Board 2 decided on: ${r.title}. These are the findings and conditions of its decision.`,
+        : { context: `On ${r.meeting_date} ${b.full} decided on: ${r.title}. These are the findings and conditions of its decision.`,
             question: "Which one of these findings or conditions does the resident's complaint in `message` most directly say is not being met or is no longer true?" },
       criteria: { ...Object.fromEntries(terms.map((s) => [s, null])), [NONE]: "The complaint is not about any of these." },
     };
@@ -331,7 +342,7 @@ function recordQuestions(past: Resolution[], nearby: Resolution[]) {
     questions[`related.${r.id}`] = {
       type: "noul",
       instructions: {
-        decision: `On ${r.meeting_date} Community Board 2's ${r.committee} committee voted on: ${r.title}`,
+        decision: `On ${r.meeting_date} ${b.full}'s ${r.committee} committee voted on: ${r.title}`,
         question: "Would a resident who wrote `message` find this past board decision relevant: about the same business or building, or about the same kind of issue as the complaint (say, another bar's liquor license for a nightlife noise complaint) on the same street or block? A decision about a different kind of thing that is only nearby, like a street event near a bar, is not relevant.",
       },
     };
@@ -339,7 +350,7 @@ function recordQuestions(past: Resolution[], nearby: Resolution[]) {
   return questions;
 }
 
-function buildPlan(message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[], x: Extracted = {}) {
+function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[], x: Extracted = {}) {
   const questions: Record<string, unknown> = {
     emergency: {
       type: "noul",
@@ -352,10 +363,10 @@ function buildPlan(message: string, locations: Candidate[], past: Resolution[], 
     route: {
       type: "choice",
       instructions: past.length
-        ? { question: "Which form should this New York City resident's `message` be filed as? `board_record` lists what Community Board 2 has already decided about the address in the message.",
+        ? { question: "Which form should this New York City resident's `message` be filed as? `board_record` lists what ${b.full} has already decided about the address in the message.",
             rule: "A complaint that a business is breaking conditions the board set for it belongs with the board (cb2), which can hold the business to them, even when it is also a noise problem." }
         : "Which form should this New York City resident's message be filed as?",
-      criteria: { ...Object.fromEntries(Object.entries(FORMS).map(([k, f]) => [k, f.route])), call_911: "An emergency happening right now: someone is injured or in immediate danger, a crime or fire in progress, a gas smell, a medical emergency.",
+      criteria: { ...Object.fromEntries(Object.entries(FORMS).map(([k, f]) => [k, k === "cb2" ? `${b.full} (${b.areas}): ${f.route}` : f.route])), call_911: "An emergency happening right now: someone is injured or in immediate danger, a crime or fire in progress, a gas smell, a medical emergency.",
         none: "Not an emergency, a city service request, or a community board issue." },
     },
   };
@@ -373,10 +384,10 @@ function buildPlan(message: string, locations: Candidate[], past: Resolution[], 
     // Only licenses name a business; the parser's "legal name" for other items can be a title fragment.
     const name = /^SLA|Cannabis/.test(r.committee) ? r.dba || r.legal_name : "";
     if (name && !found.proper_names.some((c) => c.key === name)) {
-      found.proper_names.push({ key: name, value: name, note: `the ${r.license_type || "business"} at ${r.address}, reviewed by Community Board 2 on ${r.meeting_date}` });
+      found.proper_names.push({ key: name, value: name, note: `the ${r.license_type || "business"} at ${r.address}, reviewed by ${b.full} on ${r.meeting_date}` });
     }
   }
-  Object.assign(questions, recordQuestions(past, nearby));
+  Object.assign(questions, recordQuestions(b, past, nearby));
 
   // General fields don't depend on the form, so they're asked once.
   for (const f of GENERAL) {
@@ -402,10 +413,10 @@ function buildPlan(message: string, locations: Candidate[], past: Resolution[], 
       } else if (f.kind === "committee") {
         questions[qid] = {
           type: "choice",
-          instructions: { assumption: premise, question: "Which Community Board 2 committee should review this?" },
-          criteria: COMMITTEES,
+          instructions: { assumption: premise, question: `Which ${b.full} committee should review this?` },
+          criteria: b.committees,
         };
-        cands[qid] = Object.entries(COMMITTEES).map(([k, v]) => ({ key: k, value: k, note: v }));
+        cands[qid] = Object.entries(b.committees).map(([k, v]) => ({ key: k, value: k, note: v }));
       } else if (f.kind === "noul") {
         questions[qid] = { type: "noul", instructions: { assumption: premise, question: f.question } };
       } else if (f.kind === "span" && found[f.find!].length) {
@@ -483,14 +494,16 @@ function relatedFrom(candidates: Resolution[], geo: Geo | undefined, answers: Re
       metres: geo && placed(r) ? Math.round(metres(r, geo)) : null }));
 }
 
-function decode(answers: Record<string, Answer>, cands: Record<string, Candidate[]>, places: Map<string, Place>, found: Resolution[]) {
+function decode(b: BoardConfig, answers: Record<string, Answer>, cands: Record<string, Candidate[]>, places: Map<string, Place>, found: Resolution[]) {
   const route = answers.route.type === "choice" ? answers.route.probabilities : {};
   const general = GENERAL.map((f) => decodeField(f, `general.${f.id}`, answers, cands));
   const forms = Object.entries(FORMS)
     .map(([key, form]) => {
       const fields = form.fields.map((f) => decodeField(f, `${key}.${f.id}`, answers, cands));
       const requiredGeneral = ["location", ...(form.contact_required ? ["name", "email"] : [])];
-      return { key, name: form.name, agency: form.agency, complaint_type: form.complaint_type, probability: route[key] ?? 0, fields, requiredGeneral };
+      // The board's own form (catalog key "cb2") carries the name of the board the app is running as.
+      const [name, agency] = key === "cb2" ? [b.name, b.short] : [form.name, form.agency];
+      return { key, name, agency, complaint_type: form.complaint_type, probability: route[key] ?? 0, fields, requiredGeneral };
     })
     .sort((x, y) => y.probability - x.probability);
   // 911 is a route like any other; the separate yes/no check backs it up.
@@ -543,7 +556,7 @@ async function callJev(env: Env, body: unknown): Promise<any> {
 
 // ---------- routes ----------
 
-async function route(request: Request, env: Env, track: Track): Promise<Response> {
+async function route(request: Request, env: Env, track: Track, b: BoardConfig): Promise<Response> {
   if (!env.TYPESAFE_API_KEY) return json({ error: "TYPESAFE_API_KEY is not set" }, 500);
   const { message: raw } = (await request.json()) as { message?: string };
   const message = (raw ?? "").trim().slice(0, 4000);
@@ -551,15 +564,15 @@ async function route(request: Request, env: Env, track: Track): Promise<Response
   const t0 = Date.now();
   const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
   const clairic = await extract(env.AI, message, new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" }));
-  const locations = await findLocations(message, clairic.found);
+  const locations = await findLocations(b, message, clairic.found);
   const lookupMs = Date.now() - t0;
-  const [placeList, searched] = await Promise.all([placesFor(env.DB, locations.map((l) => l.geo)), searchMinutes(env.DB, message)]);
+  const [placeList, searched] = await Promise.all([placesFor(env.DB, b, locations.map((l) => l.geo)), searchMinutes(env.DB, b, message)]);
   const places = new Map(locations.map((l, i) => [l.key, placeList[i]]));
   const past = unique(placeList.flatMap((p) => p.at)).slice(0, 3);
   const nearby = unique(locations.filter((l) => !l.geo?.board?.outside).flatMap((l) => places.get(l.key)!.near)).slice(0, 10);
   const found = searched.filter((r) => !past.some((x) => x.id === r.id));
   await withText(env.DB, placeList.flatMap((p) => p.at)); // the clauses a complaint can be about
-  const { questions, cands, boardRecord } = buildPlan(message, locations, past, unique([...nearby, ...found]), clairic.found);
+  const { questions, cands, boardRecord } = buildPlan(b, message, locations, past, unique([...nearby, ...found]), clairic.found);
   let jev;
   const t1 = Date.now();
   try {
@@ -569,7 +582,7 @@ async function route(request: Request, env: Env, track: Track): Promise<Response
     return json({ error: (e as Error).message }, 502);
   }
   const jevMs = Date.now() - t1;
-  const out = decode(jev.answers, cands, places, found);
+  const out = decode(b, jev.answers, cands, places, found);
   const locOptions = out.general.find((f) => f.id === "location")?.options ?? [];
   await withText(env.DB, [...out.related, ...locOptions.flatMap((o: any) => [...(o.resolutions ?? []), ...(o.related ?? [])])]);
   const latencyMs = Date.now() - t0;
@@ -591,17 +604,17 @@ async function route(request: Request, env: Env, track: Track): Promise<Response
  * The board's record for a place the person picked themselves (autocomplete or a dot on the map):
  * resolutions at the address with the stipulation the complaint is about, and related decisions nearby.
  */
-async function record(request: Request, env: Env, track: Track): Promise<Response> {
+async function record(request: Request, env: Env, track: Track, b: BoardConfig): Promise<Response> {
   if (!env.TYPESAFE_API_KEY) return json({ error: "TYPESAFE_API_KEY is not set" }, 500);
   const { message: raw, geo } = (await request.json()) as { message?: string; geo?: Geo };
   const message = (raw ?? "").trim().slice(0, 4000);
   if (!geo || !Number.isFinite(geo.lat) || !Number.isFinite(geo.lng)) return json({ error: "geo is required" }, 400);
   const t0 = Date.now();
-  const [[place], searched] = await Promise.all([placesFor(env.DB, [geo]), message.length >= 8 ? searchMinutes(env.DB, message) : []]);
+  const [[place], searched] = await Promise.all([placesFor(env.DB, b, [geo]), message.length >= 8 ? searchMinutes(env.DB, b, message) : []]);
   const past = place.at, found = searched.filter((r) => !past.some((x) => x.id === r.id));
   const candidates = unique([...(geo.board?.outside ? [] : place.near), ...found]);
   await withText(env.DB, past); // the clauses a complaint can be about
-  const questions = recordQuestions(past, candidates);
+  const questions = recordQuestions(b, past, candidates);
   let answers: Record<string, Answer> = {};
   if (message.length >= 8 && Object.keys(questions).length) {
     try {
@@ -616,14 +629,14 @@ async function record(request: Request, env: Env, track: Track): Promise<Respons
   return json(out);
 }
 
-async function autocomplete(url: URL): Promise<Response> {
+async function autocomplete(url: URL, b: BoardConfig): Promise<Response> {
   // GeoSearch sends no CORS headers, so the browser goes through us.
   const text = url.searchParams.get("text") ?? "";
   // GeoSearch can't geocode a corner, so "X and Y" goes to the street centerline first.
   const pair = cornerQuery(text);
   const [hit, r] = await Promise.all([
-    pair ? corner(...pair) : null,
-    fetch(`${GEOSEARCH}/autocomplete?text=${encodeURIComponent(text)}&${CB2_FOCUS}`),
+    pair ? corner(b, ...pair) : null,
+    fetch(`${GEOSEARCH}/autocomplete?text=${encodeURIComponent(text)}&${focus(b)}`),
   ]);
   const seen = new Set<string>();
   const found = ((await r.json()) as any).features.map(featureToCandidate) as Candidate[];
@@ -631,7 +644,7 @@ async function autocomplete(url: URL): Promise<Response> {
     const k = `${c.geo!.lat},${c.geo!.lng}`;
     return !seen.has(k) && seen.add(k);
   });
-  const inside = (await withDistrict(out)).slice(0, 6);
+  const inside = (await withDistrict(b, out)).slice(0, 6);
   for (const c of inside) if (c.geo?.corner) { delete c.geo.bbl; delete c.geo.bin; delete c.geo.housenumber; delete c.geo.street; }
   return json(inside);
 }
@@ -640,11 +653,11 @@ async function autocomplete(url: URL): Promise<Response> {
  * A dot on the map → the nearest address inside the district. The dot keeps its exact spot
  * (a corner, mid-block); the address is the closest one GeoSearch knows.
  */
-async function reverse(url: URL): Promise<Response> {
+async function reverse(url: URL, b: BoardConfig): Promise<Response> {
   const lat = Number(url.searchParams.get("lat")), lng = Number(url.searchParams.get("lng"));
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) return json({ error: "lat and lng are required" }, 400);
   const r = await fetch(`${GEOSEARCH}/reverse?point.lat=${lat}&point.lon=${lng}&size=8`);
-  const [near] = await withDistrict(((await r.json()) as any).features.map(featureToCandidate).slice(0, 1) as Candidate[]);
+  const [near] = await withDistrict(b, ((await r.json()) as any).features.map(featureToCandidate).slice(0, 1) as Candidate[]);
   if (!near) return json({ error: "No address near that spot." }, 404);
   return json({ ...near, geo: { ...near.geo, lat, lng } });
 }
@@ -672,10 +685,11 @@ async function voiceToken(env: Env, track: Track): Promise<Response> {
  * API for creating requests, so for 311 and agencies the page also hands the person the payload
  * and opens the right portal.
  */
-async function send(request: Request, env: Env, track: Track): Promise<Response> {
+async function send(request: Request, env: Env, track: Track, b: BoardConfig): Promise<Response> {
   const body = (await request.json()) as { destination?: string; payload?: any; message?: string; route?: { id?: string; edited?: string[]; voice?: boolean } };
   const other = /^CB:(\d{3})$/.exec(body.destination ?? "");
-  const dest = other ? { label: boardFor(other[1]).name, url: boardFor(other[1]).url, email: boardFor(other[1]).email }
+  const cb = other ? boardFor(other[1], b) : null;
+  const dest = cb ? { label: cb.outside ? cb.name : `${cb.name} office`, url: cb.url, email: cb.email }
     : (catalog.destinations as Record<string, any>)[body.destination ?? ""];
   if (!dest || !body.payload) return json({ error: "destination and payload are required" }, 400);
   const p = body.payload;
@@ -710,10 +724,10 @@ async function hit(request: Request, track: Track): Promise<Response> {
 }
 
 /** Every field the voice agent may set, as "Label (choice / choice)" lines for its prompt. */
-function voiceFields(): string[] {
+function voiceFields(b: BoardConfig): string[] {
   const seen = new Map<string, string>();
   for (const f of [...GENERAL, ...Object.values(FORMS).flatMap((x) => x.fields)]) {
-    const extra = f.kind === "noul" ? " (yes/no)" : f.kind === "committee" ? ` (${Object.keys(COMMITTEES).join(" / ")})` : f.choices ? ` (${f.choices.join(" / ")})` : "";
+    const extra = f.kind === "noul" ? " (yes/no)" : f.kind === "committee" ? ` (${Object.keys(b.committees).join(" / ")})` : f.choices ? ` (${f.choices.join(" / ")})` : "";
     if (!seen.has(f.label)) seen.set(f.label, f.label + extra);
   }
   return [...seen.values()];
@@ -746,21 +760,26 @@ export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
     const track = tracker(env, ctx, request.headers.get("x-session")?.slice(0, 40) ?? null);
+    const board = boardOf(request, url);
     try {
       if (url.pathname === "/api/hit" && request.method === "POST") return await hit(request, track);
-      if (url.pathname === "/api/route" && request.method === "POST") return await route(request, env, track);
-      if (url.pathname === "/api/geosearch") return await autocomplete(url);
-      if (url.pathname === "/api/reverse") return await reverse(url);
-      if (url.pathname === "/api/record" && request.method === "POST") return await record(request, env, track);
+      if (url.pathname === "/api/route" && request.method === "POST") return await route(request, env, track, board);
+      if (url.pathname === "/api/geosearch") return await autocomplete(url, board);
+      if (url.pathname === "/api/reverse") return await reverse(url, board);
+      if (url.pathname === "/api/record" && request.method === "POST") return await record(request, env, track, board);
       if (url.pathname === "/api/history") {
         const lat = Number(url.searchParams.get("lat")), lng = Number(url.searchParams.get("lng"));
         if (!Number.isFinite(lat) || !Number.isFinite(lng)) return json({ error: "lat and lng are required" }, 400);
         return json(await history({ bbl: url.searchParams.get("bbl") ?? undefined, lat, lng }));
       }
       if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env, track);
-      if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env, track);
+      if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env, track, board);
       if (url.pathname === "/api/config")
-        return json({ mapboxToken: env.MAPBOX_TOKEN ?? "", destinations: catalog.destinations, committees: COMMITTEES, voice: !!env.GEMINI_API_KEY, voiceFields: voiceFields() });
+        return json({
+          mapboxToken: env.MAPBOX_TOKEN ?? "", destinations: catalog.destinations, committees: board.committees, voice: !!env.GEMINI_API_KEY, voiceFields: voiceFields(board),
+          board: { id: board.id, key: `CB:${board.cd}`, cd: board.cd, short: board.short, name: board.name, center: board.center, community_board_311: board.community_board_311, examples: board.examples },
+          boards: Object.values(BOARDS).map((x) => ({ id: x.id, short: x.short, name: x.name })),
+        });
     } catch (e) {
       track({ kind: "error", data: { path: url.pathname, error: (e as Error).message } });
       return json({ error: (e as Error).message }, 500);

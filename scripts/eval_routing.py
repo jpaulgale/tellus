@@ -57,7 +57,7 @@ def sla_from_minutes(text: str, rater: str) -> str:
     return {"SLA – 1": "SLA – 2", "SLA – 2": "SLA – 1"}[rater]
 
 
-NAMES = {k: f["name"] if k == "cb2" else f"311 {f['name']}" for k, f in json.loads((ROOT / "worker" / "catalog.json").read_text())["forms"].items()}
+NAMES = {k: "CB2 Manhattan" if k == "cb2" else f"311 {f['name']}" for k, f in json.loads((ROOT / "worker" / "catalog.json").read_text())["forms"].items()}
 RESOLUTIONS = json.loads((ROOT / "data" / "resolutions.json").read_text())
 
 

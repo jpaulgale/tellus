@@ -24,7 +24,7 @@ SOURCES = json.loads(
     (DATA / "minutes" / "sources.json").read_text()
 )  # PDF name -> URL (fetch_minutes.py, parse_minutes_cb3.py)
 # Where GeoSearch should look first: the middle of the district.
-FOCUS = {"cb2": (40.7265, -74.0), "cb3": (40.7200, -73.9870)}[BOARD]
+FOCUS = tuple(json.loads((ROOT / "worker" / "boards.json").read_text())[BOARD]["center"])
 SUFFIX = r"(?:Ave(?:nue|\.)? of the Americas|Ave(?:nue)? [A-D]\b|St\.? Mark'?s Pl(?:ace)?|St|Street|Ave|Avenue|Pl|Place|Sq|Square|Ln|Lane|Blvd|Rd|Way|Broadway|B'way|Bowery|Slip|Alley)"
 # "12 Main St", "90-92 Bowery", "55-1/2 Greene St", "401 Ave of the Americas"
 ADDRESS = re.compile(
@@ -104,7 +104,8 @@ def main() -> None:
         kind = re.search(r"\(([^)]*)\)", r["title"])
         lng, lat = feat["geometry"]["coordinates"] if feat else (None, None)
         row = {
-            "id": r["id"],
+            "id": r["id"] if BOARD == "cb2" else f"{BOARD}-{r['id']}",
+            "board": BOARD,
             "meeting_date": r["meeting_date"],
             "meeting_iso": datetime.strptime(r["meeting_date"], "%B %d, %Y")
             .date()
@@ -124,9 +125,11 @@ def main() -> None:
             "source": SOURCES[r["source_pdf"]],
         }
         rows.append(row)
-        fts.append((r["id"], r["title"], dba, address, r["committee"], r["text"]))
+        fts.append((row["id"], r["title"], dba, address, r["committee"], r["text"]))
     cols = ", ".join(rows[0])
-    lines = ["DELETE FROM resolutions;", "DELETE FROM resolutions_fts;"]
+    # Replaces this board's rows only; the search index has no board column, so it goes by id.
+    lines = [f"DELETE FROM resolutions_fts WHERE id IN (SELECT id FROM resolutions WHERE board = '{BOARD}');",
+             f"DELETE FROM resolutions WHERE board = '{BOARD}';"]
     lines += [
         f"INSERT INTO resolutions ({cols}) VALUES ({', '.join(sql(v) for v in row.values())});"
         for row in rows

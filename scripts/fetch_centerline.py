@@ -11,7 +11,7 @@ from pathlib import Path
 
 URL = "https://data.cityofnewyork.us/resource/inkn-q76z.json"
 # A box around CB2 (14th St to Canal St, Hudson River to Bowery) with a margin.
-WHERE = "boroughcode='1' AND within_box(the_geom, 40.745, -74.02, 40.712, -73.985)"
+WHERE = "boroughcode='1' AND within_box(the_geom, 40.745, -74.02, 40.705, -73.970)"
 
 nodes: dict[str, list[list[float]]] = {}
 offset = 0
