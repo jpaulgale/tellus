@@ -9,21 +9,36 @@
 5. **How often it's wrong (60 s).** `/how#accuracy`: 94% right 311 form, 70% didn't force a wrong form on requests we have no form for, 81% right committee against the minutes. Read one miss aloud: bar-noise complaints go to the board instead of 311 noise, because the board has stipulations there. Whether that's wrong is a policy question for the board.
 6. **Your board (60 s).** Don't port live yet (see below). Show the CB3 minutes and say what a port takes.
 
-## Portability: Manhattan CB3 (tried, not done)
+## Portability: Manhattan CB3
 
-Timed from a cold start. Within 5 minutes it was clear the README's claim, that another board needs only its committee list and minutes, is not true:
+`scripts/parse_minutes_cb3.py` downloads CB3's minutes from nyc.gov and writes `data/cb3/resolutions.json` and `data/cb3/public_session.json` in CB2's schemas; `scripts/build_resolution_index.py cb3` geocodes them. On the last 20 meetings:
 
-- **Minutes are elsewhere.** CB3's are on nyc.gov (`/site/manhattancb3/minutes/meeting-vote-records.page`, 275 PDFs), not the `cbmanhattan.cityofnewyork.us` WordPress site `fetch_minutes.py` scrapes. Needs a per-board source URL and link pattern.
-- **Different format.** `parse_minutes.py` found **0** resolutions in CB3's minutes and vote sheets; `parse_public_session.py` found **0** remarks. CB3 writes "Public Session:" with each speaker inline on one line, and its resolutions are in monthly *vote sheets* ("VOTE: TITLE: Community Board 3 Recommendation To Deny Unless Stipulations Agreed To", committee headings in mixed case). Needs a second parser.
-- **CB2 is hard-coded in ~40 places**: `BOARD_CD = "102"`, the GeoSearch focus point, the 311 `community_board` filter, catalog committees and their descriptions, Jev prompts that say "Community Board 2", page copy.
+- **816 resolutions**: 721 SLA and outdoor dining, 40 transportation, the rest across 8 other committees. In June 2026 it matched the minutes item for item (14 `VOTE:` resolutions plus the administratively approved and withdrawn items).
+- **723 on the map (89%)**, and every placed lot is in Community District 3 according to PLUTO. CB2 manages 76%.
+- **159 of 160** "deny unless stipulations" resolutions have their stipulations split out (median 13), so the form can highlight the one a complaint is about, as it does for CB2.
+- **54 Public Session remarks.** CB3's Public Session is short; several months had one speaker.
 
-Estimate: a day per board for a parser and config, after moving the CB2 constants into one board config file. The parser is the part worth replacing with a model (see Clairic below).
+Why it needed its own parser: CB3's minutes are on nyc.gov, not the cbmanhattan site; each committee report is a numbered agenda with a status line under each item, and the Full Board tally comes once per committee. `build_resolution_index.py` gained CB3's address forms ("117 Ave A", "221 E B'way", "St Marks Pl") and its `1)` stipulations; CB2's output is byte-identical.
 
-## Clairic (Workers AI) for extraction
+Not done: loading CB3 into the app. The `resolutions` table has no board column, and CB2 is still hard-coded in ~40 places (`BOARD_CD`, the GeoSearch focus, Jev prompts that say "Community Board 2", page copy). That's the next step: one board config, then `?board=cb3`.
 
-- **Not needed for OCR here.** All 19 CB2 minutes PDFs have a text layer; `pdftotext` gets everything. The 12 near-empty pages are blank or signature pages, and the embedded images are street photos and a few DOT diagrams.
-- **Worth trying for structure.** What breaks is splitting minutes into resolutions, addresses, votes and stipulations with regexes: 295 of 1,221 CB2 resolutions have no address the geocoder accepts, and CB3's format yields nothing. Clairic returns typed fields with source spans (address, vote counts, outcome, list of stipulations) per resolution, which is the per-board parser we'd otherwise write by hand, and it reads images for boards that post scans.
-- **Not tested.** The orb's `CLOUDFLARE_API_TOKEN` gets "Authentication error" on Workers AI; it needs the Workers AI permission. Next step: run it on the 21 CB3 vote sheets and score against a hand-labeled month.
+## Clairic (Workers AI) in form filling
+
+`/api/route` asks Clairic (`@cf/cloudflare/clairic`, `worker/clairic.ts`) for the house number, street, cross street, named place, business and time in the message, before the open-data lookups. Like the regex finders, its answers are spans of the message that only add candidates: GeoSearch checks the place and Jev still picks every field. If Clairic fails or takes over 2 s, routing runs as before.
+
+On the same 104 real 311 cases:
+
+| | Regex only | With Clairic |
+|---|---|---|
+| Place filled in (of 79 with a tax lot) | 28 | 61 |
+| …on the lot 311 recorded | 28 | 61 |
+| Right 311 form / didn't force a wrong one | 94% / 70% | 94% / 75% |
+| Right committee (103 Public Session) | 83 | 82 |
+| Median latency | 1.16 s | 1.31 s |
+
+What it fixes is addresses without a street suffix and in other languages: "126 W 13th", "15 Mercer", "el 101 de Crosby", "Mott街228号", "百老汇508号". All 7 Chinese and 6 of the Spanish cases that name an address now fill it in. One Clairic error turned up and is handled in code: it read "325 W 11th" as street "11th", which GeoSearch took for 11th Avenue, so a direction right before the span is put back.
+
+Needs: the Worker's `AI` binding (in `wrangler.jsonc`). The orb's REST token can't call Workers AI, but the binding works through `wrangler dev`.
 
 ## What only outside people can confirm
 

@@ -4,7 +4,7 @@ Share feedback with your community board and city agencies: **https://tellus.pau
 
 Tell Us helps NYC residents be heard: say what's on your mind about your neighborhood, and it fills in the right 311 or community board form for you to review, along with any past board decisions relevant to your topic.
 
-The demo is set up for Manhattan Community Board 2. The 311 forms work citywide. Another board needs its committee list, its minutes, and a parser for its minutes' format (see [docs/pilot.md](docs/pilot.md) for what a CB3 port takes).
+The demo is set up for Manhattan Community Board 2. The 311 forms work citywide. Another board needs its committee list, its minutes, and a parser for its minutes' format; `scripts/parse_minutes_cb3.py` is the one for CB3 (see [docs/pilot.md](docs/pilot.md)).
 
 Built at the [State Capacity Hackathon](https://statecapacityecosystem.com/) by [Paul Gale](https://paulgale.dev), [Luke Szumyckyj](https://www.linkedin.com/in/lmszu/) and [Sam Ginsberg](https://www.linkedin.com/in/sam-ginsberg).
 
@@ -18,7 +18,7 @@ A hackathon demo, not an official NYC service and not affiliated with the City o
 
 ## How it works
 
-- **Routing and form filling.** Code finds every candidate value in the message: addresses through NYC GeoSearch, intersections from the NYC street centerline, businesses from NYS liquor licenses. One [TypeSafe](https://typesafe.ai) Jev call then decides whether it's an emergency, which 311 form or board committee it belongs to, and picks a value for every field. The model only chooses among candidates the code found.
+- **Routing and form filling.** Code finds every candidate value in the message: addresses through NYC GeoSearch (with [Clairic](https://developers.cloudflare.com/workers-ai/models/clairic/) on Workers AI reading the house number and street out of messages like "Mott街228号"), intersections from the NYC street centerline, businesses from NYS liquor licenses. One [TypeSafe](https://typesafe.ai) Jev call then decides whether it's an emergency, which 311 form or board committee it belongs to, and picks a value for every field. The model only chooses among candidates the code found.
 - **Voice.** Gemini Live transcribes speech and fills the same fields.
 - **Board record.** 1,226 resolutions parsed from CB2's Full Board minutes (Jan 2025 – Jul 2026), geocoded to tax lots and searchable with BM25 in D1. When a resident's address matches, the form shows the board's decision there and the condition their feedback relates to.
 - **Submissions** are stored in D1. NYC 311 has no public submission API, so sending is simulated (optionally forwarded to a webhook).
