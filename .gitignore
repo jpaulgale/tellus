@@ -8,3 +8,6 @@ data/minutes/*.pdf
 data/resolutions.sql
 .amp/portals/*
 data/311/
+data/cb3/minutes/*.pdf
+data/cb3/minutes/*.txt
+data/cb3/resolutions.sql
