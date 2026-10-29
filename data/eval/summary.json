@@ -1,0 +1,141 @@
+{
+ "model": "jev-1.14.0",
+ "errors": 0,
+ "form_311_covered": {
+  "n": 64,
+  "correct": 60,
+  "accuracy": 0.938
+ },
+ "form_311_uncovered": {
+  "n": 40,
+  "correct": 28,
+  "accuracy": 0.7
+ },
+ "form_311_by_lang": {
+  "en": {
+   "n": 86,
+   "correct": 72,
+   "accuracy": 0.837
+  },
+  "es": {
+   "n": 10,
+   "correct": 9,
+   "accuracy": 0.9
+  },
+  "zh": {
+   "n": 8,
+   "correct": 7,
+   "accuracy": 0.875
+  }
+ },
+ "form_public_session": {
+  "n": 103,
+  "correct": 101,
+  "accuracy": 0.981
+ },
+ "committee_public_session": {
+  "n": 103,
+  "correct": 84,
+  "accuracy": 0.816
+ },
+ "place_bbl_311": {
+  "n": 28,
+  "correct": 28,
+  "accuracy": 1.0,
+  "of": 79
+ },
+ "false_emergency": 6,
+ "latency_ms_p50": 1145,
+ "confusion_311": [
+  [
+   "noise_commercial -> cb2",
+   4
+  ],
+  [
+   "none of ours -> rodents",
+   3
+  ],
+  [
+   "none of ours -> noise_residential",
+   3
+  ],
+  [
+   "none of ours -> street_condition",
+   2
+  ],
+  [
+   "none of ours -> noise_commercial",
+   2
+  ],
+  [
+   "none of ours -> missed_collection",
+   1
+  ],
+  [
+   "none of ours -> crossing_guard",
+   1
+  ]
+ ],
+ "confusion_committee": [
+  [
+   "Human Services -> Land Use & Housing",
+   2
+  ],
+  [
+   "Landmarks & Public Aesthetics -> Executive Committee",
+   2
+  ],
+  [
+   "SLA – 1 -> Landmarks & Public Aesthetics",
+   2
+  ],
+  [
+   "Landmarks & Public Aesthetics -> Land Use & Housing",
+   2
+  ],
+  [
+   "Executive Committee -> Land Use & Housing",
+   1
+  ],
+  [
+   "Parks & Waterfront -> Landmarks & Public Aesthetics",
+   1
+  ],
+  [
+   "Landmarks & Public Aesthetics -> Community Facilities Advisory Panel",
+   1
+  ],
+  [
+   "Street Activities & Resiliency -> SLA – 1",
+   1
+  ],
+  [
+   "Landmarks & Public Aesthetics -> SLA – 2",
+   1
+  ],
+  [
+   "SLA – 2 -> SLA – 1",
+   1
+  ],
+  [
+   "Traffic & Transportation -> SLA – 1",
+   1
+  ],
+  [
+   "Executive Committee -> SLA – 2",
+   1
+  ],
+  [
+   "Human Services -> Executive Committee",
+   1
+  ],
+  [
+   "Human Services -> Street Activities & Resiliency",
+   1
+  ],
+  [
+   "Street Activities & Resiliency -> Traffic & Transportation",
+   1
+  ]
+ ]
+}

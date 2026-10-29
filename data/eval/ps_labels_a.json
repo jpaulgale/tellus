@@ -1,0 +1,980 @@
+[
+ {
+  "id": "2025-01-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-01-ps02",
+  "concern": true,
+  "committee": "Executive Committee",
+  "notes": "citywide mix: subway signage, housing, transit"
+ },
+ {
+  "id": "2025-02-ps01",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": "shelter fire egress concerns"
+ },
+ {
+  "id": "2025-02-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps03",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": "shelter density"
+ },
+ {
+  "id": "2025-02-ps04",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": "shelter cost"
+ },
+ {
+  "id": "2025-02-ps05",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps06",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": "support for shelter"
+ },
+ {
+  "id": "2025-02-ps07",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps08",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps09",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": "committee summary of community ask to restore Dapolito Center; could be Landmarks"
+ },
+ {
+  "id": "2025-02-ps10",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps11",
+  "concern": false,
+  "committee": null,
+  "notes": "committee note"
+ },
+ {
+  "id": "2025-02-ps12",
+  "concern": false,
+  "committee": null,
+  "notes": "committee statement"
+ },
+ {
+  "id": "2025-02-ps13",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps14",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-02-ps15",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-03-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-03-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": "Q&A fragment with request to DSNY"
+ },
+ {
+  "id": "2025-03-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-03-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-04-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-04-ps02",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "applicant rep on own Landmarks item (LED screens)"
+ },
+ {
+  "id": "2025-04-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-04-ps04",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": ""
+ },
+ {
+  "id": "2025-04-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": "Q&A fragment"
+ },
+ {
+  "id": "2025-04-ps06",
+  "concern": true,
+  "committee": "Executive Committee",
+  "notes": "support for board immigrant resolution"
+ },
+ {
+  "id": "2025-04-ps07",
+  "concern": true,
+  "committee": "Street Activities & Resiliency",
+  "notes": "support for Dance Parade street event; borderline promotion"
+ },
+ {
+  "id": "2025-05-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-05-ps02",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "club traffic/crowds; could be T&T"
+ },
+ {
+  "id": "2025-05-ps03",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "club traffic; could be T&T"
+ },
+ {
+  "id": "2025-05-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-05-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-05-ps06",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": "Dapolito rec center restoration; rally promo plus demand"
+ },
+ {
+  "id": "2025-05-ps07",
+  "concern": true,
+  "committee": "Land Use & Housing",
+  "notes": ""
+ },
+ {
+  "id": "2025-06-ps01",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2025-06-ps02",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": ""
+ },
+ {
+  "id": "2025-07-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-07-ps02",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo; minutes say SLA1"
+ },
+ {
+  "id": "2025-07-ps03",
+  "concern": true,
+  "committee": "Street Activities & Resiliency",
+  "notes": ""
+ },
+ {
+  "id": "2025-07-ps04",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list but expresses support for St. Luke's application; could be Community Facilities"
+ },
+ {
+  "id": "2025-07-ps05",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list expressing opposition"
+ },
+ {
+  "id": "2025-07-ps06",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-09-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-09-ps02",
+  "concern": true,
+  "committee": "Street Activities & Resiliency",
+  "notes": ""
+ },
+ {
+  "id": "2025-09-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-09-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-09-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-10-ps01",
+  "concern": true,
+  "committee": "Executive Committee",
+  "notes": "citywide voter guide privacy; marginal"
+ },
+ {
+  "id": "2025-10-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-10-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-11-ps01",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": ""
+ },
+ {
+  "id": "2025-11-ps02",
+  "concern": true,
+  "committee": "Executive Committee",
+  "notes": "labor dispute at New School; marginal"
+ },
+ {
+  "id": "2025-11-ps03",
+  "concern": true,
+  "committee": "SLA – 1",
+  "notes": "Babbo, West Village; opposes ownership change"
+ },
+ {
+  "id": "2025-11-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-11-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": "volunteer recruitment"
+ },
+ {
+  "id": "2025-12-ps01",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": ""
+ },
+ {
+  "id": "2025-12-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-12-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2025-12-ps04",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": "also mentions illegal vendors"
+ },
+ {
+  "id": "2026-01-ps01",
+  "concern": true,
+  "committee": "Cannabis Licensing Committee",
+  "notes": ""
+ },
+ {
+  "id": "2026-01-ps02",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2026-01-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-01-ps04",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": ""
+ },
+ {
+  "id": "2026-01-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-01-ps06",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-01-ps07",
+  "concern": false,
+  "committee": null,
+  "notes": "org announcement seeking leads"
+ },
+ {
+  "id": "2026-02-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-02-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-02-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-02-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-02-ps05",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list with position"
+ },
+ {
+  "id": "2026-02-ps06",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list with position"
+ },
+ {
+  "id": "2026-02-ps07",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list with position"
+ },
+ {
+  "id": "2026-02-ps08",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list with position"
+ },
+ {
+  "id": "2026-02-ps09",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list with position"
+ },
+ {
+  "id": "2026-02-ps10",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "name list with position"
+ },
+ {
+  "id": "2026-03-ps01",
+  "concern": true,
+  "committee": "Land Use & Housing",
+  "notes": "388 Hudson; mentions Dapolito"
+ },
+ {
+  "id": "2026-03-ps02",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": ""
+ },
+ {
+  "id": "2026-03-ps03",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": ""
+ },
+ {
+  "id": "2026-03-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-03-ps05",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "110 Thompson (SoHo); smoking stipulation"
+ },
+ {
+  "id": "2026-03-ps06",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-03-ps07",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-03-ps08",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2026-04-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-04-ps02",
+  "concern": true,
+  "committee": "Executive Committee",
+  "notes": "theft/public safety; no committee fits"
+ },
+ {
+  "id": "2026-04-ps03",
+  "concern": true,
+  "committee": "Land Use & Housing",
+  "notes": "question but raises housing concern"
+ },
+ {
+  "id": "2026-04-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-04-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-04-ps06",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": "service dog/ADA awareness; marginal"
+ },
+ {
+  "id": "2026-05-ps01",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps02",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps03",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps04",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps05",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps06",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps07",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": "speaker from CB5"
+ },
+ {
+  "id": "2026-05-ps08",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps09",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps10",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps11",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps12",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps13",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps14",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps15",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps16",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps17",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps18",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps19",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps20",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps21",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps22",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps23",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps24",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps25",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps26",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps27",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps28",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps29",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps30",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps31",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps32",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps33",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps34",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps35",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps36",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps37",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps38",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps39",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "45 Howard is SoHo by geography"
+ },
+ {
+  "id": "2026-05-ps40",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": "15 E 13th St, east of 6th Ave; geography unclear"
+ },
+ {
+  "id": "2026-05-ps41",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps42",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-05-ps43",
+  "concern": true,
+  "committee": "Schools & Education",
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps01",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps04",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps05",
+  "concern": true,
+  "committee": "Human Services",
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps06",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps07",
+  "concern": true,
+  "committee": "SLA – 2",
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps08",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-06-ps09",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "also zoning bonuses"
+ },
+ {
+  "id": "2026-06-ps10",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "also zoning bonuses"
+ },
+ {
+  "id": "2026-06-ps11",
+  "concern": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "notes": "applicant/developer"
+ },
+ {
+  "id": "2026-06-ps12",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps01",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps02",
+  "concern": true,
+  "committee": "SLA – 1",
+  "notes": "37 Carmine (West Village) though minutes say SLA-2"
+ },
+ {
+  "id": "2026-07-ps03",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps04",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": "cars parked on sidewalk"
+ },
+ {
+  "id": "2026-07-ps05",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps06",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps07",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps08",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps09",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps10",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-07-ps11",
+  "concern": true,
+  "committee": "Traffic & Transportation",
+  "notes": ""
+ },
+ {
+  "id": "2026-09-ps01",
+  "concern": true,
+  "committee": "Parks & Waterfront",
+  "notes": "Dapolito Center; ties to 388 Hudson"
+ },
+ {
+  "id": "2026-09-ps02",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-09-ps03",
+  "concern": true,
+  "committee": "Executive Committee",
+  "notes": "unclear what bill; support list"
+ },
+ {
+  "id": "2026-09-ps04",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-09-ps05",
+  "concern": false,
+  "committee": null,
+  "notes": ""
+ },
+ {
+  "id": "2026-09-ps06",
+  "concern": true,
+  "committee": "Street Activities & Resiliency",
+  "notes": "street noise from trucks"
+ }
+]

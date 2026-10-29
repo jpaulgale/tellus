@@ -1,0 +1,522 @@
+[
+  {
+    "id": "311-68507321",
+    "lang": "en",
+    "message": "The streetlight in front of 750 Broadway has been out for like a week. Super dark walking home."
+  },
+  {
+    "id": "311-68446575",
+    "lang": "en",
+    "message": "light pole out on the corner by the church, whole corner is pitch black at night"
+  },
+  {
+    "id": "311-66957081",
+    "lang": "en",
+    "message": "Streetlight at Delancey and Bowery isn't working. It's a busy crossing and you can barely see people in the crosswalk after dark."
+  },
+  {
+    "id": "311-70149958",
+    "lang": "es",
+    "message": "La luz de la calle frente al 101 de Crosby lleva varios días apagada. De noche está muy oscuro y da miedo pasar."
+  },
+  {
+    "id": "311-70497966",
+    "lang": "en",
+    "message": "There's a street lamp at Mercer and Grand where the light part is literally dangling off the pole. Looks like it could fall on someone any minute."
+  },
+  {
+    "id": "311-67374305",
+    "lang": "en",
+    "message": "corner light is out again"
+  },
+  {
+    "id": "311-68658514",
+    "lang": "zh",
+    "message": "Mott街228号门口的路灯坏了好几天了，晚上一片漆黑，走路很不安全。"
+  },
+  {
+    "id": "311-66827096",
+    "lang": "en",
+    "message": "The lamppost on Grove at Waverly has been dark since the weekend. Lots of kids walk through there."
+  },
+  {
+    "id": "311-69333481",
+    "lang": "en",
+    "message": "Traffic lights at Broadway and E 4th are all messed up, they're stuck or flashing and cars don't know when to go. Almost saw a crash this morning."
+  },
+  {
+    "id": "311-68680425",
+    "lang": "en",
+    "message": "7th ave & w 12th st lights stuck on red in every direction for 20+ min, cars just running it"
+  },
+  {
+    "id": "311-67788252",
+    "lang": "en",
+    "message": "There's a wire hanging down from the traffic light at Washington and West Houston, it's dangling low over the street."
+  },
+  {
+    "id": "311-70141357",
+    "lang": "en",
+    "message": "The walk/don't walk sign at Lafayette and E Houston is dead. No signal at all for pedestrians, people are just guessing when to cross."
+  },
+  {
+    "id": "311-68127574",
+    "lang": "en",
+    "message": "Crossing signal not working at my corner, people just running across"
+  },
+  {
+    "id": "311-68096209",
+    "lang": "es",
+    "message": "En la 5ta Avenida con la calle 13 el semáforo de los carros tiene una luz fundida, no se ve bien el rojo."
+  },
+  {
+    "id": "311-67246722",
+    "lang": "en",
+    "message": "Lights at Wooster and Canal have been blinking yellow all day, whole box must be broken. Canal is chaos."
+  },
+  {
+    "id": "311-70264821",
+    "lang": "zh",
+    "message": "Elizabeth街和Canal街路口的行人信号灯不亮了，过马路的老人和小孩很危险，请尽快修理。"
+  },
+  {
+    "id": "311-67416771",
+    "lang": "en",
+    "message": "Restaurant at 126 W 13th is banging and pounding late at night, sounds like they're moving stuff or doing work after closing. Every night this week until 1am."
+  },
+  {
+    "id": "311-70630520",
+    "lang": "en",
+    "message": "Bar at 1 West 3rd blasting music again at 2am. Windows are closed and I can still feel the bass."
+  },
+  {
+    "id": "311-68311651",
+    "lang": "en",
+    "message": "The shop at 325 W 11th plays music so loud you can hear it from down the block, all afternoon and into the evening"
+  },
+  {
+    "id": "311-68530527",
+    "lang": "en",
+    "message": "constant banging coming from the store downstairs, been going on for hours"
+  },
+  {
+    "id": "311-66915103",
+    "lang": "es",
+    "message": "El bar en el 7 de Cornelia pone la música altísima todas las noches hasta las 3 de la mañana. No podemos dormir."
+  },
+  {
+    "id": "311-70416844",
+    "lang": "en",
+    "message": "The store at 67 E 11th St has a DJ or speakers blasting music, it's a Tuesday at 10pm, come on."
+  },
+  {
+    "id": "311-68000553",
+    "lang": "en",
+    "message": "Restaurant downstairs at 181 Thompson keeps playing loud music past midnight. I've asked them nicely twice."
+  },
+  {
+    "id": "311-70597381",
+    "lang": "en",
+    "message": "bar down the block, music is insane tonight"
+  },
+  {
+    "id": "311-68578957",
+    "lang": "en",
+    "message": "My upstairs neighbor at 5 E 10th St is banging and stomping at all hours. It sounds like hammering at 11pm."
+  },
+  {
+    "id": "311-69093325",
+    "lang": "zh",
+    "message": "华盛顿街733号楼里的邻居每天半夜在走廊和屋里大声说话吵闹，严重影响休息。"
+  },
+  {
+    "id": "311-68786635",
+    "lang": "en",
+    "message": "Someone in my building keeps pounding on the walls/floor, every night around midnight."
+  },
+  {
+    "id": "311-69682382",
+    "lang": "en",
+    "message": "Party in an apartment at 15 Mercer, music has been going since 10 and it's now 2am"
+  },
+  {
+    "id": "311-69776160",
+    "lang": "en",
+    "message": "Loud party in the apartment above us, bass is shaking the ceiling. 95 Greene St"
+  },
+  {
+    "id": "311-66695249",
+    "lang": "es",
+    "message": "Los vecinos del 63 de Perry tienen fiesta otra vez con música a todo volumen. Ya son las 2 am."
+  },
+  {
+    "id": "311-68565160",
+    "lang": "en",
+    "message": "Neighbor's music is ridiculously loud, every weekend it's a party. 43 Fifth Ave."
+  },
+  {
+    "id": "311-67243521",
+    "lang": "en",
+    "message": "apartment party at 310 Bowery, music blasting, can't sleep. it's a work night"
+  },
+  {
+    "id": "311-70624009",
+    "lang": "en",
+    "message": "Our recycling (cans, bottles, plastic) wasn't picked up on Waverly Pl — 220. It's been sitting out since collection day."
+  },
+  {
+    "id": "311-70451533",
+    "lang": "en",
+    "message": "They never took the big flattened boxes and the old metal shelf we put out for recycling in front of 92 MacDougal. Still there 3 days later."
+  },
+  {
+    "id": "311-70270047",
+    "lang": "en",
+    "message": "Compost bins outside 35 E 10th St weren't emptied this week and they're starting to smell."
+  },
+  {
+    "id": "311-70668672",
+    "lang": "en",
+    "message": "Trash wasn't collected at 19 W 12th St. Bags are piling up on the curb."
+  },
+  {
+    "id": "311-66705010",
+    "lang": "es",
+    "message": "No recogieron la basura en Bleecker 390. Las bolsas siguen en la acera desde ayer."
+  },
+  {
+    "id": "311-69198840",
+    "lang": "en",
+    "message": "Garbage pickup skipped our building again, 115 Charles St. Second time this month."
+  },
+  {
+    "id": "311-69308901",
+    "lang": "en",
+    "message": "still no trash pickup on our block, bags everywhere"
+  },
+  {
+    "id": "311-69325473",
+    "lang": "en",
+    "message": "Recycling at 100 Wooster never got picked up, glass and plastic just sitting out."
+  },
+  {
+    "id": "311-70486010",
+    "lang": "en",
+    "message": "There's a metal cover in the street outside 435 West Broadway that's loose and sticking up, cars hit it all day."
+  },
+  {
+    "id": "311-67559599",
+    "lang": "en",
+    "message": "Manhole cover near 203 Grand is broken/raised, almost tripped crossing"
+  },
+  {
+    "id": "311-69181782",
+    "lang": "en",
+    "message": "The grate in the roadway at 400 W 12th St is busted and wobbly. Every truck that goes over it makes a huge clang and it looks like it could come out."
+  },
+  {
+    "id": "311-68324988",
+    "lang": "en",
+    "message": "Massive pothole at Broadway and E 8th. Saw a cyclist nearly go down because of it."
+  },
+  {
+    "id": "311-67867085",
+    "lang": "es",
+    "message": "Hay un bache enorme en la calle Mott, más o menos por el 106. Los carros lo esquivan y casi chocan."
+  },
+  {
+    "id": "311-70881234",
+    "lang": "en",
+    "message": "Steel plate in the street outside 237 W 10th bangs every time a car drives over it. All night long. BANG. BANG."
+  },
+  {
+    "id": "311-67156702",
+    "lang": "en",
+    "message": "the metal plate in the street clanks loudly every time a car goes by, been like this for weeks"
+  },
+  {
+    "id": "311-70489203",
+    "lang": "en",
+    "message": "Broken cover/grate in the street around 390 Bleeker, sticking up a couple inches."
+  },
+  {
+    "id": "311-69997368",
+    "lang": "en",
+    "message": "Car parked right in front of the fire hydrant at 470 W 14th, been there all afternoon."
+  },
+  {
+    "id": "311-69109605",
+    "lang": "en",
+    "message": "Delivery van parked in the bike lane outside 101 University Pl, bikes have to swerve into traffic."
+  },
+  {
+    "id": "311-70892868",
+    "lang": "en",
+    "message": "cars parked in the bike lane again"
+  },
+  {
+    "id": "311-66831102",
+    "lang": "en",
+    "message": "Cars are parked on Spring St by 261 where the sign clearly says no standing. Every single day."
+  },
+  {
+    "id": "311-68583023",
+    "lang": "en",
+    "message": "Someone parked their car up on the sidewalk, people with strollers can't get by."
+  },
+  {
+    "id": "311-67392065",
+    "lang": "en",
+    "message": "Car blocking the hydrant on Bleecker, has been there since this morning"
+  },
+  {
+    "id": "311-67034536",
+    "lang": "en",
+    "message": "SUV parked at the hydrant in front of 840 Broadway. If there's a fire, good luck."
+  },
+  {
+    "id": "311-70731343",
+    "lang": "es",
+    "message": "Siempre hay carros estacionados en el carril de bicicletas en la Sexta Avenida, por el 151. Es peligroso para los ciclistas."
+  },
+  {
+    "id": "311-68604822",
+    "lang": "en",
+    "message": "Saw rats running around the front of our apartment building at 42 Bank St, near the trash cans. Several of them."
+  },
+  {
+    "id": "311-70201218",
+    "lang": "en",
+    "message": "Rats in front of the house at 36 W 11th. They come out at dusk."
+  },
+  {
+    "id": "311-69957045",
+    "lang": "en",
+    "message": "The business at 29 7th Ave S leaves open garbage bags and food scraps out back, it's a rat buffet. Please do something."
+  },
+  {
+    "id": "311-70749899",
+    "lang": "en",
+    "message": "rats everywhere outside my building"
+  },
+  {
+    "id": "311-70686413",
+    "lang": "en",
+    "message": "Big rat ran across the lobby of our building last night (336 W 11th). Pretty sure they're living in the trash area."
+  },
+  {
+    "id": "311-66943840",
+    "lang": "zh",
+    "message": "Elizabeth街125号楼前面老鼠很多，晚上垃圾袋旁边到处跑，太恶心了。"
+  },
+  {
+    "id": "311-69005686",
+    "lang": "en",
+    "message": "Seeing rats around the commercial building at 86 Elizabeth St, especially in the evening near the trash."
+  },
+  {
+    "id": "311-67534900",
+    "lang": "es",
+    "message": "En el lote vacío de Greenwich St 705 hay ratas por todos lados. Se ven corriendo entre la basura."
+  },
+  {
+    "id": "311-70242960",
+    "lang": "en",
+    "message": "There's a man sleeping in the doorway of our building at 210 Bowery, he doesn't look well. Can someone check on him?"
+  },
+  {
+    "id": "311-67474467",
+    "lang": "en",
+    "message": "My apartment has no heat. Rest of the building seems fine but my radiator is ice cold. 86 Perry St."
+  },
+  {
+    "id": "311-70096472",
+    "lang": "zh",
+    "message": "昨天在Bleecker街65号那家餐厅吃完饭，我和朋友两个人都上吐下泻，怀疑食物不干净。"
+  },
+  {
+    "id": "311-68276167",
+    "lang": "en",
+    "message": "There's a dog tied up outside near 1 Union Square South for hours in the cold with no shelter. Looks miserable."
+  },
+  {
+    "id": "311-67243607",
+    "lang": "en",
+    "message": "Someone's sitting on the sidewalk outside the coffee shop, seems like they need help."
+  },
+  {
+    "id": "311-67226203",
+    "lang": "en",
+    "message": "The exhaust vent on the building at 202 Avenue of the Americas is blowing hot greasy air right onto the sidewalk. That can't be legal."
+  },
+  {
+    "id": "311-70652353",
+    "lang": "en",
+    "message": "An Uber driver nearly ran me over on 4th Ave by 150, then yelled at me out the window."
+  },
+  {
+    "id": "311-68609977",
+    "lang": "en",
+    "message": "There's a tent set up on the sidewalk on W 14th, it's been there for weeks with stuff spread around."
+  },
+  {
+    "id": "311-69933610",
+    "lang": "en",
+    "message": "People camping out in front of the building at 192 Sullivan, blankets and bags blocking the entrance."
+  },
+  {
+    "id": "311-66948980",
+    "lang": "en",
+    "message": "for-hire car driving like a maniac, honking and cutting people off"
+  },
+  {
+    "id": "311-68532183",
+    "lang": "es",
+    "message": "No hay calefacción en todo el edificio del 228 W 13th St. Hace un frío terrible y el casero no contesta."
+  },
+  {
+    "id": "311-70234694",
+    "lang": "zh",
+    "message": "Mulberry街139号的商店把货物摆满了人行道，行人根本过不去。"
+  },
+  {
+    "id": "311-69417927",
+    "lang": "en",
+    "message": "Someone's been sleeping in our building's entryway for a few nights. Not causing trouble, just seems like they need somewhere to go."
+  },
+  {
+    "id": "311-67278613",
+    "lang": "en",
+    "message": "Tree on Downing Street is leaning badly, roots are lifting out of the ground. Worried it'll fall on a car."
+  },
+  {
+    "id": "311-68817866",
+    "lang": "en",
+    "message": "The restaurant at 18 9th Ave has garbage piled up and I saw roaches by the kitchen door. Gross."
+  },
+  {
+    "id": "311-66848230",
+    "lang": "en",
+    "message": "Guys playing super loud music on a speaker outside 116 MacDougal, it's 1am"
+  },
+  {
+    "id": "311-70258629",
+    "lang": "en",
+    "message": "There's someone sleeping on the steps of the church. It's getting cold, they might need help."
+  },
+  {
+    "id": "311-66854181",
+    "lang": "es",
+    "message": "En el edificio del 818 de Broadway no hay agua desde esta mañana. Nada sale del grifo."
+  },
+  {
+    "id": "311-70406417",
+    "lang": "en",
+    "message": "People shooting up right on the sidewalk near 3 W 3rd St, in the middle of the day."
+  },
+  {
+    "id": "311-68129196",
+    "lang": "en",
+    "message": "The business at 110 Thompson dumps their garbage on the sidewalk any old time, not on pickup days."
+  },
+  {
+    "id": "311-70100509",
+    "lang": "en",
+    "message": "The store at 598 Broadway refused to give me a refund for a defective item even though I had the receipt."
+  },
+  {
+    "id": "311-70495216",
+    "lang": "en",
+    "message": "toilet in my apt doesn't work and the landlord won't fix it"
+  },
+  {
+    "id": "311-68607400",
+    "lang": "en",
+    "message": "Someone is doing renovation work in an apartment in our building at 40 Crosby. No permit posted anywhere and it's loud and dusty."
+  },
+  {
+    "id": "311-70569607",
+    "lang": "en",
+    "message": "Huge puddle that never drains in the lot at 703 Greenwich, it's been there for days and it's breeding mosquitos."
+  },
+  {
+    "id": "311-70875500",
+    "lang": "en",
+    "message": "Group of guys hanging out on the corner by 101 W 12th harassing people walking by"
+  },
+  {
+    "id": "311-66733846",
+    "lang": "en",
+    "message": "Construction on Hester St starting at 6am, way before they're supposed to. Jackhammers waking up the whole block."
+  },
+  {
+    "id": "311-70898888",
+    "lang": "zh",
+    "message": "Mulberry街280号的锅炉坏了，整栋楼没有暖气和热水，房东一直不修。"
+  },
+  {
+    "id": "311-68874682",
+    "lang": "en",
+    "message": "Vendors selling jewelry and stuff all over the sidewalk at 4 Union Sq, can barely walk through."
+  },
+  {
+    "id": "311-69224837",
+    "lang": "en",
+    "message": "Someone's got a speaker blasting music on the street every night"
+  },
+  {
+    "id": "311-70588345",
+    "lang": "en",
+    "message": "Broken metal cover in the sidewalk in front of 436 W Broadway, it's tilted and someone's going to trip."
+  },
+  {
+    "id": "311-67943548",
+    "lang": "en",
+    "message": "A shop charged me twice and won't fix it."
+  },
+  {
+    "id": "311-70886955",
+    "lang": "en",
+    "message": "No heat in the whole building, everyone's freezing."
+  },
+  {
+    "id": "311-68327172",
+    "lang": "en",
+    "message": "Car alarm going off nonstop on Prince St near 191, over an hour now"
+  },
+  {
+    "id": "311-67848136",
+    "lang": "en",
+    "message": "The outdoor dining setup at 81 MacDougal takes up so much of the sidewalk you have to walk in the street."
+  },
+  {
+    "id": "311-70434685",
+    "lang": "en",
+    "message": "Trash piled up all over the sidewalk outside 145 Crosby, bags ripped open."
+  },
+  {
+    "id": "311-68460396",
+    "lang": "en",
+    "message": "Man lying on the sidewalk by the highway, not sure if he's ok."
+  },
+  {
+    "id": "311-69526029",
+    "lang": "en",
+    "message": "whole building has no heat or hot water, 184 Mulberry"
+  },
+  {
+    "id": "311-70450469",
+    "lang": "en",
+    "message": "Someone's set up camp with a tarp in front of the shop at 168 Bleecker, been there for days."
+  },
+  {
+    "id": "311-68774698",
+    "lang": "zh",
+    "message": "百老汇508号附近的食品小贩每天占着人行道，烟很大，还把垃圾扔在路边。"
+  },
+  {
+    "id": "311-67069074",
+    "lang": "en",
+    "message": "Crowd outside 30 Gansevoort yelling and talking super loud at 3am every weekend."
+  }
+]

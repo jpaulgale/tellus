@@ -7,3 +7,4 @@ data/minutes/*.txt
 data/minutes/*.pdf
 data/resolutions.sql
 .amp/portals/*
+data/311/
