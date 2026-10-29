@@ -62,13 +62,16 @@ function tracker(env: Env, ctx: ExecutionContext, session: string | null): Track
   };
 }
 
-/** The board's record around each place, in one D1 round trip: rows on the same tax lot or within a box about NEAR_M across. */
-async function placesFor(db: D1Database, b: BoardConfig, geos: (Geo | undefined)[]): Promise<Place[]> {
+/**
+ * The board's record around each place, in one D1 round trip: rows on the same tax lot or within a box about NEAR_M across.
+ * `before` (an ISO date) keeps only meetings before it: the record as a resident would have found it then (scripts/eval_resolutions.py).
+ */
+async function placesFor(db: D1Database, b: BoardConfig, geos: (Geo | undefined)[], before = "9999"): Promise<Place[]> {
   const dLat = NEAR_M / 111_320, dLng = NEAR_M / 84_000; // a degree of longitude is about 84 km at this latitude
   const asked = geos.map((g, i) => [g, i] as const).filter((x): x is readonly [Geo, number] => !!x[0]);
   if (!asked.length) return geos.map(() => NO_PLACE);
-  const stmt = db.prepare("SELECT * FROM resolutions WHERE board = ?6 AND (bbl = ?1 OR (lat BETWEEN ?2 AND ?3 AND lng BETWEEN ?4 AND ?5))");
-  const results = await db.batch(asked.map(([g]) => stmt.bind(g.bbl ?? "", g.lat - dLat, g.lat + dLat, g.lng - dLng, g.lng + dLng, b.id)));
+  const stmt = db.prepare("SELECT * FROM resolutions WHERE board = ?6 AND meeting_iso < ?7 AND (bbl = ?1 OR (lat BETWEEN ?2 AND ?3 AND lng BETWEEN ?4 AND ?5))");
+  const results = await db.batch(asked.map(([g]) => stmt.bind(g.bbl ?? "", g.lat - dLat, g.lat + dLat, g.lng - dLng, g.lng + dLng, b.id, before)));
   const out = geos.map(() => NO_PLACE);
   asked.forEach(([g, i], k) => {
     const rows = (results[k].results as any[]).map(toResolution);
@@ -85,14 +88,14 @@ async function placesFor(db: D1Database, b: BoardConfig, geos: (Geo | undefined)
 const STOPWORDS = new Set("a an and are at be but by for from has have i in is it its my of on or our so that the their there they this to was we were with you your very really every all just near outside about been get got too many much street streets avenue ave place there".split(" "));
 
 /** BM25 search of the minutes for the resident's own words: the topic, the business, the street. */
-async function searchMinutes(db: D1Database, b: BoardConfig, message: string, limit = 6): Promise<Resolution[]> {
+async function searchMinutes(db: D1Database, b: BoardConfig, message: string, limit = 6, before = "9999"): Promise<Resolution[]> {
   // Words only: a bare house number matches every address that shares it.
   const terms = [...new Set(message.toLowerCase().match(/[a-z][a-z0-9]{2,}/g) ?? [])].filter((t) => !STOPWORDS.has(t)).slice(0, 24);
   if (!terms.length) return [];
   const rows = await db.prepare(
     `SELECT r.* FROM resolutions_fts f JOIN resolutions r ON r.id = f.id
-     WHERE resolutions_fts MATCH ?1 AND r.board = ?3 ORDER BY bm25(resolutions_fts, 0, 3, 4, 3, 1, 1) LIMIT ?2`,
-  ).bind(terms.map((t) => `"${t}"`).join(" OR "), limit, b.id).all();
+     WHERE resolutions_fts MATCH ?1 AND r.board = ?3 AND r.meeting_iso < ?4 ORDER BY bm25(resolutions_fts, 0, 3, 4, 3, 1, 1) LIMIT ?2`,
+  ).bind(terms.map((t) => `"${t}"`).join(" OR "), limit, b.id, before).all();
   return (rows.results as any[]).map(toResolution);
 }
 type Answer =
@@ -558,7 +561,7 @@ async function callJev(env: Env, body: unknown): Promise<any> {
 
 async function route(request: Request, env: Env, track: Track, b: BoardConfig): Promise<Response> {
   if (!env.TYPESAFE_API_KEY) return json({ error: "TYPESAFE_API_KEY is not set" }, 500);
-  const { message: raw } = (await request.json()) as { message?: string };
+  const { message: raw, before } = (await request.json()) as { message?: string; before?: string };
   const message = (raw ?? "").trim().slice(0, 4000);
   if (message.length < 8) return json({ error: "Tell us a bit more first" }, 400);
   const t0 = Date.now();
@@ -566,7 +569,7 @@ async function route(request: Request, env: Env, track: Track, b: BoardConfig): 
   const clairic = await extract(env.AI, message, new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" }));
   const locations = await findLocations(b, message, clairic.found);
   const lookupMs = Date.now() - t0;
-  const [placeList, searched] = await Promise.all([placesFor(env.DB, b, locations.map((l) => l.geo)), searchMinutes(env.DB, b, message)]);
+  const [placeList, searched] = await Promise.all([placesFor(env.DB, b, locations.map((l) => l.geo), before), searchMinutes(env.DB, b, message, 6, before)]);
   const places = new Map(locations.map((l, i) => [l.key, placeList[i]]));
   const past = unique(placeList.flatMap((p) => p.at)).slice(0, 3);
   const nearby = unique(locations.filter((l) => !l.geo?.board?.outside).flatMap((l) => places.get(l.key)!.near)).slice(0, 10);

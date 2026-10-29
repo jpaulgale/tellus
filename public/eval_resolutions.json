@@ -1,0 +1,440 @@
+{
+ "run": "2026-10-29",
+ "errors": 0,
+ "cb2": {
+  "before": {
+   "n": 129,
+   "form_board": 0.938,
+   "committee_sample": 0.659,
+   "committee_weighted": 0.701,
+   "committee_macro": 0.614,
+   "baseline_weighted": {
+    "committee": "SLA – 1",
+    "accuracy": 0.332
+   },
+   "shown_own": 0.0,
+   "by_committee": {
+    "SLA – 1": {
+     "n": 15,
+     "correct": 10,
+     "accuracy": 0.667,
+     "share": 0.332
+    },
+    "SLA – 2": {
+     "n": 15,
+     "correct": 13,
+     "accuracy": 0.867,
+     "share": 0.287
+    },
+    "Street Activities & Resiliency": {
+     "n": 15,
+     "correct": 9,
+     "accuracy": 0.6,
+     "share": 0.208
+    },
+    "Landmarks & Public Aesthetics": {
+     "n": 15,
+     "correct": 9,
+     "accuracy": 0.6,
+     "share": 0.091
+    },
+    "Land Use & Housing": {
+     "n": 15,
+     "correct": 9,
+     "accuracy": 0.6,
+     "share": 0.039
+    },
+    "Traffic & Transportation": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.012
+    },
+    "Cannabis Licensing Committee": {
+     "n": 15,
+     "correct": 13,
+     "accuracy": 0.867,
+     "share": 0.012
+    },
+    "Executive Committee": {
+     "n": 9,
+     "correct": 0,
+     "accuracy": 0.0,
+     "share": 0.007
+    },
+    "Human Services": {
+     "n": 7,
+     "correct": 2,
+     "accuracy": 0.286,
+     "share": 0.005
+    },
+    "Schools & Education": {
+     "n": 5,
+     "correct": 5,
+     "accuracy": 1.0,
+     "share": 0.004
+    },
+    "Parks & Waterfront": {
+     "n": 3,
+     "correct": 1,
+     "accuracy": 0.333,
+     "share": 0.002
+    }
+   },
+   "confusion": [
+    [
+     "SLA – 1 -> SLA – 2",
+     4
+    ],
+    [
+     "Land Use & Housing -> SLA – 2",
+     4
+    ],
+    [
+     "Street Activities & Resiliency -> SLA – 2",
+     2
+    ],
+    [
+     "Executive Committee -> Traffic & Transportation",
+     2
+    ],
+    [
+     "Landmarks & Public Aesthetics -> Land Use & Housing",
+     2
+    ],
+    [
+     "Street Activities & Resiliency -> SLA – 1",
+     2
+    ],
+    [
+     "Human Services -> Executive Committee",
+     2
+    ],
+    [
+     "Executive Committee -> Schools & Education",
+     2
+    ]
+   ]
+  },
+  "after": {
+   "n": 129,
+   "form_board": 0.938,
+   "committee_sample": 0.729,
+   "committee_weighted": 0.806,
+   "committee_macro": 0.683,
+   "baseline_weighted": {
+    "committee": "SLA – 1",
+    "accuracy": 0.332
+   },
+   "shown_own": 0.837,
+   "by_committee": {
+    "SLA – 1": {
+     "n": 15,
+     "correct": 13,
+     "accuracy": 0.867,
+     "share": 0.332
+    },
+    "SLA – 2": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.287
+    },
+    "Street Activities & Resiliency": {
+     "n": 15,
+     "correct": 9,
+     "accuracy": 0.6,
+     "share": 0.208
+    },
+    "Landmarks & Public Aesthetics": {
+     "n": 15,
+     "correct": 12,
+     "accuracy": 0.8,
+     "share": 0.091
+    },
+    "Land Use & Housing": {
+     "n": 15,
+     "correct": 9,
+     "accuracy": 0.6,
+     "share": 0.039
+    },
+    "Traffic & Transportation": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.012
+    },
+    "Cannabis Licensing Committee": {
+     "n": 15,
+     "correct": 12,
+     "accuracy": 0.8,
+     "share": 0.012
+    },
+    "Executive Committee": {
+     "n": 9,
+     "correct": 2,
+     "accuracy": 0.222,
+     "share": 0.007
+    },
+    "Human Services": {
+     "n": 7,
+     "correct": 3,
+     "accuracy": 0.429,
+     "share": 0.005
+    },
+    "Schools & Education": {
+     "n": 5,
+     "correct": 5,
+     "accuracy": 1.0,
+     "share": 0.004
+    },
+    "Parks & Waterfront": {
+     "n": 3,
+     "correct": 1,
+     "accuracy": 0.333,
+     "share": 0.002
+    }
+   },
+   "confusion": [
+    [
+     "Land Use & Housing -> SLA – 1",
+     4
+    ],
+    [
+     "Landmarks & Public Aesthetics -> SLA – 1",
+     3
+    ],
+    [
+     "Street Activities & Resiliency -> SLA – 2",
+     2
+    ],
+    [
+     "Executive Committee -> Traffic & Transportation",
+     2
+    ],
+    [
+     "Cannabis Licensing Committee -> SLA – 2",
+     2
+    ],
+    [
+     "Street Activities & Resiliency -> SLA – 1",
+     2
+    ],
+    [
+     "Land Use & Housing -> SLA – 2",
+     2
+    ],
+    [
+     "Parks & Waterfront -> Landmarks & Public Aesthetics",
+     2
+    ]
+   ]
+  }
+ },
+ "cb3": {
+  "before": {
+   "n": 83,
+   "form_board": 0.94,
+   "committee_sample": 0.771,
+   "committee_weighted": 0.914,
+   "committee_macro": 0.765,
+   "baseline_weighted": {
+    "committee": "SLA Licensing & Outdoor Dining",
+    "accuracy": 0.885
+   },
+   "shown_own": 0.0,
+   "by_committee": {
+    "SLA Licensing & Outdoor Dining": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.885
+    },
+    "Transportation, Public Safety, Sanitation & Environment": {
+     "n": 15,
+     "correct": 13,
+     "accuracy": 0.867,
+     "share": 0.049
+    },
+    "Health, Seniors & Human Services / Youth, Education & Human Rights": {
+     "n": 15,
+     "correct": 8,
+     "accuracy": 0.533,
+     "share": 0.02
+    },
+    "Parks, Recreation, Waterfront, & Resiliency": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.018
+    },
+    "Landmarks": {
+     "n": 7,
+     "correct": 4,
+     "accuracy": 0.571,
+     "share": 0.009
+    },
+    "Land Use, Zoning, Public & Private Housing": {
+     "n": 6,
+     "correct": 3,
+     "accuracy": 0.5,
+     "share": 0.007
+    },
+    "Executive": {
+     "n": 5,
+     "correct": 4,
+     "accuracy": 0.8,
+     "share": 0.006
+    },
+    "Cannabis Control Task Force": {
+     "n": 4,
+     "correct": 3,
+     "accuracy": 0.75,
+     "share": 0.005
+    },
+    "Economic Development": {
+     "n": 1,
+     "correct": 1,
+     "accuracy": 1.0,
+     "share": 0.001
+    }
+   },
+   "confusion": [
+    [
+     "Health, Seniors & Human Services / Youth, Education & Human Rights -> Land Use, Zoning, Public & Private Housing",
+     3
+    ],
+    [
+     "Health, Seniors & Human Services / Youth, Education & Human Rights -> Executive",
+     2
+    ],
+    [
+     "Land Use, Zoning, Public & Private Housing -> Economic Development",
+     2
+    ],
+    [
+     "Health, Seniors & Human Services / Youth, Education & Human Rights -> Transportation, Public Safety, Sanitation & Environment",
+     2
+    ],
+    [
+     "Executive -> SLA Licensing & Outdoor Dining",
+     1
+    ],
+    [
+     "Landmarks -> SLA Licensing & Outdoor Dining",
+     1
+    ],
+    [
+     "Cannabis Control Task Force -> SLA Licensing & Outdoor Dining",
+     1
+    ],
+    [
+     "SLA Licensing & Outdoor Dining -> Health, Seniors & Human Services / Youth, Education & Human Rights",
+     1
+    ]
+   ]
+  },
+  "after": {
+   "n": 83,
+   "form_board": 0.952,
+   "committee_sample": 0.831,
+   "committee_weighted": 0.92,
+   "committee_macro": 0.842,
+   "baseline_weighted": {
+    "committee": "SLA Licensing & Outdoor Dining",
+    "accuracy": 0.885
+   },
+   "shown_own": 0.88,
+   "by_committee": {
+    "SLA Licensing & Outdoor Dining": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.885
+    },
+    "Transportation, Public Safety, Sanitation & Environment": {
+     "n": 15,
+     "correct": 13,
+     "accuracy": 0.867,
+     "share": 0.049
+    },
+    "Health, Seniors & Human Services / Youth, Education & Human Rights": {
+     "n": 15,
+     "correct": 10,
+     "accuracy": 0.667,
+     "share": 0.02
+    },
+    "Parks, Recreation, Waterfront, & Resiliency": {
+     "n": 15,
+     "correct": 14,
+     "accuracy": 0.933,
+     "share": 0.018
+    },
+    "Landmarks": {
+     "n": 7,
+     "correct": 5,
+     "accuracy": 0.714,
+     "share": 0.009
+    },
+    "Land Use, Zoning, Public & Private Housing": {
+     "n": 6,
+     "correct": 4,
+     "accuracy": 0.667,
+     "share": 0.007
+    },
+    "Executive": {
+     "n": 5,
+     "correct": 4,
+     "accuracy": 0.8,
+     "share": 0.006
+    },
+    "Cannabis Control Task Force": {
+     "n": 4,
+     "correct": 4,
+     "accuracy": 1.0,
+     "share": 0.005
+    },
+    "Economic Development": {
+     "n": 1,
+     "correct": 1,
+     "accuracy": 1.0,
+     "share": 0.001
+    }
+   },
+   "confusion": [
+    [
+     "Health, Seniors & Human Services / Youth, Education & Human Rights -> Executive",
+     2
+    ],
+    [
+     "Land Use, Zoning, Public & Private Housing -> Economic Development",
+     2
+    ],
+    [
+     "Health, Seniors & Human Services / Youth, Education & Human Rights -> Transportation, Public Safety, Sanitation & Environment",
+     2
+    ],
+    [
+     "Executive -> SLA Licensing & Outdoor Dining",
+     1
+    ],
+    [
+     "Landmarks -> SLA Licensing & Outdoor Dining",
+     1
+    ],
+    [
+     "SLA Licensing & Outdoor Dining -> Transportation, Public Safety, Sanitation & Environment",
+     1
+    ],
+    [
+     "Transportation, Public Safety, Sanitation & Environment -> SLA Licensing & Outdoor Dining",
+     1
+    ],
+    [
+     "Landmarks -> Land Use, Zoning, Public & Private Housing",
+     1
+    ]
+   ]
+  }
+ }
+}
