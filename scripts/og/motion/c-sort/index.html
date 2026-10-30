@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1200, height=628" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Clash Grotesk"; src: url("assets/fonts/ClashGrotesk-500.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Clash Grotesk"; src: url("assets/fonts/ClashGrotesk-600.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "Clash Grotesk"; src: url("assets/fonts/ClashGrotesk-700.woff2") format("woff2"); font-weight: 700; }
+:root { --blue: #103FEF; --soft: #B5DBFF; --ink: #000000; --bg: #EEEEEE; --line: #CCCCCC; --muted: #555555; --display: "Clash Grotesk", "Inter", sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 628px; overflow: hidden; background: var(--bg); }
+#root { position: relative; width: 1200px; height: 628px; overflow: hidden; font-family: var(--display); color: var(--ink); background: var(--bg); }
+
+/* the resident's request, in their own words */
+#say { position: absolute; left: 70px; top: 96px; width: 1060px; font-size: 100px; font-weight: 600; line-height: 1.12; letter-spacing: -0.04em; }
+#say .w { display: inline-block; position: relative; white-space: nowrap; }
+#k1b { position: absolute; left: 0; top: 0; }
+#tcaret { display: inline-block; width: 7px; height: 92px; margin-left: 6px; background: var(--blue); border-radius: 4px; vertical-align: -14px; }
+/* the app's own text box, so it reads as something the person typed */
+#inlabel { position: absolute; left: 44px; top: 10px; font-size: 38px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; }
+#inbox { position: absolute; left: 40px; top: 62px; width: 1120px; height: 408px; border-radius: 34px; background: #fff; border: 5px solid var(--blue); box-shadow: 0 0 0 10px var(--soft); }
+
+/* the form: ordinary labelled fields */
+#form { position: absolute; left: 70px; top: 24px; width: 1060px; height: 490px; border-radius: 40px; background: #fff; border: 5px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); }
+#form-head { height: 92px; display: flex; align-items: center; gap: 16px; padding: 0 40px; border-bottom: 5px solid var(--ink); font-size: 52px; font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; }
+#form-head span { font-size: 38px; color: var(--muted); }
+.to { height: 62px; display: flex; align-items: center; padding: 0 24px; border-radius: 999px; background: var(--soft); color: var(--blue); font-size: 44px; font-weight: 600; letter-spacing: -0.03em; }
+.tag { position: absolute; left: 112px; height: 80px; display: flex; align-items: center; font-size: 34px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; }
+.tag em { font-style: normal; color: #EC131E; margin-left: 4px; }
+#t1 { top: 136px; } #t2 { top: 226px; } #t3 { top: 316px; } #t4 { top: 406px; }
+.field { position: absolute; left: 330px; width: 520px; height: 76px; display: flex; align-items: center; padding: 0 22px; border: 3px solid var(--line); border-radius: 16px; background: #fff; }
+#f1 { top: 138px; overflow: hidden; } #f2 { top: 228px; } #f3 { top: 318px; }
+/* same line-height ratio as the sentence, so a phrase scaled down from it lands exactly on the value */
+.v { display: inline-block; font-size: 46px; font-weight: 600; line-height: 1.12; letter-spacing: -0.04em; white-space: nowrap; }
+#caret { position: absolute; right: 20px; top: 50%; width: 34px; height: 34px; margin-top: -17px; }
+
+/* a tiny map of the corner, next to it */
+#map { position: absolute; left: 866px; top: 226px; width: 150px; height: 80px; border-radius: 18px; overflow: hidden; border: 3px solid var(--line); background: #EEEEEE; }
+#map svg { display: block; width: 100%; height: 100%; }
+#map text { font-family: var(--display); font-weight: 600; font-size: 9px; letter-spacing: 0.05em; fill: #777777; }
+
+/* the one field left for the person: a choice */
+#opts { position: absolute; left: 330px; top: 406px; height: 80px; display: flex; gap: 12px; }
+.opt { position: relative; height: 80px; display: flex; align-items: center; gap: 14px; padding: 0 22px; border-radius: 16px; border: 3px solid var(--line); background: #fff; color: var(--ink); font-size: 42px; font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; }
+.opt b { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 4px solid var(--line); position: relative; }
+#dot { position: absolute; inset: 5px; border-radius: 50%; background: var(--blue); }
+#send { position: absolute; left: 890px; top: 540px; width: 240px; height: 76px; border-radius: 999px; background: var(--line); color: #fff; display: grid; place-items: center; font-size: 50px; font-weight: 600; letter-spacing: -0.03em; }
+#send-on { position: absolute; inset: 0; border-radius: 999px; background: var(--ink); }
+#send span { position: relative; }
+
+/* the pointer: the macOS pointing-hand cursor (svg from github.com/ful1e5/apple_cursor, GPL-3.0) */
+#glove { position: absolute; left: 0; top: 0; width: 150px; height: 150px; }
+#glove img { display: block; width: 100%; height: 100%; }
+
+#flood { position: absolute; left: 1010px; top: 578px; width: 2400px; height: 2400px; margin: -1200px 0 0 -1200px; border-radius: 50%; background: var(--blue); }
+
+#brand { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
+#logo { display: flex; align-items: center; gap: 28px; font-size: 156px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+#logo svg { width: 156px; height: 156px; }
+#tagline { margin-top: 34px; font-size: 60px; font-weight: 500; letter-spacing: -0.025em; }
+#tagline span { display: inline-block; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="8.6" data-width="1200" data-height="628">
+
+  <div id="form">
+    <div id="form-head"><span>To</span><b class="to" id="to1">Manhattan CB2</b><b class="to" id="to2">NYPD</b></div>
+  </div>
+  <div class="tag" id="t1">Request</div>
+  <div class="tag" id="t2">Corner</div>
+  <div class="tag" id="t3">School</div>
+  <div class="tag" id="t4">You are<em>*</em></div>
+  <div class="field" id="f1"><span class="v" id="v1">Crossing Guard</span>
+    <svg id="caret" viewBox="0 0 24 24" fill="none" stroke="#103FEF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7" /></svg>
+  </div>
+  <div class="field" id="f2"><span class="v" id="v2">Hudson &amp; Christopher</span></div>
+  <div class="field" id="f3"><span class="v" id="v3">PS 3</span></div>
+  <div id="map">
+    <svg viewBox="0 0 142 72" preserveAspectRatio="xMidYMid slice">
+      <path d="M-4 58 L146 8" stroke="#DDDDDD" stroke-width="15" />
+      <path d="M66 -4 V76" stroke="#DDDDDD" stroke-width="17" />
+      <path d="M-4 58 L146 8" stroke="#fff" stroke-width="11" />
+      <path d="M66 -4 V76" stroke="#fff" stroke-width="13" />
+      <text transform="translate(66 56) rotate(-90)" text-anchor="middle" dominant-baseline="central">HUDSON</text>
+      <text transform="translate(100 23.3) rotate(-18.4)" text-anchor="middle" dominant-baseline="central">CHRISTOPHER</text>
+      <g id="pin"><circle cx="66" cy="34.7" r="8" fill="#103FEF" stroke="#fff" stroke-width="3.5" /></g>
+    </svg>
+  </div>
+  <div id="opts"><div class="opt" id="o1"><b><i id="dot"></i></b>Parent or guardian</div><div class="opt" id="o2"><b></b>Neighbor</div></div>
+  <div id="send"><i id="send-on"></i><span>Send</span></div>
+
+  <div id="inlabel">What&rsquo;s on your mind?</div>
+  <div id="inbox"></div>
+  <div id="say"><span class="w">Can</span> <span class="w k" id="k3">PS 3</span> <span class="w">get</span> <span class="w">a</span> <span class="w k" id="k1"><span id="k1a">crossing guard</span><span id="k1b">Crossing Guard</span></span> <span class="w">at</span> <span class="w k" id="k2">Hudson &amp; Christopher</span><span class="w">?</span><i id="tcaret"></i></div>
+
+  <div id="glove"><img src="assets/pointer.svg" alt="" /></div>
+
+  <div id="flood"></div>
+
+  <div id="brand">
+    <div id="logo">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#fff"/>
+        <g transform="rotate(-12 16 16)">
+          <g fill="#103FEF" stroke="#103FEF" stroke-width="1.6" stroke-linejoin="round"><path d="M3.6 13.2h3.4l13.4-6.6v18.8L7 18.8H3.6z"/><path d="M7.4 19.4l1.6 5.4h2.6l-1.3-4.6z"/></g>
+          <g fill="none" stroke="#103FEF" stroke-width="2" stroke-linecap="round"><path d="M24.6 12.6a4.6 4.6 0 0 1 0 6.8"/><path d="M27.4 10a8.4 8.4 0 0 1 0 12"/></g>
+          <g id="apple"><g transform="translate(13.6 16.2) rotate(-8) scale(0.9)">
+            <path d="M0,-2.4 C-1.3,-3.5 -4.6,-3.6 -4.6,0 C-4.6,3.1 -2.6,4.9 -1.3,4.9 C-0.6,4.9 -0.4,4.5 0,4.5 C0.4,4.5 0.6,4.9 1.3,4.9 C2.6,4.9 4.6,3.1 4.6,0 C4.6,-3.6 1.3,-3.5 0,-2.4 Z" fill="#FF4436"/>
+            <path d="M0.5,-3.1 C0.9,-5.1 2.9,-5.7 3.9,-5.3 C3.5,-3.7 1.9,-2.9 0.5,-3.1 Z" fill="#21A84A"/>
+          </g></g>
+        </g></svg>
+      <div>Tell Us</div>
+    </div>
+    <div id="tagline"><span>Every</span> <span>voice,</span> <span>to</span> <span>the</span> <span>right</span> <span>place.</span></div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+// Phrases fly from where they wrapped in the sentence onto the values in the fields, and the cursor travels
+// to real buttons, so the layout is measured once after the fonts load, before any tween moves anything.
+document.fonts.ready.then(() => {
+  const $ = (id) => document.getElementById(id);
+  const keys = ["k1", "k2", "k3"].map($);
+  const vals = ["v1", "v2", "v3"].map($);
+  const fields = ["f1", "f2", "f3"].map($);
+  const R = (el) => el.getBoundingClientRect();
+  const keyR = keys.map(R), valR = vals.map(R), o1R = R($("o1")), sendR = R($("send"));
+  const TIP = { x: 54, y: 26 }; // the fingertip inside the 150px cursor (257-unit viewBox)
+  const at = (r, dx = 0) => ({ x: r.left + r.width / 2 + dx - TIP.x, y: r.top + r.height / 2 - TIP.y });
+
+  const tl = gsap.timeline({ paused: true });
+  const tags = gsap.utils.toArray(".tag");
+  const filler = gsap.utils.toArray("#say .w:not(.k)");
+  const SPIN = [-38, 24, -16, 41, -27, 33]; // fixed, so every render tumbles the same way
+  const S = 46 / 100; // value type size over sentence type size
+
+  const words = gsap.utils.toArray("#say .w");
+  tl.set(["#form", "#brand", "#opts", "#send", "#dot", "#send-on", "#map", "#glove", "#caret", "#inbox", "#inlabel", "#tcaret", "#k1b", ...tags, ...fields, ...vals], { opacity: 0 }, 0);
+  tl.set(words, { display: "none" }, 0);
+  tl.set("#flood", { scale: 0 }, 0);
+  keys.forEach((k, i) => tl.set(k, { zIndex: 10 + i }, 0));
+
+  // 1. the person types it into the app's text box; the cursor arrives with the box (0.05 – 2.0)
+  tl.fromTo(["#inbox", "#inlabel", "#tcaret"], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 0.05);
+  words.forEach((w, i) => tl.set(w, { display: "inline-block" }, 0.4 + i * 0.14));
+  [1.6, 2.0].forEach((t) => { tl.set("#tcaret", { opacity: 0 }, t); tl.set("#tcaret", { opacity: 1 }, t + 0.2); });
+  // 2. the parts that matter turn blue, in reading order (1.75 – 2.05)
+  [2, 0, 1].forEach((i, n) => tl.to(keys[i], { color: "#103FEF", duration: 0.2, ease: "power2.out" }, 1.75 + n * 0.1));
+  // 3. the rest drops out of frame, tumbling, and the text box clears (2.35)
+  tl.set("#tcaret", { opacity: 0 }, 2.35);
+  filler.forEach((w, i) => {
+    tl.to(w, { y: 720, rotation: SPIN[i % SPIN.length], duration: 0.5, ease: "power2.in" }, 2.35 + i * 0.03);
+    tl.to(w, { opacity: 0, duration: 0.22, ease: "power1.in" }, 2.35 + i * 0.03);
+  });
+  tl.to(["#inbox", "#inlabel"], { opacity: 0, scale: 0.97, duration: 0.25, ease: "power2.in" }, 2.4);
+  // 4. the form appears behind with its empty fields (2.7 – 3.1)
+  tl.fromTo("#form", { opacity: 0, scale: 0.94, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "expo.out" }, 2.7);
+  tl.fromTo([".to"], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", stagger: 0.12 }, 2.85);
+  tl.fromTo(fields, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", stagger: 0.05 }, 2.8);
+  // 5. the phrases fly in at the boxes' own type size, so each one simply becomes its value on landing (3.05 – 4.0)
+  const landed = (i, land) => {
+    tl.set(keys[i], { opacity: 0 }, land);
+    tl.set(vals[i], { opacity: 1 }, land);
+    tl.to(fields[i], { borderColor: "#103FEF", boxShadow: "0 0 0 6px #B5DBFF", duration: 0.12, ease: "power2.out" }, land - 0.06);
+    tl.to(fields[i], { borderColor: "#CCCCCC", boxShadow: "0 0 0 0px #B5DBFF", duration: 0.45, ease: "power2.out" }, land + 0.2);
+  };
+  // crossing guard and the corner go right first, then rise into their rows
+  [0, 1].forEach((i) => {
+    const k = keys[i], a = keyR[i], b = valR[i], t = 3.05 + i * 0.04;
+    tl.to(k, { x: b.left - a.left, duration: 0.62, ease: "expo.out" }, t);
+    tl.to(k, { y: b.top - a.top, scale: S, color: "#000000", transformOrigin: "0% 0%", duration: 0.62, ease: "power3.inOut" }, t);
+    landed(i, t + 0.62);
+  });
+  // mid-flight, while it is small and moving, crossing guard picks up its capitals: Crossing Guard
+  tl.set("#k1a", { opacity: 0 }, 3.45);
+  tl.set("#k1b", { opacity: 1 }, 3.45);
+  // PS 3 drops straight down the gap between the labels and the boxes, then slides right into its box
+  {
+    const k = keys[2], a = keyR[2], b = valR[2], t = 3.05;
+    const gap = Math.max(...tags.map((g) => g.firstChild && R(g).right)) + 10;
+    tl.to(k, { keyframes: [{ x: gap - a.left, duration: 0.25, ease: "power2.out" }, { x: gap - a.left, duration: 0.4 }, { x: b.left - a.left, duration: 0.3, ease: "power2.inOut" }] }, t);
+    tl.to(k, { y: b.top - a.top, duration: 0.7, ease: "sine.inOut" }, t);
+    tl.to(k, { scale: S, color: "#000000", transformOrigin: "0% 0%", duration: 0.3, ease: "power2.out" }, t);
+    landed(2, t + 0.95);
+  }
+  // the labels come in just after the values land
+  tl.fromTo(tags, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", stagger: 0.05 }, 3.72);
+  // Request is a dropdown: its caret comes in right as the value lands
+  tl.fromTo("#caret", { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 3.6);
+  // the tiny map opens next to the corner, and its pin drops on the intersection (3.75 – 4.3)
+  tl.fromTo("#map", { opacity: 0, clipPath: "inset(0 100% 0 0 round 18px)" }, { opacity: 1, clipPath: "inset(0 0% 0 0 round 18px)", duration: 0.4, ease: "power3.out" }, 3.75);
+  tl.fromTo("#pin", { y: -16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 4.0);
+
+  // 6. one required field is left, with a waiting grey Send (4.05)
+  tl.fromTo(["#opts", "#send"], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out", stagger: 0.08 }, 4.05);
+
+  // 7. the cursor rises from the bottom and clicks "Parent or guardian" (4.3 – 5.3)
+  const p1 = at(o1R, -40), p2 = at(sendR);
+  tl.set("#glove", { opacity: 1 }, 4.3);
+  tl.fromTo("#glove", { x: p1.x + 120, y: 660, rotation: 12 }, { x: p1.x, y: p1.y, rotation: 0, duration: 0.6, ease: "power3.out" }, 4.3);
+  const click = (target, t) => {
+    tl.to("#glove", { scale: 0.86, transformOrigin: "36% 17%", duration: 0.08, ease: "power2.in" }, t);
+    tl.to("#glove", { scale: 1, duration: 0.2, ease: "power2.out" }, t + 0.08);
+    tl.to(target, { scale: 0.94, duration: 0.08, ease: "power2.in" }, t);
+  };
+  click("#o1", 5.0);
+  tl.to("#o1", { scale: 1, duration: 0.2, ease: "power2.out" }, 5.08);
+  tl.to("#o1", { borderColor: "#103FEF", backgroundColor: "#B5DBFF", duration: 0.15, ease: "power2.out" }, 5.08);
+  tl.to("#o1 b", { borderColor: "#103FEF", duration: 0.15 }, 5.08);
+  tl.fromTo("#dot", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)" }, 5.1);
+
+  // 8. Send crossfades from grey to black, and the same cursor clicks it; it bounces (5.3 – 6.4)
+  tl.to("#send-on", { opacity: 1, duration: 0.3, ease: "none" }, 5.3);
+  tl.to("#glove", { x: p2.x, y: p2.y, duration: 0.45, ease: "power2.inOut" }, 5.4);
+  click("#send", 5.95);
+  tl.to("#send", { scale: 1, duration: 0.45, ease: "back.out(3.5)" }, 6.03);
+
+  // 9. blue floods out of the button, Tell Us rises, the apple lands, the tagline stays (6.1 – 8.6)
+  tl.fromTo("#flood", { scale: 0.04 }, { scale: 1, duration: 0.42, ease: "power3.in" }, 6.1);
+  tl.set(["#form", "#opts", "#send", "#map", "#glove", ...tags, ...fields], { opacity: 0 }, 6.52);
+  tl.set("#brand", { opacity: 1 }, 6.48);
+  tl.fromTo("#logo", { y: 560 }, { y: 0, duration: 0.45, ease: "back.out(1.3)" }, 6.48);
+  tl.fromTo("#apple", { y: -40, rotation: -50, opacity: 0, svgOrigin: "13.6 16.2" }, { y: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "bounce.out" }, 6.85);
+  tl.fromTo("#tagline span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.06 }, 7.0);
+
+  window.__timelines["main"] = tl;
+  tl.seek(0);
+});
+</script>
+</body>
+</html>

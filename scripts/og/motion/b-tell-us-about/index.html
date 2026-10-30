@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1200, height=628" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Clash Grotesk"; src: url("assets/fonts/ClashGrotesk-500.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Clash Grotesk"; src: url("assets/fonts/ClashGrotesk-600.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "Clash Grotesk"; src: url("assets/fonts/ClashGrotesk-700.woff2") format("woff2"); font-weight: 700; }
+:root { --display: "Clash Grotesk", "Inter", sans-serif; --ink: #0B0B12; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 628px; overflow: hidden; background: #103FEF; }
+#root { position: relative; width: 1200px; height: 628px; overflow: hidden; font-family: var(--display); color: #fff; }
+#ground { position: absolute; inset: 0; background: #103FEF; }
+
+#lead { position: absolute; left: 72px; top: 70px; font-size: 104px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+#lead span { display: inline-block; }
+
+/* the slot: one line tall, the reel slides inside it */
+#slot { position: absolute; left: 66px; top: 186px; width: 1100px; height: 170px; overflow: hidden; }
+#reel { position: absolute; left: 0; top: 0; }
+.item { height: 170px; display: flex; align-items: center; font-size: 150px; font-weight: 600; letter-spacing: -0.05em; line-height: 1; white-space: nowrap; }
+.item.final { color: #FFE14D; }
+
+/* where it goes */
+#route { position: absolute; left: 72px; top: 410px; height: 132px; }
+.stamp { position: absolute; left: 0; top: 0; height: 132px; display: flex; align-items: center; gap: 24px; padding: 0 44px 0 34px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 66px; font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; box-shadow: 0 10px 0 rgba(0,0,0,.22); }
+.stamp b { font-weight: 600; color: #6B6B78; }
+.stamp .arrow { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 52px; }
+
+#send { position: absolute; left: 72px; top: 410px; width: 380px; height: 132px; border-radius: 999px; background: #fff; color: var(--ink); display: grid; place-items: center; font-size: 76px; font-weight: 600; letter-spacing: -0.03em; box-shadow: 0 10px 0 rgba(0,0,0,.35); }
+#flood { position: absolute; left: 262px; top: 476px; width: 2300px; height: 2300px; margin: -1150px 0 0 -1150px; border-radius: 50%; background: #103FEF; }
+#brand { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#logo { display: flex; align-items: center; gap: 28px; font-size: 156px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+#logo svg { width: 156px; height: 156px; }
+#tagline { margin-top: 34px; font-size: 60px; font-weight: 500; letter-spacing: -0.025em; text-align: center; line-height: 1.08; }
+#tagline span { display: inline-block; }
+#tagline em { font-style: normal; color: #FFE14D; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1200" data-height="628">
+  <div id="ground"></div>
+
+  <div id="lead"><span>Tell</span> <span>us</span> <span>about…</span></div>
+
+  <div id="slot">
+    <div id="reel">
+      <div class="item">the 2am bar</div>
+      <div class="item">that pothole</div>
+      <div class="item">the rats</div>
+      <div class="item">a bike rack</div>
+      <div class="item">a dead tree</div>
+      <div class="item">the scaffolding</div>
+      <div class="item">a crosswalk</div>
+      <div class="item">trash pickup</div>
+      <div class="item final">anything.</div>
+    </div>
+  </div>
+
+  <div id="route">
+    <div class="stamp" id="st1"><span class="arrow">→</span>311 <b>·</b> Noise</div>
+    <div class="stamp" id="st2"><span class="arrow">→</span>311 <b>·</b> Street repair</div>
+    <div class="stamp" id="st3"><span class="arrow">→</span>311 <b>·</b> Rodents</div>
+    <div class="stamp" id="st4"><span class="arrow">→</span>Community Board 2</div>
+  </div>
+
+  <div id="send">Send</div>
+  <div id="flood"></div>
+
+  <div id="brand">
+    <div id="logo">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#fff"/>
+        <g transform="rotate(-12 16 16)">
+          <g fill="#103FEF" stroke="#103FEF" stroke-width="1.6" stroke-linejoin="round"><path d="M3.6 13.2h3.4l13.4-6.6v18.8L7 18.8H3.6z"/><path d="M7.4 19.4l1.6 5.4h2.6l-1.3-4.6z"/></g>
+          <g fill="none" stroke="#103FEF" stroke-width="2" stroke-linecap="round"><path d="M24.6 12.6a4.6 4.6 0 0 1 0 6.8"/><path d="M27.4 10a8.4 8.4 0 0 1 0 12"/></g>
+          <g id="apple"><g transform="translate(13.6 16.2) rotate(-8) scale(0.9)">
+            <path d="M0,-2.4 C-1.3,-3.5 -4.6,-3.6 -4.6,0 C-4.6,3.1 -2.6,4.9 -1.3,4.9 C-0.6,4.9 -0.4,4.5 0,4.5 C0.4,4.5 0.6,4.9 1.3,4.9 C2.6,4.9 4.6,3.1 4.6,0 C4.6,-3.6 1.3,-3.5 0,-2.4 Z" fill="#FF4436"/>
+            <path d="M0.5,-3.1 C0.9,-5.1 2.9,-5.7 3.9,-5.3 C3.5,-3.7 1.9,-2.9 0.5,-3.1 Z" fill="#21A84A"/>
+          </g></g>
+        </g></svg>
+      <div>Tell Us</div>
+    </div>
+    <div id="tagline"><span>We</span> <span>find</span> <span>the</span> <span>form</span> <span><em>and</em></span> <span><em>fill</em></span> <span><em>it.</em></span></div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+const H = 170;
+// one ground colour per subject: blue, tomato, green, violet, then ink for "anything"
+const GROUNDS = ["#103FEF", "#E8372B", "#0E8A3E", "#6A2BD9"];
+const LAND = [0.35, 1.75, 3.05, 4.25]; // the reel slows a little less each time: the pace picks up
+
+tl.set(["#brand", ".stamp", "#send"], { opacity: 0 }, 0);
+tl.set("#flood", { scale: 0 }, 0);
+tl.set(["#lead", "#slot"], { opacity: 1 }, 0);
+tl.set("#reel", { y: H }, 0); // the slot starts empty
+tl.fromTo("#lead span", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out", stagger: 0.07 }, 0);
+
+LAND.forEach((at, i) => {
+  // the reel drops the next subject in with a slot-machine thunk
+  tl.fromTo("#reel", { y: (i === 0 ? 1 : -(i - 1)) * H }, { y: -i * H, duration: 0.5, ease: "back.out(2.2)" }, at);
+  tl.fromTo("#reel", { filter: "blur(10px)" }, { filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, at);
+  if (i > 0) tl.to("#ground", { backgroundColor: GROUNDS[i], duration: 0.35, ease: "power2.inOut" }, at - 0.05);
+  // and the destination gets stamped under it
+  const st = `#st${i + 1}`;
+  if (i > 0) tl.to(`#st${i}`, { opacity: 0, y: -40, duration: 0.18, ease: "power3.in" }, at - 0.05);
+  tl.fromTo(st, { opacity: 0, scale: 1.6, rotation: -8, transformOrigin: "20% 50%" }, { opacity: 1, scale: 1, rotation: -2, duration: 0.38, ease: "back.out(2.6)" }, at + 0.42);
+  tl.fromTo(`${st} .arrow`, { x: -30 }, { x: 0, duration: 0.4, ease: "expo.out" }, at + 0.5);
+});
+
+// a fast spin through the rest of the reel lands on "anything." (5.4 – 6.3)
+tl.to("#st4", { opacity: 0, y: -40, duration: 0.18, ease: "power3.in" }, 5.35);
+tl.to("#ground", { backgroundColor: "#0B0B12", duration: 0.35, ease: "power2.inOut" }, 5.4);
+tl.to("#reel", { y: -8 * H, duration: 0.85, ease: "back.out(1.2)" }, 5.4);
+tl.fromTo("#reel", { filter: "blur(0px)" }, { filter: "blur(16px)", duration: 0.25, ease: "power2.in" }, 5.4);
+tl.to("#reel", { filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 5.85);
+tl.fromTo(".item.final", { scale: 1, transformOrigin: "0% 50%" }, { scale: 1.08, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 6.15);
+
+// a Send button pops in under it and gets pressed (6.45 – 7.0)
+tl.set("#send", { opacity: 1 }, 6.45);
+tl.fromTo("#send", { scale: 0.2, rotation: -6 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.4)" }, 6.45);
+tl.to("#send", { scale: 0.86, duration: 0.1, ease: "power2.in" }, 6.95);
+tl.to("#send", { scale: 1.02, duration: 0.18, ease: "back.out(3)" }, 7.05);
+
+// blue floods out of the button and Tell Us rises in on it (7.1 – 8.6)
+tl.fromTo("#flood", { scale: 0.06 }, { scale: 1, duration: 0.45, ease: "power3.in" }, 7.1);
+tl.set(["#lead", "#slot", "#send"], { opacity: 0 }, 7.55);
+tl.set("#ground", { backgroundColor: "#103FEF" }, 7.55);
+tl.set("#brand", { opacity: 1 }, 7.5);
+tl.fromTo("#logo", { y: 560 }, { y: 0, duration: 0.6, ease: "back.out(1.3)" }, 7.5);
+tl.fromTo("#apple", { y: -40, rotation: -50, opacity: 0, svgOrigin: "13.6 16.2" }, { y: 0, rotation: 0, opacity: 1, duration: 0.6, ease: "bounce.out" }, 8.25);
+tl.fromTo("#logo svg", { scaleY: 1 }, { scaleY: 0.9, duration: 0.07, ease: "power2.out", yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, 8.5);
+tl.fromTo("#tagline span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power2.out", stagger: 0.07 }, 7.85);
+
+// loop seam: the brand clears so the next loop starts on the empty blue ground (9.65 – 9.95)
+tl.to("#brand", { opacity: 0, y: -60, duration: 0.25, ease: "power3.in" }, 9.65);
+tl.set("#flood", { scale: 0 }, 9.95);
+tl.set(["#lead", "#slot"], { opacity: 1 }, 9.95);
+tl.set("#lead span", { opacity: 0 }, 9.95);
+tl.set("#reel", { y: H }, 9.95);
+
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
