@@ -38,9 +38,9 @@ export function announce(msg) {
   setTimeout(() => (el.textContent = msg), 30);
 }
 
-export async function api(path, body) {
-  const r = await fetch(path, body === undefined ? { headers: { "x-session": session, "x-board": BOARD } } : {
-    method: "POST", headers: { "content-type": "application/json", "x-session": session, "x-board": BOARD }, body: JSON.stringify(body),
+export async function api(path, body, signal) {
+  const r = await fetch(path, body === undefined ? { signal, headers: { "x-session": session, "x-board": BOARD } } : {
+    method: "POST", signal, headers: { "content-type": "application/json", "x-session": session, "x-board": BOARD }, body: JSON.stringify(body),
   });
   const j = await r.json().catch(() => ({}));
   if (!r.ok || j.error) throw new Error(j.error || `${path} failed (${r.status})`);

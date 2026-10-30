@@ -9,7 +9,7 @@ import { renderSendPanel, defaultDestinations, missingRequired } from "./send.js
 import { toggleMic } from "./voice.js";
 import { renderTopics, startTypewriter } from "./suggest.js";
 
-const DEBOUNCE_MS = 650;
+const DEBOUNCE_MS = 350;
 
 const state = {
   config: { committees: {}, destinations: {}, voice: false },
@@ -22,7 +22,7 @@ const state = {
   destination: null,  // the person's "Send to" pick
   loading: false, error: "",
 };
-let sentSeq = 0, appliedSeq = 0, lastSent = "", timer = 0;
+let sentSeq = 0, appliedSeq = 0, lastSent = "", timer = 0, inflight = null;
 const fieldsByKey = new Map();
 let needKeys = []; // keys of the fields shown in the "Needed" box
 
@@ -38,14 +38,16 @@ async function route(text) {
   if (m.length < 8 || m === lastSent) return;
   lastSent = m;
   const seq = ++sentSeq;
+  inflight?.abort(); // its answer would be for words the person has since changed
+  const ctl = inflight = new AbortController();
   state.loading = true; state.error = ""; renderStatus();
   try {
-    const res = await api("/api/route", { message: m });
+    const res = await api("/api/route", { message: m }, ctl.signal);
     if (seq <= appliedSeq) return; // a newer response already landed
     appliedSeq = seq;
     apply(res, m);
   } catch (e) {
-    if (seq === sentSeq) { state.error = e.message; lastSent = ""; }
+    if (seq === sentSeq && e.name !== "AbortError") { state.error = e.message; lastSent = ""; }
   } finally {
     if (seq === sentSeq) { state.loading = false; renderStatus(); }
   }
@@ -78,6 +80,7 @@ function schedule() {
 
 function reset() {
   Object.assign(state, { res: null, formKey: null, values: {}, touched: new Set(), open: {}, destination: null, error: "" });
+  inflight?.abort();
   lastSent = ""; appliedSeq = ++sentSeq; state.loading = false;
   render(new Set()); renderStatus();
 }
