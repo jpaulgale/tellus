@@ -7,8 +7,9 @@
   "message": "Is there another brand promo taking over Gansevoort Plaza at the end of June? Something called Visit Morocco. These plaza takeovers keep happening and nobody tells the neighbors who's behind them.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -19,8 +20,9 @@
   "message": "Is there another brand promo taking over Gansevoort Plaza at the end of June? Something called Visit Morocco. These plaza takeovers keep happening and nobody tells the neighbors who's behind them.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -33,6 +35,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -45,6 +48,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -57,6 +61,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -69,6 +74,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -79,8 +85,9 @@
   "message": "NADC Burger wants to serve beer and wine at 25 Cleveland Place, including out in the back yard. Those apartments behind it look right down onto that yard. Please no outdoor drinking back there.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "SLA – 1",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -93,6 +100,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -105,6 +113,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -115,8 +124,9 @@
   "message": "These huge delivery warehouses the city wants to allow by special permit worry me. Please make sure the environmental review looks at the van and truck traffic on our side streets, we already have them double parked on every block.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": true,
+  "committee": "Traffic & Transportation",
+  "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -129,6 +139,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -141,6 +152,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -153,6 +165,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -165,6 +178,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -177,6 +191,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -189,6 +204,7 @@
   "form_ok": true,
   "committee": "Executive Committee",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -199,8 +215,9 @@
   "message": "I live at 142 W 4th and we're asking to put simple gates at the front entrances of our building and the one next door at 140. People keep sleeping and using in the doorways and it's not safe coming home at night. Hoping the board will support it.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Human Services",
-  "committee_ok": false,
+  "committee": "Landmarks & Public Aesthetics",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -213,6 +230,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -225,6 +243,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -237,6 +256,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -249,6 +269,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -261,6 +282,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -273,6 +295,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -285,6 +308,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -297,6 +321,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -309,6 +334,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -321,6 +347,7 @@
   "form_ok": false,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -333,6 +360,7 @@
   "form_ok": false,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -345,6 +373,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -357,6 +386,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -369,6 +399,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -381,6 +412,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -391,8 +423,9 @@
   "message": "There's a plan for a rooftop addition and rear extension at 739 Washington St. I'm in the building behind it. How deep are they digging the basement? I'm worried about our foundation during construction.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": false,
+  "committee": "Landmarks & Public Aesthetics",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -405,6 +438,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -417,6 +451,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -429,6 +464,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -441,6 +477,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -453,6 +490,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -465,6 +503,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -477,6 +516,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -489,6 +529,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -501,6 +542,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -513,6 +555,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -525,6 +568,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -537,6 +581,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -549,6 +594,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -561,6 +607,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -573,6 +620,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -585,6 +633,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -597,6 +646,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -609,6 +659,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -621,6 +672,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -633,6 +685,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -645,6 +698,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -657,6 +711,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -669,6 +724,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -681,6 +737,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -691,8 +748,9 @@
   "message": "Cornelia Street is so narrow, how can Aperitivo di Palma put tables out in the roadway there? Fire trucks have to get through.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": true,
+  "committee": "SLA – 2",
+  "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -705,6 +763,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -717,6 +776,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -729,6 +789,7 @@
   "form_ok": true,
   "committee": "Parks & Waterfront",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -741,6 +802,7 @@
   "form_ok": true,
   "committee": "Parks & Waterfront",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -753,6 +815,7 @@
   "form_ok": false,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -765,6 +828,7 @@
   "form_ok": false,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -777,6 +841,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -789,6 +854,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -801,6 +867,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -813,6 +880,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -825,6 +893,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -837,6 +906,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -847,8 +917,9 @@
   "message": "The Gansevoort Square plan still hands most of that public land to the Whitney and gives housing a sliver. And the whole process has been behind closed doors. We need way more affordable units there and a real public say.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": true,
+  "committee": "Executive Committee",
+  "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -861,6 +932,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -873,6 +945,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -883,8 +956,9 @@
   "message": "81 Spring wants to add a second flag on the Crosby Street side plus new paint. Crosby is a quieter block with trees, the one flag on Spring seems like enough.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Landmarks & Public Aesthetics",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -897,6 +971,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -907,8 +982,9 @@
   "message": "fine with the cafe keeping its sidewalk tables, it's part of the street",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": true,
+  "committee": "SLA – 1",
+  "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -921,6 +997,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -933,6 +1010,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -945,6 +1023,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -957,6 +1036,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -969,6 +1049,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -981,6 +1062,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -993,6 +1075,7 @@
   "form_ok": false,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1005,6 +1088,7 @@
   "form_ok": false,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1017,6 +1101,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1029,6 +1114,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1041,6 +1127,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1053,6 +1140,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1065,6 +1153,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1077,6 +1166,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1089,6 +1179,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1101,6 +1192,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1113,6 +1205,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1125,6 +1218,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1137,6 +1231,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1149,6 +1244,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1159,8 +1255,9 @@
   "message": "Byredo wants to close the curb on Wooster for a Friday night party with a DJ. Wooster between Broome and Spring is people's homes. A DJ outside is a no from me.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1171,8 +1268,9 @@
   "message": "Byredo wants to close the curb on Wooster for a Friday night party with a DJ. Wooster between Broome and Spring is people's homes. A DJ outside is a no from me.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1185,6 +1283,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1197,6 +1296,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1209,6 +1309,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -1221,6 +1322,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1233,6 +1335,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1245,6 +1348,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1255,8 +1359,9 @@
   "message": "I watched masked ICE agents grab someone outside the federal courthouse at 201 Varick on my way to work. Nobody could tell who they were. They should have to show their faces and badges.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive Committee",
-  "committee_ok": false,
+  "committee": "Human Services",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1269,6 +1374,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1279,8 +1385,9 @@
   "message": "A dispensary at 11 West 8th Street? That building is almost all apartments. Please oppose it.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Cannabis Licensing Committee",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1291,8 +1398,9 @@
   "message": "A dispensary at 11 West 8th Street? That building is almost all apartments. Please oppose it.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Cannabis Licensing Committee",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1305,6 +1413,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1317,6 +1426,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1329,6 +1439,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1341,6 +1452,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1353,6 +1465,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1365,6 +1478,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1377,6 +1491,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1389,6 +1504,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1401,6 +1517,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1413,6 +1530,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1425,6 +1543,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1437,6 +1556,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1449,6 +1569,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1461,6 +1582,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1473,6 +1595,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1485,6 +1608,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1497,6 +1621,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1509,6 +1634,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1521,6 +1647,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1533,6 +1660,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1545,6 +1673,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1557,6 +1686,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1567,8 +1697,9 @@
   "message": "Four days on Gansevoort Plaza for a brand they won't even name, with a light show? How are neighbors supposed to have an opinion on that.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1579,8 +1710,9 @@
   "message": "Four days on Gansevoort Plaza for a brand they won't even name, with a light show? How are neighbors supposed to have an opinion on that.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1593,6 +1725,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1603,8 +1736,9 @@
   "message": "The free Beacon afterschool program at City-As-School is the only reason I can keep working full time. Please fight to keep its funding.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Schools & Education",
-  "committee_ok": false,
+  "committee": "Executive Committee",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1617,6 +1751,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1629,6 +1764,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1641,6 +1777,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1653,6 +1790,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1665,6 +1803,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1677,6 +1816,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1689,6 +1829,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1701,6 +1842,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1713,6 +1855,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -1725,6 +1868,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1737,6 +1881,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1749,6 +1894,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1761,6 +1907,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1773,6 +1920,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1785,6 +1933,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1797,6 +1946,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1809,6 +1959,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1821,6 +1972,7 @@
   "form_ok": true,
   "committee": "Executive Committee",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1833,6 +1985,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1845,6 +1998,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1857,6 +2011,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1867,8 +2022,9 @@
   "message": "I run a small cafe with one row of two-person tables against the wall. Now the city wants a full barrier around them, which takes up more sidewalk than the tables do. Could the board ask DOT to drop that for setups like ours?",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
+  "committee": "Executive Committee",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1881,6 +2037,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1893,6 +2050,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1905,6 +2063,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1915,8 +2074,9 @@
   "message": "The Park Service quietly dropped the T and the Q from the Stonewall monument's description. That's erasing trans people from their own history. Please speak up.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Landmarks & Public Aesthetics",
-  "committee_ok": false,
+  "committee": "Human Services",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -1929,6 +2089,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1941,6 +2102,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -1953,6 +2115,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -1965,6 +2128,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -1977,6 +2141,7 @@
   "form_ok": true,
   "committee": "Community Facilities Advisory Panel",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -1987,8 +2152,9 @@
   "message": "Since Beth Israel closed, ambulances take forever and the Northwell ER in the Village is swamped. Someone needs to track what services we actually lost and where people are going now.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Community Facilities Advisory Panel",
-  "committee_ok": false,
+  "committee": "Human Services",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2001,6 +2167,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2013,6 +2180,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2025,6 +2193,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2035,8 +2204,9 @@
   "message": "Two restaurants next to each other want sidewalk cafes. The sidewalk is pretty wide there, I think it's fine.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": true,
+  "committee": "SLA – 2",
+  "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2049,6 +2219,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2059,8 +2230,9 @@
   "message": "I'm the owner of weedkraft, opening at 112 Christopher Street. It's a family business, the lease is signed, and I'd be grateful for the board's support.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "Cannabis Licensing Committee",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2073,6 +2245,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2085,6 +2258,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2097,6 +2271,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2109,6 +2284,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2121,6 +2297,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2133,6 +2310,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2145,6 +2323,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2157,6 +2336,7 @@
   "form_ok": true,
   "committee": "Land Use & Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2169,6 +2349,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2181,6 +2362,7 @@
   "form_ok": true,
   "committee": "Schools & Education",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2193,6 +2375,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2205,6 +2388,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2215,8 +2399,9 @@
   "message": "a restaurant on university place wants 12 sidewalk seats. fine.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": false,
+  "committee": "SLA – 1",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2227,8 +2412,9 @@
   "message": "a restaurant on university place wants 12 sidewalk seats. fine.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": false,
+  "committee": "SLA – 1",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2241,6 +2427,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2253,6 +2440,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2265,6 +2453,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2275,8 +2464,9 @@
   "message": "My mother's home attendant works 24 hour shifts and barely sleeps. Please support the No More 24 bill, it isn't safe for workers or for patients.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Human Services",
-  "committee_ok": false,
+  "committee": "Executive Committee",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2289,6 +2479,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2299,8 +2490,9 @@
   "message": "No issues with the sushi place on Greenwich keeping its roadway setup.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "Land Use & Housing",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2313,6 +2505,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2325,6 +2518,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2337,6 +2531,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2349,6 +2544,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2361,6 +2557,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2373,6 +2570,7 @@
   "form_ok": true,
   "committee": "Cannabis Licensing Committee",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2385,6 +2583,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2395,8 +2594,9 @@
   "message": "Sant Ambroeus wants roadway dining on West 4th. Is there even room left for a fire truck?",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
+  "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2409,6 +2609,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2421,6 +2622,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2433,6 +2635,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2445,6 +2648,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2457,6 +2661,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2469,6 +2674,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2481,6 +2687,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2491,8 +2698,9 @@
   "message": "The art piece about homelessness coming to Petrosino Square sounds really meaningful. Happy to see it there.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Landmarks & Public Aesthetics",
-  "committee_ok": false,
+  "committee": "Parks & Waterfront",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2505,6 +2713,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -2517,6 +2726,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2529,6 +2739,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2539,8 +2750,9 @@
   "message": "The rats on my block are out of control, especially around restaurant trash at night. We need real enforcement and abatement, not just signs.",
   "form": "rodents",
   "form_ok": false,
-  "committee": "Street Activities & Resiliency",
-  "committee_ok": false,
+  "committee": "Human Services",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2553,6 +2765,7 @@
   "form_ok": true,
   "committee": "Street Activities & Resiliency",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2563,8 +2776,9 @@
   "message": "Port Authority is putting anchors under the sidewalk along Canal between Hudson and Varick for a Holland Tunnel flood barrier. How long will the sidewalk be torn up?",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Street Activities & Resiliency",
-  "committee_ok": false,
+  "committee": "Traffic & Transportation",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2575,8 +2789,9 @@
   "message": "Rug store pop-up needs the curb lane for loading for a few days. no problem.",
   "form": "illegal_parking",
   "form_ok": false,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2587,8 +2802,9 @@
   "message": "Rug store pop-up needs the curb lane for loading for a few days. no problem.",
   "form": "illegal_parking",
   "form_ok": false,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2601,6 +2817,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2613,6 +2830,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2625,6 +2843,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2635,8 +2854,9 @@
   "message": "The Eternal Flame piece for Scott Burton at the AIDS Memorial on St. Vincent's Triangle sounds beautiful. I support it.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Landmarks & Public Aesthetics",
-  "committee_ok": false,
+  "committee": "Parks & Waterfront",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2649,6 +2869,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2661,6 +2882,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2673,6 +2895,7 @@
   "form_ok": true,
   "committee": "Human Services",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2683,128 +2906,139 @@
   "message": "Our public hospital takes care of everyone no matter what. Please ask the city and state to put more money into it in this year's budget.",
   "form": "cb2",
   "form_ok": true,
+  "committee": "Executive Committee",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb2-2025-09-007",
+  "board": "cb2",
+  "mode": "before",
+  "expected": "Land Use & Housing",
+  "message": "Will the 24 affordable co-ops at 285 Hudson Street actually stay affordable? I'd like to hear how resale prices are capped.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Land Use & Housing",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb2-2025-09-007",
+  "board": "cb2",
+  "mode": "after",
+  "expected": "Land Use & Housing",
+  "message": "Will the 24 affordable co-ops at 285 Hudson Street actually stay affordable? I'd like to hear how resale prices are capped.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Land Use & Housing",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb2-2025-11-008",
+  "board": "cb2",
+  "mode": "before",
+  "expected": "Landmarks & Public Aesthetics",
+  "message": "The old church rectory at 79 Christopher wants a rooftop addition, a taller chimney and railings. It's a tiny 16 foot wide house and this will change it a lot.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb2-2025-11-008",
+  "board": "cb2",
+  "mode": "after",
+  "expected": "Landmarks & Public Aesthetics",
+  "message": "The old church rectory at 79 Christopher wants a rooftop addition, a taller chimney and railings. It's a tiny 16 foot wide house and this will change it a lot.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Landmarks & Public Aesthetics",
+  "committee_ok": true,
+  "by_address": true,
+  "shown_own": true
+ },
+ {
+  "id": "cb2-2025-01-020",
+  "board": "cb2",
+  "mode": "before",
+  "expected": "Land Use & Housing",
+  "message": "That restaurant on Sullivan has had sidewalk tables for years with no issues. fine with it.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA – 2",
+  "committee_ok": false,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb2-2025-01-020",
+  "board": "cb2",
+  "mode": "after",
+  "expected": "Land Use & Housing",
+  "message": "That restaurant on Sullivan has had sidewalk tables for years with no issues. fine with it.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA – 1",
+  "committee_ok": false,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb2-2025-01-027",
+  "board": "cb2",
+  "mode": "before",
+  "expected": "Land Use & Housing",
+  "message": "Olio e Piu's roadway setup on Greenwich Ave makes that corner super tight for turning cars. not a fan.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Traffic & Transportation",
+  "committee_ok": false,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb2-2025-01-027",
+  "board": "cb2",
+  "mode": "after",
+  "expected": "Land Use & Housing",
+  "message": "Olio e Piu's roadway setup on Greenwich Ave makes that corner super tight for turning cars. not a fan.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA – 1",
+  "committee_ok": false,
+  "by_address": true,
+  "shown_own": true
+ },
+ {
+  "id": "cb2-2025-04-001",
+  "board": "cb2",
+  "mode": "before",
+  "expected": "Human Services",
+  "message": "I'm an immigrant and a neighbor. Please make clear this city keeps its sanctuary laws and doesn't let NYPD help ICE.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Executive Committee",
+  "committee_ok": false,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb2-2025-04-001",
+  "board": "cb2",
+  "mode": "after",
+  "expected": "Human Services",
+  "message": "I'm an immigrant and a neighbor. Please make clear this city keeps its sanctuary laws and doesn't let NYPD help ICE.",
+  "form": "cb2",
+  "form_ok": true,
   "committee": "Human Services",
-  "committee_ok": false,
-  "shown_own": true
- },
- {
-  "id": "cb2-2025-09-007",
-  "board": "cb2",
-  "mode": "before",
-  "expected": "Land Use & Housing",
-  "message": "Will the 24 affordable co-ops at 285 Hudson Street actually stay affordable? I'd like to hear how resale prices are capped.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Land Use & Housing",
   "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb2-2025-09-007",
-  "board": "cb2",
-  "mode": "after",
-  "expected": "Land Use & Housing",
-  "message": "Will the 24 affordable co-ops at 285 Hudson Street actually stay affordable? I'd like to hear how resale prices are capped.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Land Use & Housing",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb2-2025-11-008",
-  "board": "cb2",
-  "mode": "before",
-  "expected": "Landmarks & Public Aesthetics",
-  "message": "The old church rectory at 79 Christopher wants a rooftop addition, a taller chimney and railings. It's a tiny 16 foot wide house and this will change it a lot.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Landmarks & Public Aesthetics",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb2-2025-11-008",
-  "board": "cb2",
-  "mode": "after",
-  "expected": "Landmarks & Public Aesthetics",
-  "message": "The old church rectory at 79 Christopher wants a rooftop addition, a taller chimney and railings. It's a tiny 16 foot wide house and this will change it a lot.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Landmarks & Public Aesthetics",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb2-2025-01-020",
-  "board": "cb2",
-  "mode": "before",
-  "expected": "Land Use & Housing",
-  "message": "That restaurant on Sullivan has had sidewalk tables for years with no issues. fine with it.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb2-2025-01-020",
-  "board": "cb2",
-  "mode": "after",
-  "expected": "Land Use & Housing",
-  "message": "That restaurant on Sullivan has had sidewalk tables for years with no issues. fine with it.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb2-2025-01-027",
-  "board": "cb2",
-  "mode": "before",
-  "expected": "Land Use & Housing",
-  "message": "Olio e Piu's roadway setup on Greenwich Ave makes that corner super tight for turning cars. not a fan.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb2-2025-01-027",
-  "board": "cb2",
-  "mode": "after",
-  "expected": "Land Use & Housing",
-  "message": "Olio e Piu's roadway setup on Greenwich Ave makes that corner super tight for turning cars. not a fan.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
-  "shown_own": true
- },
- {
-  "id": "cb2-2025-04-001",
-  "board": "cb2",
-  "mode": "before",
-  "expected": "Human Services",
-  "message": "I'm an immigrant and a neighbor. Please make clear this city keeps its sanctuary laws and doesn't let NYPD help ICE.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Executive Committee",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb2-2025-04-001",
-  "board": "cb2",
-  "mode": "after",
-  "expected": "Human Services",
-  "message": "I'm an immigrant and a neighbor. Please make clear this city keeps its sanctuary laws and doesn't let NYPD help ICE.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Executive Committee",
-  "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2817,6 +3051,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -2829,6 +3064,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2841,6 +3077,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2853,6 +3090,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2865,6 +3103,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -2877,6 +3116,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2889,6 +3129,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2901,6 +3142,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2913,6 +3155,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -2925,6 +3168,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2937,6 +3181,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2949,6 +3194,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -2961,6 +3207,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2973,6 +3220,7 @@
   "form_ok": true,
   "committee": "Traffic & Transportation",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -2985,6 +3233,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -2997,6 +3246,7 @@
   "form_ok": false,
   "committee": "Street Activities & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3009,6 +3259,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3021,6 +3272,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -3033,6 +3285,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3045,6 +3298,7 @@
   "form_ok": true,
   "committee": "Landmarks & Public Aesthetics",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -3057,6 +3311,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -3069,6 +3324,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -3081,6 +3337,7 @@
   "form_ok": true,
   "committee": "SLA – 1",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3093,6 +3350,7 @@
   "form_ok": true,
   "committee": "SLA – 2",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3105,6 +3363,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3117,6 +3376,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3129,6 +3389,7 @@
   "form_ok": true,
   "committee": "Cannabis Control Task Force",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3141,6 +3402,7 @@
   "form_ok": true,
   "committee": "Cannabis Control Task Force",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3153,6 +3415,7 @@
   "form_ok": true,
   "committee": "Economic Development",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3165,6 +3428,7 @@
   "form_ok": true,
   "committee": "Economic Development",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3177,6 +3441,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3189,6 +3454,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3201,6 +3467,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": false,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -3211,8 +3478,9 @@
   "message": "Saw the plans for a wheelchair lift out front of 4 St. Marks Place. I want the building to be accessible, but it's an 1830s townhouse, so please make sure moving the fire escape and changing the balcony doesn't wreck the front of it.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
+  "committee": "Landmarks",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3225,6 +3493,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3237,6 +3506,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3249,6 +3519,7 @@
   "form_ok": false,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3261,6 +3532,7 @@
   "form_ok": false,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3273,6 +3545,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3285,6 +3558,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3297,6 +3571,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3309,6 +3584,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3321,6 +3597,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3333,7 +3610,8 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
-  "shown_own": false
+  "by_address": false,
+  "shown_own": true
  },
  {
   "id": "cb3-2026-06-002",
@@ -3345,6 +3623,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3357,7 +3636,8 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
-  "shown_own": true
+  "by_address": false,
+  "shown_own": false
  },
  {
   "id": "cb3-2025-02-036",
@@ -3365,394 +3645,427 @@
   "mode": "before",
   "expected": "SLA Licensing & Outdoor Dining",
   "message": "Bar Belly at 14B Orchard wants seating out in the street again. Orchard is already jammed on weekend nights and those sheds bring the noise right up to our windows. Please think about the people living upstairs.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-02-036",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "Bar Belly at 14B Orchard wants seating out in the street again. Orchard is already jammed on weekend nights and those sheds bring the noise right up to our windows. Please think about the people living upstairs.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-05-082",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "My family has lived on East 10th near Avenue D for decades and we all knew Kavion. Putting his name on the block between Avenue D and the FDR would help people remember him. A lot of us in the buildings signed the petition.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-05-082",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "My family has lived on East 10th near Avenue D for decades and we all knew Kavion. Putting his name on the block between Avenue D and the FDR would help people remember him. A lot of us in the buildings signed the petition.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2026-03-024",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Land Use, Zoning, Public & Private Housing",
-  "message": "Essex Market is supposed to serve the people who live here, not just tourists. Whatever changes they make to how it's run, I want cheap vendors, free events, and programs for low-income families to stay.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Land Use, Zoning, Public & Private Housing",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2026-03-024",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Land Use, Zoning, Public & Private Housing",
-  "message": "Essex Market is supposed to serve the people who live here, not just tourists. Whatever changes they make to how it's run, I want cheap vendors, free events, and programs for low-income families to stay.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Land Use, Zoning, Public & Private Housing",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-04-059",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Parks, Recreation, Waterfront, & Resiliency",
-  "message": "Hi, I volunteer with a group that looks after Sara D. Roosevelt Park. The sandbox at Hester Street Playground is full of trash and rats and parents just avoid it. We're asking for support to swap it out for synthetic turf that kids can actually play on.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Parks, Recreation, Waterfront, & Resiliency",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-04-059",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Parks, Recreation, Waterfront, & Resiliency",
-  "message": "Hi, I volunteer with a group that looks after Sara D. Roosevelt Park. The sandbox at Hester Street Playground is full of trash and rats and parents just avoid it. We're asking for support to swap it out for synthetic turf that kids can actually play on.",
-  "form": "rodents",
+  "form": "noise_commercial",
   "form_ok": false,
-  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-02-036",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "Bar Belly at 14B Orchard wants seating out in the street again. Orchard is already jammed on weekend nights and those sheds bring the noise right up to our windows. Please think about the people living upstairs.",
+  "form": "noise_commercial",
+  "form_ok": false,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
-  "id": "cb3-2025-10-038",
+  "id": "cb3-2025-05-082",
   "board": "cb3",
   "mode": "before",
   "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "It would be wonderful to see East 2nd St between B and C carry the names of Marsha P. Johnson and Sylvia Rivera. They fought for so many people and deserve to be remembered on our streets.",
+  "message": "My family has lived on East 10th near Avenue D for decades and we all knew Kavion. Putting his name on the block between Avenue D and the FDR would help people remember him. A lot of us in the buildings signed the petition.",
   "form": "cb2",
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
-  "id": "cb3-2025-10-038",
+  "id": "cb3-2025-05-082",
   "board": "cb3",
   "mode": "after",
   "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "It would be wonderful to see East 2nd St between B and C carry the names of Marsha P. Johnson and Sylvia Rivera. They fought for so many people and deserve to be remembered on our streets.",
+  "message": "My family has lived on East 10th near Avenue D for decades and we all knew Kavion. Putting his name on the block between Avenue D and the FDR would help people remember him. A lot of us in the buildings signed the petition.",
   "form": "cb2",
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
-  "id": "cb3-2026-03-026",
+  "id": "cb3-2026-03-024",
   "board": "cb3",
   "mode": "before",
-  "expected": "Parks, Recreation, Waterfront, & Resiliency",
-  "message": "strongly support naming that skate field after harold hunter. kids still skate there every day.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Parks, Recreation, Waterfront, & Resiliency",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2026-03-026",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Parks, Recreation, Waterfront, & Resiliency",
-  "message": "strongly support naming that skate field after harold hunter. kids still skate there every day.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Parks, Recreation, Waterfront, & Resiliency",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-09-056",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Cannabis Control Task Force",
-  "message": "I own Fire Escape, the dispensary at 103 Avenue A. We'd like to add a walk-up window so people can pick up orders without crowding inside, same hours as now, with staff watching the line. Hoping the board will back us.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-09-056",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Cannabis Control Task Force",
-  "message": "I own Fire Escape, the dispensary at 103 Avenue A. We'd like to add a walk-up window so people can pick up orders without crowding inside, same hours as now, with staff watching the line. Hoping the board will back us.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Cannabis Control Task Force",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-06-032",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Cannabis Control Task Force",
-  "message": "Another cannabis store, this time at 5 Division St? That stretch by the Manhattan Bridge has lots of seniors and families. I'd like to know who's running it and how they'll handle security.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Cannabis Control Task Force",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-06-032",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Cannabis Control Task Force",
-  "message": "Another cannabis store, this time at 5 Division St? That stretch by the Manhattan Bridge has lots of seniors and families. I'd like to know who's running it and how they'll handle security.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Cannabis Control Task Force",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2026-06-004",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "Intercity buses loading in front of 9 Chatham Square is a terrible idea. Traffic between Doyers and Mott is already a mess and the sidewalk is narrow. Where are all those passengers and suitcases supposed to go?",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2026-06-004",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "Intercity buses loading in front of 9 Chatham Square is a terrible idea. Traffic between Doyers and Mott is already a mess and the sidewalk is narrow. Where are all those passengers and suitcases supposed to go?",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-12-001",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Parks, Recreation, Waterfront, & Resiliency",
-  "message": "Children's Magical Garden has been a free place for neighborhood kids for over 40 years. My daughter would be thrilled with a tree house and a little stage for shows, and the new fence and sidewalk are long overdue. Please support the improvements!",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Parks, Recreation, Waterfront, & Resiliency",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-12-001",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Parks, Recreation, Waterfront, & Resiliency",
-  "message": "Children's Magical Garden has been a free place for neighborhood kids for over 40 years. My daughter would be thrilled with a tree house and a little stage for shows, and the new fence and sidewalk are long overdue. Please support the improvements!",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Parks, Recreation, Waterfront, & Resiliency",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2026-02-004",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "message": "With all the ICE raids and hate going around, people on the Lower East Side need to look out for each other. I'd love to see the board join the LES Community Care Coalition and help spread the know-your-rights trainings.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2026-02-004",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "message": "With all the ICE raids and hate going around, people on the Lower East Side need to look out for each other. I'd love to see the board join the LES Community Care Coalition and help spread the know-your-rights trainings.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2026-07-023",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "cien fuegos at 95 ave a wants a roadway shed. fine by me as long as it's kept clean and they close it up at a decent hour.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2026-07-023",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "cien fuegos at 95 ave a wants a roadway shed. fine by me as long as it's kept clean and they close it up at a decent hour.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2026-05-034",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "Brownie Morales did so much for the Lower East Side for so many years. Please support putting her name up at the corner of Stanton and Eldridge. Everyone around here knew her.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2026-05-034",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "Brownie Morales did so much for the Lower East Side for so many years. Please support putting her name up at the corner of Stanton and Eldridge. Everyone around here knew her.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-07-041",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "Is Commodore opening a second place at 14 Avenue C? That part of Avenue C is mostly apartments and I'm worried about late night crowds. I'd like to hear their hours before anything gets approved.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-07-041",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "Is Commodore opening a second place at 14 Avenue C? That part of Avenue C is mostly apartments and I'm worried about late night crowds. I'd like to hear their hours before anything gets approved.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-07-037",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "Soothr on East 13th is a great restaurant but their sidewalk tables already make it hard to get by with a stroller. If they're adding more outdoor seating at 204, please keep a clear path.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-07-037",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "Soothr on East 13th is a great restaurant but their sidewalk tables already make it hard to get by with a stroller. If they're adding more outdoor seating at 204, please keep a clear path.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-06-017",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "I'm the owner of Binondo, a small cafe. We're moving from Canal Street to 50 East Broadway and need to bring our beer and wine license with us. Same quiet cafe, same hours, just a new address.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-06-017",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "SLA Licensing & Outdoor Dining",
-  "message": "I'm the owner of Binondo, a small cafe. We're moving from Canal Street to 50 East Broadway and need to bring our beer and wine license with us. Same quiet cafe, same hours, just a new address.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2025-02-006",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "message": "Love the idea of a neon art piece on the new Barrier Free Living building at 270 East 2nd. Housing for domestic violence survivors with disabilities is exactly what we need, and a hopeful message out front is a nice touch.",
+  "expected": "Land Use, Zoning, Public & Private Housing",
+  "message": "Essex Market is supposed to serve the people who live here, not just tourists. Whatever changes they make to how it's run, I want cheap vendors, free events, and programs for low-income families to stay.",
   "form": "cb2",
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
-  "committee_ok": false,
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2026-03-024",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Land Use, Zoning, Public & Private Housing",
+  "message": "Essex Market is supposed to serve the people who live here, not just tourists. Whatever changes they make to how it's run, I want cheap vendors, free events, and programs for low-income families to stay.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Land Use, Zoning, Public & Private Housing",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-04-059",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Parks, Recreation, Waterfront, & Resiliency",
+  "message": "Hi, I volunteer with a group that looks after Sara D. Roosevelt Park. The sandbox at Hester Street Playground is full of trash and rats and parents just avoid it. We're asking for support to swap it out for synthetic turf that kids can actually play on.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-04-059",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Parks, Recreation, Waterfront, & Resiliency",
+  "message": "Hi, I volunteer with a group that looks after Sara D. Roosevelt Park. The sandbox at Hester Street Playground is full of trash and rats and parents just avoid it. We're asking for support to swap it out for synthetic turf that kids can actually play on.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-10-038",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "It would be wonderful to see East 2nd St between B and C carry the names of Marsha P. Johnson and Sylvia Rivera. They fought for so many people and deserve to be remembered on our streets.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-10-038",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "It would be wonderful to see East 2nd St between B and C carry the names of Marsha P. Johnson and Sylvia Rivera. They fought for so many people and deserve to be remembered on our streets.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2026-03-026",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Parks, Recreation, Waterfront, & Resiliency",
+  "message": "strongly support naming that skate field after harold hunter. kids still skate there every day.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2026-03-026",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Parks, Recreation, Waterfront, & Resiliency",
+  "message": "strongly support naming that skate field after harold hunter. kids still skate there every day.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-09-056",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Cannabis Control Task Force",
+  "message": "I own Fire Escape, the dispensary at 103 Avenue A. We'd like to add a walk-up window so people can pick up orders without crowding inside, same hours as now, with staff watching the line. Hoping the board will back us.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Cannabis Control Task Force",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-09-056",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Cannabis Control Task Force",
+  "message": "I own Fire Escape, the dispensary at 103 Avenue A. We'd like to add a walk-up window so people can pick up orders without crowding inside, same hours as now, with staff watching the line. Hoping the board will back us.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Cannabis Control Task Force",
+  "committee_ok": true,
+  "by_address": true,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-06-032",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Cannabis Control Task Force",
+  "message": "Another cannabis store, this time at 5 Division St? That stretch by the Manhattan Bridge has lots of seniors and families. I'd like to know who's running it and how they'll handle security.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Cannabis Control Task Force",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-06-032",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Cannabis Control Task Force",
+  "message": "Another cannabis store, this time at 5 Division St? That stretch by the Manhattan Bridge has lots of seniors and families. I'd like to know who's running it and how they'll handle security.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Cannabis Control Task Force",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2026-06-004",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "Intercity buses loading in front of 9 Chatham Square is a terrible idea. Traffic between Doyers and Mott is already a mess and the sidewalk is narrow. Where are all those passengers and suitcases supposed to go?",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2026-06-004",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "Intercity buses loading in front of 9 Chatham Square is a terrible idea. Traffic between Doyers and Mott is already a mess and the sidewalk is narrow. Where are all those passengers and suitcases supposed to go?",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": true,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-12-001",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Parks, Recreation, Waterfront, & Resiliency",
+  "message": "Children's Magical Garden has been a free place for neighborhood kids for over 40 years. My daughter would be thrilled with a tree house and a little stage for shows, and the new fence and sidewalk are long overdue. Please support the improvements!",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-12-001",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Parks, Recreation, Waterfront, & Resiliency",
+  "message": "Children's Magical Garden has been a free place for neighborhood kids for over 40 years. My daughter would be thrilled with a tree house and a little stage for shows, and the new fence and sidewalk are long overdue. Please support the improvements!",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Parks, Recreation, Waterfront, & Resiliency",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2026-02-004",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "message": "With all the ICE raids and hate going around, people on the Lower East Side need to look out for each other. I'd love to see the board join the LES Community Care Coalition and help spread the know-your-rights trainings.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2026-02-004",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "message": "With all the ICE raids and hate going around, people on the Lower East Side need to look out for each other. I'd love to see the board join the LES Community Care Coalition and help spread the know-your-rights trainings.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2026-07-023",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "cien fuegos at 95 ave a wants a roadway shed. fine by me as long as it's kept clean and they close it up at a decent hour.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2026-07-023",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "cien fuegos at 95 ave a wants a roadway shed. fine by me as long as it's kept clean and they close it up at a decent hour.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2026-05-034",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "Brownie Morales did so much for the Lower East Side for so many years. Please support putting her name up at the corner of Stanton and Eldridge. Everyone around here knew her.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2026-05-034",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "Brownie Morales did so much for the Lower East Side for so many years. Please support putting her name up at the corner of Stanton and Eldridge. Everyone around here knew her.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-07-041",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "Is Commodore opening a second place at 14 Avenue C? That part of Avenue C is mostly apartments and I'm worried about late night crowds. I'd like to hear their hours before anything gets approved.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-07-041",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "Is Commodore opening a second place at 14 Avenue C? That part of Avenue C is mostly apartments and I'm worried about late night crowds. I'd like to hear their hours before anything gets approved.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-07-037",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "Soothr on East 13th is a great restaurant but their sidewalk tables already make it hard to get by with a stroller. If they're adding more outdoor seating at 204, please keep a clear path.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-07-037",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "Soothr on East 13th is a great restaurant but their sidewalk tables already make it hard to get by with a stroller. If they're adding more outdoor seating at 204, please keep a clear path.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-06-017",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "I'm the owner of Binondo, a small cafe. We're moving from Canal Street to 50 East Broadway and need to bring our beer and wine license with us. Same quiet cafe, same hours, just a new address.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-06-017",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "SLA Licensing & Outdoor Dining",
+  "message": "I'm the owner of Binondo, a small cafe. We're moving from Canal Street to 50 East Broadway and need to bring our beer and wine license with us. Same quiet cafe, same hours, just a new address.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2025-02-006",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "message": "Love the idea of a neon art piece on the new Barrier Free Living building at 270 East 2nd. Housing for domestic violence survivors with disabilities is exactly what we need, and a hopeful message out front is a nice touch.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3765,6 +4078,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3777,6 +4091,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3789,6 +4104,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3801,6 +4117,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3813,6 +4130,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3825,6 +4143,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": false
  },
  {
@@ -3837,6 +4156,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -3845,10 +4165,11 @@
   "mode": "before",
   "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "message": "It's not fair that the city only gets 20 percent back from the state for public health work when other counties get more. Please support raising it to 36 percent so the health department can keep clinics and outreach going.",
-  "form": "cb2",
-  "form_ok": true,
+  "form": "crossing_guard",
+  "form_ok": false,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3861,6 +4182,7 @@
   "form_ok": false,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3873,6 +4195,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3885,6 +4208,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -3897,6 +4221,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3909,6 +4234,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3921,6 +4247,7 @@
   "form_ok": false,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3933,6 +4260,7 @@
   "form_ok": false,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -3945,6 +4273,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3957,6 +4286,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3969,6 +4299,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -3981,6 +4312,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -3993,6 +4325,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4005,6 +4338,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4017,6 +4351,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4029,6 +4364,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4037,10 +4373,11 @@
   "mode": "before",
   "expected": "Transportation, Public Safety, Sanitation & Environment",
   "message": "Who's running the 4th of July party on Eldridge between Houston and Stanton? A daytime BBQ is fine, but please put a firm end time on the music.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
+  "form": "noise_residential",
+  "form_ok": false,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4049,11 +4386,12 @@
   "mode": "after",
   "expected": "Transportation, Public Safety, Sanitation & Environment",
   "message": "Who's running the 4th of July party on Eldridge between Houston and Stanton? A daytime BBQ is fine, but please put a firm end time on the music.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
-  "shown_own": false
+  "form": "noise_residential",
+  "form_ok": false,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "by_address": false,
+  "shown_own": true
  },
  {
   "id": "cb3-2025-03-036",
@@ -4065,6 +4403,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4077,6 +4416,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -4089,6 +4429,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4101,6 +4442,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4113,6 +4455,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4125,6 +4468,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4137,6 +4481,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4149,6 +4494,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4161,6 +4507,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4173,6 +4520,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4185,6 +4533,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4197,6 +4546,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4209,6 +4559,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4221,6 +4572,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4233,6 +4585,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4245,6 +4598,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4257,6 +4611,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4269,6 +4624,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4281,6 +4637,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4293,6 +4650,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4305,6 +4663,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4317,6 +4676,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4329,6 +4689,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4341,6 +4702,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4353,6 +4715,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4365,6 +4728,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4377,6 +4741,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4389,6 +4754,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4401,6 +4767,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4413,6 +4780,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4425,6 +4793,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4437,6 +4806,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4449,6 +4819,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4461,6 +4832,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4473,6 +4845,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4485,6 +4858,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4497,6 +4871,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4509,6 +4884,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4521,6 +4897,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4531,8 +4908,9 @@
   "message": "Every year I hear about budget priorities but nothing seems to change. Please ask the city for more trash pickups, school repairs and mental health outreach in our district.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4545,6 +4923,7 @@
   "form_ok": true,
   "committee": "Cannabis Control Task Force",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4557,6 +4936,7 @@
   "form_ok": true,
   "committee": "Cannabis Control Task Force",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4569,6 +4949,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4581,6 +4962,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -4593,6 +4975,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4605,6 +4988,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4617,6 +5001,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": false,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4629,6 +5014,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -4639,8 +5025,9 @@
   "message": "The Market Line at Essex Crossing was supposed to be small vendors and local food, not a Burlington. Please fight the big box store at 115 Delancey.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
+  "committee": "Land Use, Zoning, Public & Private Housing",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4653,6 +5040,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -4665,6 +5053,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4677,6 +5066,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4689,6 +5079,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4701,6 +5092,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4713,6 +5105,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4725,6 +5118,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4737,6 +5131,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4749,6 +5144,7 @@
   "form_ok": true,
   "committee": "Executive",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4761,6 +5157,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4773,6 +5170,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4785,6 +5183,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4797,6 +5196,7 @@
   "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4809,6 +5209,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4821,6 +5222,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4833,6 +5235,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4845,6 +5248,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4857,6 +5261,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4869,6 +5274,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4881,6 +5287,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4893,6 +5300,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4905,6 +5313,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4917,6 +5326,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4927,8 +5337,9 @@
   "message": "The market has lost a lot of its affordable stalls lately. Before the city signs a new deal with whoever runs it, ask them to commit to local vendors and community programs.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Economic Development",
-  "committee_ok": false,
+  "committee": "Land Use, Zoning, Public & Private Housing",
+  "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4941,6 +5352,7 @@
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4953,6 +5365,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4965,6 +5378,7 @@
   "form_ok": true,
   "committee": "Transportation, Public Safety, Sanitation & Environment",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -4977,6 +5391,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -4989,6 +5404,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": true,
   "shown_own": true
  },
  {
@@ -5001,6 +5417,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -5013,6 +5430,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -5025,6 +5443,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -5037,6 +5456,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -5049,6 +5469,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -5061,6 +5482,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  },
  {
@@ -5073,6 +5495,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": false
  },
  {
@@ -5085,6 +5508,7 @@
   "form_ok": true,
   "committee": "Landmarks",
   "committee_ok": true,
+  "by_address": false,
   "shown_own": true
  }
 ]

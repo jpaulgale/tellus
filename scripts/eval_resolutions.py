@@ -55,7 +55,7 @@ def score(c: dict, mode: str, r: dict) -> dict:
     loc = next((f for f in r["general"] if f["id"] == "location"), None)
     shown = {x["id"] for x in r.get("related", [])} | {x["id"] for o in (loc["options"] if loc else []) for x in (o.get("resolutions") or []) + (o.get("related") or [])}
     return {**out, "form": r["forms"][0]["key"], "form_ok": r["forms"][0]["key"] == "cb2", "committee": picked,
-            "committee_ok": picked == c["committee"], "shown_own": c["resolution_id"] in shown}
+            "committee_ok": picked == c["committee"], "by_address": bool(field and field.get("reason")), "shown_own": c["resolution_id"] in shown}
 
 
 def summarize(rs: list[dict], board: str) -> dict:

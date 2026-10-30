@@ -3,19 +3,19 @@
  "errors": 0,
  "form_311_covered": {
   "n": 64,
-  "correct": 60,
-  "accuracy": 0.938
+  "correct": 61,
+  "accuracy": 0.953
  },
  "form_311_uncovered": {
   "n": 40,
-  "correct": 30,
-  "accuracy": 0.75
+  "correct": 32,
+  "accuracy": 0.8
  },
  "form_311_by_lang": {
   "en": {
    "n": 86,
-   "correct": 74,
-   "accuracy": 0.86
+   "correct": 76,
+   "accuracy": 0.884
   },
   "es": {
    "n": 10,
@@ -24,36 +24,32 @@
   },
   "zh": {
    "n": 8,
-   "correct": 7,
-   "accuracy": 0.875
+   "correct": 8,
+   "accuracy": 1.0
   }
  },
  "form_public_session": {
   "n": 103,
-  "correct": 101,
-  "accuracy": 0.981
+  "correct": 99,
+  "accuracy": 0.961
  },
  "committee_public_session": {
   "n": 103,
-  "correct": 82,
-  "accuracy": 0.796
+  "correct": 84,
+  "accuracy": 0.816
  },
  "place_bbl_311": {
-  "n": 61,
-  "correct": 61,
+  "n": 62,
+  "correct": 62,
   "accuracy": 1.0,
   "of": 79
  },
  "false_emergency": 6,
- "latency_ms_p50": 1311,
+ "latency_ms_p50": 1188,
  "confusion_311": [
   [
    "noise_commercial -> cb2",
-   4
-  ],
-  [
-   "none of ours -> rodents",
-   2
+   3
   ],
   [
    "none of ours -> noise_residential",
@@ -64,8 +60,8 @@
    2
   ],
   [
-   "none of ours -> noise_commercial",
-   2
+   "none of ours -> rodents",
+   1
   ],
   [
    "none of ours -> missed_collection",
@@ -74,27 +70,27 @@
   [
    "none of ours -> crossing_guard",
    1
+  ],
+  [
+   "none of ours -> noise_commercial",
+   1
   ]
  ],
  "confusion_committee": [
   [
    "SLA – 1 -> Landmarks & Public Aesthetics",
-   3
+   5
   ],
   [
    "Human Services -> Land Use & Housing",
    2
   ],
   [
-   "Landmarks & Public Aesthetics -> Executive Committee",
+   "Executive Committee -> SLA – 2",
    2
   ],
   [
-   "Landmarks & Public Aesthetics -> Land Use & Housing",
-   2
-  ],
-  [
-   "Executive Committee -> SLA – 1",
+   "Executive Committee -> Traffic & Transportation",
    1
   ],
   [
@@ -106,15 +102,11 @@
    1
   ],
   [
+   "Landmarks & Public Aesthetics -> SLA – 1",
+   1
+  ],
+  [
    "Street Activities & Resiliency -> SLA – 1",
-   1
-  ],
-  [
-   "Landmarks & Public Aesthetics -> SLA – 2",
-   1
-  ],
-  [
-   "Executive Committee -> Schools & Education",
    1
   ],
   [
@@ -126,7 +118,7 @@
    1
   ],
   [
-   "Executive Committee -> SLA – 2",
+   "Landmarks & Public Aesthetics -> Executive Committee",
    1
   ],
   [
@@ -134,17 +126,13 @@
    1
   ],
   [
-   "Human Services -> Street Activities & Resiliency",
-   1
-  ],
-  [
-   "Street Activities & Resiliency -> Traffic & Transportation",
+   "Schools & Education -> Executive Committee",
    1
   ]
  ],
  "misses": [
   {
-   "message": "Restaurant at 126 W 13th is banging and pounding late at night, sounds like they're moving stuff or doing work after closing. Every night this week until 1am.",
+   "message": "Bar at 1 West 3rd blasting music again at 2am. Windows are closed and I can still feel the bass.",
    "expected": "311 Noise from a Business",
    "got": "CB2 Manhattan"
   },
@@ -159,20 +147,20 @@
    "got": "CB2 Manhattan"
   },
   {
-   "message": "Restaurant downstairs at 181 Thompson keeps playing loud music past midnight. I've asked them nicely twice.",
-   "expected": "311 Noise from a Business",
-   "got": "CB2 Manhattan"
+   "message": "The restaurant at 18 9th Ave has garbage piled up and I saw roaches by the kitchen door. Gross.",
+   "expected": "not one of our 311 forms (311 filed it as Food Establishment)",
+   "got": "311 Rats"
+  },
+  {
+   "message": "It is time to end the \"If you see something say something\" signage on the subway. Concern that the City is losing sight of broader need for affordable housing and more transportation.",
+   "expected": "Executive Committee",
+   "got": "Traffic & Transportation"
   },
   {
    "message": "Fire egress: Concerns were repeated by many people about the safety of the building and the sufficiency of the fire egress, which was described by a neighbor as requiring residents in the rear of the ",
    "expected": "Human Services",
    "got": "Land Use & Housing"
-  },
-  {
-   "message": "What happened to the men who were tenants in the building? Rosenbaum responded that that relationship is between the tenants and the landlord, but it is his understanding that there are three tenants ",
-   "expected": "Human Services",
-   "got": "Land Use & Housing"
   }
  ],
- "run": "2026-10-29"
+ "run": "2026-10-30"
 }

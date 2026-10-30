@@ -212,12 +212,10 @@ function cornerQuery(text: string): [string, string] | null {
   return parts.length === 2 ? [parts[0], parts[1]] : null;
 }
 
-async function findLocations(b: BoardConfig, message: string, x: Extracted = {}): Promise<Candidate[]> {
-  const queries = [...new Set([...placeQueries(x), ...addressQueries(message)])].slice(0, 6);
-  const addressLookups = queries.flatMap((q) => [geosearch(b, q), geosearch(b, `${q}, Manhattan`, 2)]);
-  const pair = cornerOf(x);
-  const names = [...new Set([...(x.business ? [x.business] : []), ...properNames(message).map((n) => n.value)])];
-  const businessLookups = names.slice(0, 4).map(async (n): Promise<Candidate[]> => {
+/** Every place the message could mean. The regex finders' lookups start at once; Clairic's extra ones join when it answers. */
+async function findLocations(b: BoardConfig, message: string, clairic: Promise<Extracted>): Promise<Candidate[]> {
+  const lookup = (q: string) => [geosearch(b, q), geosearch(b, `${q}, Manhattan`, 2)];
+  const business = async (n: string): Promise<Candidate[]> => {
     const lic = await liquorLicenses(n);
     return Promise.all(
       lic.map(async (l) => {
@@ -231,9 +229,20 @@ async function findLocations(b: BoardConfig, message: string, x: Extracted = {})
         };
       }),
     );
-  });
-  const cornerLookup = pair ? corner(b, ...pair).then((c) => (c ? [c] : [])) : Promise.resolve([]);
-  const all = (await Promise.all([cornerLookup, intersections(b, message), ...businessLookups, ...addressLookups])).flat();
+  };
+  const queries = addressQueries(message).slice(0, 6);
+  const names = properNames(message).map((n) => n.value).slice(0, 4);
+  const early = [intersections(b, message), ...queries.flatMap(lookup), ...names.map(business)];
+  const x = await clairic;
+  const pair = cornerOf(x);
+  const same = (a: string, b: string) => a.toLowerCase() === b.toLowerCase();
+  const late = [
+    pair ? corner(b, ...pair).then((c) => (c ? [c] : [])) : Promise.resolve([]),
+    ...placeQueries(x).filter((q) => !queries.some((r) => same(r, q))).flatMap(lookup),
+    ...(x.business && !names.some((n) => same(n, x.business!)) ? [business(x.business)] : []),
+  ];
+  // Clairic's finds first: it read the whole sentence, the regexes only patterns.
+  const all = (await Promise.all([...late, ...early])).flat();
   const seen = new Set<string>();
   const unique = all.filter((c) => !seen.has(c.key) && seen.add(c.key));
   const inside = (await withDistrict(b, unique)).slice(0, 12);
@@ -353,7 +362,10 @@ function recordQuestions(b: BoardConfig, past: Resolution[], nearby: Resolution[
   return questions;
 }
 
-function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[], x: Extracted = {}) {
+function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past: Resolution[], nearby: Resolution[], x: Extracted = {}, searched: Resolution[] = []) {
+  // Conditions the board set on the address (a license's stipulations): only these make the board the place for a
+  // nuisance complaint. A one-day street event permit there says nothing about tonight's apartment party.
+  const bound = past.filter((r) => r.stipulations.length);
   const questions: Record<string, unknown> = {
     emergency: {
       type: "noul",
@@ -365,7 +377,7 @@ function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past
     },
     route: {
       type: "choice",
-      instructions: past.length
+      instructions: bound.length
         ? { question: "Which form should this New York City resident's `message` be filed as? `board_record` lists what ${b.full} has already decided about the address in the message.",
             rule: "A complaint that a business is breaking conditions the board set for it belongs with the board (cb2), which can hold the business to them, even when it is also a noise problem." }
         : "Which form should this New York City resident's message be filed as?",
@@ -414,9 +426,16 @@ function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past
         };
         cands[qid] = f.choices!.map((c) => ({ key: c, value: c }));
       } else if (f.kind === "committee") {
+        // Which committee takes a matter up is the board's custom, so the minutes are the evidence: past items
+        // on this address, and those the search found with the resident's words, each with its committee.
+        const precedent = [...past.map((r) => [r, " (this address)"] as const), ...searched.filter((r) => !past.some((p) => p.id === r.id)).map((r) => [r, ""] as const)]
+          .slice(0, 8).map(([r, at]) => `${r.meeting_date}${at}: ${r.title.slice(0, 180)} → ${r.committee}`);
         questions[qid] = {
           type: "choice",
-          instructions: { assumption: premise, question: `Which ${b.full} committee should review this?` },
+          instructions: {
+            assumption: premise, question: `Which ${b.full} committee should review this?`,
+            ...(precedent.length ? { precedent, rule: "`precedent` lists past items in the board's minutes, each with the committee that took it up. The board assigns matters by its own custom: when a precedent is the same kind of matter as the message (the same kind of application, program, place or policy), choose its committee even if another committee's description also fits. Ignore precedents that only share a word or a street." } : {}),
+          },
           criteria: b.committees,
         };
         cands[qid] = Object.entries(b.committees).map(([k, v]) => ({ key: k, value: k, note: v }));
@@ -428,7 +447,7 @@ function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past
       }
     }
   }
-  const boardRecord = past.map((r) =>
+  const boardRecord = bound.map((r) =>
     `${r.meeting_date}: ${r.committee} reviewed the ${r.license_type || "application"} of ${r.dba || r.legal_name} at ${r.address}` +
     (r.stipulations.length ? `; the business agreed to ${r.stipulations.length} stipulations, including: ${r.stipulations.slice(0, 10).join(" | ")}` : ""));
   return { questions, cands, boardRecord };
@@ -519,7 +538,8 @@ function decode(b: BoardConfig, answers: Record<string, Answer>, cands: Record<s
   }
   // The committee that reviewed this business before is the one that should hear about it again.
   const chosen = loc?.selected != null ? loc.options[loc.selected] : null;
-  const prior = chosen?.resolutions?.find((r: any) => r.relevant.length) ?? chosen?.resolutions?.[0]; // the decision the complaint is about, else the newest
+  const about = chosen?.resolutions?.find((r: any) => r.relevant.length); // the decision whose conditions the complaint is about
+  const prior = about ?? chosen?.resolutions?.[0]; // else the newest, for the business's name
   const committee = forms.find((f) => f.key === "cb2")?.fields.find((f) => f.id === "committee");
   // "The bar downstairs" is the business the board has on record at that address.
   if (prior) {
@@ -530,9 +550,10 @@ function decode(b: BoardConfig, answers: Record<string, Answer>, cands: Record<s
       if (biz && i >= 0 && (biz.selected == null || biz.options[biz.selected].p < 0.9)) { biz.selected = i; biz.reason = `On the board's record for ${prior.address}.`; }
     }
   }
-  if (prior && committee) {
-    const i = committee.options.findIndex((o: any) => o.value === prior.committee);
-    if (i >= 0) { committee.selected = i; committee.reason = `${prior.committee} reviewed this address on ${prior.meeting_date}.`; }
+  // Only then: a wheelchair lift at a building with a liquor license is still a Landmarks matter (Jev saw the address's record as precedent).
+  if (about && committee) {
+    const i = committee.options.findIndex((o: any) => o.value === about.committee);
+    if (i >= 0) { committee.selected = i; committee.reason = `${about.committee} reviewed this address on ${about.meeting_date}.`; }
   }
   const emergency = Math.max(answers.emergency.type === "noul" ? answers.emergency.noul : 0, route.call_911 ?? 0);
   // With no place picked, the minutes the search found still show.
@@ -566,16 +587,19 @@ async function route(request: Request, env: Env, track: Track, b: BoardConfig): 
   if (message.length < 8) return json({ error: "Tell us a bit more first" }, 400);
   const t0 = Date.now();
   const today = new Date().toLocaleDateString("en-US", { timeZone: "America/New_York", dateStyle: "full" });
-  const clairic = await extract(env.AI, message, new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" }));
-  const locations = await findLocations(b, message, clairic.found);
+  const reading = extract(env.AI, message, new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" }));
+  const searching = searchMinutes(env.DB, b, message, 8, before);
+  const locations = await findLocations(b, message, reading.then((c) => c.found));
+  const [clairic, searched] = await Promise.all([reading, searching]);
   const lookupMs = Date.now() - t0;
-  const [placeList, searched] = await Promise.all([placesFor(env.DB, b, locations.map((l) => l.geo), before), searchMinutes(env.DB, b, message, 6, before)]);
+  const placeList = await placesFor(env.DB, b, locations.map((l) => l.geo), before);
   const places = new Map(locations.map((l, i) => [l.key, placeList[i]]));
   const past = unique(placeList.flatMap((p) => p.at)).slice(0, 3);
   const nearby = unique(locations.filter((l) => !l.geo?.board?.outside).flatMap((l) => places.get(l.key)!.near)).slice(0, 10);
-  const found = searched.filter((r) => !past.some((x) => x.id === r.id));
+  // Eight hits are precedent for the committee; six are enough to ask Jev about as related decisions.
+  const found = searched.filter((r) => !past.some((x) => x.id === r.id)).slice(0, 6);
   await withText(env.DB, placeList.flatMap((p) => p.at)); // the clauses a complaint can be about
-  const { questions, cands, boardRecord } = buildPlan(b, message, locations, past, unique([...nearby, ...found]), clairic.found);
+  const { questions, cands, boardRecord } = buildPlan(b, message, locations, past, unique([...nearby, ...found]), clairic.found, searched);
   let jev;
   const t1 = Date.now();
   try {

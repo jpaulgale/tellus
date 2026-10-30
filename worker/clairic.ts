@@ -34,6 +34,10 @@ export async function extract(ai: Ai | undefined, message: string, today: string
       if (a?.value == null || a.value === "" || (a.confidence ?? 0) < SURE) continue;
       found[k] = k === "house_number" ? String(Math.round(a.value)) : String(a.value).trim();
     }
+    // "117 Avenue A" all read as the street: the number in front is the building number.
+    const n = /^(\d{1,5}[A-Z]?)\s+(.+)$/i.exec(found.street ?? "");
+    if (n && !found.house_number) [found.house_number, found.street] = [n[1], n[2]];
+    if (found.place && found.house_number && found.place === `${found.house_number} ${found.street}`) delete found.place;
     // "325 W 11th" read as street "11th" is 11th Avenue to GeoSearch: keep a direction the message puts right before it.
     for (const k of ["street", "cross_street"] as const) {
       const v = found[k];
