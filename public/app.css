@@ -319,3 +319,39 @@ html, body { background: var(--white); }
   .app { border: 0; border-radius: 0; box-shadow: none; margin: 0 auto; padding-top: 40px; }
   .minibar { border-radius: 0; }
 }
+
+/* ---------- NYC Digital Design System: color, spacing and grid (designsystem.nyc.gov/brand) ---------- */
+/* Color: Blue 40 is only for what you can act on. Labels, the demo chip and the tagline are black and gray;
+   information is Blue 70; caution stays Yellow 40 and success Green 40. */
+.hl { color: inherit; }
+.wordmark .hl { color: var(--accent); }  /* the logo keeps its blue */
+.demochip > span:first-child { background: var(--gray-90); color: var(--gray-20); }
+.ff-tag, .tag { color: var(--gray-20); background: var(--gray-90); }
+.routebox { border: 1px solid var(--gray-80); border-left: 6px solid var(--blue-70); }
+.rescard { border: 1px solid var(--gray-80); border-left: 6px solid var(--blue-70); background: var(--white); }
+.rescard-eyebrow { color: var(--gray-30); }
+.nyc-inlinemessage--info { background: var(--white); border-left-color: var(--blue-70); color: var(--ink); }
+
+/* Corners: one radius for every box (pills stay pills). */
+.routebox, .rescard, .ranklist, .mapbox, .bizcard, .didyoumean, .suggest, .ff.need { border-radius: 8px; }
+
+/* Spacing: 16 inside a section, 32 between sections, 64 before the footer. */
+.appmain { gap: 32px; }
+.intro { gap: 16px; }
+.demochip, .lede, .howlink { margin: 0; }
+#verdict { gap: 16px; }
+#verdict:empty { display: none; }
+.credit-foot { margin-top: 32px; }
+
+/* Grid: one column no wider than 750 px of content (the line-length limit), the form's two columns inside it. */
+@media (min-width: 760px) {
+  .app { max-width: calc(750px + 72px); padding-inline: 36px; padding-top: 40px; }
+  .wordmark, .hero, .lede, .demo-note, .composer, #verdict, .composer-row, .composer-bar { max-width: none; }
+  .topics { margin-inline: -36px; }
+  .topics-lead { padding-inline: 36px; text-align: center; }
+  .topic-list { padding-inline: 36px; justify-content: center; }
+  .liveform { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; padding: 24px; }
+  .liveform .ff[data-key="general.location"], .liveform .subhead, .liveform > :not(.ff) { grid-column: 1 / -1; }
+  /* Send to and Submit end the form, so they share its outlined box. */
+  #sendPanel { border: 1px solid var(--line); border-radius: 8px; padding: 24px; margin-top: 24px; }
+}
