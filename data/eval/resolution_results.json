@@ -871,8 +871,8 @@
   "message": "81 Spring wants to add a second flag on the Crosby Street side plus new paint. Crosby is a quieter block with trees, the one flag on Spring seems like enough.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
+  "committee": "Landmarks & Public Aesthetics",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -919,8 +919,8 @@
   "message": "There's going to be a pop-up shop at 437 Broadway with lines on the sidewalk for over two weeks? Broadway between Grand and Howard is already a crush. Please make them stick to reservations.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -931,8 +931,8 @@
   "message": "There's going to be a pop-up shop at 437 Broadway with lines on the sidewalk for over two weeks? Broadway between Grand and Howard is already a crush. Please make them stick to reservations.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 1",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -1855,7 +1855,7 @@
   "message": "I run a small cafe with one row of two-person tables against the wall. Now the city wants a full barrier around them, which takes up more sidewalk than the tables do. Could the board ask DOT to drop that for setups like ours?",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Outdoor Dining Working Group",
+  "committee": "Traffic & Transportation",
   "committee_ok": false,
   "shown_own": false
  },
@@ -1867,7 +1867,7 @@
   "message": "I run a small cafe with one row of two-person tables against the wall. Now the city wants a full barrier around them, which takes up more sidewalk than the tables do. Could the board ask DOT to drop that for setups like ours?",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Outdoor Dining Working Group",
+  "committee": "Traffic & Transportation",
   "committee_ok": false,
   "shown_own": true
  },
@@ -2671,7 +2671,7 @@
   "message": "Our public hospital takes care of everyone no matter what. Please ask the city and state to put more money into it in this year's budget.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Community Facilities Advisory Panel",
+  "committee": "Human Services",
   "committee_ok": false,
   "shown_own": false
  },
@@ -2683,7 +2683,7 @@
   "message": "Our public hospital takes care of everyone no matter what. Please ask the city and state to put more money into it in this year's budget.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Community Facilities Advisory Panel",
+  "committee": "Human Services",
   "committee_ok": false,
   "shown_own": true
  },
@@ -2983,8 +2983,8 @@
   "message": "A beauty brand event in a studio on 8th street needs the curb for loading. Everything is indoors, no lines. fine.",
   "form": "illegal_parking",
   "form_ok": false,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -2995,8 +2995,8 @@
   "message": "A beauty brand event in a studio on 8th street needs the curb for loading. Everything is indoors, no lines. fine.",
   "form": "illegal_parking",
   "form_ok": false,
-  "committee": "Traffic & Transportation",
-  "committee_ok": false,
+  "committee": "Street Activities & Resiliency",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -3007,8 +3007,8 @@
   "message": "11 Howard wants to add a ground floor restaurant to its hotel liquor license. The Blond has had noise issues, please check before approving.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA – 2",
-  "committee_ok": false,
+  "committee": "SLA – 1",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -3103,8 +3103,8 @@
   "message": "please don't sign off on any open container waiver. we already have people drinking on stoops and in the park every weekend and the noise and broken bottles are bad enough as it is.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
+  "committee": "Executive",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -3115,8 +3115,8 @@
   "message": "please don't sign off on any open container waiver. we already have people drinking on stoops and in the park every weekend and the noise and broken bottles are bad enough as it is.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "SLA Licensing & Outdoor Dining",
-  "committee_ok": false,
+  "committee": "Executive",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -3175,8 +3175,8 @@
   "message": "Our neighbors are scared to go to the clinic or drop their kids at school because they don't know if local police will hand them over to ICE. I hope the board backs the New York for All Act in Albany so state and city officers stay out of federal immigration enforcement.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -3187,8 +3187,8 @@
   "message": "Our neighbors are scared to go to the clinic or drop their kids at school because they don't know if local police will hand them over to ICE. I hope the board backs the New York for All Act in Albany so state and city officers stay out of federal immigration enforcement.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -3365,8 +3365,8 @@
   "mode": "before",
   "expected": "SLA Licensing & Outdoor Dining",
   "message": "Bar Belly at 14B Orchard wants seating out in the street again. Orchard is already jammed on weekend nights and those sheds bring the noise right up to our windows. Please think about the people living upstairs.",
-  "form": "noise_commercial",
-  "form_ok": false,
+  "form": "cb2",
+  "form_ok": true,
   "committee": "SLA Licensing & Outdoor Dining",
   "committee_ok": true,
   "shown_own": false
@@ -3415,8 +3415,8 @@
   "message": "Essex Market is supposed to serve the people who live here, not just tourists. Whatever changes they make to how it's run, I want cheap vendors, free events, and programs for low-income families to stay.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Economic Development",
-  "committee_ok": false,
+  "committee": "Land Use, Zoning, Public & Private Housing",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -3427,8 +3427,8 @@
   "message": "Essex Market is supposed to serve the people who live here, not just tourists. Whatever changes they make to how it's run, I want cheap vendors, free events, and programs for low-income families to stay.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Economic Development",
-  "committee_ok": false,
+  "committee": "Land Use, Zoning, Public & Private Housing",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -3437,8 +3437,8 @@
   "mode": "before",
   "expected": "Parks, Recreation, Waterfront, & Resiliency",
   "message": "Hi, I volunteer with a group that looks after Sara D. Roosevelt Park. The sandbox at Hester Street Playground is full of trash and rats and parents just avoid it. We're asking for support to swap it out for synthetic turf that kids can actually play on.",
-  "form": "rodents",
-  "form_ok": false,
+  "form": "cb2",
+  "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
   "shown_own": false
@@ -3501,7 +3501,7 @@
   "form_ok": true,
   "committee": "Parks, Recreation, Waterfront, & Resiliency",
   "committee_ok": true,
-  "shown_own": true
+  "shown_own": false
  },
  {
   "id": "cb3-2025-09-056",
@@ -3621,7 +3621,7 @@
   "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
-  "shown_own": false
+  "shown_own": true
  },
  {
   "id": "cb3-2026-07-023",
@@ -3643,8 +3643,8 @@
   "message": "cien fuegos at 95 ave a wants a roadway shed. fine by me as long as it's kept clean and they close it up at a decent hour.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": false,
+  "committee": "SLA Licensing & Outdoor Dining",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -3845,8 +3845,8 @@
   "mode": "before",
   "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "message": "It's not fair that the city only gets 20 percent back from the state for public health work when other counties get more. Please support raising it to 36 percent so the health department can keep clinics and outreach going.",
-  "form": "crossing_guard",
-  "form_ok": false,
+  "form": "cb2",
+  "form_ok": true,
   "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
   "committee_ok": true,
   "shown_own": false
@@ -4279,8 +4279,8 @@
   "message": "I'm a senior on a pension and would love to ride Citi Bike, but the cost adds up. A cheaper rate for older riders would get a lot of us out and moving.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -4291,8 +4291,8 @@
   "message": "I'm a senior on a pension and would love to ride Citi Bike, but the cost adds up. A cheaper rate for older riders would get a lot of us out and moving.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -4423,8 +4423,8 @@
   "message": "If St. Mark's Church on East 10th is selling air rights for the project on Third Ave, I want to know the money actually goes into fixing up the church. It's the oldest place of worship in Manhattan and it needs the work.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use, Zoning, Public & Private Housing",
-  "committee_ok": false,
+  "committee": "Landmarks",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -4435,8 +4435,8 @@
   "message": "If St. Mark's Church on East 10th is selling air rights for the project on Third Ave, I want to know the money actually goes into fixing up the church. It's the oldest place of worship in Manhattan and it needs the work.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Land Use, Zoning, Public & Private Housing",
-  "committee_ok": false,
+  "committee": "Landmarks",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -4759,8 +4759,8 @@
   "message": "please support the senior discount for bike share. lots of us older folks would ride if it were cheaper",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -4771,8 +4771,8 @@
   "message": "please support the senior discount for bike share. lots of us older folks would ride if it were cheaper",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -4855,8 +4855,8 @@
   "message": "The Halloween dog parade is the best day of the year! Hope it gets approved again for October 18.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive",
-  "committee_ok": false,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -4867,8 +4867,8 @@
   "message": "The Halloween dog parade is the best day of the year! Hope it gets approved again for October 18.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive",
-  "committee_ok": false,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
   "shown_own": true
  },
  {
@@ -4937,46 +4937,46 @@
   "mode": "after",
   "expected": "Land Use, Zoning, Public & Private Housing",
   "message": "The market has lost a lot of its affordable stalls lately. Before the city signs a new deal with whoever runs it, ask them to commit to local vendors and community programs.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Economic Development",
-  "committee_ok": false,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-07-001",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "I'm glad DOT wants to make Avenue B safer along Tompkins Square, but switching it to one-way between 7th and 10th worries me. Will traffic just get pushed onto the side streets? I do like the bike lane and safer crossings by the schools.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": false
- },
- {
-  "id": "cb3-2025-07-001",
-  "board": "cb3",
-  "mode": "after",
-  "expected": "Transportation, Public Safety, Sanitation & Environment",
-  "message": "I'm glad DOT wants to make Avenue B safer along Tompkins Square, but switching it to one-way between 7th and 10th worries me. Will traffic just get pushed onto the side streets? I do like the bike lane and safer crossings by the schools.",
-  "form": "cb2",
-  "form_ok": true,
-  "committee": "Transportation, Public Safety, Sanitation & Environment",
-  "committee_ok": true,
-  "shown_own": true
- },
- {
-  "id": "cb3-2024-11-001",
-  "board": "cb3",
-  "mode": "before",
-  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
-  "message": "I heard Lower Eastside Service Center plans to renovate 46 East Broadway and move a state addiction services office in. The building needs work, but how will they manage people coming and going on that busy stretch?",
   "form": "cb2",
   "form_ok": true,
   "committee": "Land Use, Zoning, Public & Private Housing",
-  "committee_ok": false,
+  "committee_ok": true,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-07-001",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "I'm glad DOT wants to make Avenue B safer along Tompkins Square, but switching it to one-way between 7th and 10th worries me. Will traffic just get pushed onto the side streets? I do like the bike lane and safer crossings by the schools.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "shown_own": false
+ },
+ {
+  "id": "cb3-2025-07-001",
+  "board": "cb3",
+  "mode": "after",
+  "expected": "Transportation, Public Safety, Sanitation & Environment",
+  "message": "I'm glad DOT wants to make Avenue B safer along Tompkins Square, but switching it to one-way between 7th and 10th worries me. Will traffic just get pushed onto the side streets? I do like the bike lane and safer crossings by the schools.",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Transportation, Public Safety, Sanitation & Environment",
+  "committee_ok": true,
+  "shown_own": true
+ },
+ {
+  "id": "cb3-2024-11-001",
+  "board": "cb3",
+  "mode": "before",
+  "expected": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "message": "I heard Lower Eastside Service Center plans to renovate 46 East Broadway and move a state addiction services office in. The building needs work, but how will they manage people coming and going on that busy stretch?",
+  "form": "cb2",
+  "form_ok": true,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -5047,8 +5047,8 @@
   "message": "This neighborhood has always been home to immigrants. Please stand up for keeping New York a sanctuary city. People need to feel safe calling 911 or sending their kids to school.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": false
  },
  {
@@ -5059,8 +5059,8 @@
   "message": "This neighborhood has always been home to immigrants. Please stand up for keeping New York a sanctuary city. People need to feel safe calling 911 or sending their kids to school.",
   "form": "cb2",
   "form_ok": true,
-  "committee": "Executive",
-  "committee_ok": false,
+  "committee": "Health, Seniors & Human Services / Youth, Education & Human Rights",
+  "committee_ok": true,
   "shown_own": true
  },
  {

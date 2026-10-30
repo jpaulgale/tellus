@@ -55,14 +55,14 @@
     "areas": "the East Village, Lower East Side and Chinatown",
     "committees": {
       "SLA Licensing & Outdoor Dining": "Bars, restaurants and venues with liquor licenses anywhere in CB3: noise and music from licensed premises, hours, crowds, new or renewed liquor licenses, sidewalk and roadway dining.",
-      "Transportation, Public Safety, Sanitation & Environment": "Streets, bike lanes, crosswalks, traffic signals, bus stops and intercity buses, parking, street co-namings, police and public safety, garbage, sanitation and the environment.",
+      "Transportation, Public Safety, Sanitation & Environment": "Streets, bike lanes, crosswalks, traffic signals, bus stops and intercity buses, parking, street co-namings, block parties, street fairs and parades, police and public safety, garbage, sanitation and the environment.",
       "Parks, Recreation, Waterfront, & Resiliency": "Parks and playgrounds, Tompkins Square Park, East River Park, the waterfront, trees and green space, flood and climate resiliency.",
-      "Land Use, Zoning, Public & Private Housing": "Zoning, new development, construction, affordable housing, NYCHA, tenant issues.",
-      "Landmarks": "Changes to landmarked buildings and historic districts: facades, windows, signage, storefronts, rooftop additions.",
-      "Health, Seniors & Human Services / Youth, Education & Human Rights": "Homelessness and shelters, mental health, seniors, public health, schools, youth programs, human rights.",
-      "Economic Development": "Small businesses, commercial rents and storefronts, markets like Essex Market, street vendors, jobs.",
-      "Cannabis Control Task Force": "Cannabis dispensaries and smoke shops: licensing, unlicensed sales, location near schools.",
-      "Executive": "Board-wide policy, budget priorities, proposed city and state laws, or issues that fit no other committee."
+      "Land Use, Zoning, Public & Private Housing": "Zoning, new development, construction, affordable housing, NYCHA, tenant issues, and city-owned sites and their tenants: Essex Market, Essex Crossing and the Market Line.",
+      "Landmarks": "Any work on a landmarked building or site or in a historic district: facades, windows, signage, storefronts, rooftop additions, accessibility lifts, gardens or open space on a landmarked lot, and upkeep plans tied to a landmark selling its air rights.",
+      "Health, Seniors & Human Services / Youth, Education & Human Rights": "Homelessness and shelters, mental health, addiction services and the buildings of social-service providers, seniors (including discounts or programs for seniors), public health, schools, youth programs, human rights, immigrants and sanctuary-city policy.",
+      "Economic Development": "Small businesses, commercial rents and storefronts, street vendors, jobs.",
+      "Cannabis Control Task Force": "Cannabis dispensaries and smoke shops: licensing, unlicensed sales, location near schools, and changes to a dispensary such as a service window or hours.",
+      "Executive": "Board-wide policy and the board's own rules, open container waivers, or issues that fit no other committee. A proposed law goes to the committee for its topic."
     },
     "examples": [
       { "topic": "Bar downstairs", "to": "CB3 · SLA", "ex": "The bar at 117 Avenue A keeps its front doors open after 10pm and the music fills my apartment." },
