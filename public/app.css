@@ -18,7 +18,7 @@
 .demochip > span:first-child { display: inline-block; padding: 4px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-dark); font-size: 13px; font-weight: 700; }
 .howlink a { display: inline-block; padding: 7px 16px; border: 1.5px solid var(--accent); border-radius: 99px;
   color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: none; transition: background .15s; }
-.howlink a:hover { background: var(--accent-soft); }
+@media (hover: hover) and (pointer: fine) { .howlink a:hover { background: var(--accent-soft); } }
 
 /* composer */
 .composer { display: flex; flex-direction: column; gap: 6px; }
@@ -41,7 +41,7 @@ textarea.composer-text { resize: vertical; }
   padding: 7px 12px; font: inherit; font-size: 14px; font-weight: 600; line-height: 1.25; cursor: pointer; text-decoration: none;
   overflow-wrap: anywhere; transition: border-color .15s, background .15s;
 }
-.chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+@media (hover: hover) and (pointer: fine) { .chip:hover { border-color: var(--accent); background: var(--accent-soft); } }
 .chip.on { border-color: var(--accent); background: var(--accent); color: #fff; }
 .chip-none { border-style: dashed; }
 .chips.alts { margin-top: 6px; }
@@ -67,7 +67,7 @@ textarea.composer-text { resize: vertical; }
   padding: 10px 12px; border: 0; border-top: 1px solid var(--line); background: var(--white); font: inherit; color: var(--ink); cursor: pointer;
 }
 .rank:first-child { border-top: 0; }
-.rank:hover { background: var(--accent-soft); }
+@media (hover: hover) and (pointer: fine) { .rank:hover { background: var(--accent-soft); } }
 .rank.on { background: var(--accent-soft); box-shadow: inset 4px 0 0 var(--accent); }
 .rank-title { font-size: 14px; font-weight: 700; }
 .rank-sub { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); font-weight: 500; line-height: 1.35; }
@@ -82,7 +82,8 @@ textarea.composer-text { resize: vertical; }
 .suggest li:first-child { border-top: 0; }
 .suggest li b { font-size: 14px; }
 .suggest li span { font-size: 12px; color: var(--muted); }
-.suggest li[aria-selected="true"], .suggest li:hover { background: var(--accent-soft); }
+.suggest li[aria-selected="true"] { background: var(--accent-soft); }
+@media (hover: hover) and (pointer: fine) { .suggest li:hover { background: var(--accent-soft); } }
 .mapbox { width: 100%; height: 200px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--gray-90); }
 .geometa { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .bizcard { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; color: var(--gray-20); }
@@ -125,7 +126,7 @@ textarea.composer-text { resize: vertical; }
   font: inherit; font-size: 13px; font-weight: 600; color: var(--ink);
   transition: border-color .15s, background .15s, transform .1s;
 }
-.topic:hover { border-color: var(--accent); background: var(--accent-soft); }
+@media (hover: hover) and (pointer: fine) { .topic:hover { border-color: var(--accent); background: var(--accent-soft); } }
 .topic:active { transform: scale(.97); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -140,17 +141,9 @@ textarea.composer-text { resize: vertical; }
 .route911 b { color: var(--warn-text); font-family: var(--font-display); font-size: 22px; }
 .jevpill911 { margin-left: 8px; font-size: 12px; font-weight: 700; color: var(--warn-text); background: rgba(236,19,30,.1); border-radius: 99px; padding: 3px 9px; vertical-align: 2px; }
 .call911 { display: block; width: 100%; text-align: center; background: var(--red-40); color: #fff; font-weight: 700; font-size: 18px; text-decoration: none; border-radius: 99px; padding: 16px; }
-.call911:hover { background: #C50F18; }
+@media (hover: hover) and (pointer: fine) { .call911:hover { background: #C50F18; } }
 
-/* Siren: red and blue beacons flashing in turn, with a glow that sweeps the card */
-.siren { display: flex; gap: 10px; justify-content: center; }
-.siren i { width: 54px; height: 30px; border-radius: 30px 30px 6px 6px; }
-.siren-l { background: var(--red-40); animation: beacon .5s steps(1) infinite; box-shadow: 0 0 28px 6px rgba(236,19,30,.55); }
-.siren-r { background: var(--blue-40); animation: beacon .5s steps(1) infinite reverse; box-shadow: 0 0 28px 6px rgba(16,63,239,.55); }
-@keyframes beacon { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .15; box-shadow: none; } }
-.route911 { border-radius: 12px; padding: 16px 12px; animation: sirenwash 1s steps(1) infinite; }
-@keyframes sirenwash { 0%, 49% { background: rgba(236,19,30,.08); } 50%, 100% { background: rgba(16,63,239,.08); } }
-@media (prefers-reduced-motion: reduce) { .siren i, .route911 { animation: none; } }
+.route911 { border-radius: 12px; padding: 16px 12px; }
 
 /* ---------- desktop: a wide card so the routed form shows in two columns ---------- */
 @media (min-width: 1000px) {
@@ -201,7 +194,7 @@ textarea.composer-text { resize: vertical; }
 
 /* quieter "Not correct?" link */
 .routeline .linkbtn { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration-color: var(--gray-70); }
-.routeline .linkbtn:hover { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) { .routeline .linkbtn:hover { color: var(--accent); } }
 @media (min-width: 1000px) {
   /* the pinned bar spans the whole card so the form never shows through beside it */
   .composer { max-width: none; }
@@ -354,4 +347,28 @@ html, body { background: var(--white); }
   .liveform .ff[data-key="general.location"], .liveform .subhead, .liveform > :not(.ff) { grid-column: 1 / -1; }
   /* Send to and Submit end the form, so they share its outlined box. */
   #sendPanel { border: 1px solid var(--line); border-radius: 8px; padding: 24px; margin-top: 24px; }
+}
+
+/* nyc.css stays as shipped, so its sticky touch hovers are undone here. */
+@media not all and (hover: hover) and (pointer: fine) {
+  .ff-submit:hover { background: var(--accent); }
+  .mic:hover { background: var(--accent); }
+  .mic.listening:hover { background: var(--red-40); }
+}
+
+/* Press: a quick squeeze, then a small overshoot on release. */
+.chip, .topic { transition: border-color .15s, background .15s, transform .26s cubic-bezier(.34, 1.4, .5, 1); }
+.chip:active, .topic:active { transform: scale(.97); transition-duration: .15s, .15s, .1s; }
+.ff-submit, .call911 { transition: background .15s, transform .26s cubic-bezier(.34, 1.4, .5, 1); }
+.ff-submit:active, .call911:active { transform: scale(.98); transition-duration: .15s, .1s; }
+.ff-submit:disabled:active { transform: none; }
+.mic { transition: transform .26s cubic-bezier(.34, 1.4, .5, 1), background .2s; }
+.mic:active { transform: scale(.95); transition-duration: .1s, .2s; }
+
+/* The form's arrival. #routed and #needed persist across renders, so qIn plays only when they appear. */
+#routed:not([hidden]), #needed:not([hidden]) { animation: qIn 240ms cubic-bezier(.23, 1, .32, 1); }
+/* min-height is animated on purpose: the page below has to reflow with it. Not on phones, where it
+   would change at the same moment as the keyboard. */
+@media (min-width: 760px) {
+  .composer-text { transition: border-color .15s, background .15s, box-shadow .15s, min-height 240ms cubic-bezier(.23, 1, .32, 1); }
 }

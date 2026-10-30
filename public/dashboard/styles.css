@@ -87,7 +87,7 @@ body.sheet-open{overflow:hidden}
  .request-map{aspect-ratio:16/9}
 }
 @keyframes sheet-up{from{transform:translateY(100%)}to{transform:none}}
-@media(prefers-reduced-motion:reduce){.dialog{animation:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sidebar,.toast{transition:none}.dialog{animation:none}}
 @media(max-width:720px){
  .summary-grid{gap:8px;grid-template-columns:repeat(3,1fr)}
  .summary-card{align-items:flex-start;flex-direction:column;gap:4px;min-height:0;padding:12px}

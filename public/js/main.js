@@ -71,6 +71,8 @@ function apply(res, message) {
 function schedule() {
   clearTimeout(timer);
   const text = $("message").value;
+  const mic = $("micBtn").classList;
+  mic.toggle("idle-pulse", !text && !mic.contains("listening") && !mic.contains("busy"));
   $("clearBtn").hidden = !text;
   $("examples").hidden = !!text.trim();
   syncMode();
@@ -135,9 +137,7 @@ function renderBody(changed) {
   if (!res) { routed.hidden = true; return; }
   const top = res.forms[0];
   if (res.emergency >= 0.5 && top.probability < 0.5) {
-    siren();
     verdict.append(h("div.route911",
-      h("div.siren", { "aria-hidden": "true" }, h("i.siren-l"), h("i.siren-r")),
       h("a.call911", { href: "tel:911" }, "Call 911 now")));
     verdict.append(message("error", "!", CALL_911));
     routed.hidden = true; announce("This seems like an emergency. Call 911.");
@@ -302,7 +302,7 @@ async function voiceTool(name, args) {
   if (f.kind === "location") pickPlace(key, v, ctx); else ctx.set(key, v, true);
   const el = document.querySelector(`.ff[data-key="${CSS.escape(key)}"]`);
   el?.classList.add("flash"); setTimeout(() => el?.classList.remove("flash"), 900);
-  el?.scrollIntoView({ block: "center", behavior: "smooth" });
+  el?.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   announce(`${f.label} set`);
   return "ok";
 }
@@ -337,39 +337,6 @@ function wireMic() {
     },
     onLevel(rms) { ring.style.transform = `scale(${0.6 + Math.min(0.6, rms * 6)})`; },
   }));
-}
-
-// A three-second siren the first time a message routes to 911: the classic rising and falling
-// wail, at a moderate volume. One shared AudioContext, unlocked by the first key press or click,
-// so the sound isn't blocked by the browser's autoplay rule.
-let audio = null, sirenFor = "";
-const unlockAudio = () => {
-  audio ??= new (window.AudioContext || window.webkitAudioContext)();
-  if (audio.state === "suspended") audio.resume();
-};
-for (const ev of ["keydown", "pointerdown"]) addEventListener(ev, unlockAudio, { passive: true });
-
-function siren() {
-  if (sirenFor === state.message) return;
-  sirenFor = state.message;
-  try {
-    unlockAudio();
-    const t = audio.currentTime + 0.05, LENGTH = 3, CYCLE = 1; // one up-and-down wail per second
-    const osc = audio.createOscillator(), tone = audio.createBiquadFilter(), gain = audio.createGain();
-    osc.type = "square";               // a square wave through a low-pass reads as a siren horn
-    tone.type = "lowpass"; tone.frequency.value = 1800;
-    osc.frequency.setValueAtTime(650, t);
-    for (let i = 0; i < LENGTH / CYCLE; i++) {
-      osc.frequency.linearRampToValueAtTime(1300, t + i * CYCLE + CYCLE * 0.5);
-      osc.frequency.linearRampToValueAtTime(650, t + (i + 1) * CYCLE);
-    }
-    gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.exponentialRampToValueAtTime(0.09, t + 0.08);   // moderate: clear, not startling
-    gain.gain.setValueAtTime(0.09, t + LENGTH - 0.35);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + LENGTH);
-    osc.connect(tone).connect(gain).connect(audio.destination);
-    osc.start(t); osc.stop(t + LENGTH + 0.05);
-  } catch { /* sound is a nicety */ }
 }
 
 // ---------- boot ----------

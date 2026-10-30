@@ -162,7 +162,7 @@ document.querySelector(".save-button").addEventListener("click", () => {
 document.querySelector("#view-resolved").addEventListener("click", () => {
   showingResolved = !showingResolved;
   renderList();
-  document.querySelector("#requests").scrollIntoView({ behavior: "smooth" });
+  document.querySelector("#requests").scrollIntoView();
 });
 const menuButton = document.querySelector(".menu-button"), sidebar = document.querySelector(".sidebar");
 menuButton.addEventListener("click", () => { const isOpen = sidebar.classList.toggle("open"); menuButton.setAttribute("aria-expanded", String(isOpen)); });
