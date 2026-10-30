@@ -310,3 +310,12 @@ input[type="date"].ff-input::-webkit-datetime-edit { font-weight: 400; color: #6
 .histlist small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 .histsrc { color: var(--muted); font-size: 12px; }
 @media (min-width: 760px) { .loc .histcard { grid-column: 1 / -1; } }
+
+/* One white page, not a card on grey: pulling past the top or bottom on a phone shows the page's own white,
+   and on desktop the content sits in a centered column with no border or shadow around it. */
+html, body { background: var(--white); }
+.app { border: 0; }
+@media (min-width: 760px) {
+  .app { border: 0; border-radius: 0; box-shadow: none; margin: 0 auto; padding-top: 40px; }
+  .minibar { border-radius: 0; }
+}
