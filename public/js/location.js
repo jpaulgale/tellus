@@ -169,27 +169,21 @@ function historyCard(geo, message) {
   if (!histories.has(key)) histories.set(key, api(`/api/history?${key}&lat=${geo.lat}&lng=${geo.lng}`).catch(() => null));
   const box = h("div.histcard", { "aria-live": "polite" });
   histories.get(key).then((hist) => {
-    if (!hist) return box.remove();
+    // Only requests like the resident's: with no match (or no message to judge by) the card stays out of the way.
+    const like = hist?.ranked ? hist.types.filter((t) => t.relevance >= 0.5) : [];
+    if (!like.length) return box.remove();
     const where = geo.bbl ? "this address" : "this corner";
-    if (!hist.total) return box.replaceChildren(h("p.histcard-title", `311 has no requests at ${where} in the last year.`));
+    const day = (d) => new Date(d + "T12:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
     const outcome = (t) => Object.entries(t.outcomes).filter(([k]) => k !== "other").sort((a, b) => b[1] - a[1])
       .map(([k, n]) => `${n} ${hist.labels[k]}`).join(" · ");
-    const row = (t) => h("li", h("b", `${t.type}`), h("span", ` ${plural(t.count, "request")}${t.open ? `, ${t.open} still open` : ""}`),
+    const row = (t) => h("li", h("b", t.type), h("span", ` ${plural(t.count, "request")}, most recently ${day(t.last)}${t.open ? `, ${t.open} still open` : ""}`),
       outcome(t) ? h("small", outcome(t)) : null);
-    const since = new Date(hist.since + "T12:00").toLocaleDateString("en-US", { month: "short", year: "numeric" });
-    // Ranked: only the types about this problem show, most relevant first; the rest fold away.
-    const shown = hist.ranked ? hist.types.filter((t) => t.relevance >= 0.5) : hist.types.slice(0, 3);
-    const rest = hist.types.filter((t) => !shown.includes(t));
-    const like = shown.reduce((s, t) => s + t.count, 0);
-    const title = !hist.ranked ? `${plural(hist.total, "request")} at ${where} since ${since}`
-      : like ? `${plural(like, "request")} like yours at ${where} since ${since}`
-      : `None like yours at ${where} since ${since}`;
+    const n = like.reduce((s, t) => s + t.count, 0);
     box.replaceChildren(
       h("p.rescard-eyebrow", "Already reported to 311"),
-      h("p.histcard-title", title),
-      shown.length ? h("ul.histlist", shown.map(row)) : null,
-      rest.length ? h("details.resall", h("summary", `${plural(rest.reduce((s, t) => s + t.count, 0), hist.ranked ? "other request" : "more request")} at ${where}`), h("ul.histlist", rest.map(row))) : null,
-      h("p.rescard-foot", h("span.histsrc", "How each was closed is the agency's own note, grouped."), h("a", { href: hist.url, target: "_blank", rel: "noopener" }, "Check on NYC Open Data ↗")));
+      h("p.histcard-title", `${plural(n, "request")} like yours at ${where} in the past year`),
+      h("ul.histlist", like.map(row)),
+      h("p.rescard-foot", h("span.histsrc", "From NYC 311 records. How each was closed is the agency's own note, grouped.")));
   });
   return box;
 }
