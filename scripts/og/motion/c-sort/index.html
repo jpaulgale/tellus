@@ -64,7 +64,7 @@ html, body { width: 1200px; height: 628px; overflow: hidden; background: var(--b
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="8.6" data-width="1200" data-height="628">
+<div id="root" data-composition-id="main" data-start="0" data-duration="10.7" data-width="1200" data-height="628">
 
   <div id="form">
     <div id="form-head"><span>To</span><b class="to" id="to1">Manhattan CB2</b><b class="to" id="to2">NYPD</b></div>
@@ -145,7 +145,6 @@ document.fonts.ready.then(() => {
   // 1. the person types it into the app's text box; the cursor arrives with the box (0.05 – 2.0)
   tl.fromTo(["#inbox", "#inlabel", "#tcaret"], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 0.05);
   words.forEach((w, i) => tl.set(w, { display: "inline-block" }, 0.4 + i * 0.14));
-  [1.6, 2.0].forEach((t) => { tl.set("#tcaret", { opacity: 0 }, t); tl.set("#tcaret", { opacity: 1 }, t + 0.2); });
   // 2. the parts that matter turn blue, in reading order (1.75 – 2.05)
   [2, 0, 1].forEach((i, n) => tl.to(keys[i], { color: "#103FEF", duration: 0.2, ease: "power2.out" }, 1.75 + n * 0.1));
   // 3. the rest drops out of frame, tumbling, and the text box clears (2.35)
@@ -224,6 +223,14 @@ document.fonts.ready.then(() => {
   tl.fromTo("#logo", { y: 560 }, { y: 0, duration: 0.45, ease: "back.out(1.3)" }, 6.48);
   tl.fromTo("#apple", { y: -40, rotation: -50, opacity: 0, svgOrigin: "13.6 16.2" }, { y: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "bounce.out" }, 6.85);
   tl.fromTo("#tagline span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.06 }, 7.0);
+
+  // Holds, inserted after the beats above are laid out (their comments give the times before these):
+  // the typed sentence rests while the cursor blinks twice, slowly, before anything else moves;
+  // the filled form rests before the hand comes in; the title card holds 0.75 s longer (data-duration).
+  const BLINKS = 0.75, ON_FORM = 0.6;
+  tl.shiftChildren(ON_FORM, false, 4.3);  // from the hand rising
+  tl.shiftChildren(BLINKS, false, 1.75);  // from the key words turning blue
+  [1.6, 2.5].forEach((t) => { tl.set("#tcaret", { opacity: 0 }, t); tl.set("#tcaret", { opacity: 1 }, t + 0.45); });
 
   window.__timelines["main"] = tl;
   tl.seek(0);
