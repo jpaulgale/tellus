@@ -161,7 +161,7 @@ function routeLine() {
   const toggle = h("button.linkbtn", { type: "button", "aria-expanded": String(open),
     onclick: () => { state.open.form = !open; render(new Set()); } }, open ? "Close" : "Not correct? Change where this goes.");
   const list = open ? h("div.ranklist", { role: "listbox", "aria-label": "Forms" }, state.res.forms.map((f) =>
-    rankRow({ title: f.name, sub: `${f.agency}${f.key === "cb2" ? "" : ` · 311 “${f.complaint_type}”`}`, on: f.key === form.key,
+    rankRow({ title: f.name, sub: `${f.agency}${f.key === "cb2" || f.agency === "MTA" ? "" : ` · 311 “${f.complaint_type}”`}`, on: f.key === form.key,
       tag: f.key === top.key ? "Suggested" : null,
       onPick: () => { state.formKey = f.key === top.key ? null : f.key; state.open.form = false; state.destination = null; render(new Set()); announce(`Switched to ${f.name}`); } }))) : null;
   return h("div.routebox",

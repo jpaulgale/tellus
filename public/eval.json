@@ -2,20 +2,20 @@
  "model": "jev-1.14.0",
  "errors": 0,
  "form_311_covered": {
-  "n": 64,
-  "correct": 61,
-  "accuracy": 0.953
+  "n": 65,
+  "correct": 62,
+  "accuracy": 0.954
  },
  "form_311_uncovered": {
-  "n": 40,
+  "n": 39,
   "correct": 32,
-  "accuracy": 0.8
+  "accuracy": 0.821
  },
  "form_311_by_lang": {
   "en": {
    "n": 86,
-   "correct": 76,
-   "accuracy": 0.884
+   "correct": 77,
+   "accuracy": 0.895
   },
   "es": {
    "n": 10,
@@ -30,13 +30,13 @@
  },
  "form_public_session": {
   "n": 103,
-  "correct": 99,
-  "accuracy": 0.961
+  "correct": 96,
+  "accuracy": 0.932
  },
  "committee_public_session": {
   "n": 103,
-  "correct": 84,
-  "accuracy": 0.816
+  "correct": 85,
+  "accuracy": 0.825
  },
  "place_bbl_311": {
   "n": 62,
@@ -44,8 +44,8 @@
   "accuracy": 1.0,
   "of": 79
  },
- "false_emergency": 6,
- "latency_ms_p50": 1188,
+ "false_emergency": 5,
+ "latency_ms_p50": 1258,
  "confusion_311": [
   [
    "noise_commercial -> cb2",
@@ -56,11 +56,11 @@
    2
   ],
   [
-   "none of ours -> street_condition",
-   2
+   "none of ours -> rodents",
+   1
   ],
   [
-   "none of ours -> rodents",
+   "none of ours -> street_condition",
    1
   ],
   [
@@ -90,8 +90,8 @@
    2
   ],
   [
-   "Executive Committee -> Traffic & Transportation",
-   1
+   "Landmarks & Public Aesthetics -> Executive Committee",
+   2
   ],
   [
    "Parks & Waterfront -> Landmarks & Public Aesthetics",
@@ -99,10 +99,6 @@
   ],
   [
    "Landmarks & Public Aesthetics -> Community Facilities Advisory Panel",
-   1
-  ],
-  [
-   "Landmarks & Public Aesthetics -> SLA – 1",
    1
   ],
   [
@@ -115,10 +111,6 @@
   ],
   [
    "Traffic & Transportation -> SLA – 1",
-   1
-  ],
-  [
-   "Landmarks & Public Aesthetics -> Executive Committee",
    1
   ],
   [
@@ -152,15 +144,15 @@
    "got": "311 Rats"
   },
   {
-   "message": "It is time to end the \"If you see something say something\" signage on the subway. Concern that the City is losing sight of broader need for affordable housing and more transportation.",
-   "expected": "Executive Committee",
-   "got": "Traffic & Transportation"
+   "message": "Fire egress: Concerns were repeated by many people about the safety of the building and the sufficiency of the fire egress, which was described by a neighbor as requiring residents in the rear of the ",
+   "expected": "Human Services",
+   "got": "Land Use & Housing"
   },
   {
-   "message": "Fire egress: Concerns were repeated by many people about the safety of the building and the sufficiency of the fire egress, which was described by a neighbor as requiring residents in the rear of the ",
+   "message": "What happened to the men who were tenants in the building? Rosenbaum responded that that relationship is between the tenants and the landlord, but it is his understanding that there are three tenants ",
    "expected": "Human Services",
    "got": "Land Use & Housing"
   }
  ],
- "run": "2026-10-30"
+ "run": "2026-11-02"
 }

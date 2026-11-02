@@ -287,7 +287,7 @@
    "name": "Pothole or Street Damage",
    "agency": "DOT",
    "complaint_type": "Street Condition",
-   "route": "Damage to the roadway: pothole, cave-in, sinking street, broken manhole or grate.",
+   "route": "Damage to the roadway itself, not the sidewalk: pothole, cave-in, sinking street, broken manhole or grate in the street.",
    "fields": [
     {
      "id": "descriptor",
@@ -303,6 +303,29 @@
       "Rough, Pitted or Cracked Roads"
      ],
      "hint": "what is wrong with the street"
+    }
+   ]
+  },
+  "sidewalk_condition": {
+   "name": "Broken or Blocked Sidewalk",
+   "agency": "DOT",
+   "complaint_type": "Sidewalk Condition",
+   "route": "Damage to the sidewalk pavement itself: cracked, broken, raised or uneven sidewalk, a broken grate, metal plate or cellar door set in the sidewalk, or construction materials or a work zone physically blocking the sidewalk. Not construction noise, and not people or things on the sidewalk like vendors, merchandise, crowds, trash or a parked vehicle.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Broken Sidewalk",
+      "Blocked - Construction",
+      "Defective Hardware",
+      "Sidewalk Grating - Defective",
+      "Cellar Door Open/Unprotected"
+     ],
+     "hint": "what is wrong with the sidewalk"
     }
    ]
   },
@@ -371,6 +394,28 @@
      ],
      "hint": "where the rodents are",
      "required": true
+    }
+   ]
+  },
+  "subway_station": {
+   "name": "Subway Station Problem",
+   "agency": "MTA",
+   "complaint_type": "Subway Station Condition",
+   "route": "A problem inside a subway station, its stairs, elevators or escalators, or on a train. The MTA runs the subway, not the City: dirty or smelly stations or elevators, a broken elevator or escalator, leaks, lighting, station maintenance.",
+   "fields": [
+    {
+     "id": "descriptor",
+     "label": "Problem",
+     "kind": "select",
+     "required": true,
+     "sr": "descriptor",
+     "choices": [
+      "Dirty or smells",
+      "Elevator or escalator not working",
+      "Broken or unsafe",
+      "Something else"
+     ],
+     "hint": "what is wrong in the station"
     }
    ]
   },
@@ -458,6 +503,11 @@
   "DOHMH": {
    "label": "Health Department",
    "url": "https://portal.311.nyc.gov/",
+   "email": null
+  },
+  "MTA": {
+   "label": "MTA",
+   "url": "https://contact.mta.info/s/customer-feedback",
    "email": null
   }
  }

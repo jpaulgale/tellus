@@ -11,6 +11,7 @@ export function defaultDestinations(form, board, home) {
   const cb = (board ?? home).key;
   if (form.key === "cb2") return [cb];
   if (form.key === "crossing_guard") return [cb, "NYPD"]; // the board advocates, the precinct assigns the guard
+  if (form.agency === "MTA") return ["MTA"]; // the MTA runs the subway; the board stays one tap away for a pattern it should take up
   // Service requests go to the board and to the agency that fixes it (via 311 where that's the intake).
   return [cb, ["NYPD", "DOHMH"].includes(form.agency) ? "311" : form.agency];
 }
