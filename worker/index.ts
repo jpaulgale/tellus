@@ -6,7 +6,7 @@ import catalog from "./catalog.json";
 import boards from "./boards.json";
 import { type Board, type Candidate, type Geo, type License, FINDERS, addressQueries, properNames, streets } from "./candidates";
 import { type Node, intersectionNode } from "./intersection";
-import { history } from "./history";
+import { history, type History } from "./history";
 import { type Extracted, extract, placeQueries, cornerOf } from "./clairic";
 
 interface Env {
@@ -578,6 +578,29 @@ async function callJev(env: Env, body: unknown): Promise<any> {
   }
 }
 
+/**
+ * Which of the 311 request types at a place are about the resident's problem, most relevant first. One Jev
+ * yes/no per type; each type gets `relevance`. Without a message, or if Jev is down, the types stay by count.
+ */
+async function rankHistory(env: Env, hist: History, message: string): Promise<History> {
+  if (message.length < 8 || !hist.types.length || !env.TYPESAFE_API_KEY) return hist;
+  const questions = Object.fromEntries(hist.types.map((t, i) => [`t${i}`, {
+    type: "noul",
+    instructions: {
+      past_requests: `${t.count} past 311 request${t.count > 1 ? "s" : ""} at this place filed as "${t.type}" (${t.agency})${t.descriptors.length ? `, described as: ${t.descriptors.join("; ")}` : ""}`,
+      question: "Are `past_requests` reports of the same problem the resident describes in `message`, so they show others have already reported it? Judge by what the requests describe. A different problem at the same place is not the same, even one that could be loosely connected (a sewer overflow is not a rat problem; construction noise is not bar music).",
+    },
+  }]));
+  try {
+    const { answers } = await callJev(env, { model: env.TYPESAFE_MODEL || "jev-latest", state: { message }, questions });
+    const types = hist.types.map((t, i) => ({ ...t, relevance: answers[`t${i}`]?.type === "noul" ? Math.round(answers[`t${i}`].noul * 100) / 100 : 0 }))
+      .sort((a, b) => Math.round(b.relevance * 10) - Math.round(a.relevance * 10) || b.count - a.count); // near-ties: the most reported first
+    return { ...hist, types, ranked: true };
+  } catch {
+    return hist;
+  }
+}
+
 // ---------- routes ----------
 
 async function route(request: Request, env: Env, track: Track, b: BoardConfig): Promise<Response> {
@@ -797,7 +820,8 @@ export default {
       if (url.pathname === "/api/history") {
         const lat = Number(url.searchParams.get("lat")), lng = Number(url.searchParams.get("lng"));
         if (!Number.isFinite(lat) || !Number.isFinite(lng)) return json({ error: "lat and lng are required" }, 400);
-        return json(await history({ bbl: url.searchParams.get("bbl") ?? undefined, lat, lng }));
+        const hist = await history({ bbl: url.searchParams.get("bbl") ?? undefined, lat, lng });
+        return json(hist && await rankHistory(env, hist, (url.searchParams.get("message") ?? "").trim().slice(0, 4000)));
       }
       if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env, track);
       if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env, track, board);
