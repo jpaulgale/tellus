@@ -7,7 +7,7 @@ import { renderField, jevValue, isEmpty } from "./fields.js";
 import { setMapboxToken, setHome, pickPlace } from "./location.js";
 import { renderSendPanel, defaultDestinations, missingRequired } from "./send.js";
 import { toggleMic } from "./voice.js";
-import { renderTopics, startTypewriter } from "./suggest.js";
+import { wireTopics, rotatePlaceholder } from "./suggest.js";
 
 const DEBOUNCE_MS = 350;
 
@@ -108,7 +108,10 @@ function renderStatus() {
 // Phones: while the message box has focus, the keyboard covers half the screen, so the page is just the
 // box, the route, and that one status line, as in a chat app. Leaving the box (Return, closing the
 // keyboard, or "Review form") shows the form. The intro stays out of the way once you've started.
-const phone = matchMedia("(max-width: 759px)");
+// Touch screens only: a narrow desktop window has no on-screen keyboard to make room for, and the box is
+// focused on arrival there, which would otherwise collapse the intro before anything is typed.
+const phone = matchMedia("(max-width: 759px) and (pointer: coarse)");
+phone.addEventListener("change", () => syncMode());
 const writing = () => phone.matches && document.activeElement === $("message");
 
 function syncMode() {
@@ -375,11 +378,12 @@ async function boot() {
   document.querySelector(".composer-tools").addEventListener("mousedown", (e) => { if (!e.target.closest("button")) { e.preventDefault(); ta.focus(); } });
   // Ready to type on arrival, as in a chat app; not on touch, where focus would open the keyboard over the page.
   if (matchMedia("(hover: hover) and (pointer: fine)").matches) ta.focus();
-  try { state.config = await api("/api/config"); } catch (e) { console.warn(e); }
+  // The worker put the config in the page; /api/config is the fallback when it didn't (a page served without it).
+  try { state.config = JSON.parse($("config")?.textContent || "null") ?? await api("/api/config"); } catch (e) { console.warn(e); }
   setMapboxToken(state.config.mapboxToken || "");
   showBoard(state.config);
-  renderTopics($("examples"), state.config.board.examples, (ex) => { ta.value = ex; schedule(); ta.focus(); });
-  startTypewriter(ta, state.config.board.examples);
+  wireTopics($("examples"), state.config.board.examples, (ex) => { ta.value = ex; schedule(); ta.focus(); });
+  rotatePlaceholder(ta, state.config.board.examples);
   wireMic();
   // shadow under the composer once it's pinned to the top of the page
   const pin = () => $("composer").classList.toggle("stuck", $("composer").getBoundingClientRect().top <= 0.5);

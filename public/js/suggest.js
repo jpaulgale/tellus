@@ -1,45 +1,33 @@
-// What you can ask Tell Us: a typewriter placeholder that cycles full example requests, and a
-// wrapped list of topic chips. Tapping a chip fills its example. The examples are the board's
-// own (worker/boards.json, via /api/config).
-// The typewriter holds still for prefers-reduced-motion and yields the moment you type. Its
-// caret hides while the box has focus, where the real one blinks.
-
-import { $, h } from "./util.js";
-
+// What you can ask Tell Us, shown two ways from the board's examples (worker/boards.json): the message
+// box's own placeholder, a full sentence in everyday words that changes every few seconds, and a short
+// row of topic chips that fill in their sentence when tapped. The worker puts both in the page, so
+// nothing here changes the layout.
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const HOLD_MS = 4500, FADE_MS = 300;
 
-/** Typewriter placeholder: type, hold, fade, next. Pauses while the box has text. */
-export function startTypewriter(textarea, TOPICS) {
-  const ghost = $("ghost");
-  if (reduced) {
-    textarea.placeholder = TOPICS[0].ex;
-    ghost.hidden = true;
-    return;
-  }
-  let i = 0, n = 0, dir = 1, wait = 0;
-  const tick = () => {
-    const visible = !textarea.value;
-    ghost.hidden = !visible;
-    if (visible) {
-      const full = TOPICS[i].ex;
-      if (wait > 0) wait--;
-      else if (dir === 1 && n < full.length) n++;
-      else if (dir === 1) { dir = -1; wait = 55; }      // hold the full sentence ~2s
-      else if (!ghost.classList.contains("fading")) { ghost.classList.add("fading"); wait = 9; } // fade out (~0.4s)
-      else { ghost.classList.remove("fading"); n = 0; dir = 1; i = (i + 1) % TOPICS.length; wait = 4; }
-      ghost.firstChild.textContent = full.slice(0, n);
-    }
-    setTimeout(tick, 45); // 0.8x of the original 36 ms pace
-  };
-  tick();
+/**
+ * Cycles the placeholder through the examples with a short fade (app.css fades the placeholder colour).
+ * A placeholder is the browser's own: it goes the moment you type, the caret is the real one, and screen
+ * readers read it. Holds still for reduced motion and while the box has text.
+ */
+export function rotatePlaceholder(textarea, examples) {
+  if (reduced || examples.length < 2) return;
+  let i = Math.max(0, examples.findIndex((t) => t.ex === textarea.placeholder));
+  setInterval(() => {
+    if (textarea.value || document.hidden) return;
+    textarea.classList.add("ph-out");
+    setTimeout(() => {
+      i = (i + 1) % examples.length;
+      textarea.placeholder = examples[i].ex;
+      textarea.classList.remove("ph-out");
+    }, FADE_MS);
+  }, HOLD_MS);
 }
 
-/** A static, wrapped list of topic chips. */
-export function renderTopics(container, TOPICS, onPick) {
-  container.replaceChildren(
-    h("div.topics-lead", {}, "Try an example"),
-    h("div.topic-list", {}, ...TOPICS.map((t) =>
-      h("button.topic", { type: "button", title: t.to, onclick: () => onPick(t.ex) }, t.topic))),
-  );
+/** Wires the topic chips the worker rendered: a tap fills in that topic's full sentence. */
+export function wireTopics(container, examples, onPick) {
+  container.querySelectorAll(".topic").forEach((b, i) => {
+    if (examples[i]) b.onclick = () => onPick(examples[i].ex);
+  });
 }

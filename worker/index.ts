@@ -809,12 +809,21 @@ async function video(request: Request, env: Env): Promise<Response> {
 const escHtml = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const boardHref = (b: { id: string }, path: string) => (b.id === "cb2" ? path : `${path}${path.includes("?") ? "&" : "?"}board=${b.id}`);
 
+/** What the page needs to run as a board: the same object /api/config returns. Nothing in it is secret (the Mapbox token is a public one). */
+function pageConfig(env: Env, board: BoardConfig) {
+  return {
+    mapboxToken: env.MAPBOX_TOKEN ?? "", destinations: catalog.destinations, committees: board.committees, voice: !!env.GEMINI_API_KEY, voiceFields: voiceFields(board),
+    board: { id: board.id, key: `CB:${board.cd}`, cd: board.cd, short: board.short, name: board.name, center: board.center, community_board_311: board.community_board_311, examples: board.examples },
+    boards: Object.values(BOARDS).map((x) => ({ id: x.id, short: x.short, name: x.name })),
+  };
+}
+
 /**
  * The page as the board it runs as, before it reaches the browser: its name, the switch to the other
- * boards, its examples and the district map. main.js would otherwise swap these in after /api/config,
- * and the header would jump. What main.js renders on boot is the same markup, so nothing moves then either.
+ * boards, its examples and placeholder, the district map, and its config inline (#config), so main.js
+ * starts without a round trip and nothing on the page changes after it's drawn.
  */
-function withBoardPage(res: Response, board: BoardConfig): Response {
+function withBoardPage(res: Response, board: BoardConfig, config: ReturnType<typeof pageConfig>): Response {
   if (!res.ok || !res.headers.get("content-type")?.includes("text/html")) return res;
   const others = Object.values(BOARDS).filter((b) => b.id !== board.id);
   const topics = `<div class="topics-lead">Try an example</div><div class="topic-list">${board.examples
@@ -823,6 +832,9 @@ function withBoardPage(res: Response, board: BoardConfig): Response {
     .on("[data-board-name]", { element: (e) => { e.setInnerContent(board.name); } })
     .on("#boardSwitch", { element: (e) => { e.setInnerContent(others.map((b) => `<a href="${boardHref(b, "/")}">Switch to ${escHtml(b.short)}</a>`).join(""), { html: true }); } })
     .on("#examples", { element: (e) => { e.setInnerContent(topics, { html: true }); } })
+    .on("#message", { element: (e) => { e.setAttribute("placeholder", board.examples[0]?.ex ?? ""); } })
+    // JSON in a script tag: "<" escaped so no value can close the tag.
+    .on("#config", { element: (e) => { e.setInnerContent(JSON.stringify(config).replace(/</g, "\\u003c"), { html: true }); } })
     .on(".cdmap", { element: (e) => { e.setAttribute("data-board", board.id); } })
     .on("a[data-keep-board]", { element: (e) => { const h = e.getAttribute("href"); if (h) e.setAttribute("href", boardHref(board, h)); } })
     .transform(res);
@@ -850,19 +862,14 @@ export default {
       }
       if (url.pathname === "/api/token" && request.method === "POST") return await voiceToken(env, track);
       if (url.pathname === "/api/send" && request.method === "POST") return await send(request, env, track, board);
-      if (url.pathname === "/api/config")
-        return json({
-          mapboxToken: env.MAPBOX_TOKEN ?? "", destinations: catalog.destinations, committees: board.committees, voice: !!env.GEMINI_API_KEY, voiceFields: voiceFields(board),
-          board: { id: board.id, key: `CB:${board.cd}`, cd: board.cd, short: board.short, name: board.name, center: board.center, community_board_311: board.community_board_311, examples: board.examples },
-          boards: Object.values(BOARDS).map((x) => ({ id: x.id, short: x.short, name: x.name })),
-        });
+      if (url.pathname === "/api/config") return json(pageConfig(env, board));
     } catch (e) {
       track({ kind: "error", data: { path: url.pathname, error: (e as Error).message } });
       return json({ error: (e as Error).message }, 500);
     }
     if (url.pathname.startsWith("/api/")) return json({ error: "not found" }, 404);
     if (url.pathname.endsWith(".mp4")) return await video(request, env);
-    if (url.pathname === "/" || url.pathname === "/index.html") return withBoardPage(await env.ASSETS.fetch(request), board);
+    if (url.pathname === "/" || url.pathname === "/index.html") return withBoardPage(await env.ASSETS.fetch(request), board, pageConfig(env, board));
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;
