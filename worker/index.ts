@@ -392,6 +392,7 @@ function buildPlan(b: BoardConfig, message: string, locations: Candidate[], past
     if (v && found[k] && !found[k].some((c) => c.key.toLowerCase() === v.toLowerCase())) found[k].unshift({ key: v, value: v, note });
   };
   add("times", x.when, "when it happens, as the message says it");
+  add("proper_names", x.place, "the place the message names"); // "ps 3": a school written in lowercase
   add("proper_names", x.business, "the business the message names");
 
   // A resident says "the bar downstairs"; the board's own record knows which business that is.

@@ -192,11 +192,59 @@ section.tint { background: var(--card); }
 .misses li { border-left: 3px solid var(--amber); padding: 4px 0 4px 12px; }
 .misses q { display: block; }
 .misses small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
-.tech { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+/* how it works: read, look up, choose */
+.pipe { background: var(--card); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0,0,0,.04); border-radius: 24px; padding: 20px 22px 22px; }
+.pipe-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 18px; }
+.pipe-tabs { display: flex; gap: 6px; background: var(--bg); border-radius: 999px; padding: 4px; }
+.pipe-tabs button { font: inherit; font-size: 14px; font-weight: 600; border: 0; background: none; color: var(--muted); padding: 7px 12px; white-space: nowrap; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s, transform .16s cubic-bezier(.3,1.6,.5,1); }
+.pipe-tabs button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.pipe-tabs button:active { transform: scale(.98); }
+.pipe-replay { font: inherit; font-size: 14px; font-weight: 600; color: var(--blue); background: none; border: 0; cursor: pointer; padding: 6px 4px; }
+.stage { display: grid; grid-template-columns: minmax(0, .9fr) 22px minmax(0, 1.2fr) 22px minmax(0, 1fr); gap: 12px; align-items: start; min-height: 300px; }
+.step { display: flex; align-items: baseline; gap: 8px; font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -.01em; margin-bottom: 10px; }
+.step i { font-style: normal; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 13px; font-family: var(--body); transform: translateY(-2px); }
+.who { display: block; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+.msg { font-family: var(--display); font-weight: 500; font-size: 20px; line-height: 1.25; letter-spacing: -.015em; background: var(--bg); border: 2px solid var(--line); border-radius: 18px; padding: 14px 16px; }
+.msg mark { background: transparent; color: inherit; border-radius: 6px; padding: 0 3px; margin: 0 -3px; transition: background .3s ease, color .3s ease; transition-delay: var(--d); }
+.play .msg mark { background: var(--blue-soft); color: var(--blue); }
+.arr { color: var(--blue); padding-top: 64px; }
+.arr svg { width: 22px; height: 22px; display: block; }
+.look { display: grid; gap: 10px; }
+.lk { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; background: var(--card); }
+.lk-h { font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.row { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 2px 8px; padding: 5px 0; font-size: 14px; line-height: 1.3; border-top: 1px solid var(--line); transition: opacity .35s ease; transition-delay: var(--d2); }
+.row:first-of-type { border-top: 0; }
+.row small { grid-column: 2; font-size: 13px; color: var(--muted); }
+.row b { font-weight: 600; }
+.row::before { content: ""; width: 12px; height: 12px; margin-top: 3px; border-radius: 50%; border: 2px solid var(--line); box-sizing: border-box; transition: background .25s, border-color .25s; transition-delay: var(--d2); }
+.play .row.no { opacity: .4; }
+.row.yes::before { background: var(--green); border-color: var(--green); }
+.pick { display: grid; gap: 12px; }
+.q b { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.bar { position: relative; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; line-height: 1.3; font-size: 14px; padding: 4px 8px; border-radius: 8px; overflow: hidden; isolation: isolate; }
+.bar + .bar { margin-top: 3px; }
+.bar::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p); background: var(--bg); border-radius: 8px; z-index: -1; transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d); }
+.bar.top::before { background: var(--blue-soft); }
+.bar.top { font-weight: 600; color: var(--blue-dark); }
+.bar span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.bar span:last-child { flex: none; font-family: var(--mono); font-size: 12.5px; }
+.play .bar::before { transform: none; }
+.a { opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.9,.3,1.2); transition-delay: var(--d); }
+.play .a { opacity: 1; transform: none; }
+.still * { transition-delay: 0s !important; }
+.tech { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 26px; }
 .tech div { border-top: 2px solid var(--ink); padding-top: 12px; }
-.tech h3 { font-size: 17px; margin-bottom: 6px; }
-.tech p { color: var(--muted); font-size: 15px; margin: 0; }
-.tech a { color: var(--blue); font-weight: 600; }
+.tech h3 { font-size: 16px; margin-bottom: 6px; }
+.tech p { color: var(--muted); font-size: 14.5px; margin: 0; }
+.tech code { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.tech a, .tech-src a { color: var(--blue); font-weight: 600; }
+.tech-src { margin-top: 22px; font-size: 15px; }
+@media (max-width: 860px) {
+  .pipe { padding: 16px; }
+  .stage { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .arr { padding: 0; justify-self: center; transform: rotate(90deg); }
+  .msg { font-size: 19px; }
+}
 .both { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
 .side { background: var(--bg); border-radius: 24px; padding: 26px; }
 .side h3 { font-family: var(--display); font-weight: 600; font-size: 26px; margin-bottom: 12px; }
@@ -381,12 +429,12 @@ footer .credit { color: var(--ink); font-size: 14px; }
   <div class="wrap">
     <div class="sec-h">
       <h2>We tested it on real CB2 cases.</h2>
-      <p>We gave Tell Us more than 200 cases it had never seen: requests CB2 residents filed with 311, and concerns from the public session of Full Board meetings, as the minutes record them. Then we checked where it sent each one against where it really went.</p>
+      <p>We gave Tell Us more than 200 cases it had never seen: requests CB2 residents filed with 311, and concerns from the public session of Full Board meetings.</p>
     </div>
     <div class="acc" id="acc"></div>
     <div class="misses">
       <h3>When it gets one wrong</h3>
-      <p>Residents see where their message is headed before they send it, and can switch the form or committee themselves. The misses we found were mostly close calls a board member would recognize:</p>
+      <p>Correcting a wrong guess is as simple as editing the form.</p>
       <ul>
         <li><q>Bar at 1 West 3rd blasting music again at 2am. Windows are closed and I can still feel the bass.</q><small>Tell Us sent it to the board, which reviews bar licenses. Noise happening right now is a job for 311.</small></li>
         <li><q>The restaurant at 18 9th Ave has garbage piled up and I saw roaches by the kitchen door. Gross.</q><small>Tell Us picked 311's rat form. A restaurant kitchen is the Health Department's to inspect.</small></li>
@@ -422,18 +470,25 @@ footer .credit { color: var(--ink); font-size: 14px; }
   </div>
 </section>
 
-<section class="tint tech-sec">
+<section class="tint tech-sec" id="how-it-works">
   <div class="wrap">
     <div class="sec-h">
       <h2>How it works.</h2>
-      <p>For the technologists in the room.</p>
+      <p>Tell Us finds the facts in public records, then fills in the form from them. It never makes them up.</p>
+    </div>
+    <div class="pipe">
+      <div class="pipe-top">
+        <div class="pipe-tabs" id="pipeTabs"><button type="button" aria-pressed="true">Park</button><button type="button" aria-pressed="false">School</button><button type="button" aria-pressed="false">Crossing guard</button></div>
+        <button type="button" class="pipe-replay" id="pipeReplay">Replay ↻</button>
+      </div>
+      <div class="stage" id="stage" aria-live="polite"></div>
     </div>
     <div class="tech">
-      <div><h3>Code finds the facts, the model chooses</h3><p>Code pulls every candidate out of a message: addresses from NYC GeoSearch, intersections from the city's street centerline, businesses from State Liquor Authority licenses. One language model call then picks the form or committee and fills each field from those candidates, so it can't make up an address.</p></div>
-      <div><h3>The board's record, searchable</h3><p>We parsed 1,226 resolutions out of CB2's Full Board minutes (January 2025 to July 2026) and matched each to its tax lot. When a resident names an address the board has acted on, the decision comes up.</p></div>
-      <div><h3>One entry per board</h3><p>A board is its district, its committees, its minutes and a parser for how its minutes are laid out. CB3 runs on the same code. The 311 forms work citywide.</p></div>
-      <div><h3>Open and small</h3><p>Cloudflare Workers and D1, plain HTML and JavaScript, Python scripts for the data. 311 has no public API for filing requests, so sending is simulated. <a href="https://github.com/jpaulgale/tellus" target="_blank" rel="noopener">The code is on GitHub</a>, along with the test above and every case in it.</p></div>
+      <div><h3>1. Read</h3><p>Tell Us picks out where, what and when. Regex catches street addresses and corners. <a href="https://developers.cloudflare.com/workers-ai/models/clairic/" target="_blank" rel="noopener">Clairic</a>, an extraction model from Cloudflare, finds the rest, like a park, a bar's name or “every weekend.”</p></div>
+      <div><h3>2. Look up</h3><p>Tell Us checks each detail against public records: city maps for addresses and corners, state liquor licenses for bars and restaurants. It also searches CB2's past decisions for anything at that address or on the same topic.</p></div>
+      <div><h3>3. Choose</h3><p><a href="https://typesafe.ai" target="_blank" rel="noopener">Jev</a>, a decision model from TypeSafe, picks the form and the committee. Then it uses what Tell Us found to fill in only the fields it's confident about. If it isn't sure, it leaves the field blank for the resident to fill in.</p></div>
     </div>
+    <p class="tech-src"><a href="https://github.com/jpaulgale/tellus" target="_blank" rel="noopener">The code is on GitHub.</a></p>
   </div>
 </section>
 
@@ -549,10 +604,88 @@ fetch("/eval.json").then((r) => r.json()).then((e) => {
   const card = (big, label, note) => `<div><b>${big}</b><span>${label}</span><small>${note}</small></div>`;
   document.getElementById("acc").innerHTML = [
     card(pc(e.form_311_covered), "Sent to the right city form", `${e.form_311_covered.correct} of ${e.form_311_covered.n} real 311 requests, written in English, Spanish and Chinese`),
-    card(pc(e.form_public_session), "Recognized as the board's business", `${e.form_public_session.correct} of ${e.form_public_session.n} concerns residents brought to the Full Board`),
+    card(pc(e.form_public_session), "Recognized as relevant to the board", `${e.form_public_session.correct} of ${e.form_public_session.n} concerns residents brought to the Full Board`),
     card(pc(e.committee_public_session), "Reached the right committee", `${e.committee_public_session.correct} of ${e.committee_public_session.n}, matched against the board's minutes`),
   ].join("");
 });
+</script>
+<script type="module">
+// How it works: two messages as they went through /api/route on Nov 11, 2026 (CB2, Jev 1.14), replayed as a diagram.
+const EX = [
+  {
+    msg: ["the metal barricades they drag around ", "washington square park", " ", "every night", " look terrible. there has to be a better way to close the park"],
+    look: [
+      { src: "NYC GeoSearch", rows: [["Washington Square Park, Manhattan", "Inside CB2", 1]] },
+      { src: "CB2's minutes", rows: [["May 21, 2026 · Parks & Waterfront", "Asks the Parks Department for alternatives to the barricades that close the park", 1]] },
+    ],
+    pick: [
+      ["Where it goes", [["CB2 Manhattan", 99], ["None of our forms", 1]]],
+      ["Committee", [["Parks & Waterfront", 100], ["SLA – 1", 0]]],
+    ],
+  },
+  {
+    msg: ["", "75 Morton", " needs its performing arts teacher back. my daughter auditioned for LaGuardia because of that program"],
+    look: [
+      { src: "NYC GeoSearch", rows: [["75 Morton Street, Manhattan", "Inside CB2", 1], ["75 Morton Street, Brooklyn", "Outside CB2", 0]] },
+      { src: "CB2's minutes", rows: [["Nov 20, 2025 · Schools & Education", "A resolution to restore the performing arts program at 75 Morton", 1]] },
+    ],
+    pick: [
+      ["Where it goes", [["CB2 Manhattan", 83], ["None of our forms", 16]]],
+      ["Committee", [["Schools & Education", 100], ["SLA – 1", 0]]],
+    ],
+  },
+  {
+    msg: ["can we get a crossing guard at ", "hudson and christopher", " in ", "the mornings", "? my kids cross dangerous traffic to get to ", "ps 3", ""],
+    look: [
+      { src: "NYC street centerline", rows: [["Corner of Hudson St & Christopher St", "Inside CB2", 1]] },
+    ],
+    pick: [
+      ["Where it goes", [["311 crossing guard request (NYPD)", 100], ["CB2 Manhattan", 0]]],
+      ["School", [["ps 3", 100]]],
+      ["Who's asking", [["Parent or guardian", 100], ["Neighbor", 0]]],
+      ["Shift", [["Morning drop-off", 100], ["Afternoon dismissal", 0]]],
+    ],
+  }
+];
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const stage = document.getElementById("stage");
+const tabs = [...document.querySelectorAll("#pipeTabs button")];
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let cur = 0;
+
+function render(ex) {
+  // odd pieces of the message are the words Read picks out
+  const msg = ex.msg.map((t, i) => (i % 2 ? `<mark style="--d:.2s">${esc(t)}</mark>` : esc(t))).join("");
+  const look = ex.look.map((c) => `<div class="lk"><div class="lk-h">${esc(c.src)}</div>${c.rows.map(([t, sub, ok]) =>
+    `<div class="row ${ok ? "yes" : "no"}"><b>${esc(t)}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</div>`).join("")}</div>`).join("");
+  const pick = ex.pick.map(([q, opts]) => `<div class="q"><b>${esc(q)}</b>${opts.map(([t, p], k) =>
+    `<div class="bar${k ? "" : " top"}" style="--p:${Math.max(p, 3)}%"><span>${esc(t)}</span><span>${p}%</span></div>`).join("")}</div>`).join("");
+  stage.innerHTML =
+    `<div><div class="step"><i>1</i>Read</div><p class="msg">${msg}</p></div>` +
+    `<div class="arr">${ARROW}</div>` +
+    `<div class="a" style="--d:.6s"><div class="step"><i>2</i>Look up</div><div class="look">${look}</div></div>` +
+    `<div class="arr">${ARROW}</div>` +
+    `<div class="a" style="--d:1.2s"><div class="step"><i>3</i>Choose</div><div class="pick">${pick}</div></div>`;
+}
+
+function show(i) {
+  cur = i;
+  tabs.forEach((b, k) => b.setAttribute("aria-pressed", String(k === i)));
+  stage.classList.remove("play");
+  stage.classList.toggle("still", still);
+  render(EX[i]);
+  void stage.offsetWidth; // start from the empty state so the transitions run
+  stage.classList.add("play");
+}
+
+tabs.forEach((b, i) => (b.onclick = () => show(i)));
+document.getElementById("pipeReplay").onclick = () => show(cur);
+render(EX[0]); // laid out before it scrolls into view, so nothing below it moves
+let started = false;
+new IntersectionObserver(([e]) => {
+  if (e.isIntersecting && !started) { started = true; show(0); }
+}, { threshold: 0.35 }).observe(stage);
 </script>
 <script type="module" src="/js/hit.js"></script>
 </body>
