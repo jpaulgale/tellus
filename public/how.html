@@ -256,6 +256,7 @@ section.tint { background: var(--card); }
 .closing h2 { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.05; letter-spacing: -.02em; }
 .closing p { color: #d6dcff; font-size: 18px; margin: 12px auto 24px; max-width: 32em; }
 .closing .btn { background: #fff; color: var(--blue-dark); }
+@media (hover: hover) and (pointer: fine) { .closing .btn:hover { background: #dce2ff; } }
 
 footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: 13px; }
 footer p { margin: 0 0 6px; }
@@ -474,7 +475,6 @@ footer .credit { color: var(--ink); font-size: 14px; }
   <div class="wrap">
     <div class="sec-h">
       <h2>How it works.</h2>
-      <p>Tell Us finds the facts in public records, then fills in the form from them. It never makes them up.</p>
     </div>
     <div class="pipe">
       <div class="pipe-top">
@@ -494,8 +494,8 @@ footer .credit { color: var(--ink); font-size: 14px; }
 
 <div class="wrap">
   <div class="closing">
-    <h2>Try it yourself.</h2>
-    <p>Write something about a block in CB2 Manhattan and watch the form fill itself in.</p>
+    <h2>What's going on in your neighborhood?</h2>
+    <p>Write about something in CB2 Manhattan and watch the form fill itself in.</p>
     <a class="btn" href="/">Try Tell Us</a>
   </div>
   <footer><p class="credit">Built at the <a href="https://statecapacityecosystem.com/" target="_blank" rel="noopener">State Capacity Hackathon</a> by <a href="https://paulgale.dev" target="_blank" rel="noopener">Paul Gale</a>, <a href="https://www.linkedin.com/in/lmszu/" target="_blank" rel="noopener">Luke Szumyckyj</a> and <a href="https://www.linkedin.com/in/sam-ginsberg" target="_blank" rel="noopener">Sam Ginsberg</a>.</p><p>Tell Us is a prototype that uses public information about CB2 Manhattan. It is not an official NYC or CB2 service.</p></footer>
