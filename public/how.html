@@ -184,6 +184,19 @@ section.tint { background: var(--card); }
 .acc div { background: var(--white, #fff); border: 1px solid rgba(0,0,0,.08); border-radius: 12px; padding: 16px 18px; }
 .acc b { display: block; font-family: var(--display); font-size: 40px; line-height: 1; }
 .acc span { display: block; margin-top: 8px; font-weight: 600; }
+.acc small { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
+.misses { margin-top: 32px; }
+.misses h3 { font-size: 18px; }
+.misses > p { color: var(--muted); margin-top: 6px; max-width: 40em; }
+.misses ul { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 14px; }
+.misses li { border-left: 3px solid var(--amber); padding: 4px 0 4px 12px; }
+.misses q { display: block; }
+.misses small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+.tech { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.tech div { border-top: 2px solid var(--ink); padding-top: 12px; }
+.tech h3 { font-size: 17px; margin-bottom: 6px; }
+.tech p { color: var(--muted); font-size: 15px; margin: 0; }
+.tech a { color: var(--blue); font-weight: 600; }
 .both { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
 .side { background: var(--bg); border-radius: 24px; padding: 26px; }
 .side h3 { font-family: var(--display); font-weight: 600; font-size: 26px; margin-bottom: 12px; }
@@ -367,10 +380,19 @@ footer .credit { color: var(--ink); font-size: 14px; }
 <section class="tint" id="accuracy">
   <div class="wrap">
     <div class="sec-h">
-      <h2>How often it's right.</h2>
-      <p>Tested on real requests from CB2 residents.</p>
+      <h2>We tested it on real CB2 cases.</h2>
+      <p>We gave Tell Us more than 200 cases it had never seen: requests CB2 residents filed with 311, and concerns from the public session of Full Board meetings, as the minutes record them. Then we checked where it sent each one against where it really went.</p>
     </div>
     <div class="acc" id="acc"></div>
+    <div class="misses">
+      <h3>When it gets one wrong</h3>
+      <p>Residents see where their message is headed before they send it, and can switch the form or committee themselves. The misses we found were mostly close calls a board member would recognize:</p>
+      <ul>
+        <li><q>Bar at 1 West 3rd blasting music again at 2am. Windows are closed and I can still feel the bass.</q><small>Tell Us sent it to the board, which reviews bar licenses. Noise happening right now is a job for 311.</small></li>
+        <li><q>The restaurant at 18 9th Ave has garbage piled up and I saw roaches by the kitchen door. Gross.</q><small>Tell Us picked 311's rat form. A restaurant kitchen is the Health Department's to inspect.</small></li>
+        <li><q>Concerns were repeated by many people about the safety of the building and the sufficiency of the fire egress…</q><small>Tell Us picked Land Use &amp; Housing. The minutes show Human Services took it up.</small></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -396,6 +418,21 @@ footer .credit { color: var(--ink); font-size: 14px; }
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Records are ready for a dashboard where the district manager and committee members can filter and share them.</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint tech-sec">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>How it works.</h2>
+      <p>For the technologists in the room.</p>
+    </div>
+    <div class="tech">
+      <div><h3>Code finds the facts, the model chooses</h3><p>Code pulls every candidate out of a message: addresses from NYC GeoSearch, intersections from the city's street centerline, businesses from State Liquor Authority licenses. One language model call then picks the form or committee and fills each field from those candidates, so it can't make up an address.</p></div>
+      <div><h3>The board's record, searchable</h3><p>We parsed 1,226 resolutions out of CB2's Full Board minutes (January 2025 to July 2026) and matched each to its tax lot. When a resident names an address the board has acted on, the decision comes up.</p></div>
+      <div><h3>One entry per board</h3><p>A board is its district, its committees, its minutes and a parser for how its minutes are laid out. CB3 runs on the same code. The 311 forms work citywide.</p></div>
+      <div><h3>Open and small</h3><p>Cloudflare Workers and D1, plain HTML and JavaScript, Python scripts for the data. 311 has no public API for filing requests, so sending is simulated. <a href="https://github.com/jpaulgale/tellus" target="_blank" rel="noopener">The code is on GitHub</a>, along with the test above and every case in it.</p></div>
     </div>
   </div>
 </section>
@@ -508,11 +545,12 @@ await typeInput($("fEmail"), "washington.irving@new.york", 14);
 <script type="module">
 // How often it's right: public/eval.json, written by scripts/eval_routing.py.
 fetch("/eval.json").then((r) => r.json()).then((e) => {
-  const card = (x, label) => `<div><b>${Math.round(100 * x.accuracy)}%</b><span>${label}</span></div>`;
+  const pc = (x) => `${Math.round(100 * x.accuracy)}%`;
+  const card = (big, label, note) => `<div><b>${big}</b><span>${label}</span><small>${note}</small></div>`;
   document.getElementById("acc").innerHTML = [
-    card(e.form_311_covered, "Right city form"),
-    card(e.committee_public_session, "Right board committee"),
-    card(e.place_bbl_311, "Right address"),
+    card(pc(e.form_311_covered), "Sent to the right city form", `${e.form_311_covered.correct} of ${e.form_311_covered.n} real 311 requests, written in English, Spanish and Chinese`),
+    card(pc(e.form_public_session), "Recognized as the board's business", `${e.form_public_session.correct} of ${e.form_public_session.n} concerns residents brought to the Full Board`),
+    card(pc(e.committee_public_session), "Reached the right committee", `${e.committee_public_session.correct} of ${e.committee_public_session.n}, matched against the board's minutes`),
   ].join("");
 });
 </script>
