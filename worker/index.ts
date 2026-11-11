@@ -806,6 +806,31 @@ async function video(request: Request, env: Env): Promise<Response> {
   return new Response(request.method === "HEAD" ? null : body.slice(start, end + 1), { status: 206, headers });
 }
 
+const escHtml = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+const boardHref = (b: { id: string }, path: string) => (b.id === "cb2" ? path : `${path}${path.includes("?") ? "&" : "?"}board=${b.id}`);
+
+/**
+ * The page as the board it runs as, before it reaches the browser: its name, the switch to the other
+ * boards, its examples and the district map. main.js would otherwise swap these in after /api/config,
+ * and the header would jump. What main.js renders on boot is the same markup, so nothing moves then either.
+ */
+function withBoardPage(res: Response, board: BoardConfig): Response {
+  if (!res.ok || !res.headers.get("content-type")?.includes("text/html")) return res;
+  const others = Object.values(BOARDS).filter((b) => b.id !== board.id);
+  const topics = `<div class="topics-lead">Try an example</div><div class="topic-list">${board.examples
+    .map((t) => `<button class="topic" type="button" title="${escHtml(t.to)}">${escHtml(t.topic)}</button>`).join("")}</div>`;
+  const out = new HTMLRewriter()
+    .on("[data-board-name]", { element: (e) => { e.setInnerContent(board.name); } })
+    .on("#boardSwitch", { element: (e) => { e.setInnerContent(others.map((b) => `<a href="${boardHref(b, "/")}">Switch to ${escHtml(b.short)}</a>`).join(""), { html: true }); } })
+    .on("#examples", { element: (e) => { e.setInnerContent(topics, { html: true }); } })
+    .on(".cdmap", { element: (e) => { e.setAttribute("data-board", board.id); } })
+    .on("a[data-keep-board]", { element: (e) => { const h = e.getAttribute("href"); if (h) e.setAttribute("href", boardHref(board, h)); } })
+    .transform(res);
+  const headers = new Headers(out.headers);
+  headers.delete("etag"); // the body depends on ?board=, which the asset's etag doesn't know
+  return new Response(out.body, { status: out.status, headers });
+}
+
 export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
@@ -837,6 +862,7 @@ export default {
     }
     if (url.pathname.startsWith("/api/")) return json({ error: "not found" }, 404);
     if (url.pathname.endsWith(".mp4")) return await video(request, env);
+    if (url.pathname === "/" || url.pathname === "/index.html") return withBoardPage(await env.ASSETS.fetch(request), board);
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;

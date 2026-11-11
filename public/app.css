@@ -13,12 +13,30 @@
 .hero.tagline { font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; }
 .lede { text-align: center; color: var(--muted); font-size: 15px; line-height: 1.45; text-wrap: pretty; margin-top: -6px; }
 .howlink { text-align: center; margin: -4px 0 4px; }
-.demochip { text-align: center; margin-bottom: -8px; }
-.boardswitch a { margin-left: 10px; font-size: 13px; font-weight: 700; color: var(--accent-dark); }
-.demochip > span:first-child { display: inline-block; padding: 4px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-dark); font-size: 13px; font-weight: 700; }
-.howlink a { display: inline-block; padding: 7px 16px; border: 1.5px solid var(--accent); border-radius: 99px;
-  color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: none; transition: background .15s; }
-@media (hover: hover) and (pointer: fine) { .howlink a:hover { background: var(--accent-soft); } }
+/* "How Tell Us works" is a button: a filled-on-hover pill, the arrow nudging forward, and the same press squeeze as every other pressable. */
+.howlink a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 20px;
+  border: 1.5px solid var(--accent); border-radius: 99px; background: var(--white); cursor: pointer;
+  color: var(--accent); font-size: 15px; font-weight: 700; text-decoration: none;
+  transition: background .15s, color .15s, border-color .15s, transform .26s cubic-bezier(.34, 1.4, .5, 1); }
+.howlink a span { display: inline-block; transition: transform .2s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .howlink a:hover { background: var(--accent); color: #fff; }
+  .howlink a:hover span { transform: translateX(3px); }
+}
+.howlink a:active { transform: scale(.98); transition-duration: .15s, .15s, .15s, .1s; }
+.howlink a:focus-visible { outline: 2px dashed var(--accent); outline-offset: 3px; }
+
+/* Which board the demo runs as, at the foot of the page: a tiny district map and one line of text. */
+.demochip { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; }
+.demotext { margin: 0; text-align: left; }
+.boardswitch::before { content: "·"; margin: 0 6px; color: var(--gray-40); }
+.credit-line { margin: 0; }
+/* The tiny district map: lower Manhattan, the board the page runs as filled in. Fixed size, so nothing moves. */
+.cdmap { flex: none; display: block; width: auto; height: 40px; aspect-ratio: 90.4 / 100; }
+.cd { fill: var(--gray-90); stroke: var(--white); stroke-width: 1.2; stroke-linejoin: round; }
+.cd-board { fill: var(--gray-70); }
+.cdmap[data-board="cb2"] .cd-102, .cdmap[data-board="cb3"] .cd-103 { fill: var(--blue-70); }
+.cd-label { font: 700 18px var(--font-body); fill: var(--gray-20); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
 
 /* composer */
 .composer { display: flex; flex-direction: column; gap: 6px; }
@@ -318,7 +336,6 @@ html, body { background: var(--white); }
    information is Blue 70; caution stays Yellow 40 and success Green 40. */
 .hl { color: inherit; }
 .wordmark .hl { color: var(--accent); }  /* the logo keeps its blue */
-.demochip > span:first-child { background: var(--gray-90); color: var(--gray-20); }
 .ff-tag, .tag { color: var(--gray-20); background: var(--gray-90); }
 .routebox { border: 1px solid var(--gray-80); border-left: 6px solid var(--blue-70); }
 .rescard { border: 1px solid var(--gray-80); border-left: 6px solid var(--blue-70); background: var(--white); }
@@ -331,7 +348,7 @@ html, body { background: var(--white); }
 /* Spacing: 16 inside a section, 32 between sections, 64 before the footer. */
 .appmain { gap: 32px; }
 .intro { gap: 16px; }
-.demochip, .lede, .howlink { margin: 0; }
+.lede, .howlink { margin: 0; }
 #verdict { gap: 16px; }
 #verdict:empty { display: none; }
 .credit-foot { margin-top: 32px; }

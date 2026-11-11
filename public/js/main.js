@@ -390,6 +390,7 @@ function showBoard({ board, boards }) {
   setHome(board);
   for (const el of document.querySelectorAll("[data-board-name]")) el.textContent = board.name;
   document.title = document.title.replace("CB2 Manhattan", board.name);
+  document.querySelector(".cdmap")?.setAttribute("data-board", board.id);
   $("boardSwitch").replaceChildren(...boards.filter((b) => b.id !== board.id).map((b) =>
     h("a", { href: b.id === "cb2" ? "/" : `/?board=${b.id}` }, `Switch to ${b.short}`)));
   for (const a of document.querySelectorAll("a[data-keep-board]")) a.href = withBoard(a.getAttribute("href"));
