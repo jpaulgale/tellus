@@ -4,6 +4,7 @@
 
 import catalog from "./catalog.json";
 import boards from "./boards.json";
+import precincts from "./precincts.json";
 import { type Board, type Candidate, type Geo, type License, FINDERS, addressQueries, properNames, streets } from "./candidates";
 import { type Node, intersectionNode } from "./intersection";
 import { history, type History } from "./history";
@@ -272,7 +273,7 @@ function boardFor(cd: string, home: BoardConfig): Board {
 }
 
 /**
- * Tags each location with its community board, the home board locations first. Nothing is dropped: an
+ * Tags each location with its community board and police precinct, the home board locations first. Nothing is dropped: an
  * address outside the district still shows, marked as belonging to another board. PLUTO has no
  * rows for condo unit lots, so the district is looked up per tax block (a block never spans two).
  */
@@ -282,12 +283,16 @@ async function withDistrict<T extends { geo?: Geo }>(home: BoardConfig, cands: T
   if (!blocks.length) return cands;
   const where = blocks.map((b) => { const [boro, block] = b.split(":"); return `(borough='${boro}' AND block='${block}')`; }).join(" OR ");
   try {
-    const r = await fetch(`${PLUTO}?$select=borough,block,cd&$group=borough,block,cd&$where=${encodeURIComponent(where)}`, LOOKUP);
-    const cd = new Map<string, string>();
-    for (const row of (await r.json()) as any[]) if (row.cd) cd.set(`${row.borough}:${row.block}`, row.cd);
+    const r = await fetch(`${PLUTO}?$select=borough,block,cd,policeprct&$group=borough,block,cd,policeprct&$where=${encodeURIComponent(where)}`, LOOKUP);
+    const cd = new Map<string, string>(), pct = new Map<string, string>();
+    for (const row of (await r.json()) as any[]) {
+      if (row.cd) cd.set(`${row.borough}:${row.block}`, row.cd);
+      if (row.policeprct) pct.set(`${row.borough}:${row.block}`, String(Number(row.policeprct)));
+    }
     for (const c of cands) {
-      const code = cd.get(blockOf(c) ?? "");
+      const code = cd.get(blockOf(c) ?? ""), p = pct.get(blockOf(c) ?? "");
       if (code && c.geo) c.geo.board = boardFor(code, home);
+      if (p && c.geo) c.geo.precinct = p;
     }
   } catch { /* PLUTO down: locations stay untagged rather than disappear */ }
   const rank = (c: T) => (c.geo?.board ? (c.geo.board.outside ? 1 : 0) : 2);
@@ -740,7 +745,10 @@ async function send(request: Request, env: Env, track: Track, b: BoardConfig): P
   const body = (await request.json()) as { destination?: string; payload?: any; message?: string; route?: { id?: string; edited?: string[]; voice?: boolean } };
   const other = /^CB:(\d{3})$/.exec(body.destination ?? "");
   const cb = other ? boardFor(other[1], b) : null;
-  const dest = cb ? { label: cb.outside ? cb.name : `${cb.name} office`, url: cb.url, email: cb.email }
+  // NYPD means the precinct that covers the address, with its phone number, when PLUTO knew it.
+  const pct = body.destination === "NYPD" ? (precincts as Record<string, { name: string; phone: string; url: string }>)[body.payload?.police_precinct ?? ""] : null;
+  const dest = cb ? { label: cb.name, url: cb.url, email: cb.email }
+    : pct ? { label: pct.name, url: pct.url, email: null, phone: pct.phone }
     : (catalog.destinations as Record<string, any>)[body.destination ?? ""];
   if (!dest || !body.payload) return json({ error: "destination and payload are required" }, 400);
   const p = body.payload;

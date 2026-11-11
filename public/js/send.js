@@ -1,7 +1,7 @@
 // Payload (shaped like a row of NYC Open Data's 311 Service Requests, erm6-fihm), the
 // required-field check, and the send / hand-off panel.
 
-import { h, esc, api, announce } from "./util.js";
+import { h, api, announce } from "./util.js";
 import { isEmpty, invalidReason } from "./fields.js";
 
 const GENERAL_SR = { when: "when_observed", name: "resident_name", email: "resident_email", phone: "resident_phone" };
@@ -29,6 +29,7 @@ export function buildPayload(s) {
     borough: g.borough ? g.borough.toUpperCase() : null, bbl: g.bbl ?? null,
     latitude: g.lat ?? null, longitude: g.lng ?? null,
     cross_street_1: null, cross_street_2: null,
+    police_precinct: g.precinct ?? null,
     community_board: g.board ? `${g.board.cd.slice(1)} ${g.board.name.split(" ")[1].toUpperCase()}` : s.home.community_board_311,
   };
   if (form.key === "cb2" && !g.board?.outside) p.committee = val(form.key, "committee");
@@ -171,14 +172,12 @@ export function renderSendPanel(root, getState, destinations) {
       result.replaceChildren(
         h("div.nyc-inlinemessage.nyc-inlinemessage--success", { role: "status" },
           h("span.nyc-inlinemessage__icon", "✓"),
-          h("span.nyc-inlinemessage__text", { html:
-            `Saved ${sent.map((x) => `#${esc(x.id)} for ${esc(x.label)}`).join(" and ")}. ` +
-            (payload.attached_resolutions?.length ? `The ${esc(payload.attached_resolutions[0].meeting_date)} resolution is attached for the ${esc(payload.committee)} committee's next meeting. ` : "") +
-            `This demo can't file it for you, so copy the details and submit them at each place.` })),
+          h("span.nyc-inlinemessage__text", "Saved. This demo can't send it for you, so send it yourself below.")),
         h("div.handoff",
-          h("button.chip", { type: "button", onclick: async (e) => { await navigator.clipboard.writeText(text); e.target.textContent = "Copied"; } }, "Copy payload"),
-          sent.map((x) => h("a.chip", { href: x.url, target: "_blank", rel: "noopener" }, `Open ${x.label} ↗`)),
-          sent.map((x, i) => x.email && h("a.chip", { href: mailto(x, i) }, `Email ${x.email}`))));
+          sent.map((x, i) => x.email && h("a.chip", { href: mailto(x, i) }, `Email ${x.email}`)),
+          sent.map((x) => x.phone && h("a.chip", { href: `tel:+1${x.phone.replace(/\D/g, "")}` }, `Call ${x.label}: ${x.phone}`)),
+          sent.map((x) => h("a.chip", { href: x.url, target: "_blank", rel: "noopener" }, `Open ${x.label} website ↗`)),
+          h("button.chip", { type: "button", onclick: async (e) => { await navigator.clipboard.writeText(text); e.target.textContent = "Copied"; } }, "Copy payload")));
       announce(`Saved for ${sent.length} ${sent.length > 1 ? "places" : "place"}`);
       btn.textContent = sendLabel();
     } catch (e) {

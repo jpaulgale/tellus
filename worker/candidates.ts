@@ -22,6 +22,7 @@ export interface Geo {
   housenumber?: string;
   corner?: boolean; // an intersection, not a building
   board?: Board; // which community board the location belongs to
+  precinct?: string; // NYPD precinct number, from PLUTO ("6")
 }
 
 export interface Board {
